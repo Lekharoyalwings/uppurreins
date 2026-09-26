@@ -1,0 +1,484 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+/* ════════════════════════════════════════════════════
+   BARN & RED SOIL THEME — UP PURREINS
+   Palette: Red clay earth • Aged barn wood • Mossy green
+   ════════════════════════════════════════════════════ */
+:root {
+  --color-forest:        #4E693B;
+  --color-sage:          #688450;
+  --color-leaf:          #7F9D64;
+  --color-moss-light:    #8EB264;
+  --color-earth:         #6E3725;
+  --color-clay:          #8A4532;
+  --color-cream:         #E2C9A5;
+  --color-oat:           #CBB89D;
+  --color-sand:          #C2AE95;
+  --color-dark:          #000000;
+  --color-gold:          #D6AB66;
+  --color-barnwood:      #3B2412;
+  --color-barnwood-dark: #1F1207;
+  --color-barnwood-mid:  #4A2E10;
+  --color-iron:          #0e0e0e;
+  --color-soil:          #2e1a0b;
+  --color-soil-dark:     #050505;
+  --color-straw:         #E2C9A5;
+  --color-moss:          #4E693B;
+
+  /* Zero white - warm earthy beige & sand tones */
+  --title-color:         #E2C9A5;
+  --accent-color:        #8EB264;
+  --gold-color:          #D6AB66;
+  --subtext-color:       #CBB89D;
+  --nav-color:           #DFCCA8;
+}
+
+/* ── BASE ─────────────────────────────────────────── */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--subtext-color);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: #000000;
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif, .stable-bar-title, .stall-title {
+  color: var(--title-color) !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.95);
+}
+
+.text-brand-cream, .text-white, [class*="text-white"], [class*="text-brand-cream"] {
+  color: var(--title-color) !important;
+}
+
+.text-brand-oat, [class*="text-brand-oat"] {
+  color: var(--subtext-color) !important;
+}
+
+strong, b {
+  color: var(--gold-color) !important;
+}
+
+.text-brand-mossLight {
+  color: var(--accent-color) !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+
+.text-brand-gold {
+  color: var(--gold-color) !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+
+.stall-label, .stable-bar-label {
+  color: var(--accent-color);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+
+/* ── SCROLLBAR ────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb { background: #1f2d18; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-moss-light); }
+
+
+/* ════════════════════════════════════════════════════
+   FULLY BLACK BACKGROUNDS
+   Deep matte jet black across all sections
+   ════════════════════════════════════════════════════ */
+.bg-red-soil {
+  background-color: #000000;
+}
+
+/* Deep black for alternating sections */
+.bg-soil-dark {
+  background-color: #050505;
+}
+
+/* Hero section deep black */
+.bg-warm-gradient {
+  background: linear-gradient(135deg, #000000 0%, #080808 50%, #0e0e0e 100%);
+}
+
+.bg-barnwood {
+  background-color: #000000;
+}
+
+.bg-barnwood-dark {
+  background-color: #030303;
+}
+
+.bg-barnwood-section {
+  background-color: #050505;
+}
+
+
+/* ════════════════════════════════════════════════════
+   ACCENTS & BADGES
+   ════════════════════════════════════════════════════ */
+.divider-line {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.coir-mat {
+  background-color: #080808;
+  border: 1px solid #1c1c1c;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+}
+
+.bg-coir {
+  background-color: #000000;
+}
+
+
+/* ════════════════════════════════════════════════════
+   STALL CARD (FULLY BLACK)
+   ════════════════════════════════════════════════════ */
+.stall-card {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #1c1c1c;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.9);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: #080808;
+  display: flex;
+  flex-direction: column;
+}
+
+.stall-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.95);
+  border-color: var(--color-moss-light);
+}
+
+/* Black header bar on cards */
+.stall-header {
+  background-color: #000000;
+  padding: 11px 15px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+/* Vertical grain slats across the header bar */
+.stall-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px, transparent 14px,
+    rgba(255,255,255,0.03) 14px, rgba(255,255,255,0.03) 16px
+  );
+  pointer-events: none;
+}
+
+/* Green category name label inside the wood bar */
+.stall-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-moss-light);
+  position: relative;
+  z-index: 1;
+}
+
+/* Main title text inside the wood bar */
+.stall-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--title-color);
+  position: relative;
+  z-index: 1;
+}
+
+/* Wood-panelled body of the stall */
+.stall-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ════════════════════════════════════════════════════
+   STABLE BAR (SECTION HEADER BARS)
+   Full-width textured brown wood name-plate bar used as the
+   header block for each page section — like the
+   carved sign above a stable entrance.
+   ════════════════════════════════════════════════════ */
+.stable-bar {
+  background-color: #3b220e;
+  background-image: 
+    linear-gradient(rgba(58, 33, 14, 0.74), rgba(38, 20, 8, 0.86)),
+    url("../images/barn-texture.jpg");
+  background-size: cover, 420px auto;
+  background-repeat: no-repeat, repeat;
+  padding: 20px 26px 20px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 32px;
+  border-radius: 4px;
+  border: 1px solid rgba(140, 80, 35, 0.45);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.18);
+}
+
+.stable-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px, transparent 22px,
+    rgba(0,0,0,0.18) 22px, rgba(0,0,0,0.18) 24px
+  );
+  pointer-events: none;
+}
+
+
+.stable-bar-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-moss-light);
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.stable-bar-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  color: var(--title-color);
+  position: relative;
+  z-index: 1;
+  line-height: 1.2;
+}
+
+.stable-bar-sub {
+  font-size: 0.8rem;
+  color: var(--subtext-color);
+  position: relative;
+  z-index: 1;
+  margin-top: 4px;
+}
+
+
+/* ════════════════════════════════════════════════════
+   NAVIGATION LINKS & HEADER LEGIBILITY (EARTHY WOOD & GREEN)
+   ════════════════════════════════════════════════════ */
+.nav-link {
+  color: var(--nav-color) !important;
+  font-size: 0.925rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
+  position: relative;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+}
+.nav-link:hover { 
+  color: var(--accent-color) !important; 
+  transform: translateY(-1px);
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2.5px;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+  transform-origin: left;
+  border-radius: 2px;
+}
+.nav-link:hover::after { transform: scaleX(1); }
+
+/* Header & Top Bar Enhancements */
+header {
+  background-color: #000000;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.bg-brand-iron {
+  background-color: #000000 !important;
+  background-image: none !important;
+  border-bottom: 1px solid #1a1a1a !important;
+}
+
+.bg-brand-iron, .bg-brand-iron span {
+  color: var(--nav-color) !important;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Atmospheric Phrase Ticker / Strip */
+.atmosphere-strip {
+  background-color: #050505;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+.atmosphere-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--title-color);
+  padding: 0.35rem 1rem;
+}
+
+header .text-brand-cream {
+  color: var(--title-color) !important;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+header .text-brand-mossLight {
+  color: var(--accent-color) !important;
+  font-weight: 700;
+}
+
+
+/* ════════════════════════════════════════════════════
+   BUTTONS
+   ════════════════════════════════════════════════════ */
+.btn-primary {
+  background-color: var(--color-moss);
+  color: var(--color-straw);
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: var(--color-sage);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -4px rgba(74,94,58,0.45);
+}
+
+.btn-clay {
+  background-color: var(--color-clay);
+  color: var(--color-straw);
+  transition: all 0.3s ease;
+}
+.btn-clay:hover {
+  background-color: var(--color-earth);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-straw);
+  border: 1.5px solid rgba(245, 199, 84, 0.45);
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background-color: rgba(245, 199, 84, 0.15);
+  color: #F5C754;
+  border-color: #F5C754;
+}
+
+
+/* ════════════════════════════════════════════════════
+   CARD HOVER ELEVATION
+   ════════════════════════════════════════════════════ */
+.card-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 30px -10px rgba(0,0,0,0.55);
+}
+
+
+/* ════════════════════════════════════════════════════
+   IMAGE ZOOM ON HOVER
+   ════════════════════════════════════════════════════ */
+.img-zoom-wrapper { overflow: hidden; }
+.img-zoom-wrapper img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-zoom-wrapper:hover img { transform: scale(1.06); }
+
+
+/* ════════════════════════════════════════════════════
+   BADGE STYLES
+   ════════════════════════════════════════════════════ */
+.badge-featured {
+  background-color: rgba(200,153,90,0.2);
+  color: #C8995A;
+  border: 1px solid rgba(200,153,90,0.45);
+}
+.badge-organic {
+  background-color: rgba(74,94,58,0.3);
+  color: #8A9E6E;
+  border: 1px solid rgba(74,94,58,0.55);
+}
+.badge-fresh {
+  background-color: rgba(242,234,216,0.1);
+  color: #F2EAD8;
+  border: 1px solid rgba(242,234,216,0.25);
+}
+
+
+/* ════════════════════════════════════════════════════
+   TOAST NOTIFICATIONS
+   ════════════════════════════════════════════════════ */
+#toast-container {
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 9999;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.toast-msg {
+  background-color: #1A1209;
+  color: var(--color-straw);
+  padding: 14px 20px;
+  border-radius: 3px;
+  border-left: 3px solid var(--color-moss-light);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.55);
+  display: flex; align-items: center; gap: 12px;
+  animation: slideUp 0.3s ease-out forwards;
+  font-size: 0.925rem;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ════════════════════════════════════════════════════
+   CART DRAWER
+   ════════════════════════════════════════════════════ */
+.cart-drawer-backdrop {
+  background-color: rgba(26,18,9,0.78);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+}
+.cart-drawer {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* ════════════════════════════════════════════════════
+   ANIMATIONS
+   ════════════════════════════════════════════════════ */
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+.animate-bounce-subtle { animation: bounce-subtle 3s ease-in-out infinite; }

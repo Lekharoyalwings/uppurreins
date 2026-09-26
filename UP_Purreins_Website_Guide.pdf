@@ -1,0 +1,196 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>
+endobj
+4 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R] /Count 2 >>
+endobj
+5 0 obj
+<< /Length 2226 >>
+stream
+BT
+/F2 20 Tf
+50 730 Td
+(UP PURREINS / PURREINS FREQUENCY) Tj
+/F1 10 Tf
+0 -16 Td
+(Master Website Architecture, File Locations, Vercel & Agent Operations Guide) Tj
+0 -12 Td
+(Generated: September 2026  |  Location: Valley Springs Farmstead Project) Tj
+ET
+0.2 0.3 0.15 RG
+2 w
+50 685 m 562 685 l S
+BT
+/F2 13 Tf
+50 660 Td
+(1. WHERE YOUR AGENT & EDITING CHAT LIVES) Tj
+/F1 9.5 Tf
+0 -16 Td
+(* Your AI Assistant: You are talking directly to Antigravity (AG) in this dedicated chat.) Tj
+0 -14 Td
+(* Chat Purpose: Dedicated 100% to website building, design changes, Vercel, and marketing.) Tj
+0 -14 Td
+(* Conversation ID: d4dcb974-33ec-48da-b068-2cc17cb65d02) Tj
+0 -14 Td
+(* How to edit: Simply type your request in this chat. Antigravity edits the live code directly.) Tj
+/F2 13 Tf
+0 -26 Td
+(2. EXACT LOCAL FILE LOCATIONS ON YOUR MAC) Tj
+/F1 9.5 Tf
+0 -16 Td
+(* Main Website Folder: /Users/lekharoyalwings/.gemini/antigravity/scratch/purreins-frequency/) Tj
+0 -14 Td
+(* Original Backup ZIP: /Users/lekharoyalwings/.gemini/antigravity/scratch/purreins-frequency.zip) Tj
+0 -14 Td
+(* How to preview locally: Open any browser and paste:) Tj
+/F3 9.5 Tf
+0 -12 Td
+(  file:///Users/lekharoyalwings/.gemini/antigravity/scratch/purreins-frequency/index.html) Tj
+/F2 13 Tf
+0 -26 Td
+(3. SUMMARY OF WHAT WE BUILT & HOW IT WAS CREATED) Tj
+/F1 9.5 Tf
+0 -16 Td
+(* The Aesthetic: Deep matte jet-black background (#000000), warm cream titles (#E2C9A5),) Tj
+0 -13 Td
+(  gold accents (#D6AB66), mossy greens (#4E693B), and aged barnwood (#3B2412).) Tj
+0 -15 Td
+(* Pure & Lightweight Tech Stack: Clean semantic HTML5, Tailwind CSS via CDN, Lucide Icons,) Tj
+0 -13 Td
+(  and vanilla JavaScript. Zero build tools or npm dependencies needed to run.) Tj
+0 -15 Td
+(* E-Commerce Engine: Full localStorage shopping basket, customer delivery form in drawer,) Tj
+0 -13 Td
+(  promo discount code engine (HARVEST10 for 10% off), and 1-click WhatsApp order dispatch.) Tj
+0 -15 Td
+(* Marketing & SEO: Google Schema.org JSON-LD local business data, OpenGraph social cards,) Tj
+0 -13 Td
+(  sitemap.xml, robots.txt, and a floating WhatsApp quick inquiry button.) Tj
+/F3 8 Tf
+0 -45 Td
+(Page 1 of 2  |  UP Purreins Frequency  |  Confidential Internal Operations Manual) Tj
+ET
+
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 3056 >>
+stream
+BT
+/F2 16 Tf
+50 730 Td
+(COMPLETE FILE MAP & VERCEL DEPLOYMENT GUIDE) Tj
+ET
+0.2 0.3 0.15 RG
+2 w
+50 715 m 562 715 l S
+BT
+/F2 13 Tf
+50 690 Td
+(4. COMPLETE FILE MANIFEST & WHAT EACH FILE DOES) Tj
+/F1 9 Tf
+0 -15 Td
+(  index.html     : Homepage with hero, featured products, tours, farm philosophy & mood ticker.) Tj
+0 -13 Td
+(  shop.html      : Farm Shop with category filter pills, price sorting, and search bar.) Tj
+0 -13 Td
+(  visit.html     : Farm Visits page for booking workshops, tours, and foraging sessions.) Tj
+0 -13 Td
+(  wholesale.html : B2B wholesale ordering for hotels, cafes, and zero-waste retailers.) Tj
+0 -13 Td
+(  blog.html      : The Journal - farm articles, cold-process soap curing, and recipes.) Tj
+0 -13 Td
+(  about.html     : Valley Springs Farm story, chemical-free philosophy, and founder note.) Tj
+0 -13 Td
+(  contact.html   : Contact information, interactive FAQs accordion, and location map.) Tj
+0 -13 Td
+(  404.html       : Branded woodland error page when someone navigates to a broken link.) Tj
+0 -13 Td
+(  assets/js/data.js : CENTRAL DATABASE - products, prices, descriptions, ingredients, FAQs.) Tj
+0 -13 Td
+(  assets/js/cart.js : CART ENGINE - basket state, delivery form, promo code, WhatsApp order.) Tj
+0 -13 Td
+(  assets/js/main.js : UI SCRIPTS - dark product quick-view modal, mobile menu, navigation.) Tj
+0 -13 Td
+(  assets/css/custom.css : STYLING - custom dark rustic barnwood & red soil theme tokens.) Tj
+0 -13 Td
+(  vercel.json    : VERCEL CONFIG - cleanUrls, edge caching, and HTTP security headers.) Tj
+0 -13 Td
+(  sitemap.xml    : Search engine indexing map for Google, Bing, and Yahoo bots.) Tj
+0 -13 Td
+(  robots.txt     : Search engine crawler permissions directive.) Tj
+/F2 13 Tf
+0 -24 Td
+(5. WHAT WE USED VERCEL FOR & HOW TO DEPLOY) Tj
+/F1 9 Tf
+0 -15 Td
+(  * Free High-Speed Global Hosting: Vercel serves your site across global edge networks.) Tj
+0 -13 Td
+(  * Clean URLs: Automatically turns '/shop.html' into professional '/shop'.) Tj
+0 -13 Td
+(  * Free Automatic SSL/HTTPS: Adds the security padlock to your domain.) Tj
+0 -13 Td
+(  * Custom Domain Setup: Connects 'purreinsfrequency.com' with 1 click in Vercel dashboard.) Tj
+0 -15 Td
+(  HOW TO PUBLISH IN 60 SECONDS:) Tj
+0 -13 Td
+(  1. Open your browser and navigate to: https://vercel.com/new) Tj
+0 -13 Td
+(  2. Drag and drop the 'purreins-frequency' folder directly onto the upload area.) Tj
+0 -13 Td
+(  3. Click 'Deploy'. Your site is instantly live with a public URL!) Tj
+/F2 13 Tf
+0 -24 Td
+(6. HOW TO REQUEST CHANGES FROM ANTIGRAVITY) Tj
+/F1 9 Tf
+0 -15 Td
+(  Whenever you want changes, simply come back to this chat and say:) Tj
+0 -13 Td
+(  - 'Add a new product [Name, Price, Category] to the shop') Tj
+0 -13 Td
+(  - 'Create a new bundle promotion or update pricing') Tj
+0 -13 Td
+(  - 'Write a wholesale cold email pitch for local cafes or hotels') Tj
+0 -13 Td
+(  Antigravity will execute the code changes and verify them immediately.) Tj
+/F3 8 Tf
+0 -35 Td
+(Page 2 of 2  |  UP Purreins Frequency  |  Confidential Internal Operations Manual) Tj
+ET
+
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> >>
+endobj
+9 0 obj
+<< /Type /Catalog /Pages 4 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000015 00000 n 
+0000000085 00000 n 
+0000000160 00000 n 
+0000000238 00000 n 
+0000000301 00000 n 
+0000002579 00000 n 
+0000002725 00000 n 
+0000005833 00000 n 
+0000005979 00000 n 
+trailer
+<< /Size 10 /Root 9 0 R >>
+startxref
+6028
+%%EOF

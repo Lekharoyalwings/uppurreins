@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Visits &amp; Experiences | UP Purreins Frequency</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              forest:    '#4A5E3A',
+              sage:      '#6B7C55',
+              leaf:      '#8A9E6E',
+              mossLight: '#7D9A62',
+              earth:     '#7A3020',
+              clay:      '#9B4030',
+              cream:     '#F2EAD8',
+              oat:       '#E8DCC8',
+              dark:      '#1A1209',
+              gold:      '#C8995A',
+              barnwood:  '#3B2412',
+              iron:      '#111111',
+              soil:      '#6D2416',
+            }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans:  ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-red-soil antialiased flex flex-col min-h-screen">
+
+  <!-- Top Atmospheric Notification Bar -->
+  <div class="bg-brand-iron border-b border-brand-forest/40 text-xs sm:text-sm py-2 px-3 text-center font-medium tracking-wider flex items-center justify-center gap-2 overflow-x-auto whitespace-nowrap">
+    <i data-lucide="cloud-rain" class="w-3.5 h-3.5 text-brand-mossLight flex-shrink-0"></i>
+    <span class="text-[#e2c9a5]">Farm to Fork &nbsp;•&nbsp; No Testubes &nbsp;•&nbsp; Smell of Rain &nbsp;•&nbsp; Grey Skies &nbsp;•&nbsp; Thunderstorm &nbsp;•&nbsp; Highway</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 bg-black border-b border-white/10 shadow-2xl transition">
+    <div class="w-full px-3 sm:px-6 lg:px-8 h-28 sm:h-32 md:h-36 flex items-center justify-between gap-4">
+      <!-- Official Brand Logo (Extra Large, far to the left, seamless on black, no border) -->
+      <a href="index.html" class="flex items-center gap-3 sm:gap-5 group py-1 -ml-1 sm:-ml-2 flex-shrink-0">
+        <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-24 sm:h-28 md:h-32 lg:h-36 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-2xl">
+        <span class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#e2c9a5] group-hover:text-[#f3dfc1] transition-colors leading-none whitespace-nowrap">
+          Purreins Frequency
+        </span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden xl:flex items-center space-x-6 2xl:space-x-8 text-xs 2xl:text-sm font-medium flex-shrink-0">
+        <a href="index.html"     class="nav-link py-2 text-[#cbb89d]">Home</a>
+        <a href="shop.html"      class="nav-link py-2 text-[#cbb89d]">Farm Shop</a>
+        <a href="wholesale.html" class="nav-link py-2 text-[#cbb89d]">Wholesale</a>
+        <a href="visit.html"     class="nav-link py-2 text-[#e2c9a5] font-semibold">Farm Visits</a>
+        <a href="blog.html"      class="nav-link py-2 text-[#cbb89d]">Journal</a>
+        <a href="about.html"     class="nav-link py-2 text-[#cbb89d]">Our Story</a>
+        <a href="contact.html"   class="nav-link py-2 text-[#cbb89d]">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <button onclick="window.cart.openDrawer()" class="relative p-3 rounded-sm bg-black/40 hover:bg-brand-forest/30 text-[#e2c9a5] transition border border-white/10">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span class="cart-count-badge absolute -top-1 -right-1 w-5 h-5 bg-brand-forest text-[#e2c9a5] text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
+        </button>
+        <button id="mobile-menu-btn" class="xl:hidden p-3 rounded-sm bg-black/40 hover:bg-black/60 text-[#e2c9a5] transition border border-white/10">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Atmospheric Mood Ticker Strip -->
+  <div class="atmosphere-strip py-2.5 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center md:justify-between gap-3 text-center">
+      <span class="atmosphere-tag"><i data-lucide="utensils" class="w-3.5 h-3.5 text-brand-mossLight"></i> Farm to Fork</span>
+      <span class="atmosphere-tag"><i data-lucide="shield-off" class="w-3.5 h-3.5 text-brand-gold"></i> No Testubes</span>
+      <span class="atmosphere-tag"><i data-lucide="cloud-drizzle" class="w-3.5 h-3.5 text-brand-mossLight"></i> Smell of Rain</span>
+      <span class="atmosphere-tag"><i data-lucide="cloud" class="w-3.5 h-3.5 text-[#cbb89d]"></i> Grey Skies</span>
+      <span class="atmosphere-tag"><i data-lucide="zap" class="w-3.5 h-3.5 text-brand-gold"></i> Thunderstorm</span>
+      <span class="atmosphere-tag"><i data-lucide="milestone" class="w-3.5 h-3.5 text-brand-mossLight"></i> Highway</span>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 hidden">
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-brand-dark/85 backdrop-blur-sm opacity-0 transition-opacity"></div>
+    <div class="drawer-content fixed top-0 right-0 w-4/5 max-w-sm h-full bg-barnwood shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform border-l border-black/60">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-white/10">
+          <a href="index.html" class="flex items-center gap-3">
+            <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-16 w-auto object-contain">
+            <span class="font-serif text-xl font-bold text-[#e2c9a5]">Purreins Frequency</span>
+          </a>
+          <button id="mobile-menu-close" class="p-2 rounded-sm bg-black/40 text-[#e2c9a5]/70 hover:text-[#e2c9a5]">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-1 mt-6 text-base font-medium">
+          <a href="index.html"     class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="home"         class="w-4 h-4 text-brand-mossLight"></i> Home</a>
+          <a href="shop.html"      class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="shopping-bag"  class="w-4 h-4 text-brand-mossLight"></i> Farm Shop</a>
+          <a href="wholesale.html" class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="boxes"         class="w-4 h-4 text-brand-mossLight"></i> Wholesale</a>
+          <a href="visit.html"     class="flex items-center gap-3 text-brand-cream font-bold py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="calendar"      class="w-4 h-4 text-brand-mossLight"></i> Farm Visits</a>
+          <a href="blog.html"      class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="book-open"     class="w-4 h-4 text-brand-mossLight"></i> Farm Journal</a>
+          <a href="about.html"     class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="heart"         class="w-4 h-4 text-brand-mossLight"></i> Our Story</a>
+          <a href="contact.html"   class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 hover:bg-white/5 rounded-sm transition">                    <i data-lucide="map-pin"       class="w-4 h-4 text-brand-mossLight"></i> Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Banner -->
+  <div class="bg-warm-gradient py-14 border-b border-black/40">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-mossLight mb-2 block">Step Onto Living Land</span>
+      <h1 class="font-serif text-4xl sm:text-5xl font-bold text-brand-cream mb-4">Farm Visits &amp; Workshops</h1>
+      <p class="text-brand-oat/75 text-sm sm:text-base leading-relaxed">
+        Reconnect with earth frequency. Walk our organic permaculture beds, meet free-roaming ducks, harvest whole herbal stems, and master the craft of cold-processed soaps.
+      </p>
+    </div>
+  </div>
+
+  <!-- Main Booking Section -->
+  <main class="flex-1 bg-soil-dark py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Experience Selection Cards -->
+      <div class="mb-16">
+        <div class="stable-bar rounded-sm text-center">
+          <span class="stable-bar-label">Step 1: Choose Your Experience</span>
+          <h2 class="stable-bar-title text-3xl sm:text-4xl">Available Farm Immersions</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6" id="experience-cards-grid">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Booking Form Section -->
+      <div class="stall-card p-6 sm:p-10 max-w-4xl mx-auto relative" id="booking-section">
+        
+        <div class="stable-bar rounded-sm text-center">
+          <span class="stable-bar-label">Step 2: Reservation Details</span>
+          <h3 class="stable-bar-title text-2xl sm:text-3xl font-bold" id="selected-experience-title">Select Date &amp; Reserve Slots</h3>
+          <p class="stable-bar-sub">Instant confirmation sent to your WhatsApp and Email.</p>
+        </div>
+
+        <form id="farm-booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-6">
+          
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-brand-oat/80 mb-1">Selected Tour / Workshop *</label>
+              <select id="book-experience" class="w-full px-4 py-3 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight cursor-pointer" onchange="updateBookingPricing()">
+                <!-- Options populated via JS -->
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-brand-oat/80 mb-1">Number of Guests *</label>
+              <div class="flex items-center border border-white/15 rounded-sm bg-brand-dark/50 overflow-hidden px-3 py-1.5">
+                <span class="text-xs text-brand-oat/60 mr-auto">Guests</span>
+                <button type="button" onclick="changeGuestCount(-1)" class="w-8 h-8 rounded-sm bg-brand-barnwood text-brand-cream font-bold hover:bg-black/60 flex items-center justify-center text-sm border border-white/10">-</button>
+                <span id="guest-count-display" class="px-4 font-bold text-brand-cream text-sm">2</span>
+                <button type="button" onclick="changeGuestCount(1)" class="w-8 h-8 rounded-sm bg-brand-barnwood text-brand-cream font-bold hover:bg-black/60 flex items-center justify-center text-sm border border-white/10">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-brand-oat/80 mb-1">Visit Date *</label>
+              <input type="date" id="book-date" required class="w-full px-4 py-3 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-brand-oat/80 mb-1">Preferred Time Slot *</label>
+              <select id="book-time" class="w-full px-4 py-3 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight cursor-pointer">
+                <option value="10:00 AM – 12:00 PM">Morning Slot: 10:00 AM – 12:00 PM</option>
+                <option value="2:00 PM – 4:00 PM">Afternoon Slot: 2:00 PM – 4:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-4 pt-2 border-t border-white/10">
+            <div>
+              <label class="block text-xs font-bold text-brand-oat/80 mb-1">Primary Guest Name *</label>
+              <input type="text" id="book-name" required placeholder="Full Name" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-brand-oat/80 mb-1">WhatsApp / Phone *</label>
+              <input type="tel" id="book-phone" required placeholder="+1 (555) 000-0000" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-brand-oat/80 mb-1">Email Address *</label>
+              <input type="email" id="book-email" required placeholder="name@example.com" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-brand-oat/80 mb-1">Special Dietary / Accessibility Notes (Optional)</label>
+            <input type="text" id="book-notes" placeholder="e.g. traveling with 1 toddler, celebrating anniversary" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
+          </div>
+
+          <!-- Pricing Summary Box -->
+          <div class="bg-brand-dark/50 p-5 rounded-sm border border-white/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs text-brand-oat/50 block">Single-Day Visit Calculation</span>
+              <div class="flex items-baseline gap-2 mt-0.5">
+                <span id="booking-total-price" class="text-2xl font-serif font-bold text-brand-gold">INR 450</span>
+                <span id="booking-calc-breakdown" class="text-xs text-brand-oat/70">(INR 450 × 1 Guest)</span>
+              </div>
+              <span class="text-[11px] text-brand-oat/40 block mt-0.5">Payable upon arrival or via UPI / WhatsApp link</span>
+            </div>
+            <button type="submit" class="btn-primary py-3.5 px-8 rounded-sm font-medium text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg">
+              <i data-lucide="check-circle" class="w-4 h-4"></i>
+              <span>Confirm 1-Day Reservation</span>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Confirmation Card Modal -->
+        <div id="booking-success-modal" class="absolute inset-0 bg-barnwood-dark rounded-sm p-8 sm:p-12 flex flex-col items-center justify-center text-center hidden border border-black/60">
+          <div class="w-16 h-16 rounded-sm bg-brand-forest/30 text-brand-mossLight flex items-center justify-center mb-4 border border-brand-forest/40">
+            <i data-lucide="calendar-check" class="w-8 h-8"></i>
+          </div>
+          <h4 class="font-serif text-3xl font-bold text-brand-cream mb-2">Visit Reservation Confirmed!</h4>
+          <div class="bg-brand-dark/50 p-6 rounded-sm border border-white/10 text-left w-full max-w-md my-4 space-y-2 text-xs text-brand-oat/80">
+            <p><strong class="text-brand-cream">Tour:</strong> <span id="conf-tour"></span></p>
+            <p><strong class="text-brand-cream">Date &amp; Time:</strong> <span id="conf-datetime"></span></p>
+            <p><strong class="text-brand-cream">Guests:</strong> <span id="conf-guests"></span></p>
+            <p><strong class="text-brand-cream">Total Amount:</strong> <span id="conf-price" class="font-bold text-brand-gold"></span></p>
+            <p><strong class="text-brand-cream">Location:</strong> Valley Springs Farm, 42 Whispering Pines Trail</p>
+          </div>
+          <p class="text-brand-oat/60 text-xs max-w-sm mb-6">
+            A confirmation copy is ready for WhatsApp. Click below to message our farm hosts directly before arrival!
+          </p>
+          <div class="flex gap-3">
+            <button onclick="sendBookingWhatsApp()" class="bg-brand-forest hover:bg-brand-sage text-brand-cream px-6 py-2.5 rounded-sm text-xs font-semibold flex items-center gap-2 shadow-md">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Open WhatsApp Confirmation</span>
+            </button>
+            <button onclick="resetBookingForm()" class="btn-secondary px-5 py-2.5 rounded-sm text-xs font-semibold">
+              Book Another Tour
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pop-Up Markets & Regional Fairs -->
+      <div class="mt-20">
+        <div class="stable-bar rounded-sm text-center">
+          <span class="stable-bar-label">Direct From The Makers</span>
+          <h2 class="stable-bar-title text-3xl sm:text-4xl">Pop-Up Markets &amp; Regional Fairs</h2>
+          <p class="stable-bar-sub">Find UP Purreins stalls at curated artisan flea markets, organic santhes, and craft bazaars across South India.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="market-events-grid">
+          <!-- Injected via JS from MARKET_EVENTS -->
+        </div>
+      </div>
+
+      <!-- Visitor Guidelines & Farm Map -->
+      <div class="mt-20 grid md:grid-cols-2 gap-8">
+        
+        <div class="stall-card">
+          <div class="stall-header">
+            <span class="stall-label">Visitor Guidelines</span>
+          </div>
+          <div class="stall-body space-y-4">
+            <ul class="space-y-3 text-xs text-brand-oat/70 leading-relaxed">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="footprints" class="w-4 h-4 text-brand-mossLight flex-shrink-0 mt-0.5"></i>
+                <span><strong class="text-brand-cream">Footwear:</strong> Please wear comfortable, closed-toe walking shoes suitable for unpaved farm trails.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="trash-2" class="w-4 h-4 text-brand-mossLight flex-shrink-0 mt-0.5"></i>
+                <span><strong class="text-brand-cream">Zero Single-Use Plastic:</strong> We are a zero-waste sanctuary. Bring your reusable canteen; clean spring water is provided.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="smile" class="w-4 h-4 text-brand-mossLight flex-shrink-0 mt-0.5"></i>
+                <span><strong class="text-brand-cream">Animal Care:</strong> Ducks and ducklings roam freely. Gentle voices and slow footsteps keep them calm.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="stall-card">
+          <div class="stall-header">
+            <span class="stall-label">Location &amp; Directions</span>
+          </div>
+          <div class="stall-body space-y-4">
+            <p class="text-xs text-brand-oat/70 leading-relaxed">
+              Valley Springs Farm is nestled in the foothills of Meadowlands, just a 35-minute scenic drive from downtown. Free meadow parking is available.
+            </p>
+            <div class="p-4 rounded-sm bg-brand-dark/50 border border-white/10 text-xs space-y-1">
+              <p class="font-bold text-brand-cream">GPS Address:</p>
+              <p class="text-brand-oat/70">42 Whispering Pines Trail, Meadowlands Valley</p>
+              <p class="text-brand-mossLight text-[11px] pt-1">Open in Google Maps / Apple Maps</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-barnwood-dark border-t border-black/60 py-12 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs">
+      <p class="font-serif text-[#e2c9a5] text-lg font-bold mb-2">Purreins Frequency</p>
+      <p class="text-brand-oat/50">© 2026 Purreins Frequency. 100% Organic &amp; Chemical-Free Living.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    let guestCount = 2;
+    let lastBookingData = null;
+
+    function renderExperiences() {
+      const grid = document.getElementById('experience-cards-grid');
+      const select = document.getElementById('book-experience');
+      
+      if (grid) {
+        grid.innerHTML = FARM_VISITS.map(tour => `
+          <div class="stall-card card-hover flex flex-col justify-between">
+            <div>
+              <div class="stall-header">
+                <span class="stall-label">${tour.duration} • ${tour.days}</span>
+                <span class="text-brand-gold text-xs font-semibold ml-auto relative z-10">INR ${tour.pricePerPerson.toLocaleString('en-IN')} / Person</span>
+              </div>
+              <div class="relative h-52 img-zoom-wrapper">
+                <img src="${tour.image}" alt="${tour.title}" class="w-full h-full object-cover">
+                <span class="absolute top-3 right-3 bg-brand-dark/90 text-brand-cream text-[11px] font-bold px-2.5 py-0.5 rounded-sm">
+                  ${tour.badge}
+                </span>
+              </div>
+              <div class="stall-body">
+                <h3 class="font-serif font-bold text-xl text-brand-cream mt-1 mb-2">${tour.title}</h3>
+                <p class="text-xs text-brand-oat/60 leading-relaxed mb-4">${tour.description}</p>
+                <div class="space-y-1.5 pt-2 border-t border-black/30">
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-brand-mossLight block mb-1">Includes:</span>
+                  ${tour.included.map(inc => `
+                    <div class="flex items-center gap-2 text-xs text-brand-oat/65">
+                      <i data-lucide="check" class="w-3.5 h-3.5 text-brand-mossLight flex-shrink-0"></i>
+                      <span>${inc}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+            <div class="px-4 pb-4">
+              <button onclick="selectTourForBooking('${tour.id}')" class="w-full btn-primary py-3 rounded-sm text-xs font-semibold text-center block shadow-md">
+                Select This Experience
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      if (select) {
+        select.innerHTML = FARM_VISITS.map(tour => `
+          <option value="${tour.id}">
+            ${tour.title} (INR ${tour.pricePerPerson.toLocaleString('en-IN')}/person)
+          </option>
+        `).join('');
+      }
+
+      const dateInput = document.getElementById('book-date');
+      if (dateInput) {
+        const today = new Date();
+        const nextSat = new Date();
+        nextSat.setDate(today.getDate() + ((6 - today.getDay() + 7) % 7 || 7));
+        dateInput.value = nextSat.toISOString().split('T')[0];
+        dateInput.min = today.toISOString().split('T')[0];
+      }
+
+      updateBookingPricing();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function selectTourForBooking(tourId) {
+      const select = document.getElementById('book-experience');
+      if (select) {
+        select.value = tourId;
+        updateBookingPricing();
+        document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function changeGuestCount(delta) {
+      guestCount = Math.max(1, Math.min(12, guestCount + delta));
+      document.getElementById('guest-count-display').textContent = guestCount;
+      updateBookingPricing();
+    }
+
+    function updateBookingPricing() {
+      const select = document.getElementById('book-experience');
+      const totalEl = document.getElementById('booking-total-price');
+      const breakdownEl = document.getElementById('booking-calc-breakdown');
+      if (!select || !totalEl) return;
+
+      const tour = FARM_VISITS.find(t => t.id === select.value) || FARM_VISITS[0];
+      const total = tour.pricePerPerson * guestCount;
+      totalEl.textContent = `INR ${total.toLocaleString('en-IN')}`;
+      if (breakdownEl) {
+        breakdownEl.textContent = `(INR ${tour.pricePerPerson.toLocaleString('en-IN')} × ${guestCount} Guest${guestCount > 1 ? 's' : ''})`;
+      }
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const select = document.getElementById('book-experience');
+      const tour = FARM_VISITS.find(t => t.id === select.value) || FARM_VISITS[0];
+      const date = document.getElementById('book-date').value;
+      const time = document.getElementById('book-time').value;
+      const name = document.getElementById('book-name').value;
+      const phone = document.getElementById('book-phone').value;
+      const email = document.getElementById('book-email').value;
+      const notes = document.getElementById('book-notes').value;
+      const total = tour.pricePerPerson * guestCount;
+
+      lastBookingData = {
+        tour: tour.title,
+        date,
+        time,
+        guests: guestCount,
+        name,
+        phone,
+        email,
+        notes,
+        total
+      };
+
+      document.getElementById('conf-tour').textContent = tour.title;
+      document.getElementById('conf-datetime').textContent = `${date} at ${time}`;
+      document.getElementById('conf-guests').textContent = `${guestCount} Guests`;
+      document.getElementById('conf-price').textContent = `INR ${total.toLocaleString('en-IN')}`;
+
+      document.getElementById('booking-success-modal').classList.remove('hidden');
+    }
+
+    function sendBookingWhatsApp() {
+      if (!lastBookingData) return;
+      let msg = `🌿 *Farm Visit Reservation - ${BRAND_CONFIG.brandName}*\n`;
+      msg += `Experience: ${lastBookingData.tour}\n`;
+      msg += `Date & Time: ${lastBookingData.date} (${lastBookingData.time})\n`;
+      msg += `Guests: ${lastBookingData.guests}\n`;
+      msg += `Name: ${lastBookingData.name}\n`;
+      msg += `Phone: ${lastBookingData.phone} | Email: ${lastBookingData.email}\n`;
+      msg += `Total: INR ${lastBookingData.total.toLocaleString('en-IN')}\n`;
+      if (lastBookingData.notes) msg += `Notes: ${lastBookingData.notes}\n`;
+      msg += `\nHello! I have submitted this farm visit booking. Please confirm slot availability. Thank you!`;
+
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/${BRAND_CONFIG.whatsappNumber}?text=${encoded}`, '_blank');
+    }
+
+    function resetBookingForm() {
+      document.getElementById('farm-booking-form').reset();
+      document.getElementById('booking-success-modal').classList.add('hidden');
+      updateBookingPricing();
+    }
+
+    function renderMarketEvents() {
+      const grid = document.getElementById('market-events-grid');
+      if (!grid || typeof MARKET_EVENTS === 'undefined') return;
+
+      grid.innerHTML = MARKET_EVENTS.map(mkt => `
+        <div class="stall-card flex flex-col justify-between p-5 border border-white/10 hover:border-brand-mossLight/40 transition">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-sm bg-brand-forest/40 text-brand-mossLight border border-brand-mossLight/30">
+                ${mkt.city}
+              </span>
+              <span class="text-[10px] text-brand-gold font-semibold">${mkt.status}</span>
+            </div>
+            <h3 class="font-serif font-bold text-base text-[#e2c9a5] mb-1.5">${mkt.name}</h3>
+            <p class="text-xs text-[#cbb89d]/70 flex items-start gap-1.5 mb-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold flex-shrink-0 mt-0.5"></i>
+              <span>${mkt.venue}</span>
+            </p>
+            <p class="text-xs text-[#cbb89d]/60 flex items-start gap-1.5 mb-3">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-brand-mossLight flex-shrink-0 mt-0.5"></i>
+              <span>${mkt.timing}</span>
+            </p>
+            <div class="p-2.5 rounded-sm bg-white/5 border border-white/10 mb-4 text-[11px] text-[#e2c9a5]/90">
+              <strong class="text-brand-gold block text-[10px] uppercase tracking-wider mb-0.5">Stall Highlights:</strong>
+              ${mkt.focus}
+            </div>
+          </div>
+          <a href="https://wa.me/${BRAND_CONFIG.whatsappNumber}?text=${encodeURIComponent('Hello! I would like to inquire about your stall at ' + mkt.name + ' in ' + mkt.city)}" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 rounded-sm bg-white/10 hover:bg-brand-forest text-xs font-semibold text-[#e2c9a5] flex items-center justify-center gap-1.5 transition border border-white/10">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+            <span>Inquire Stall Details</span>
+          </a>
+        </div>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderExperiences();
+      renderMarketEvents();
+    });
+  </script>
+
+  <!-- Floating WhatsApp Quick Inquiry Widget -->
+  <a href="https://wa.me/15553827467?text=Hello%20Purreins%20Frequency!%20I%20have%20an%20inquiry%20about%20your%20farm%20offerings." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20bd5a] text-white p-3.5 rounded-full shadow-2xl transition transform hover:scale-110 flex items-center gap-2 group border border-white/20" title="Chat with the Farmstead">
+    <i data-lucide="message-circle" class="w-6 h-6"></i>
+    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold pr-1">Chat with Farm</span>
+  </a>
+</body>
+</html>

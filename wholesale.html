@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wholesale &amp; Bulk Inquiries | UP Purreins Frequency</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              forest:    '#4A5E3A',
+              sage:      '#6B7C55',
+              leaf:      '#8A9E6E',
+              mossLight: '#7D9A62',
+              earth:     '#7A3020',
+              clay:      '#9B4030',
+              cream:     '#F2EAD8',
+              oat:       '#E8DCC8',
+              dark:      '#1A1209',
+              gold:      '#C8995A',
+              barnwood:  '#3B2412',
+              iron:      '#111111',
+              soil:      '#6D2416',
+            }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans:  ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-red-soil antialiased flex flex-col min-h-screen">
+
+  <!-- Top Atmospheric Notification Bar -->
+  <div class="bg-brand-iron border-b border-brand-forest/40 text-xs sm:text-sm py-2 px-3 text-center font-medium tracking-wider flex items-center justify-center gap-2 overflow-x-auto whitespace-nowrap">
+    <i data-lucide="cloud-rain" class="w-3.5 h-3.5 text-brand-mossLight flex-shrink-0"></i>
+    <span class="text-[#e2c9a5]">Farm to Fork &nbsp;•&nbsp; No Testubes &nbsp;•&nbsp; Smell of Rain &nbsp;•&nbsp; Grey Skies &nbsp;•&nbsp; Thunderstorm &nbsp;•&nbsp; Highway</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 bg-black border-b border-white/10 shadow-2xl transition">
+    <div class="w-full px-3 sm:px-6 lg:px-8 h-28 sm:h-32 md:h-36 flex items-center justify-between gap-4">
+      <!-- Official Brand Logo (Extra Large, far to the left, seamless on black, no border) -->
+      <a href="index.html" class="flex items-center gap-3 sm:gap-5 group py-1 -ml-1 sm:-ml-2 flex-shrink-0">
+        <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-24 sm:h-28 md:h-32 lg:h-36 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-2xl">
+        <span class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#e2c9a5] group-hover:text-[#f3dfc1] transition-colors leading-none whitespace-nowrap">
+          Purreins Frequency
+        </span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden xl:flex items-center space-x-6 2xl:space-x-8 text-xs 2xl:text-sm font-medium flex-shrink-0">
+        <a href="index.html"     class="nav-link py-2 text-[#cbb89d]">Home</a>
+        <a href="shop.html"      class="nav-link py-2 text-[#cbb89d]">Farm Shop</a>
+        <a href="wholesale.html" class="nav-link py-2 text-[#e2c9a5] font-semibold">Wholesale</a>
+        <a href="visit.html"     class="nav-link py-2 text-[#cbb89d]">Farm Visits</a>
+        <a href="blog.html"      class="nav-link py-2 text-[#cbb89d]">Journal</a>
+        <a href="about.html"     class="nav-link py-2 text-[#cbb89d]">Our Story</a>
+        <a href="contact.html"   class="nav-link py-2 text-[#cbb89d]">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <button onclick="window.cart.openDrawer()" class="relative p-3 rounded-sm bg-black/40 hover:bg-brand-forest/30 text-[#e2c9a5] transition border border-white/10">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span class="cart-count-badge absolute -top-1 -right-1 w-5 h-5 bg-brand-forest text-[#e2c9a5] text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
+        </button>
+        <button id="mobile-menu-btn" class="xl:hidden p-3 rounded-sm bg-black/40 hover:bg-black/60 text-[#e2c9a5] transition border border-white/10">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Atmospheric Mood Ticker Strip -->
+  <div class="atmosphere-strip py-2.5 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center md:justify-between gap-3 text-center">
+      <span class="atmosphere-tag"><i data-lucide="utensils" class="w-3.5 h-3.5 text-brand-mossLight"></i> Farm to Fork</span>
+      <span class="atmosphere-tag"><i data-lucide="shield-off" class="w-3.5 h-3.5 text-brand-gold"></i> No Testubes</span>
+      <span class="atmosphere-tag"><i data-lucide="cloud-drizzle" class="w-3.5 h-3.5 text-brand-mossLight"></i> Smell of Rain</span>
+      <span class="atmosphere-tag"><i data-lucide="cloud" class="w-3.5 h-3.5 text-[#cbb89d]"></i> Grey Skies</span>
+      <span class="atmosphere-tag"><i data-lucide="zap" class="w-3.5 h-3.5 text-brand-gold"></i> Thunderstorm</span>
+      <span class="atmosphere-tag"><i data-lucide="milestone" class="w-3.5 h-3.5 text-brand-mossLight"></i> Highway</span>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 hidden">
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-brand-dark/85 backdrop-blur-sm opacity-0 transition-opacity"></div>
+    <div class="drawer-content fixed top-0 right-0 w-4/5 max-w-sm h-full bg-barnwood shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform border-l border-black/60">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-white/10">
+          <a href="index.html" class="flex items-center gap-3">
+            <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-16 w-auto object-contain">
+            <span class="font-serif text-xl font-bold text-[#e2c9a5]">Purreins Frequency</span>
+          </a>
+          <button id="mobile-menu-close" class="p-2 rounded-sm bg-black/40 text-[#e2c9a5]/70 hover:text-[#e2c9a5]">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <nav class="flex flex-col space-y-1 mt-6 text-base font-medium">
+          <a href="index.html"     class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="home"         class="w-4 h-4 text-brand-mossLight"></i> Home</a>
+          <a href="shop.html"      class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="shopping-bag"  class="w-4 h-4 text-brand-mossLight"></i> Farm Shop</a>
+          <a href="wholesale.html" class="flex items-center gap-3 text-brand-cream font-bold py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="boxes"         class="w-4 h-4 text-brand-mossLight"></i> Wholesale</a>
+          <a href="visit.html"     class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="calendar"      class="w-4 h-4 text-brand-mossLight"></i> Farm Visits</a>
+          <a href="blog.html"      class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="book-open"     class="w-4 h-4 text-brand-mossLight"></i> Farm Journal</a>
+          <a href="about.html"     class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="heart"         class="w-4 h-4 text-brand-mossLight"></i> Our Story</a>
+          <a href="contact.html"   class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 hover:bg-white/5 rounded-sm transition">                    <i data-lucide="map-pin"       class="w-4 h-4 text-brand-mossLight"></i> Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Banner -->
+  <section class="bg-warm-gradient text-white py-16 border-b border-black/50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block px-3 py-1 rounded-sm bg-brand-forest/35 border border-brand-forest/50 text-brand-mossLight text-xs uppercase tracking-widest font-semibold mb-4">B2B &amp; Commercial Partnerships</span>
+      <h1 class="font-serif text-4xl sm:text-5xl font-bold mb-4 text-brand-cream">Wholesale &amp; Bulk Supply</h1>
+      <p class="text-brand-oat/75 text-sm sm:text-base leading-relaxed font-light">
+        Partner with <strong class="text-brand-gold">Purreins Frequency</strong> to source fresh pasture duck eggs, handcrafted cold-process soaps, heirloom quilt rolls, and farm herbs for your restaurant, boutique, or zero-waste store.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="flex-1 bg-soil-dark py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Wholesale Tiers Overview -->
+      <div class="mb-16">
+        <div class="stable-bar rounded-sm text-center">
+          <span class="stable-bar-label">Standard Volume Tiers</span>
+          <h2 class="stable-bar-title text-3xl sm:text-4xl">Wholesale Categories</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6" id="wholesale-tiers-grid">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Inquiry Form & Benefits Grid -->
+      <div class="grid lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Left: Why Partner -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="stable-bar rounded-sm">
+            <span class="stable-bar-label">The Purreins Standard</span>
+            <h3 class="stable-bar-title text-2xl">Why Partner With Our Farm?</h3>
+            <p class="stable-bar-sub">Pure chemical-free agriculture crafted slowly by hand.</p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="stall-card">
+              <div class="stall-header">
+                <span class="stall-label">Harvested &amp; Packed to Order</span>
+              </div>
+              <div class="stall-body flex items-start gap-3">
+                <div class="w-10 h-10 rounded-sm bg-brand-forest/25 border border-brand-forest/40 text-brand-mossLight flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-brand-oat/70">Microgreens delivered alive; herbs harvested morning of shipment.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="stall-card">
+              <div class="stall-header">
+                <span class="stall-label">Custom Labeling &amp; Unbranded</span>
+              </div>
+              <div class="stall-body flex items-start gap-3">
+                <div class="w-10 h-10 rounded-sm bg-brand-gold/20 border border-brand-gold/30 text-brand-gold flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="shield" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-brand-oat/70">Available for boutique hotels, spas, and private label gift collections.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="stall-card">
+              <div class="stall-header">
+                <span class="stall-label">Reliable Scheduled Deliveries</span>
+              </div>
+              <div class="stall-body flex items-start gap-3">
+                <div class="w-10 h-10 rounded-sm bg-white/10 border border-white/15 text-brand-cream flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="truck" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-brand-oat/70">Weekly standing orders for restaurants, cafes, and artisanal bakeries.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Contact Box -->
+          <div class="stall-card p-6">
+            <h4 class="font-serif font-bold text-brand-cream text-lg mb-2">Need Immediate B2B Assistance?</h4>
+            <p class="text-xs text-brand-oat/65 mb-4">Message our wholesale farm coordinator directly on WhatsApp for urgent chef orders and bulk quotes.</p>
+            <a href="https://wa.me/15553827467?text=Hello%20Purreins%20Frequency!%20I%20would%20like%20to%20discuss%20a%20wholesale%20order." target="_blank" class="inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-brand-cream px-5 py-2.5 rounded-sm text-xs font-semibold shadow-md transition">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Chat via WhatsApp</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Wholesale Inquiry Form -->
+        <div class="lg:col-span-7 stall-card relative">
+          <div class="stall-header">
+            <span class="stall-label">Submit Wholesale Inquiry</span>
+          </div>
+          <div class="stall-body p-6 sm:p-8">
+            <form id="wholesale-form" onsubmit="handleWholesaleSubmit(event)" class="space-y-4">
+              
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-brand-oat/80 mb-1">Business / Brand Name *</label>
+                  <input type="text" id="ws-biz-name" required placeholder="e.g. Green Leaf Bistro" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs focus:outline-none focus:border-brand-mossLight bg-brand-dark/50 text-brand-cream">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-brand-oat/80 mb-1">Contact Person *</label>
+                  <input type="text" id="ws-contact-name" required placeholder="Your full name" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs focus:outline-none focus:border-brand-mossLight bg-brand-dark/50 text-brand-cream">
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-brand-oat/80 mb-1">Email Address *</label>
+                  <input type="email" id="ws-email" required placeholder="orders@yourbusiness.com" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs focus:outline-none focus:border-brand-mossLight bg-brand-dark/50 text-brand-cream">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-brand-oat/80 mb-1">Phone / WhatsApp *</label>
+                  <input type="tel" id="ws-phone" required placeholder="+1 (555) 000-0000" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs focus:outline-none focus:border-brand-mossLight bg-brand-dark/50 text-brand-cream">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-brand-oat/80 mb-1">Business Type</label>
+                <select id="ws-biz-type" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs focus:outline-none focus:border-brand-mossLight bg-brand-dark/50 text-brand-cream cursor-pointer">
+                  <option value="Restaurant / Cafe">Restaurant / Cafe / Bakery</option>
+                  <option value="Organic Retail / Grocery">Organic Retail Store / Zero Waste Shop</option>
+                  <option value="Hotel / Spa / Wellness">Boutique Hotel / Spa / Retreat Center</option>
+                  <option value="Corporate / Gifting">Corporate Gifting / Event Planner</option>
+                  <option value="Distributor">Regional Food / Goods Distributor</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-brand-oat/80 mb-2">Products of Interest (Select All That Apply) *</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+                  <label class="flex items-center gap-2 p-2 rounded-sm bg-brand-dark/40 border border-white/10 cursor-pointer hover:bg-black/60">
+                    <input type="checkbox" name="product_interest" value="Organic Soaps" class="rounded text-brand-forest">
+                    <span class="text-brand-oat/80">Handcrafted Soaps</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-2 rounded-sm bg-brand-dark/40 border border-white/10 cursor-pointer hover:bg-black/60">
+                    <input type="checkbox" name="product_interest" value="Live Microgreens" class="rounded text-brand-forest">
+                    <span class="text-brand-oat/80">Live Microgreens</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-2 rounded-sm bg-brand-dark/40 border border-white/10 cursor-pointer hover:bg-black/60">
+                    <input type="checkbox" name="product_interest" value="Ancient Millets" class="rounded text-brand-forest">
+                    <span class="text-brand-oat/80">Ancient Millets</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-2 rounded-sm bg-brand-dark/40 border border-white/10 cursor-pointer hover:bg-black/60">
+                    <input type="checkbox" name="product_interest" value="Culinary &amp; Tea Herbs" class="rounded text-brand-forest">
+                    <span class="text-brand-oat/80">Farm Herbs</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-2 rounded-sm bg-brand-dark/40 border border-white/10 cursor-pointer hover:bg-black/60">
+                    <input type="checkbox" name="product_interest" value="Pasture Duck Eggs" class="rounded text-brand-forest">
+                    <span class="text-brand-oat/80">Duck Eggs</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-2 rounded-sm bg-brand-dark/40 border border-white/10 cursor-pointer hover:bg-black/60">
+                    <input type="checkbox" name="product_interest" value="Handmade Quilts" class="rounded text-brand-forest">
+                    <span class="text-brand-oat/80">Heirloom Quilts</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-brand-oat/80 mb-1">Estimated Quantity &amp; Delivery Requirements</label>
+                <textarea id="ws-notes" rows="3" placeholder="e.g. 50 assorted soap bars monthly, 15 live microgreen trays weekly..." class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs focus:outline-none focus:border-brand-mossLight bg-brand-dark/50 text-brand-cream"></textarea>
+              </div>
+
+              <div class="pt-2">
+                <button type="submit" class="w-full btn-primary py-3.5 px-6 rounded-sm font-medium flex items-center justify-center gap-2 shadow-lg text-sm">
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  <span>Submit Wholesale Inquiry</span>
+                </button>
+              </div>
+
+            </form>
+
+            <!-- Success Modal/State -->
+            <div id="ws-success-state" class="absolute inset-0 bg-barnwood-dark rounded-sm p-8 flex flex-col items-center justify-center text-center hidden border border-black/60">
+              <div class="w-16 h-16 rounded-sm bg-brand-forest/30 text-brand-mossLight flex items-center justify-center mb-4 border border-brand-forest/40">
+                <i data-lucide="check-circle" class="w-8 h-8"></i>
+              </div>
+              <h4 class="font-serif text-2xl font-bold text-brand-cream mb-2">Inquiry Submitted Successfully!</h4>
+              <p class="text-brand-oat/70 text-sm max-w-sm mb-6">
+                Thank you for reaching out. Our farm wholesale manager will review your request and reply within 24 hours.
+              </p>
+              <button onclick="resetWholesaleForm()" class="btn-secondary px-6 py-2.5 rounded-sm text-xs font-semibold">
+                Send Another Inquiry
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-barnwood-dark border-t border-black/60 py-12 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs">
+      <p class="font-serif text-[#e2c9a5] text-lg font-bold mb-2">Purreins Frequency</p>
+      <p class="text-brand-oat/50">© 2026 Purreins Frequency. 100% Organic &amp; Chemical-Free Living.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tiersGrid = document.getElementById('wholesale-tiers-grid');
+      if (tiersGrid) {
+        tiersGrid.innerHTML = WHOLESALE_TIERS.map(tier => `
+          <div class="stall-card card-hover flex flex-col justify-between">
+            <div>
+              <div class="stall-header">
+                <span class="stall-label">Volume Tier</span>
+                <span class="font-serif font-bold text-brand-cream text-base relative z-10 ml-2">${tier.category}</span>
+              </div>
+              <div class="stall-body">
+                <ul class="space-y-2.5 text-xs text-brand-oat/70">
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="box" class="w-4 h-4 text-brand-mossLight flex-shrink-0"></i>
+                    <span><strong class="text-brand-cream">Min Order:</strong> ${tier.minOrder}</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="tag" class="w-4 h-4 text-brand-mossLight flex-shrink-0"></i>
+                    <span><strong class="text-brand-cream">Pricing:</strong> ${tier.discount}</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="package" class="w-4 h-4 text-brand-mossLight flex-shrink-0"></i>
+                    <span><strong class="text-brand-cream">Packaging:</strong> ${tier.packaging}</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="clock" class="w-4 h-4 text-brand-mossLight flex-shrink-0"></i>
+                    <span><strong class="text-brand-cream">Lead Time:</strong> ${tier.leadTime}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px-4 pb-4 border-t border-black/30 pt-4">
+              <a href="#wholesale-form" class="text-xs font-bold text-brand-mossLight hover:text-brand-leaf inline-flex items-center gap-1">
+                <span>Request Pricing Quote</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      if (window.lucide) lucide.createIcons();
+    });
+
+    function handleWholesaleSubmit(e) {
+      e.preventDefault();
+      const bizName = document.getElementById('ws-biz-name').value;
+      const contactName = document.getElementById('ws-contact-name').value;
+      const email = document.getElementById('ws-email').value;
+      const phone = document.getElementById('ws-phone').value;
+      const bizType = document.getElementById('ws-biz-type').value;
+      const notes = document.getElementById('ws-notes').value;
+
+      const checkedProducts = Array.from(document.querySelectorAll('input[name="product_interest"]:checked')).map(cb => cb.value);
+
+      let message = `🏢 *New Wholesale Inquiry - ${BRAND_CONFIG.brandName}*\n`;
+      message += `Business: ${bizName} (${bizType})\n`;
+      message += `Contact: ${contactName}\n`;
+      message += `Email: ${email} | Phone: ${phone}\n`;
+      message += `Interests: ${checkedProducts.join(', ') || 'General'}\n`;
+      message += `Notes: ${notes || 'None'}\n`;
+
+      const successState = document.getElementById('ws-success-state');
+      if (successState) {
+        successState.classList.remove('hidden');
+      }
+
+      const encoded = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${BRAND_CONFIG.whatsappNumber}?text=${encoded}`;
+      console.log("Wholesale inquiry ready for WhatsApp:", whatsappUrl);
+    }
+
+    function resetWholesaleForm() {
+      document.getElementById('wholesale-form').reset();
+      const successState = document.getElementById('ws-success-state');
+      if (successState) {
+        successState.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

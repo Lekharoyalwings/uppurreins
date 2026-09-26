@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Lost in the Woodlands | UP Purreins</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              forest:    '#4A5E3A',
+              sage:      '#6B7C55',
+              leaf:      '#8A9E6E',
+              mossLight: '#7D9A62',
+              cream:     '#F2EAD8',
+              oat:       '#E8DCC8',
+              gold:      '#C8995A',
+              barnwood:  '#3B2412',
+              iron:      '#111111',
+            }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans:  ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-[#000000] text-[#e2c9a5] min-h-screen flex flex-col justify-between antialiased">
+  <!-- Header -->
+  <header class="bg-black/90 border-b border-white/10 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-12 w-auto">
+        <span class="font-serif text-lg font-semibold text-[#e2c9a5]">Purreins Frequency</span>
+      </a>
+      <a href="shop.html" class="text-xs uppercase tracking-wider text-brand-gold hover:text-[#f3dfc1] transition">
+        Farm Shop &rarr;
+      </a>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="flex-1 flex items-center justify-center p-6 text-center">
+    <div class="max-w-md w-full py-16 px-8 rounded-2xl bg-[#0a0a0a] border border-white/10 shadow-2xl">
+      <div class="inline-flex p-4 rounded-full bg-white/5 border border-white/10 text-brand-mossLight mb-6">
+        <i data-lucide="compass" class="w-12 h-12"></i>
+      </div>
+      <p class="text-xs font-semibold uppercase tracking-widest text-brand-gold mb-2">404 • Path Vanished</p>
+      <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[#e2c9a5] mb-4">You've Wandered Off The Trail</h1>
+      <p class="text-sm text-[#cbb89d]/70 mb-8 leading-relaxed">
+        The wild winds may have shifted this harvest page. Return to the farmstead clearing or explore our living apothecary.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="index.html" class="px-6 py-3 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] text-xs uppercase font-bold tracking-wider rounded-sm transition flex items-center justify-center gap-2">
+          <i data-lucide="home" class="w-4 h-4"></i>
+          <span>Return Home</span>
+        </a>
+        <a href="shop.html" class="px-6 py-3 bg-white/10 hover:bg-white/15 text-[#e2c9a5] text-xs uppercase font-bold tracking-wider rounded-sm transition border border-white/10 flex items-center justify-center gap-2">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span>Explore Farm Shop</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-6 border-t border-white/10 text-center text-xs text-[#cbb89d]/50">
+    <p>&copy; 2026 Purreins Frequency. Farm to Fork • Earth-Grown Living.</p>
+  </footer>
+
+  <script>
+    if (window.lucide) lucide.createIcons();
+  </script>
+</body>
+</html>
