@@ -339,6 +339,43 @@ const FARM_VISITS = [
 
 const BLOG_POSTS = [
   {
+    id: "blog-is-eating-healthy-healthy",
+    title: "Is eating healthy, healthy?",
+    category: "Food & Mind",
+    date: "Oct 03, 2026",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/hero-basket.jpg",
+    excerpt: "In the world of AI crafting us diet charts, what does eating healthy look like? Forget the charts, forget the supplements—start by listening to what your body is actually asking for.",
+    content: `
+      <p class="mb-4 text-base leading-relaxed">In the world of AI crafting us diet charts, what does eating healthy look like? It looks vegan? Organic? Fresh?</p>
+      
+      <p class="mb-4 text-base leading-relaxed">Eating healthy, in simple terms, means eating what is right for your body and for your metabolism. It means giving your body exactly what it is asking for. It is feeling satisfied with what you’ve eaten. It is what builds your body for you. Forget the charts, forget the supplements, forget the timing. Just curate your diet for the first few days to <em>‘eating all the things that you crave for’</em>.</p>
+
+      <h3 class="text-xl font-serif font-bold text-[#e2c9a5] mt-6 mb-3">The First Transition</h3>
+      <ul class="list-disc pl-5 mb-5 space-y-2 text-brand-oat/80">
+        <li>This first step will take you to a clean transition from unorganised to organic eating.</li>
+        <li>This step will give you a balanced diet between cravings and nutrition.</li>
+        <li>This will eventually set the tone for daily food and festive food.</li>
+      </ul>
+
+      <p class="mb-4 text-base leading-relaxed">The only thing to keep in mind is that feeding your mind is the only way to quiet it and focus on what your body needs. In traditional plans, this probably sounds unhealthy, but it’s actually the opposite of that. When you push away the noise, the underlying problem shows up. For instance, craving sugar is a result of missing glucose in your diet—sugar may temporarily mask that away, but the glucose is still lacking.</p>
+
+      <h3 class="text-xl font-serif font-bold text-[#e2c9a5] mt-6 mb-3">Demystifying Sugar</h3>
+      <p class="mb-4 text-base leading-relaxed">On our first chat, we are obviously taking sugar as the topic, because everyone flags it as unhealthy. The truth, however, is that sugar disguises itself in many forms: some that are healthy, some that are unhealthy. You need to find the forms of sugar that are healthy for you.</p>
+
+      <blockquote class="border-l-2 border-brand-mossLight pl-4 py-2 my-5 italic text-brand-cream/95 font-serif text-lg leading-relaxed bg-white/5 rounded-r-sm">
+        Not because the Internet said so.<br>
+        Not because the video said so.<br>
+        But because your body is saying so.
+      </blockquote>
+
+      <p class="mb-4 text-base leading-relaxed">Take time, give yourself the time and feeding that it needs to identify these.</p>
+      <p class="font-serif text-lg text-brand-mossLight font-semibold mt-4">Have a sugary day ^-^</p>
+    `,
+    tags: ["Conscious Living", "Body Wisdom", "Nutrition", "Sugar"]
+  },
+  {
     id: "blog-frequency-nature",
     title: "The Alchemy of Cold-Process Soap",
     category: "Artisan Craft",

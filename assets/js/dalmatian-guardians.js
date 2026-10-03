@@ -36,7 +36,7 @@
       this.lastTimestamp = 0;
 
       // Cache buster for assets
-      const v = 'v=flawless_hd_guardians_v8';
+      const v = 'v=spotless_guardians_v9';
 
       // Load 6-frame running sequences
       // Patch has anatomically separate sequences: right-facing (right eye patch) and left-facing (no eye patch)
