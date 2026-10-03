@@ -36,7 +36,7 @@
       this.lastTimestamp = 0;
 
       // Cache buster for assets
-      const v = 'v=aurelio_cocoa_stops_v3';
+      const v = 'v=sandy_natural_video_v5';
 
       // Load 6-frame running sequences
       // Patch has anatomically separate sequences: right-facing (right eye patch) and left-facing (no eye patch)
