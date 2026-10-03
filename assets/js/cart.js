@@ -426,13 +426,6 @@ class CartManager {
               </div>
             </div>
 
-            <!-- Coupon Code Section -->
-            <div class="mt-4 pt-3 border-t border-white/10">
-              <div class="flex gap-2">
-                <input type="text" id="cart-coupon-input" value="${this.coupon || ''}" placeholder="Promo Code (e.g. HARVEST10)" class="flex-1 px-3 py-1.5 bg-black/60 border border-white/15 rounded-sm text-xs text-[#e2c9a5] placeholder-[#cbb89d]/40 uppercase focus:outline-none focus:border-brand-gold transition" />
-                <button onclick="window.cart.applyCouponCode(document.getElementById('cart-coupon-input').value)" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-[#e2c9a5] text-xs font-semibold rounded-sm transition">Apply</button>
-              </div>
-            </div>
           </div>
 
           <!-- Footer -->
