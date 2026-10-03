@@ -36,7 +36,7 @@
       this.lastTimestamp = 0;
 
       // Cache buster for assets
-      const v = 'v=sandy_natural_video_v5';
+      const v = 'v=flawless_hd_guardians_v8';
 
       // Load 6-frame running sequences
       // Patch has anatomically separate sequences: right-facing (right eye patch) and left-facing (no eye patch)
@@ -199,6 +199,8 @@
       this.canvas.width = this.width * this.dpr;
       this.canvas.height = this.height * this.dpr;
       this.ctx.scale(this.dpr, this.dpr);
+      this.ctx.imageSmoothingEnabled = true;
+      this.ctx.imageSmoothingQuality = 'high';
     }
 
     pickNewDestination(dog) {
