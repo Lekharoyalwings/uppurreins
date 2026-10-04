@@ -309,7 +309,36 @@ strong, b {
 /* Header & Top Bar Enhancements */
 header {
   background-color: #000000;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: none !important;
+}
+
+.header-bottom-fade {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 56px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, 
+    #000000 0%, 
+    rgba(0, 0, 0, 0.85) 20%, 
+    rgba(0, 0, 0, 0.60) 40%, 
+    rgba(0, 0, 0, 0.35) 60%, 
+    rgba(0, 0, 0, 0.15) 80%, 
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+@media (min-width: 640px) {
+  .header-bottom-fade {
+    height: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-bottom-fade {
+    height: 88px;
+  }
 }
 
 .bg-brand-iron {
