@@ -36,7 +36,7 @@
       this.lastTimestamp = 0;
 
       // Cache buster for ultra-clear high-DPI assets
-      const v = 'v=crystal_clear_sandy_color_belt_v17';
+      const v = 'v=crystal_clear_sandy_facing_v18';
 
       // Load 6-frame running sequences
       // Patch has anatomically separate sequences: right-facing (right eye patch) and left-facing (no eye patch)
