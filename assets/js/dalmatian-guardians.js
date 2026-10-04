@@ -35,8 +35,8 @@
       this.time = 0;
       this.lastTimestamp = 0;
 
-      // Cache buster for assets
-      const v = 'v=cocoa_head_fixed_v10';
+      // Cache buster for ultra-clear high-DPI assets
+      const v = 'v=crystal_clear_sandy_color_belt_v17';
 
       // Load 6-frame running sequences
       // Patch has anatomically separate sequences: right-facing (right eye patch) and left-facing (no eye patch)
@@ -59,7 +59,7 @@
         ],
         cocoa: [
           this.loadImage(`assets/images/cocoa_stop_0.png?${v}`),
-          this.loadImage(`assets/images/cocoa_stop_1.png?${v}`)
+          this.loadImage(`assets/images/cocoa_stop_1.png?${v}`),
         ],
         sandy: [
           this.loadImage(`assets/images/sandy_stop_0.png?${v}`),
@@ -67,15 +67,15 @@
         ]
       };
 
-      // Dog specifications matching real dogs & small cute sizes
+      // Dog specifications matching real dogs & crystal clear presence
       this.dogs = [
-        // 1. PATCH (Center: Black spots, black eye patch, athletic scout)
+        // 1. PATCH (Center: Black spots, right eye patch, BOTH ears 100% solid velvety black)
         {
           id: 'patch',
           name: 'Patch',
           key: 'patch',
-          drawWidth: 140,
-          drawHeight: 93,
+          drawWidth: 150,
+          drawHeight: 100,
           x: this.width * 0.25,
           y: this.height * 0.70,
           prevX: this.width * 0.25,
@@ -86,9 +86,9 @@
           currentFrame: 0,
           heading: 0,
           state: 'RUNNING', // 'RUNNING', 'STOPPED'
-          target: { x: this.width * 0.82, y: this.height * 0.65 },
+          target: { x: this.width * 0.75, y: this.height * 0.65 },
           circleCenter: { x: 0, y: 0 },
-          circleRadius: 100,
+          circleRadius: 90,
           circleAngle: 0,
           circleSpeed: 0.026,
           circleLoopsLeft: 0,
@@ -102,21 +102,21 @@
           id: 'cocoa',
           name: 'Cocoa',
           key: 'cocoa',
-          drawWidth: 158, // Taller and broader
-          drawHeight: 105,
+          drawWidth: 168,
+          drawHeight: 112,
           x: this.width * 0.15,
           y: this.height * 0.76,
           prevX: this.width * 0.15,
           facing: 1,
-          baseSpeed: 2.4, // Stately longer reach
+          baseSpeed: 2.4,
           cadenceRate: 0.072,
           frameProgress: 1.5,
           currentFrame: 1,
           heading: 0,
           state: 'RUNNING',
-          target: { x: this.width * 0.88, y: this.height * 0.75 },
+          target: { x: this.width * 0.85, y: this.height * 0.75 },
           circleCenter: { x: 0, y: 0 },
-          circleRadius: 120,
+          circleRadius: 110,
           circleAngle: 0,
           circleSpeed: 0.022,
           circleLoopsLeft: 0,
@@ -130,21 +130,21 @@
           id: 'sandy',
           name: 'Sandy',
           key: 'sandy',
-          drawWidth: 128, // Shortest & compact (+3% size: 128x85)
-          drawHeight: 85,
+          drawWidth: 136,
+          drawHeight: 91,
           x: this.width * 0.10,
           y: this.height * 0.82,
           prevX: this.width * 0.10,
           facing: 1,
-          baseSpeed: 2.1, // Smooth, natural canine stride length
-          cadenceRate: 0.076, // Smooth, steady cadence matching Cocoa and Patch
+          baseSpeed: 2.1,
+          cadenceRate: 0.076,
           frameProgress: 3.0,
           currentFrame: 3,
           heading: 0,
           state: 'RUNNING',
-          target: { x: this.width * 0.76, y: this.height * 0.80 },
+          target: { x: this.width * 0.68, y: this.height * 0.80 },
           circleCenter: { x: 0, y: 0 },
-          circleRadius: 85,
+          circleRadius: 80,
           circleAngle: 0,
           circleSpeed: 0.032,
           circleLoopsLeft: 0,
@@ -194,49 +194,100 @@
     }
 
     resize() {
-      this.width = window.innerWidth;
-      this.height = window.innerHeight;
-      this.canvas.width = this.width * this.dpr;
-      this.canvas.height = this.height * this.dpr;
+      const oldWidth = this.width || window.innerWidth;
+      const oldHeight = this.height || window.innerHeight;
+
+      const vv = window.visualViewport;
+      if (vv) {
+        this.width = vv.width;
+        this.height = vv.height;
+        this.scale = vv.scale || 1;
+        this.dpr = (window.devicePixelRatio || 1) * this.scale;
+        this.canvas.style.position = 'fixed';
+        this.canvas.style.left = `${vv.offsetLeft}px`;
+        this.canvas.style.top = `${vv.offsetTop}px`;
+        this.canvas.style.width = `${vv.width}px`;
+        this.canvas.style.height = `${vv.height}px`;
+      } else {
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
+        this.scale = 1;
+        this.dpr = window.devicePixelRatio || 1;
+        this.canvas.style.position = 'fixed';
+        this.canvas.style.left = '0px';
+        this.canvas.style.top = '0px';
+        this.canvas.style.width = `${this.width}px`;
+        this.canvas.style.height = `${this.height}px`;
+      }
+
+      this.canvas.width = Math.round(this.width * this.dpr);
+      this.canvas.height = Math.round(this.height * this.dpr);
+      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
       this.ctx.scale(this.dpr, this.dpr);
       this.ctx.imageSmoothingEnabled = true;
       this.ctx.imageSmoothingQuality = 'high';
+
+      // Proportional dog re-mapping: Dogs NEVER get stranded off-screen when zooming in
+      if (this.dogs && oldWidth > 0 && oldHeight > 0) {
+        for (const dog of this.dogs) {
+          dog.x = (dog.x / oldWidth) * this.width;
+          dog.y = (dog.y / oldHeight) * this.height;
+          this.clampDogInside(dog);
+        }
+      }
+    }
+
+    clampDogInside(dog) {
+      const padX = dog.drawWidth * 0.55;
+      const padY = dog.drawHeight * 0.55;
+      const minX = padX;
+      const maxX = Math.max(padX, this.width - padX);
+      const minY = padY + 30;
+      const maxY = Math.max(padY + 30, this.height - padY - 20);
+
+      if (dog.x < minX) dog.x = minX;
+      if (dog.x > maxX) dog.x = maxX;
+      if (dog.y < minY) dog.y = minY;
+      if (dog.y > maxY) dog.y = maxY;
     }
 
     pickNewDestination(dog) {
-      const margin = 80;
-      const roll = Math.random();
+      const padX = dog.drawWidth * 0.6;
+      const padY = dog.drawHeight * 0.6;
+      const minX = padX;
+      const maxX = Math.max(padX + 50, this.width - padX);
+      const minY = padY + 40;
+      const maxY = Math.max(minY + 30, this.height - padY - 20);
 
-      // 25% Circles, 40% Diagonal cuts, 35% Straight traverses
-      if (roll < 0.25) {
+      const roll = Math.random();
+      if (roll < 0.28) {
+        // Playful circular turn inside the visible screen
         dog.isCircling = true;
+        dog.circleRadius = Math.min(80, Math.max(30, (maxX - minX) * 0.20));
         dog.circleCenter = {
-          x: Math.max(margin * 1.5, Math.min(this.width - margin * 1.5, dog.x + (Math.random() - 0.5) * 160)),
-          y: Math.max(margin * 1.5, Math.min(this.height - margin * 1.5, dog.y + (Math.random() - 0.5) * 120))
+          x: Math.max(minX + dog.circleRadius, Math.min(maxX - dog.circleRadius, dog.x + (Math.random() - 0.5) * 140)),
+          y: Math.max(minY + dog.circleRadius, Math.min(maxY - dog.circleRadius, dog.y + (Math.random() - 0.5) * 100))
         };
         dog.circleAngle = Math.atan2(dog.y - dog.circleCenter.y, dog.x - dog.circleCenter.x);
         dog.circleLoopsLeft = 1.0 + Math.random() * 1.2;
-      } else if (roll < 0.65) {
-        dog.isCircling = false;
-        const toRight = dog.x < this.width * 0.5;
-        const destX = toRight ? this.width + 120 : -120;
-        dog.target = {
-          x: destX,
-          y: Math.max(dog.drawHeight * 0.6, Math.min(this.height - dog.drawHeight * 0.6, dog.y + (Math.random() - 0.5) * 200))
-        };
       } else {
+        // Traverse back and forth across visible screen (never off-screen)
         dog.isCircling = false;
         const toRight = dog.x < this.width * 0.5;
-        const destX = toRight ? this.width + 140 : -140;
-        dog.target = {
-          x: destX,
-          y: Math.max(margin, Math.min(this.height - margin, dog.y + (Math.random() - 0.5) * 80))
-        };
+        const destX = toRight
+          ? minX + (maxX - minX) * (0.55 + Math.random() * 0.42)
+          : minX + (maxX - minX) * (0.03 + Math.random() * 0.42);
+        const destY = minY + Math.random() * (maxY - minY);
+        dog.target = { x: destX, y: destY };
       }
     }
 
     bindEvents() {
       window.addEventListener('resize', () => this.resize());
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', () => this.resize());
+        window.visualViewport.addEventListener('scroll', () => this.resize());
+      }
 
       window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY || window.pageYOffset;
@@ -315,8 +366,6 @@
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < 40) {
-              if (dog.x > this.width + 120) dog.x = -120;
-              else if (dog.x < -120) dog.x = this.width + 120;
               this.pickNewDestination(dog);
             } else {
               const targetHeading = Math.atan2(dy, dx);
@@ -358,9 +407,8 @@
           }
         }
 
-        // Keep inside visible screen bounds
-        if (dog.y < 80) dog.y = 80;
-        if (dog.y > this.height - 100) dog.y = this.height - 100;
+        // Clamp dog strictly inside visible viewport (guarantees zero disappearance on zoom)
+        this.clampDogInside(dog);
       }
     }
 
@@ -438,6 +486,14 @@
       const delta = timestamp - this.lastTimestamp;
       this.lastTimestamp = timestamp;
       this.time += 0.016;
+
+      const vv = window.visualViewport;
+      const currentWidth = vv ? vv.width : window.innerWidth;
+      const currentHeight = vv ? vv.height : window.innerHeight;
+      const currentDpr = (window.devicePixelRatio || 1) * (vv ? (vv.scale || 1) : 1);
+      if (currentDpr !== this.dpr || currentWidth !== this.width || currentHeight !== this.height) {
+        this.resize();
+      }
 
       this.update(delta);
       this.draw();
