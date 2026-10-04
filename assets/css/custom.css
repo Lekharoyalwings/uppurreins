@@ -339,12 +339,12 @@ header {
   }
 }
 
-/* Hero Visual Atmospheric Edge Fade */
+/* Hero Visual Atmospheric Edge Fade (Subtle edge feathering) */
 .hero-visual-fade,
 .hero-vertical-blend {
   position: relative;
-  -webkit-mask-image: radial-gradient(ellipse 49% 49% at 50% 50%, #000000 45%, rgba(0, 0, 0, 0.88) 65%, rgba(0, 0, 0, 0.35) 84%, transparent 100%);
-  mask-image: radial-gradient(ellipse 49% 49% at 50% 50%, #000000 45%, rgba(0, 0, 0, 0.88) 65%, rgba(0, 0, 0, 0.35) 84%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%);
 }
 
 .bg-brand-iron {
