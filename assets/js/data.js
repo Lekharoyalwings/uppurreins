@@ -4,7 +4,7 @@
 const BRAND_CONFIG = {
   brandName: "UP Purreins",
   companyName: "Purreins Frequency",
-  tagline: "Vibrations of Purity & Earth-Grown Living",
+  tagline: "Purreins Frequency, of raw, real resources.",
   description: "Handcrafted soaps, pasture duck eggs in straw, natural quilt rolls, fresh herbal stems, and hand-woven coir baskets.",
   currency: "INR",
   currencySymbol: "INR ",
