@@ -6,10 +6,10 @@
    Palette: Red clay earth • Aged barn wood • Mossy green
    ════════════════════════════════════════════════════ */
 :root {
-  --color-forest:        #4E693B;
-  --color-sage:          #688450;
-  --color-leaf:          #7F9D64;
-  --color-moss-light:    #8EB264;
+  --color-forest:        #4A5E3A;
+  --color-sage:          #6B7C55;
+  --color-leaf:          #6B7C55;
+  --color-moss-light:    #6B7C55;
   --color-earth:         #6E3725;
   --color-clay:          #8A4532;
   --color-cream:         #E2C9A5;
@@ -24,11 +24,11 @@
   --color-soil:          #2e1a0b;
   --color-soil-dark:     #050505;
   --color-straw:         #E2C9A5;
-  --color-moss:          #4E693B;
+  --color-moss:          #4A5E3A;
 
   /* Zero white - warm earthy beige & sand tones */
   --title-color:         #E2C9A5;
-  --accent-color:        #8EB264;
+  --accent-color:        #6B7C55;
   --gold-color:          #D6AB66;
   --subtext-color:       #CBB89D;
   --nav-color:           #DFCCA8;
@@ -65,8 +65,7 @@ strong, b {
 }
 
 .text-brand-mossLight {
-  color: var(--accent-color) !important;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+  color: var(--color-sage) !important;
 }
 
 .text-brand-gold {
@@ -75,8 +74,7 @@ strong, b {
 }
 
 .stall-label, .stable-bar-label {
-  color: var(--accent-color);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+  color: var(--color-sage) !important;
 }
 
 /* ── SCROLLBAR ────────────────────────────────────── */
@@ -189,7 +187,7 @@ strong, b {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-moss-light);
+  color: var(--color-sage) !important;
   position: relative;
   z-index: 1;
 }
@@ -252,7 +250,7 @@ strong, b {
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--color-moss-light);
+  color: var(--color-sage) !important;
   position: relative;
   z-index: 1;
   display: block;
@@ -455,7 +453,7 @@ header .text-brand-mossLight {
 }
 .badge-organic {
   background-color: rgba(74,94,58,0.3);
-  color: #8A9E6E;
+  color: #6B7C55;
   border: 1px solid rgba(74,94,58,0.55);
 }
 .badge-fresh {
