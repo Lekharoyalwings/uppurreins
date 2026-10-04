@@ -86,32 +86,21 @@ strong, b {
 
 /* ════════════════════════════════════════════════════
    FULLY BLACK BACKGROUNDS
-   Deep matte jet black across all sections
+   Pure jet black across all sections throughout the site
    ════════════════════════════════════════════════════ */
-.bg-red-soil {
-  background-color: #000000;
+body {
+  background-color: #000000 !important;
 }
 
-/* Deep black for alternating sections */
-.bg-soil-dark {
-  background-color: #050505;
-}
-
-/* Hero section deep black */
-.bg-warm-gradient {
-  background: linear-gradient(135deg, #000000 0%, #080808 50%, #0e0e0e 100%);
-}
-
-.bg-barnwood {
-  background-color: #000000;
-}
-
-.bg-barnwood-dark {
-  background-color: #030303;
-}
-
-.bg-barnwood-section {
-  background-color: #050505;
+.bg-red-soil,
+.bg-soil-dark,
+.bg-warm-gradient,
+.bg-barnwood,
+.bg-barnwood-dark,
+.bg-barnwood-section,
+.bg-coir {
+  background-color: #000000 !important;
+  background-image: none !important;
 }
 
 
@@ -119,32 +108,26 @@ strong, b {
    ACCENTS & BADGES
    ════════════════════════════════════════════════════ */
 .divider-line {
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.1);
-  width: 100%;
+  display: none !important;
 }
 
 .coir-mat {
-  background-color: #080808;
-  border: 1px solid #1c1c1c;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.8);
-}
-
-.bg-coir {
   background-color: #000000;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 
 /* ════════════════════════════════════════════════════
-   STALL CARD (FULLY BLACK)
+   STALL CARD (FULLY BLACK, NO BREAKING BORDERS)
    ════════════════════════════════════════════════════ */
 .stall-card {
   border-radius: 4px;
   overflow: hidden;
-  border: 1px solid #1c1c1c;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.9);
+  border: none !important;
+  box-shadow: none !important;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  background-color: #080808;
+  background-color: #000000;
   display: flex;
   flex-direction: column;
 }
@@ -152,7 +135,7 @@ strong, b {
 .stall-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.95);
-  border-color: var(--color-moss-light);
+  border-color: transparent !important;
 }
 
 /* Black header bar on cards */
@@ -165,10 +148,10 @@ strong, b {
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: none !important;
 }
 
-/* Vertical grain slats across the header bar */
+/* Vertical grain slats across the header bar (100% vertically straight) */
 .stall-header::before {
   content: '';
   position: absolute;
@@ -212,24 +195,22 @@ strong, b {
 
 /* ════════════════════════════════════════════════════
    STABLE BAR (SECTION HEADER BARS)
-   Full-width textured brown wood name-plate bar used as the
-   header block for each page section — like the
-   carved sign above a stable entrance.
+   100% vertically straight wood grain, no diagonal tilt
    ════════════════════════════════════════════════════ */
 .stable-bar {
-  background-color: #3b220e;
-  background-image: 
-    linear-gradient(rgba(58, 33, 14, 0.74), rgba(38, 20, 8, 0.86)),
-    url("../images/barn-texture.jpg");
-  background-size: cover, 420px auto;
-  background-repeat: no-repeat, repeat;
+  background-color: #080808;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px, transparent 20px,
+    rgba(255,255,255,0.018) 20px, rgba(255,255,255,0.018) 22px
+  );
   padding: 20px 26px 20px;
   position: relative;
   overflow: hidden;
   margin-bottom: 32px;
   border-radius: 4px;
-  border: 1px solid rgba(140, 80, 35, 0.45);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.18);
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .stable-bar::before {
@@ -238,8 +219,8 @@ strong, b {
   inset: 0;
   background: repeating-linear-gradient(
     90deg,
-    transparent 0px, transparent 22px,
-    rgba(0,0,0,0.18) 22px, rgba(0,0,0,0.18) 24px
+    transparent 0px, transparent 10px,
+    rgba(255,255,255,0.01) 10px, rgba(255,255,255,0.01) 12px
   );
   pointer-events: none;
 }
@@ -339,9 +320,16 @@ header {
   }
 }
 
-/* Hero Visual Atmospheric Edge Fade (Subtle edge feathering) */
+/* Universal Subtle Edge Fade for ALL Images across the site */
 .hero-visual-fade,
-.hero-vertical-blend {
+.hero-vertical-blend,
+.img-fade-blend,
+.fade-into-bg,
+.img-zoom-wrapper img,
+.stall-card img,
+.product-card img,
+article img,
+main img:not([src*="logo"]) {
   position: relative;
   -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%);
   mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%);
@@ -350,7 +338,7 @@ header {
 .bg-brand-iron {
   background-color: #000000 !important;
   background-image: none !important;
-  border-bottom: 1px solid #1a1a1a !important;
+  border-bottom: none !important;
 }
 
 .bg-brand-iron, .bg-brand-iron span {
@@ -361,9 +349,9 @@ header {
 
 /* Atmospheric Phrase Ticker / Strip */
 .atmosphere-strip {
-  background-color: #050505;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background-color: #000000;
+  border-top: none !important;
+  border-bottom: none !important;
   overflow: hidden;
 }
 
