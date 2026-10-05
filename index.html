@@ -96,23 +96,6 @@
       <!-- Right Actions & Apple-Style Hover Navigation (Opens near Book Visit) -->
       <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
 
-        <!-- Apple-Style Slide-Out Navigation (Comes out to the left of Book Visit) -->
-        <nav id="apple-nav-slide" class="apple-nav-slide hidden md:flex" aria-label="Apple Quick Navigation">
-          <a href="index.html"     class="apple-nav-link active">Home</a>
-          <span class="apple-nav-divider">·</span>
-          <a href="shop.html"      class="apple-nav-link">Farm Shop</a>
-          <span class="apple-nav-divider">·</span>
-          <a href="wholesale.html" class="apple-nav-link">Wholesale</a>
-          <span class="apple-nav-divider">·</span>
-          <a href="visit.html"     class="apple-nav-link">Farm Visits</a>
-          <span class="apple-nav-divider">·</span>
-          <a href="blog.html"      class="apple-nav-link">Journal</a>
-          <span class="apple-nav-divider">·</span>
-          <a href="about.html"     class="apple-nav-link">Our Story</a>
-          <span class="apple-nav-divider">·</span>
-          <a href="contact.html"   class="apple-nav-link">Contact</a>
-        </nav>
-
         <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#FAF7F2] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition">
           <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
           <span>Book Visit</span>
@@ -134,20 +117,14 @@
     <div class="header-bottom-fade"></div>
   </header>
 
-  <!-- Apple-Style Vertical Navigation Bar (Slides in from the right vertically) -->
+  <!-- Clean Separate Floating Navigation (Slides in from the right vertically) -->
   <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Vertical Slide Navigation">
     <a href="index.html"     class="apple-nav-link active">Home</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="shop.html"      class="apple-nav-link">Farm Shop</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="wholesale.html" class="apple-nav-link">Wholesale</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="visit.html"     class="apple-nav-link">Farm Visits</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="blog.html"      class="apple-nav-link">Journal</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="about.html"     class="apple-nav-link">Our Story</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="contact.html"   class="apple-nav-link">Contact</a>
   </nav>
 
@@ -715,59 +692,65 @@
     <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold pr-1">Chat with Farm</span>
   </a>
 
-  <!-- Apple-Style Vertical Bar Navigation Logic (Slides in from the right vertically) -->
+  <!-- Clean Floating Separate Navigation Logic (Slides in from the right vertically on Book Visit hover only) -->
   <script>
     (function() {
-      const zone = document.getElementById('book-visit-nav-zone');
-      const vertBar = document.getElementById('apple-vertical-bar');
       const bookBtn = document.getElementById('book-visit-btn');
-      if (!vertBar && !zone) return;
+      const vertBar = document.getElementById('apple-vertical-bar');
+      if (!vertBar) return;
+
       let leaveTimer = null;
-      let scrollTimer = null;
 
-      window.addEventListener('mousemove', (e) => {
-        const rect = (bookBtn || zone).getBoundingClientRect();
-        const isNearTopRight = (e.clientY <= rect.bottom + 35) && (e.clientY >= 0) && (e.clientX >= rect.left - 160);
-
-        let isOverBar = false;
-        if (vertBar) {
-          const vRect = vertBar.getBoundingClientRect();
-          isOverBar = (e.clientX >= vRect.left - 25 && e.clientX <= vRect.right + 25 &&
-                       e.clientY >= vRect.top - 20 && e.clientY <= vRect.bottom + 25);
-        }
-
-        if (isNearTopRight || isOverBar) {
-          clearTimeout(leaveTimer);
-          if (vertBar) vertBar.classList.add('nav-open');
-          if (zone) zone.classList.add('nav-open');
-        } else {
-          const isOpen = (vertBar && vertBar.classList.contains('nav-open')) || (zone && zone.classList.contains('nav-open'));
-          if (isOpen && !leaveTimer) {
-            leaveTimer = setTimeout(() => {
-              if (vertBar) vertBar.classList.remove('nav-open');
-              if (zone) zone.classList.remove('nav-open');
-              leaveTimer = null;
-            }, 350);
-          }
-        }
-      }, { passive: true });
-
-      if (bookBtn) {
-        bookBtn.addEventListener('mouseenter', () => {
-          clearTimeout(leaveTimer);
-          if (vertBar) vertBar.classList.add('nav-open');
-          if (zone) zone.classList.add('nav-open');
-        });
+      function openNav() {
+        clearTimeout(leaveTimer);
+        vertBar.classList.add('nav-open');
       }
 
-      // Scroll motion: disappears while scrolling, glides back in from right when stopped
-      window.addEventListener('scroll', () => {
-        if (!vertBar) return;
-        vertBar.classList.add('is-scrolling');
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => {
-          vertBar.classList.remove('is-scrolling');
-        }, 180);
+      function scheduleClose(delay = 320) {
+        clearTimeout(leaveTimer);
+        leaveTimer = setTimeout(() => {
+          vertBar.classList.remove('nav-open');
+          leaveTimer = null;
+        }, delay);
+      }
+
+      // 1. Open strictly when cursor moves to the Book Visit tab
+      if (bookBtn) {
+        bookBtn.addEventListener('mouseenter', openNav);
+        bookBtn.addEventListener('mouseleave', () => scheduleClose(320));
+      }
+
+      // 2. Keep open when cursor is over the options list
+      vertBar.addEventListener('mouseenter', openNav);
+      vertBar.addEventListener('mouseleave', () => scheduleClose(320));
+
+      // 3. Smooth bridge between Book Visit button and the vertical options corridor
+      window.addEventListener('mousemove', (e) => {
+        if (!vertBar.classList.contains('nav-open')) return;
+
+        let inSafeZone = false;
+        if (bookBtn) {
+          const bRect = bookBtn.getBoundingClientRect();
+          if (e.clientX >= bRect.left - 20 && e.clientX <= bRect.right + 30 &&
+              e.clientY >= bRect.top - 15 && e.clientY <= bRect.bottom + 25) {
+            inSafeZone = true;
+          }
+        }
+
+        const vRect = vertBar.getBoundingClientRect();
+        if (e.clientX >= vRect.left - 35 && e.clientX <= window.innerWidth &&
+            e.clientY >= (bookBtn ? bookBtn.getBoundingClientRect().top : vRect.top - 20) &&
+            e.clientY <= vRect.bottom + 25) {
+          inSafeZone = true;
+        }
+
+        if (inSafeZone) {
+          clearTimeout(leaveTimer);
+        } else {
+          if (!leaveTimer) {
+            scheduleClose(280);
+          }
+        }
       }, { passive: true });
     })();
   </script>

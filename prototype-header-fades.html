@@ -171,61 +171,97 @@
       pointer-events: auto;
     }
 
-    /* ── STYLE 5C: APPLE VERTICAL SLIDE-IN BAR (SLIDES IN FROM THE RIGHT) ── */
+    /* ── STYLE 5C: CLEAN SEPARATE FLOATING NAVIGATION (SLIDES FROM RIGHT) ── */
+    /* NO rounded box, NO panel background — pure floating links */
     .apple-vertical-bar {
       position: fixed;
       top: 96px;
-      right: 1.5rem;
+      right: 2rem;
       z-index: 60;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-      gap: 2px;
-      min-width: 146px;
-      padding: 8px 8px;
-      border-radius: 16px;
-      background: rgba(14, 14, 14, 0.92);
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 1px rgba(255, 255, 255, 0.25);
-      opacity: 0;
-      transform: translateX(calc(100% + 40px));
+      align-items: flex-end;
+      gap: 12px;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      min-width: unset !important;
       pointer-events: none;
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                  opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      white-space: nowrap;
       zoom: 1 !important;
     }
 
-    .apple-vertical-bar.nav-open,
-    .apple-vertical-bar:hover,
-    body.nav-vertical-open .apple-vertical-bar {
+    .apple-vertical-bar.nav-open {
+      pointer-events: auto !important;
+    }
+
+    @media (min-width: 1024px) {
+      .apple-vertical-bar {
+        top: 108px;
+        right: 2.25rem;
+        gap: 14px;
+      }
+    }
+
+    /* Individual links separate by themselves — 100% clean typography */
+    .apple-vertical-bar .apple-nav-link {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #FAF7F2 !important;
+      text-decoration: none;
+      padding: 4px 8px;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.9);
+      opacity: 0;
+      transform: translateX(45px);
+      pointer-events: none;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.28s ease,
+                  color 0.2s ease,
+                  text-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    /* Staggered entry delays for each separate option */
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(1) { transition-delay: 0.00s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(2) { transition-delay: 0.03s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(3) { transition-delay: 0.06s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(4) { transition-delay: 0.09s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(5) { transition-delay: 0.12s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(6) { transition-delay: 0.15s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(7) { transition-delay: 0.18s; }
+
+    /* Open state: all links slide in cleanly */
+    .apple-vertical-bar.nav-open .apple-nav-link,
+    .apple-vertical-bar:hover .apple-nav-link {
       opacity: 1 !important;
       transform: translateX(0) !important;
       pointer-events: auto !important;
     }
 
-    .apple-vertical-bar.is-scrolling {
-      opacity: 0 !important;
-      transform: translateX(calc(100% + 40px)) !important;
-      pointer-events: none !important;
-      transition: transform 0.28s ease-in, opacity 0.2s ease-in !important;
+    /* Hover state on individual link — luminous glow, zero rounded pill container */
+    .apple-vertical-bar .apple-nav-link:hover {
+      background: transparent !important;
+      border-radius: 0 !important;
+      color: #FFFFFF !important;
+      text-shadow: 0 0 14px rgba(255, 255, 255, 0.75), 0 1px 8px rgba(0, 0, 0, 0.95);
+      transform: translateX(-4px) !important;
     }
 
+    .apple-vertical-bar .apple-nav-link.active {
+      color: #E2C9A5 !important;
+      font-weight: 600;
+    }
+
+    /* Remove hairline dividers completely */
     .apple-nav-divider-v {
-      height: 1px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.07);
-      margin: 1px 0;
-    }
-
-    .apple-vertical-bar .apple-nav-link {
-      padding: 6px 12px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+      display: none !important;
     }
 
     /* ── VERY SMALL & LIGHTENED APPLE TYPOGRAPHY ── */
@@ -450,20 +486,14 @@
     <div class="fade-extension"></div>
   </header>
 
-  <!-- Apple-Style Vertical Navigation Bar (Slides in from the right vertically) -->
-  <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Vertical Slide-In Navigation">
+  <!-- Apple-Style Floating Separate Navigation (Slides in from the right) -->
+  <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Separate Floating Navigation">
     <a href="#hero"       class="apple-nav-link active">Home</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="#categories" class="apple-nav-link">Farm Shop</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="#wholesale"  class="apple-nav-link">Wholesale</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="#categories" class="apple-nav-link">Farm Visits</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="#journal"    class="apple-nav-link">Journal</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="#hero"       class="apple-nav-link">Our Story</a>
-    <span class="apple-nav-divider-v"></span>
     <a href="#footer"     class="apple-nav-link">Contact</a>
   </nav>
 
@@ -788,15 +818,15 @@
       lucide.createIcons();
     }
 
-    // ── PROXIMITY DETECTION & HOVER FOR TOP RIGHT / BOOK VISIT ──
+    // ── TRIGGER DETECTION: POPS ONLY WHEN CURSOR MOVES TO BOOK VISIT TAB ──
     function updateBadge(isOpen) {
       const badge = document.getElementById('hover-status-badge');
       if (!badge) return;
       if (isOpen) {
-        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Nav Open (Slid In)</span>';
+        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Options Open (Slid In)</span>';
         badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30';
       } else {
-        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Hover Near \'Book Visit\' to Open</span>';
+        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Hover \'Book Visit\' to Open</span>';
         badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/5 text-brand-oat/70 border border-white/10';
       }
     }
@@ -808,17 +838,19 @@
       const bookBtn = document.getElementById('book-visit-btn');
       if (!zone) return;
 
-      const rect = zone.getBoundingClientRect();
-      const isNearTopRight = (e.clientY <= rect.bottom + 35) && (e.clientY >= 0) && (e.clientX >= rect.left - 160);
+      const rect = (bookBtn || zone).getBoundingClientRect();
+      // Only triggered when cursor moves to the Book Visit tab area
+      const isOverBookVisit = (e.clientX >= rect.left - 20 && e.clientX <= rect.right + 20 &&
+                               e.clientY >= rect.top - 15 && e.clientY <= rect.bottom + 25);
 
       let isOverBar = false;
-      if (vertBar && vertBar.style.display !== 'none') {
+      if (vertBar && vertBar.style.display !== 'none' && vertBar.classList.contains('nav-open')) {
         const vRect = vertBar.getBoundingClientRect();
         isOverBar = (e.clientX >= vRect.left - 25 && e.clientX <= vRect.right + 25 &&
-                     e.clientY >= vRect.top - 20 && e.clientY <= vRect.bottom + 25);
+                     e.clientY >= vRect.top - 15 && e.clientY <= vRect.bottom + 25);
       }
 
-      if (isNearTopRight || isOverBar) {
+      if (isOverBookVisit || isOverBar) {
         clearTimeout(navLeaveTimer);
         if (navMode === 'vertical' && vertBar) {
           vertBar.classList.add('nav-open');
@@ -834,7 +866,7 @@
             zone.classList.remove('nav-open');
             navLeaveTimer = null;
             updateBadge(false);
-          }, 350);
+          }, 300);
         }
       }
     }, { passive: true });
@@ -851,19 +883,6 @@
         updateBadge(true);
       });
     }
-
-    // Scroll motion: disappears while scrolling, glides back in from right when stopped
-    window.addEventListener('scroll', () => {
-      if (currentProto !== 5) return;
-      const vertBar = document.getElementById('apple-vertical-bar');
-      if (vertBar && navMode === 'vertical') {
-        vertBar.classList.add('is-scrolling');
-        clearTimeout(scrollStopTimer);
-        scrollStopTimer = setTimeout(() => {
-          vertBar.classList.remove('is-scrolling');
-        }, 180);
-      }
-    }, { passive: true });
 
     // ── SIMULATION BUTTON TO PREVIEW OPEN STATE ──────────────────────────
     function simulateHoverTrigger() {
