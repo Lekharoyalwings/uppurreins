@@ -295,16 +295,54 @@ header {
   display: none !important;
 }
 
-/* Hero Visual Mask — Picture gently fades naturally into the background */
+/* Hero Visual Mask — Thick in center, fading in vertical oval/egg shape */
 .hero-visual-fade,
 .hero-vertical-blend {
   position: relative;
+  -webkit-mask-image: radial-gradient(ellipse 48% 49% at 50% 50%, 
+    #000000 0%, 
+    #000000 45%, 
+    rgba(0, 0, 0, 0.92) 60%, 
+    rgba(0, 0, 0, 0.65) 75%, 
+    rgba(0, 0, 0, 0.30) 88%, 
+    rgba(0, 0, 0, 0.08) 96%, 
+    transparent 100%) !important;
+  mask-image: radial-gradient(ellipse 48% 49% at 50% 50%, 
+    #000000 0%, 
+    #000000 45%, 
+    rgba(0, 0, 0, 0.92) 60%, 
+    rgba(0, 0, 0, 0.65) 75%, 
+    rgba(0, 0, 0, 0.30) 88%, 
+    rgba(0, 0, 0, 0.08) 96%, 
+    transparent 100%) !important;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .hero-visual-fade img,
 .hero-vertical-blend img {
-  -webkit-mask-image: linear-gradient(to bottom, #000000 0%, #000000 80%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.25) 95%, transparent 100%) !important;
-  mask-image: linear-gradient(to bottom, #000000 0%, #000000 80%, rgba(0, 0, 0, 0.75) 88%, rgba(0, 0, 0, 0.25) 95%, transparent 100%) !important;
+  -webkit-mask-image: radial-gradient(ellipse 48% 49% at 50% 50%, 
+    #000000 0%, 
+    #000000 45%, 
+    rgba(0, 0, 0, 0.92) 60%, 
+    rgba(0, 0, 0, 0.65) 75%, 
+    rgba(0, 0, 0, 0.30) 88%, 
+    rgba(0, 0, 0, 0.08) 96%, 
+    transparent 100%) !important;
+  mask-image: radial-gradient(ellipse 48% 49% at 50% 50%, 
+    #000000 0%, 
+    #000000 45%, 
+    rgba(0, 0, 0, 0.92) 60%, 
+    rgba(0, 0, 0, 0.65) 75%, 
+    rgba(0, 0, 0, 0.30) 88%, 
+    rgba(0, 0, 0, 0.08) 96%, 
+    transparent 100%) !important;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   object-fit: cover !important;
   object-position: center center !important;
 }
