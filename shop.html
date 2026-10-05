@@ -54,7 +54,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="assets/css/custom.css?v=20261005_clean_v10">
   <style>
-    /* Header & Navigation — Stationary, Zero Border Lines */
+    /* Header & Navigation — Stationary, Zero Border Lines, Underneath Fade */
     header {
       background-color: #000000 !important;
       border: none !important;
@@ -62,7 +62,18 @@
       box-shadow: none !important;
     }
     .header-bottom-fade {
-      display: none !important;
+      display: block !important;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      height: 42px;
+      background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0) 100%);
+      pointer-events: none;
+      z-index: 39;
+    }
+    .header-logo-link {
+      transform: translateX(-5%);
     }
     /* Clean Floating Navigation (Drops down from Look tab, disappears on cursor leave / 8s) */
     .apple-vertical-bar {
@@ -150,12 +161,12 @@
 </head>
 <body class="bg-red-soil antialiased flex flex-col min-h-screen">
 
-<!-- Main Navigation (Stationary at top, Zero borders, Larger Logo) -->
-  <header class="sticky top-0 z-40 bg-black transition border-0">
+<!-- Main Navigation (Stationary at top, Zero borders, Larger Logo, Fading Underneath) -->
+  <header class="sticky top-0 z-40 bg-black transition border-0 relative">
     <div class="w-full px-4 sm:px-6 lg:px-8 h-24 sm:h-28 lg:h-32 flex items-center justify-between gap-4">
 
-      <!-- Official Brand Logo (Bigger, In natural place, No movement) -->
-      <a href="index.html" class="flex items-center justify-center flex-shrink-0 text-center">
+      <!-- Official Brand Logo (Bigger, Moved 5% to the left, No movement) -->
+      <a href="index.html" class="header-logo-link flex items-center justify-center flex-shrink-0 text-center -translate-x-[5%]" style="transform: translateX(-5%);">
         <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-[68px] sm:h-[84px] md:h-[98px] lg:h-[110px] xl:h-[120px] w-auto object-contain">
       </a>
 
@@ -185,6 +196,8 @@
         </button>
       </div>
     </div>
+    <!-- Seamless Bottom Fade Gradient Underneath Top Bar -->
+    <div class="header-bottom-fade"></div>
   </header>
 
   <!-- Clean Separate Floating Navigation (Slides in from the right vertically) -->
