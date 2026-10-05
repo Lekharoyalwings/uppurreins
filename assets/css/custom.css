@@ -546,8 +546,96 @@ footer {
 #dalmatian-canvas,
 #book-visit-nav-zone,
 .apple-nav-slide,
-.apple-dropdown-panel {
+.apple-dropdown-panel,
+.apple-vertical-bar {
   zoom: 1 !important;
+}
+
+/* ════════════════════════════════════════════════════
+   APPLE-STYLE VERTICAL BAR (SLIDES IN FROM THE RIGHT)
+   ════════════════════════════════════════════════════ */
+.apple-vertical-bar {
+  position: fixed;
+  top: 96px; /* Positioned directly under Book Visit box with sleek spacing */
+  right: 1.5rem;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  min-width: 146px;
+  padding: 8px 8px;
+  border-radius: 16px;
+  background: rgba(14, 14, 14, 0.92);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 1px rgba(255, 255, 255, 0.25);
+  
+  /* Initial state: off-screen to the right */
+  opacity: 0;
+  transform: translateX(calc(100% + 40px));
+  pointer-events: none;
+  
+  /* Starts coming in immediately when triggered/stopped, glides smoothly */
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+/* Open state: slides in smoothly from the right */
+.apple-vertical-bar.nav-open,
+.apple-vertical-bar:hover,
+body.nav-vertical-open .apple-vertical-bar {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  pointer-events: auto !important;
+}
+
+/* When scrolling down: slides out off-screen to the right */
+.apple-vertical-bar.is-scrolling {
+  opacity: 0 !important;
+  transform: translateX(calc(100% + 40px)) !important;
+  pointer-events: none !important;
+  transition: transform 0.28s ease-in, opacity 0.2s ease-in !important;
+}
+
+/* Hairline dividers between links */
+.apple-nav-divider-v {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 1px 0;
+}
+
+/* Links inside the vertical bar */
+.apple-vertical-bar .apple-nav-link {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  color: #FAF7F2 !important;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.apple-vertical-bar .apple-nav-link:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.12);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  transform: translateX(-2px);
+}
+
+.apple-vertical-bar .apple-nav-link.active {
+  color: #E2C9A5 !important;
+  font-weight: 600;
+  background: rgba(226, 201, 165, 0.10);
 }
 
 /* ════════════════════════════════════════════════════

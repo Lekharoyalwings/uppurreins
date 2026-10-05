@@ -134,6 +134,23 @@
     <div class="header-bottom-fade"></div>
   </header>
 
+  <!-- Apple-Style Vertical Navigation Bar (Slides in from the right vertically) -->
+  <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Vertical Slide Navigation">
+    <a href="index.html"     class="apple-nav-link active">Home</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="shop.html"      class="apple-nav-link">Farm Shop</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="wholesale.html" class="apple-nav-link">Wholesale</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="visit.html"     class="apple-nav-link">Farm Visits</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="blog.html"      class="apple-nav-link">Journal</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="about.html"     class="apple-nav-link">Our Story</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="contact.html"   class="apple-nav-link">Contact</a>
+  </nav>
+
 <!-- Mobile Drawer Menu -->
   <div id="mobile-menu-drawer" class="fixed inset-0 z-50 hidden">
     <div id="mobile-menu-backdrop" class="fixed inset-0 bg-brand-dark/85 backdrop-blur-sm opacity-0 transition-opacity"></div>
@@ -228,7 +245,7 @@
           <div class="relative w-full max-w-md lg:max-w-none">
             <!-- Vertical Picture with Subtle Edge Dissolve (Curd Pot, Eggs, Soaps & Quilt) -->
             <div class="hero-vertical-blend aspect-[3/4] w-full overflow-hidden">
-              <img src="assets/images/hero-vertical.jpg?v=symmetrical_faded_v1" alt="Artisanal coir straw basket with pasture duck eggs, handcrafted Honey &amp; Oat cold-process soaps tied with textured cotton thread, black mud pot of fresh curd with wooden spoon, rolled waffle cotton quilt, and herbal stems" class="w-full h-full object-cover object-center">
+              <img src="assets/images/hero-vertical.jpg?v=rustic_vertical_wood_v2" alt="Artisanal coir straw basket with pasture duck eggs, handcrafted Honey &amp; Oat cold-process soaps tied with textured cotton thread, black mud pot of fresh curd with wooden spoon, rolled waffle cotton quilt, and herbal stems" class="w-full h-full object-cover object-center">
             </div>
           </div>
         </div>
@@ -698,26 +715,59 @@
     <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold pr-1">Chat with Farm</span>
   </a>
 
-  <!-- Apple-Style Top Navigation Proximity Detection (Opens when cursor nears Book Visit) -->
+  <!-- Apple-Style Vertical Bar Navigation Logic (Slides in from the right vertically) -->
   <script>
     (function() {
       const zone = document.getElementById('book-visit-nav-zone');
-      if (!zone) return;
+      const vertBar = document.getElementById('apple-vertical-bar');
+      const bookBtn = document.getElementById('book-visit-btn');
+      if (!vertBar && !zone) return;
       let leaveTimer = null;
+      let scrollTimer = null;
+
       window.addEventListener('mousemove', (e) => {
-        const rect = zone.getBoundingClientRect();
-        const isNear = (e.clientY <= rect.bottom + 30) && (e.clientY >= 0) && (e.clientX >= rect.left - 140);
-        if (isNear) {
+        const rect = (bookBtn || zone).getBoundingClientRect();
+        const isNearTopRight = (e.clientY <= rect.bottom + 35) && (e.clientY >= 0) && (e.clientX >= rect.left - 160);
+
+        let isOverBar = false;
+        if (vertBar) {
+          const vRect = vertBar.getBoundingClientRect();
+          isOverBar = (e.clientX >= vRect.left - 25 && e.clientX <= vRect.right + 25 &&
+                       e.clientY >= vRect.top - 20 && e.clientY <= vRect.bottom + 25);
+        }
+
+        if (isNearTopRight || isOverBar) {
           clearTimeout(leaveTimer);
-          zone.classList.add('nav-open');
+          if (vertBar) vertBar.classList.add('nav-open');
+          if (zone) zone.classList.add('nav-open');
         } else {
-          if (zone.classList.contains('nav-open') && !leaveTimer) {
+          const isOpen = (vertBar && vertBar.classList.contains('nav-open')) || (zone && zone.classList.contains('nav-open'));
+          if (isOpen && !leaveTimer) {
             leaveTimer = setTimeout(() => {
-              zone.classList.remove('nav-open');
+              if (vertBar) vertBar.classList.remove('nav-open');
+              if (zone) zone.classList.remove('nav-open');
               leaveTimer = null;
-            }, 240);
+            }, 350);
           }
         }
+      }, { passive: true });
+
+      if (bookBtn) {
+        bookBtn.addEventListener('mouseenter', () => {
+          clearTimeout(leaveTimer);
+          if (vertBar) vertBar.classList.add('nav-open');
+          if (zone) zone.classList.add('nav-open');
+        });
+      }
+
+      // Scroll motion: disappears while scrolling, glides back in from right when stopped
+      window.addEventListener('scroll', () => {
+        if (!vertBar) return;
+        vertBar.classList.add('is-scrolling');
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          vertBar.classList.remove('is-scrolling');
+        }, 180);
       }, { passive: true });
     })();
   </script>

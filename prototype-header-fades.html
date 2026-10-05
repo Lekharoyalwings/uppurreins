@@ -171,6 +171,63 @@
       pointer-events: auto;
     }
 
+    /* ── STYLE 5C: APPLE VERTICAL SLIDE-IN BAR (SLIDES IN FROM THE RIGHT) ── */
+    .apple-vertical-bar {
+      position: fixed;
+      top: 96px;
+      right: 1.5rem;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+      min-width: 146px;
+      padding: 8px 8px;
+      border-radius: 16px;
+      background: rgba(14, 14, 14, 0.92);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 1px rgba(255, 255, 255, 0.25);
+      opacity: 0;
+      transform: translateX(calc(100% + 40px));
+      pointer-events: none;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+      zoom: 1 !important;
+    }
+
+    .apple-vertical-bar.nav-open,
+    .apple-vertical-bar:hover,
+    body.nav-vertical-open .apple-vertical-bar {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+      pointer-events: auto !important;
+    }
+
+    .apple-vertical-bar.is-scrolling {
+      opacity: 0 !important;
+      transform: translateX(calc(100% + 40px)) !important;
+      pointer-events: none !important;
+      transition: transform 0.28s ease-in, opacity 0.2s ease-in !important;
+    }
+
+    .apple-nav-divider-v {
+      height: 1px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      margin: 1px 0;
+    }
+
+    .apple-vertical-bar .apple-nav-link {
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
     /* ── VERY SMALL & LIGHTENED APPLE TYPOGRAPHY ── */
     .apple-nav-link {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -393,6 +450,23 @@
     <div class="fade-extension"></div>
   </header>
 
+  <!-- Apple-Style Vertical Navigation Bar (Slides in from the right vertically) -->
+  <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Vertical Slide-In Navigation">
+    <a href="#hero"       class="apple-nav-link active">Home</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="#categories" class="apple-nav-link">Farm Shop</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="#wholesale"  class="apple-nav-link">Wholesale</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="#categories" class="apple-nav-link">Farm Visits</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="#journal"    class="apple-nav-link">Journal</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="#hero"       class="apple-nav-link">Our Story</a>
+    <span class="apple-nav-divider-v"></span>
+    <a href="#footer"     class="apple-nav-link">Contact</a>
+  </nav>
+
   <!-- ══════════════════════════════════════════════════════════════════
        MAIN CONTENT CONTAINER: SCALED DOWN BY 10% (zoom: 0.9)
        Everything inside here is 10% smaller.
@@ -454,7 +528,7 @@
           <div class="lg:col-span-6 relative flex items-center justify-center">
             <div class="relative w-full max-w-md lg:max-w-none">
               <div class="hero-visual-fade aspect-[3/4] w-full overflow-hidden">
-                <img src="assets/images/hero-vertical.jpg?v=symmetrical_faded_v1" alt="Artisanal coir straw basket with pasture duck eggs, handcrafted Honey &amp; Oat soaps, black mud pot of fresh curd with wooden spoon, and rolled waffle quilt" class="w-full h-full object-cover object-center">
+                <img src="assets/images/hero-vertical.jpg?v=rustic_vertical_wood_v2" alt="Artisanal coir straw basket with pasture duck eggs, handcrafted Honey &amp; Oat soaps, black mud pot of fresh curd with wooden spoon, and rolled waffle quilt" class="w-full h-full object-cover object-center">
               </div>
             </div>
           </div>
@@ -558,11 +632,14 @@
         <!-- Sub-Mode Switcher for Option 5 -->
         <div id="sub-mode-controls" class="flex items-center gap-1 bg-black/50 p-1 rounded-lg border border-white/10 text-[10px]">
           <span class="text-brand-oat/50 text-[10px] px-1">Layout:</span>
-          <button onclick="setNavMode('slide')" id="sub-mode-slide" class="px-2 py-0.5 rounded bg-brand-forest text-[#FAF7F2] font-semibold transition">
-            5A. Slide-Out Rail
+          <button onclick="setNavMode('vertical')" id="sub-mode-vertical" class="px-2 py-0.5 rounded bg-brand-forest text-[#FAF7F2] font-semibold transition">
+            5A. Vertical Slide
+          </button>
+          <button onclick="setNavMode('slide')" id="sub-mode-slide" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-brand-oat/70 transition">
+            5B. Horizontal Rail
           </button>
           <button onclick="setNavMode('dropdown')" id="sub-mode-dropdown" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-brand-oat/70 transition">
-            5B. Dropdown Pill
+            5C. Dropdown Pill
           </button>
         </div>
 
@@ -603,11 +680,12 @@
     lucide.createIcons();
 
     let currentProto = 5;
-    let navMode = 'slide';
+    let navMode = 'vertical';
     let navLeaveTimer = null;
+    let scrollStopTimer = null;
 
     const descriptions = {
-      5: `<span class="font-bold text-[#FAF7F2]">Option 5 (Apple-Style Top Navigation):</span> The side rail is removed. Like on Apple's website, the navigation bar is tucked at the top and <strong class="text-brand-gold">opens smoothly when your cursor moves near the 'Book Visit' box</strong>. Features very small, refined typography (<code class="text-xs text-brand-gold">11px</code>) in luminous light cream (<code class="text-xs text-[#FAF7F2]">#FAF7F2</code>) on frosted glass.`,
+      5: `<span class="font-bold text-[#FAF7F2]">Option 5 (Apple-Style Vertical Bar):</span> Arranged vertically and <strong class="text-brand-gold">slides in smoothly from the right</strong> when your cursor moves near the 'Book Visit' box or when scrolling stops. Features small, refined typography (<code class="text-xs text-brand-gold">11px</code>) in luminous light cream (<code class="text-xs text-[#FAF7F2]">#FAF7F2</code>) on frosted dark glass.`,
       1: `<span class="font-bold text-[#e2c9a5]">Option 1 (Classic Straight Bar):</span> Full-width 120px solid black block with horizontal links.`,
       2: `<span class="font-bold text-[#e2c9a5]">Option 2 (Tight &amp; Organic):</span> 84px header height with soft frosted glass blur.`,
       3: `<span class="font-bold text-[#e2c9a5]">Option 3 (Wax Seal Overhang):</span> 78px navbar with circular logo hanging downward.`,
@@ -617,25 +695,43 @@
     function setNavMode(mode) {
       navMode = mode;
       const zone = document.getElementById('book-visit-nav-zone');
+      const vertBar = document.getElementById('apple-vertical-bar');
+      const slideNav = document.getElementById('apple-nav-slide');
+      const dropNav = document.getElementById('apple-dropdown-panel');
+      const btnVert = document.getElementById('sub-mode-vertical');
       const btnSlide = document.getElementById('sub-mode-slide');
       const btnDrop = document.getElementById('sub-mode-dropdown');
 
-      if (zone) {
-        if (mode === 'dropdown') {
-          zone.classList.add('mode-dropdown');
-        } else {
-          zone.classList.remove('mode-dropdown');
-        }
-      }
+      const buttons = [
+        { id: btnVert, modeName: 'vertical' },
+        { id: btnSlide, modeName: 'slide' },
+        { id: btnDrop, modeName: 'dropdown' }
+      ];
 
-      if (btnSlide && btnDrop) {
-        if (mode === 'slide') {
-          btnSlide.className = 'px-2 py-0.5 rounded bg-brand-forest text-[#FAF7F2] font-semibold transition';
-          btnDrop.className = 'px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-brand-oat/70 transition';
+      buttons.forEach(b => {
+        if (!b.id) return;
+        if (b.modeName === mode) {
+          b.id.className = 'px-2 py-0.5 rounded bg-brand-forest text-[#FAF7F2] font-semibold transition';
         } else {
-          btnDrop.className = 'px-2 py-0.5 rounded bg-brand-forest text-[#FAF7F2] font-semibold transition';
-          btnSlide.className = 'px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-brand-oat/70 transition';
+          b.id.className = 'px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-brand-oat/70 transition';
         }
+      });
+
+      if (mode === 'vertical') {
+        if (vertBar) vertBar.style.display = 'flex';
+        if (slideNav) slideNav.style.display = 'none';
+        if (dropNav) dropNav.style.display = 'none';
+        if (zone) zone.classList.remove('mode-dropdown');
+      } else if (mode === 'slide') {
+        if (vertBar) { vertBar.style.display = 'none'; vertBar.classList.remove('nav-open'); }
+        if (slideNav) slideNav.style.display = 'flex';
+        if (dropNav) dropNav.style.display = 'none';
+        if (zone) zone.classList.remove('mode-dropdown');
+      } else if (mode === 'dropdown') {
+        if (vertBar) { vertBar.style.display = 'none'; vertBar.classList.remove('nav-open'); }
+        if (slideNav) slideNav.style.display = 'none';
+        if (dropNav) dropNav.style.display = 'flex';
+        if (zone) zone.classList.add('mode-dropdown');
       }
     }
 
@@ -647,6 +743,7 @@
       const logoWrapper = document.querySelector('.logo-wrapper');
       const subModeControls = document.getElementById('sub-mode-controls');
       const hoverBadge = document.getElementById('hover-status-badge');
+      const vertBar = document.getElementById('apple-vertical-bar');
       const slideNav = document.getElementById('apple-nav-slide');
       const dropNav = document.getElementById('apple-dropdown-panel');
 
@@ -654,12 +751,12 @@
       logoWrapper.classList.remove('logo-anchor');
 
       if (n === 5) {
-        if (slideNav) slideNav.style.display = 'flex';
-        if (dropNav) dropNav.style.display = navMode === 'dropdown' ? 'flex' : 'none';
+        setNavMode(navMode);
         if (subModeControls) subModeControls.style.display = 'flex';
         if (hoverBadge) hoverBadge.style.display = 'inline-flex';
         logoImg.className = 'h-[76px] lg:h-[94px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
       } else {
+        if (vertBar) { vertBar.style.display = 'none'; vertBar.classList.remove('nav-open'); }
         if (slideNav) slideNav.style.display = 'none';
         if (dropNav) dropNav.style.display = 'none';
         if (subModeControls) subModeControls.style.display = 'none';
@@ -691,56 +788,100 @@
       lucide.createIcons();
     }
 
-    // ── PROXIMITY DETECTION: OPENS SMOOTHLY WHEN CURSOR APPROACHES BOOK VISIT ──
+    // ── PROXIMITY DETECTION & HOVER FOR TOP RIGHT / BOOK VISIT ──
+    function updateBadge(isOpen) {
+      const badge = document.getElementById('hover-status-badge');
+      if (!badge) return;
+      if (isOpen) {
+        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Nav Open (Slid In)</span>';
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30';
+      } else {
+        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Hover Near \'Book Visit\' to Open</span>';
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/5 text-brand-oat/70 border border-white/10';
+      }
+    }
+
     window.addEventListener('mousemove', (e) => {
       if (currentProto !== 5) return;
       const zone = document.getElementById('book-visit-nav-zone');
-      const badge = document.getElementById('hover-status-badge');
+      const vertBar = document.getElementById('apple-vertical-bar');
+      const bookBtn = document.getElementById('book-visit-btn');
       if (!zone) return;
 
       const rect = zone.getBoundingClientRect();
-      // Sensitivity: Top 110px of viewport AND within 140px to the left of Book Visit
-      const isNear = (e.clientY <= rect.bottom + 30) && (e.clientY >= 0) && (e.clientX >= rect.left - 140);
+      const isNearTopRight = (e.clientY <= rect.bottom + 35) && (e.clientY >= 0) && (e.clientX >= rect.left - 160);
 
-      if (isNear) {
+      let isOverBar = false;
+      if (vertBar && vertBar.style.display !== 'none') {
+        const vRect = vertBar.getBoundingClientRect();
+        isOverBar = (e.clientX >= vRect.left - 25 && e.clientX <= vRect.right + 25 &&
+                     e.clientY >= vRect.top - 20 && e.clientY <= vRect.bottom + 25);
+      }
+
+      if (isNearTopRight || isOverBar) {
         clearTimeout(navLeaveTimer);
-        zone.classList.add('nav-open');
-        if (badge) {
-          badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Near Book Visit (Nav Open)</span>';
-          badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30';
+        if (navMode === 'vertical' && vertBar) {
+          vertBar.classList.add('nav-open');
+        } else {
+          zone.classList.add('nav-open');
         }
+        updateBadge(true);
       } else {
-        if (zone.classList.contains('nav-open') && !navLeaveTimer) {
+        const isOpen = (navMode === 'vertical' && vertBar && vertBar.classList.contains('nav-open')) || zone.classList.contains('nav-open');
+        if (isOpen && !navLeaveTimer) {
           navLeaveTimer = setTimeout(() => {
+            if (vertBar) vertBar.classList.remove('nav-open');
             zone.classList.remove('nav-open');
             navLeaveTimer = null;
-            if (badge) {
-              badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Hover Near \'Book Visit\' to Open</span>';
-              badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/5 text-brand-oat/70 border border-white/10';
-            }
-          }, 240);
+            updateBadge(false);
+          }, 350);
         }
+      }
+    }, { passive: true });
+
+    // Hover directly on Book Visit button or zone
+    const bookVisitBtn = document.getElementById('book-visit-btn');
+    if (bookVisitBtn) {
+      bookVisitBtn.addEventListener('mouseenter', () => {
+        clearTimeout(navLeaveTimer);
+        const vertBar = document.getElementById('apple-vertical-bar');
+        const zone = document.getElementById('book-visit-nav-zone');
+        if (navMode === 'vertical' && vertBar) vertBar.classList.add('nav-open');
+        else if (zone) zone.classList.add('nav-open');
+        updateBadge(true);
+      });
+    }
+
+    // Scroll motion: disappears while scrolling, glides back in from right when stopped
+    window.addEventListener('scroll', () => {
+      if (currentProto !== 5) return;
+      const vertBar = document.getElementById('apple-vertical-bar');
+      if (vertBar && navMode === 'vertical') {
+        vertBar.classList.add('is-scrolling');
+        clearTimeout(scrollStopTimer);
+        scrollStopTimer = setTimeout(() => {
+          vertBar.classList.remove('is-scrolling');
+        }, 180);
       }
     }, { passive: true });
 
     // ── SIMULATION BUTTON TO PREVIEW OPEN STATE ──────────────────────────
     function simulateHoverTrigger() {
       const zone = document.getElementById('book-visit-nav-zone');
-      const badge = document.getElementById('hover-status-badge');
-      if (!zone) return;
+      const vertBar = document.getElementById('apple-vertical-bar');
 
-      zone.classList.add('nav-open');
-      if (badge) {
-        badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Triggered Open (Active)</span>';
-        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30';
+      clearTimeout(navLeaveTimer);
+      if (navMode === 'vertical' && vertBar) {
+        vertBar.classList.add('nav-open');
+      } else if (zone) {
+        zone.classList.add('nav-open');
       }
+      updateBadge(true);
 
       setTimeout(() => {
-        zone.classList.remove('nav-open');
-        if (badge) {
-          badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Hover Near \'Book Visit\' to Open</span>';
-          badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/5 text-brand-oat/70 border border-white/10';
-        }
+        if (vertBar) vertBar.classList.remove('nav-open');
+        if (zone) zone.classList.remove('nav-open');
+        updateBadge(false);
       }, 4000);
     }
 
