@@ -80,7 +80,90 @@
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="stylesheet" href="assets/css/custom.css?v=20261005_clean_v10">
+  <style>
+    /* Clean Separate Floating Navigation (Slides from right, no containers) */
+    .apple-vertical-bar {
+      position: fixed;
+      top: 96px;
+      right: 2rem;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      min-width: unset !important;
+      pointer-events: none;
+    }
+    .apple-vertical-bar.nav-open {
+      pointer-events: auto !important;
+    }
+    @media (min-width: 1024px) {
+      .apple-vertical-bar {
+        top: 108px;
+        right: 2.25rem;
+        gap: 14px;
+      }
+    }
+    .apple-vertical-bar .apple-nav-link {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #FAF7F2 !important;
+      text-decoration: none;
+      padding: 4px 8px;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.9);
+      opacity: 0;
+      transform: translateX(45px);
+      pointer-events: none;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.28s ease,
+                  color 0.2s ease,
+                  text-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(1) { transition-delay: 0.00s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(2) { transition-delay: 0.03s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(3) { transition-delay: 0.06s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(4) { transition-delay: 0.09s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(5) { transition-delay: 0.12s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(6) { transition-delay: 0.15s; }
+    .apple-vertical-bar.nav-open .apple-nav-link:nth-child(7) { transition-delay: 0.18s; }
+    .apple-vertical-bar.nav-open .apple-nav-link,
+    .apple-vertical-bar:hover .apple-nav-link {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+      pointer-events: auto !important;
+    }
+    .apple-vertical-bar .apple-nav-link:hover {
+      background: transparent !important;
+      border-radius: 0 !important;
+      color: #FFFFFF !important;
+      text-shadow: 0 0 14px rgba(255, 255, 255, 0.75), 0 1px 8px rgba(0, 0, 0, 0.95);
+      transform: translateX(-4px) !important;
+    }
+    .apple-vertical-bar .apple-nav-link.active {
+      color: #E2C9A5 !important;
+      font-weight: 600;
+    }
+    .apple-nav-divider-v {
+      display: none !important;
+    }
+    .apple-nav-slide {
+      display: none !important;
+    }
+  </style>
 </head>
 <body class="bg-black antialiased flex flex-col min-h-screen">
 
@@ -222,7 +305,7 @@
           <div class="relative w-full max-w-md lg:max-w-none">
             <!-- Vertical Picture with Subtle Edge Dissolve (Curd Pot, Eggs, Soaps & Quilt) -->
             <div class="hero-vertical-blend aspect-[3/4] w-full overflow-hidden">
-              <img src="assets/images/hero-vertical.jpg?v=rustic_vertical_wood_v2" alt="Artisanal coir straw basket with pasture duck eggs, handcrafted Honey &amp; Oat cold-process soaps tied with textured cotton thread, black mud pot of fresh curd with wooden spoon, rolled waffle cotton quilt, and herbal stems" class="w-full h-full object-cover object-center">
+              <img src="assets/images/hero-vertical.jpg?v=rustic_centered_final_v10" alt="Artisanal coir straw basket with pasture duck eggs, handcrafted Honey &amp; Oat cold-process soaps tied with textured cotton thread, black mud pot of fresh curd with wooden spoon, rolled waffle cotton quilt, and herbal stems" class="w-full h-full object-cover object-center">
             </div>
           </div>
         </div>
