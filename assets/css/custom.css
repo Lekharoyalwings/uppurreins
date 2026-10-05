@@ -527,12 +527,21 @@ footer {
 }
 
 /* ════════════════════════════════════════════════════
-   CLEAN SEPARATE FLOATING NAVIGATION (SLIDES FROM RIGHT)
-   NO rounded box, NO panel background — pure floating links
+   CLEAN HEADER & SEPARATE FLOATING NAVIGATION
+   Stationary at top, zero border lines, pure floating elements
    ════════════════════════════════════════════════════ */
+header {
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+.header-bottom-fade {
+  display: none !important;
+}
+
 .apple-vertical-bar {
-  position: absolute;
-  top: 76px; /* Positioned directly under Look button */
+  position: fixed;
+  top: 96px; /* Positioned directly under Look button */
   right: 1.5rem;
   z-index: 60;
   display: none;
@@ -561,7 +570,7 @@ footer {
 
 @media (min-width: 1024px) {
   .apple-vertical-bar {
-    top: 86px;
+    top: 110px;
     right: 2rem;
     gap: 14px;
   }
@@ -602,13 +611,13 @@ footer {
   pointer-events: auto !important;
 }
 
-/* Hover state on individual link — NO WHITE */
+/* Hover state on individual link — NO WHITE, NO MOVEMENT */
 .apple-vertical-bar .apple-nav-link:hover {
   background: transparent !important;
   border-radius: 0 !important;
   color: #F2EAD8 !important; /* Warm cream, NO WHITE */
   text-shadow: 0 0 14px rgba(226, 201, 165, 0.65), 0 1px 8px rgba(0, 0, 0, 0.95);
-  transform: translateY(0) translateX(-3px) !important;
+  transform: translateY(0) !important;
 }
 
 .apple-vertical-bar .apple-nav-link.active {
