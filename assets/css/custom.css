@@ -544,7 +544,113 @@ footer {
 .logo-wrapper,
 #header-logo-img,
 #dalmatian-canvas,
-#vertical-right-nav {
+#book-visit-nav-zone,
+.apple-nav-slide,
+.apple-dropdown-panel {
   zoom: 1 !important;
+}
+
+/* ════════════════════════════════════════════════════
+   APPLE-STYLE TOP HOVER NAVIGATION (NEAR BOOK VISIT)
+   ════════════════════════════════════════════════════ */
+#book-visit-nav-zone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.apple-nav-slide {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: rgba(16, 16, 16, 0.88);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: translateX(18px) scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+#book-visit-nav-zone:hover .apple-nav-slide,
+#book-visit-nav-zone.nav-open .apple-nav-slide {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+}
+
+.apple-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  display: none;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(14, 14, 14, 0.92);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  z-index: 50;
+}
+
+#book-visit-nav-zone.mode-dropdown .apple-nav-slide {
+  display: none !important;
+}
+#book-visit-nav-zone.mode-dropdown .apple-dropdown-panel {
+  display: flex !important;
+}
+#book-visit-nav-zone.mode-dropdown:hover .apple-dropdown-panel,
+#book-visit-nav-zone.mode-dropdown.nav-open .apple-dropdown-panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.apple-nav-link {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  color: #FAF7F2 !important;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.apple-nav-link:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.12);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  transform: translateY(-0.5px);
+}
+
+.apple-nav-link.active {
+  color: #E2C9A5 !important;
+  font-weight: 600;
+}
+
+.apple-nav-divider {
+  color: rgba(255, 255, 255, 0.22);
+  font-size: 11px;
+  user-select: none;
+  padding: 0 1px;
 }
 

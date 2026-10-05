@@ -93,32 +93,39 @@
         <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-[57px] sm:h-[72px] md:h-[86px] lg:h-[94px] xl:h-[103px] w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden xl:flex items-center space-x-6 2xl:space-x-8 text-xs 2xl:text-sm font-medium flex-shrink-0">
-        <a href="index.html"     class="nav-link py-2 text-[#e2c9a5]">Home</a>
-        <a href="shop.html"      class="nav-link py-2 text-[#cbb89d]">Farm Shop</a>
-        <a href="wholesale.html" class="nav-link py-2 text-[#cbb89d]">Wholesale</a>
-        <a href="visit.html"     class="nav-link py-2 text-[#cbb89d]">Farm Visits</a>
-        <a href="blog.html"      class="nav-link py-2 text-[#cbb89d]">Journal</a>
-        <a href="about.html"     class="nav-link py-2 text-[#cbb89d]">Our Story</a>
-        <a href="contact.html"   class="nav-link py-2 text-[#cbb89d]">Contact</a>
-      </nav>
+      <!-- Right Actions & Apple-Style Hover Navigation (Opens near Book Visit) -->
+      <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
 
-      <!-- Right Actions -->
-      <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
-        <a href="visit.html" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition">
+        <!-- Apple-Style Slide-Out Navigation (Comes out to the left of Book Visit) -->
+        <nav id="apple-nav-slide" class="apple-nav-slide hidden md:flex" aria-label="Apple Quick Navigation">
+          <a href="index.html"     class="apple-nav-link active">Home</a>
+          <span class="apple-nav-divider">·</span>
+          <a href="shop.html"      class="apple-nav-link">Farm Shop</a>
+          <span class="apple-nav-divider">·</span>
+          <a href="wholesale.html" class="apple-nav-link">Wholesale</a>
+          <span class="apple-nav-divider">·</span>
+          <a href="visit.html"     class="apple-nav-link">Farm Visits</a>
+          <span class="apple-nav-divider">·</span>
+          <a href="blog.html"      class="apple-nav-link">Journal</a>
+          <span class="apple-nav-divider">·</span>
+          <a href="about.html"     class="apple-nav-link">Our Story</a>
+          <span class="apple-nav-divider">·</span>
+          <a href="contact.html"   class="apple-nav-link">Contact</a>
+        </nav>
+
+        <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#FAF7F2] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition">
           <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
           <span>Book Visit</span>
         </a>
 
         <!-- Cart Button -->
-        <button onclick="window.cart.openDrawer()" class="relative p-2.5 rounded-sm bg-black/40 hover:bg-brand-forest/30 text-[#e2c9a5] transition border border-white/10">
+        <button onclick="window.cart.openDrawer()" class="relative p-2.5 rounded-sm bg-black/40 hover:bg-brand-forest/30 text-[#FAF7F2] transition border border-white/10" title="Shopping Basket">
           <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-          <span class="cart-count-badge absolute -top-1 -right-1 w-5 h-5 bg-brand-forest text-[#e2c9a5] text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
+          <span class="cart-count-badge absolute -top-1 -right-1 w-5 h-5 bg-brand-forest text-[#FAF7F2] text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
         </button>
 
         <!-- Mobile/Tablet Menu Button -->
-        <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-sm bg-black/40 hover:bg-black/60 text-[#e2c9a5] transition border border-white/10">
+        <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-sm bg-black/40 hover:bg-black/60 text-[#FAF7F2] transition border border-white/10">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -690,6 +697,30 @@
     <i data-lucide="message-circle" class="w-6 h-6"></i>
     <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold pr-1">Chat with Farm</span>
   </a>
+
+  <!-- Apple-Style Top Navigation Proximity Detection (Opens when cursor nears Book Visit) -->
+  <script>
+    (function() {
+      const zone = document.getElementById('book-visit-nav-zone');
+      if (!zone) return;
+      let leaveTimer = null;
+      window.addEventListener('mousemove', (e) => {
+        const rect = zone.getBoundingClientRect();
+        const isNear = (e.clientY <= rect.bottom + 30) && (e.clientY >= 0) && (e.clientX >= rect.left - 140);
+        if (isNear) {
+          clearTimeout(leaveTimer);
+          zone.classList.add('nav-open');
+        } else {
+          if (zone.classList.contains('nav-open') && !leaveTimer) {
+            leaveTimer = setTimeout(() => {
+              zone.classList.remove('nav-open');
+              leaveTimer = null;
+            }, 240);
+          }
+        }
+      }, { passive: true });
+    })();
+  </script>
 
   <!-- Real Dalmatian Guardians Engine -->
   <script src="assets/js/dalmatian-guardians.js?v=ultra_hd_clear_v11"></script>
