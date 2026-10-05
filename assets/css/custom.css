@@ -320,12 +320,12 @@ header {
   }
 }
 
-/* Hero Visual Mask — Generous bounds so all products are 100% visible */
+/* Hero Visual Mask — Image has native pure #000000 boundary fades into background */
 .hero-visual-fade,
 .hero-vertical-blend {
   position: relative;
-  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 50%, #000000 88%, rgba(0, 0, 0, 0.7) 96%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 75% at 50% 50%, #000000 88%, rgba(0, 0, 0, 0.7) 96%, transparent 100%);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .hero-visual-fade img,
