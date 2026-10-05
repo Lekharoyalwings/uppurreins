@@ -548,7 +548,7 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform: translateX(-5%);
+  transform: translateX(-10%);
   pointer-events: auto;
   z-index: 10;
   isolation: isolate;
@@ -557,14 +557,14 @@ header {
 .header-logo-link::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: -1cm;
-  right: -1cm;
-  bottom: -1cm;
-  background: radial-gradient(ellipse at 50% 40%, 
+  top: -1mm;
+  left: -1mm;
+  right: -1mm;
+  bottom: -1mm;
+  background: radial-gradient(ellipse at 50% 50%, 
     #000000 0%, 
     #000000 50%, 
-    rgba(0, 0, 0, 0.75) 75%, 
+    rgba(0, 0, 0, 0.6) 80%, 
     rgba(0, 0, 0, 0) 100%);
   pointer-events: none;
   z-index: -1;
@@ -580,14 +580,14 @@ header {
 #book-visit-nav-zone::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: -1cm;
-  right: -1cm;
-  bottom: -1cm;
-  background: radial-gradient(ellipse at 50% 40%, 
+  top: -1mm;
+  left: -1mm;
+  right: -1mm;
+  bottom: -1mm;
+  background: radial-gradient(ellipse at 50% 50%, 
     #000000 0%, 
     #000000 50%, 
-    rgba(0, 0, 0, 0.75) 75%, 
+    rgba(0, 0, 0, 0.6) 80%, 
     rgba(0, 0, 0, 0) 100%);
   pointer-events: none;
   z-index: -1;
@@ -595,16 +595,16 @@ header {
 
 @media (max-width: 639px) {
   .header-logo-link::after {
-    top: 0;
-    left: -0.6cm;
-    right: -0.6cm;
-    bottom: -0.6cm;
+    top: -1mm;
+    left: -1mm;
+    right: -1mm;
+    bottom: -1mm;
   }
   #book-visit-nav-zone::after {
-    top: 0;
-    left: -0.6cm;
-    right: -0.6cm;
-    bottom: -0.6cm;
+    top: -1mm;
+    left: -1mm;
+    right: -1mm;
+    bottom: -1mm;
   }
 }
 
