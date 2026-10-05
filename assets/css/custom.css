@@ -287,37 +287,12 @@ body {
 
 /* Header & Top Bar Enhancements */
 header {
-  background-color: #000000;
+  background-color: transparent !important;
   border-bottom: none !important;
 }
 
 .header-bottom-fade {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 56px;
-  pointer-events: none;
-  background: linear-gradient(to bottom, 
-    #000000 0%, 
-    rgba(0, 0, 0, 0.85) 20%, 
-    rgba(0, 0, 0, 0.60) 40%, 
-    rgba(0, 0, 0, 0.35) 60%, 
-    rgba(0, 0, 0, 0.15) 80%, 
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-@media (min-width: 640px) {
-  .header-bottom-fade {
-    height: 72px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .header-bottom-fade {
-    height: 88px;
-  }
+  display: none !important;
 }
 
 /* Hero Visual Mask — Image has native pure #000000 boundary fades into background */
@@ -556,9 +531,9 @@ footer {
    NO rounded box, NO panel background — pure floating links
    ════════════════════════════════════════════════════ */
 .apple-vertical-bar {
-  position: fixed;
-  top: 96px; /* Positioned directly under Book Visit tab */
-  right: 2rem;
+  position: absolute;
+  top: 76px; /* Positioned directly under Look button */
+  right: 1.5rem;
   z-index: 60;
   display: none;
   flex-direction: column;
@@ -586,19 +561,19 @@ footer {
 
 @media (min-width: 1024px) {
   .apple-vertical-bar {
-    top: 108px;
-    right: 2.25rem;
+    top: 86px;
+    right: 2rem;
     gap: 14px;
   }
 }
 
-/* Individual links separate by themselves — 100% clean typography */
+/* Individual links separate by themselves — NEVER IN WHITE, matches organic farm store text color #e2c9a5 */
 .apple-vertical-bar .apple-nav-link {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.05em;
-  color: #FAF7F2 !important;
+  color: #e2c9a5 !important; /* Exact match with organic farm store & site text */
   text-decoration: none;
   padding: 4px 8px;
   background: transparent !important;
@@ -627,18 +602,18 @@ footer {
   pointer-events: auto !important;
 }
 
-/* Hover state on individual link */
+/* Hover state on individual link — NO WHITE */
 .apple-vertical-bar .apple-nav-link:hover {
   background: transparent !important;
   border-radius: 0 !important;
-  color: #FFFFFF !important;
-  text-shadow: 0 0 14px rgba(255, 255, 255, 0.75), 0 1px 8px rgba(0, 0, 0, 0.95);
+  color: #F2EAD8 !important; /* Warm cream, NO WHITE */
+  text-shadow: 0 0 14px rgba(226, 201, 165, 0.65), 0 1px 8px rgba(0, 0, 0, 0.95);
   transform: translateY(0) translateX(-3px) !important;
 }
 
 .apple-vertical-bar .apple-nav-link.active {
-  color: #E2C9A5 !important;
-  font-weight: 600;
+  color: #C8995A !important; /* Harvest gold accent, NO WHITE */
+  font-weight: 700;
 }
 
 /* Remove hairline dividers completely */
@@ -723,7 +698,7 @@ footer {
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.035em;
-  color: #FAF7F2 !important;
+  color: #e2c9a5 !important;
   text-decoration: none;
   padding: 4px 8px;
   border-radius: 9999px;
@@ -732,15 +707,15 @@ footer {
 }
 
 .apple-nav-link:hover {
-  color: #FFFFFF !important;
+  color: #F2EAD8 !important;
   background: rgba(255, 255, 255, 0.12);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0 10px rgba(226, 201, 165, 0.6);
   transform: translateY(-0.5px);
 }
 
 .apple-nav-link.active {
-  color: #E2C9A5 !important;
-  font-weight: 600;
+  color: #C8995A !important;
+  font-weight: 700;
 }
 
 .apple-nav-divider {
