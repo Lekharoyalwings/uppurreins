@@ -58,16 +58,14 @@
     .header-logo-link::after {
       content: "";
       position: absolute;
-      top: -40px;
-      left: -50px;
-      right: -60px;
-      bottom: -70px;
-      background: radial-gradient(ellipse 135% 120% at 42% 35%, 
+      top: 0;
+      left: -1cm;
+      right: -1cm;
+      bottom: -1cm;
+      background: radial-gradient(ellipse at 50% 40%, 
         #000000 0%, 
-        #000000 42%, 
-        rgba(0, 0, 0, 0.95) 54%, 
-        rgba(0, 0, 0, 0.75) 68%, 
-        rgba(0, 0, 0, 0.35) 84%, 
+        #000000 50%, 
+        rgba(0, 0, 0, 0.75) 75%, 
         rgba(0, 0, 0, 0) 100%);
       pointer-events: none;
       z-index: -1;
@@ -81,32 +79,30 @@
     #book-visit-nav-zone::after {
       content: "";
       position: absolute;
-      top: -40px;
-      left: -65px;
-      right: -40px;
-      bottom: -70px;
-      background: radial-gradient(ellipse 140% 120% at 58% 35%, 
+      top: 0;
+      left: -1cm;
+      right: -1cm;
+      bottom: -1cm;
+      background: radial-gradient(ellipse at 50% 40%, 
         #000000 0%, 
-        #000000 42%, 
-        rgba(0, 0, 0, 0.95) 54%, 
-        rgba(0, 0, 0, 0.75) 68%, 
-        rgba(0, 0, 0, 0.35) 84%, 
+        #000000 50%, 
+        rgba(0, 0, 0, 0.75) 75%, 
         rgba(0, 0, 0, 0) 100%);
       pointer-events: none;
       z-index: -1;
     }
     @media (max-width: 639px) {
       .header-logo-link::after {
-        top: -25px;
-        left: -25px;
-        right: -30px;
-        bottom: -45px;
+        top: 0;
+        left: -0.6cm;
+        right: -0.6cm;
+        bottom: -0.6cm;
       }
       #book-visit-nav-zone::after {
-        top: -25px;
-        left: -35px;
-        right: -25px;
-        bottom: -45px;
+        top: 0;
+        left: -0.6cm;
+        right: -0.6cm;
+        bottom: -0.6cm;
       }
     }
     /* Clean Floating Navigation (Drops down from Look tab, disappears on cursor leave / 8s) */
