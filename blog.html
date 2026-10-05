@@ -37,26 +37,81 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="assets/css/custom.css?v=20261005_clean_v10">
   <style>
-    /* Header & Navigation — Stationary, Zero Border Lines, Underneath Fade */
+    /* Header & Navigation — Transparent Center, Soft Localized Fades Under Logo & Buttons */
     header {
-      background-color: #000000 !important;
+      background-color: transparent !important;
+      background: transparent !important;
       border: none !important;
       border-bottom: none !important;
       box-shadow: none !important;
+      pointer-events: none;
     }
     .header-bottom-fade {
-      display: block !important;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 100%;
-      height: 42px;
-      background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0) 100%);
-      pointer-events: none;
-      z-index: 39;
+      display: none !important;
     }
     .header-logo-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       transform: translateX(-5%);
+      pointer-events: auto;
+      z-index: 10;
+      isolation: isolate;
+    }
+    .header-logo-link::after {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: -50px;
+      right: -60px;
+      bottom: -70px;
+      background: radial-gradient(ellipse 135% 120% at 42% 35%, 
+        #000000 0%, 
+        #000000 42%, 
+        rgba(0, 0, 0, 0.95) 54%, 
+        rgba(0, 0, 0, 0.75) 68%, 
+        rgba(0, 0, 0, 0.35) 84%, 
+        rgba(0, 0, 0, 0) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    #book-visit-nav-zone {
+      position: relative;
+      pointer-events: auto;
+      z-index: 10;
+      isolation: isolate;
+    }
+    #book-visit-nav-zone::after {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: -65px;
+      right: -40px;
+      bottom: -70px;
+      background: radial-gradient(ellipse 140% 120% at 58% 35%, 
+        #000000 0%, 
+        #000000 42%, 
+        rgba(0, 0, 0, 0.95) 54%, 
+        rgba(0, 0, 0, 0.75) 68%, 
+        rgba(0, 0, 0, 0.35) 84%, 
+        rgba(0, 0, 0, 0) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    @media (max-width: 639px) {
+      .header-logo-link::after {
+        top: -25px;
+        left: -25px;
+        right: -30px;
+        bottom: -45px;
+      }
+      #book-visit-nav-zone::after {
+        top: -25px;
+        left: -35px;
+        right: -25px;
+        bottom: -45px;
+      }
     }
     /* Clean Floating Navigation (Drops down from Look tab, disappears on cursor leave / 8s) */
     .apple-vertical-bar {
@@ -144,8 +199,8 @@
 </head>
 <body class="bg-red-soil antialiased flex flex-col min-h-screen">
 
-<!-- Main Navigation (Stationary at top, Zero borders, Larger Logo, Fading Underneath) -->
-  <header class="sticky top-0 z-40 bg-black transition border-0 relative">
+<!-- Main Navigation (Stationary at top, Transparent center, Localized fades under logo & buttons) -->
+  <header class="sticky top-0 z-40 bg-transparent transition border-0 relative pointer-events-none">
     <div class="w-full px-4 sm:px-6 lg:px-8 h-24 sm:h-28 lg:h-32 flex items-center justify-between gap-4">
 
       <!-- Official Brand Logo (Bigger, Moved 5% to the left, No movement) -->
@@ -179,8 +234,6 @@
         </button>
       </div>
     </div>
-    <!-- Seamless Bottom Fade Gradient Underneath Top Bar -->
-    <div class="header-bottom-fade"></div>
   </header>
 
   <!-- Clean Separate Floating Navigation (Slides in from the right vertically) -->
