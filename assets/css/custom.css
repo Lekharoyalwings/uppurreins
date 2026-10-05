@@ -586,7 +586,7 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform: translateX(-15%);
+  transform: translate(-20%, 5%);
   pointer-events: auto;
   z-index: 10;
   isolation: isolate;
