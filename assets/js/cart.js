@@ -80,8 +80,12 @@ class CartManager {
     }
 
     this.saveCart();
-    this.showToast(`✨ Added "${product.name}" to your basket`);
-    this.openDrawer();
+    if (this.isCartPage()) {
+      this.showToast(`✨ Added "${product.name}" to your basket`);
+      this.openDrawer();
+    } else {
+      window.location.href = 'shop.html';
+    }
   }
 
   removeItem(productId) {
@@ -187,6 +191,10 @@ class CartManager {
   }
 
   openDrawer() {
+    if (!this.isCartPage()) {
+      window.location.href = 'shop.html';
+      return;
+    }
     const drawer = document.getElementById('cart-drawer');
     const backdrop = document.getElementById('cart-backdrop');
     if (drawer && backdrop) {
@@ -370,7 +378,20 @@ class CartManager {
     window.location.href = mailtoUrl;
   }
 
+  isCartPage() {
+    const path = (window.location.pathname || '').toLowerCase();
+    return path.endsWith('shop.html') || 
+           path.endsWith('wholesale.html') || 
+           path.includes('/shop') || 
+           path.includes('/wholesale') ||
+           path.endsWith('shop') ||
+           path.endsWith('wholesale');
+  }
+
   initUI() {
+    if (!this.isCartPage()) {
+      return;
+    }
     this.injectDrawer();
     this.updateBadges();
     this.renderDrawer();
