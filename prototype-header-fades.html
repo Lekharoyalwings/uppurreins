@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UP Purreins — Header Fade Prototypes</title>
+  <title>UP Purreins — Header &amp; Vertical Rail Navigation Prototype</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,7 +19,7 @@
               clay:      '#9B4030',
               cream:     '#F2EAD8',
               oat:       '#E8DCC8',
-              dark:      '#1A1209',
+              dark:      '#000000',
               gold:      '#C8995A',
               barnwood:  '#3B2412',
               iron:      '#111111',
@@ -37,9 +37,137 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="assets/css/custom.css">
   <style>
-    /* ── PROTOTYPE 1: CURRENT STRAIGHT BAR ─────────────────── */
+    /* ══════════════════════════════════════════════════════════════════
+       SITE SCALING: 10% SMALLER FOR EVERYTHING ELSE
+       (EXCLUDING LOGO, PUPPIES CANVAS, AND SIDE NAVIGATION)
+       ══════════════════════════════════════════════════════════════════ */
+    .site-scale-down {
+      zoom: 0.9;
+    }
+    @supports not (zoom: 0.9) {
+      .site-scale-down {
+        transform: scale(0.9);
+        transform-origin: top center;
+        width: 111.111%;
+        margin-left: -5.555%;
+      }
+    }
+
+    /* ── OPTION 5: SPREAD-OUT RIGHT NAVIGATION (BELOW BOOK VISIT) ── */
+    .header-style-5 {
+      background: transparent !important;
+      border-bottom: none !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      pointer-events: none;
+    }
+    .header-style-5 .header-inner {
+      height: 90px;
+      padding: 0 2rem;
+    }
+    .header-style-5 .logo-wrapper {
+      pointer-events: auto;
+      position: relative;
+      zoom: 1 !important; /* Preserves 100% full original logo size */
+    }
+    /* Subtle organic fade directly under the top-left logo */
+    .header-style-5 .logo-fade-underlay {
+      display: block !important;
+      position: absolute;
+      top: -24px;
+      left: -24px;
+      width: 280px;
+      height: 180px;
+      background: radial-gradient(ellipse at 30% 30%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 50%, transparent 80%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .header-style-5 .desktop-horizontal-nav {
+      display: none !important;
+    }
+    .header-style-5 .header-right-actions {
+      pointer-events: auto;
+      zoom: 0.9; /* 10% smaller to match page proportions */
+    }
+    .header-style-5 .fade-extension {
+      display: none !important;
+    }
+
+    /* ── SPREAD VERTICAL RIGHT NAVIGATION (STARTING BELOW BOOK VISIT TO BOTTOM) ── */
+    #vertical-right-nav {
+      position: fixed;
+      right: 2rem; /* Aligned with Book Visit button on right */
+      top: 105px;  /* Starts right below Book Visit box with a gentle gap */
+      bottom: 45px; /* Spreads all the way down to near the bottom */
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Space items evenly from top to bottom */
+      align-items: flex-end;
+      text-align: right;
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateX(0);
+      zoom: 1 !important; /* Preserves 100% readability */
+      /* Starts coming in immediately when scrolling stops, glides in VERY SLOWLY over 1.3s */
+      transition: transform 1.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                  opacity 1.0s ease-out;
+    }
+
+    /* When scrolling: Quick, responsive exit off-screen to the right */
+    #vertical-right-nav.is-scrolling {
+      transform: translateX(calc(100% + 60px)) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: transform 0.28s ease-in, opacity 0.2s ease-in !important;
+    }
+
+    /* Right edge ambient fade overlay (ensures high contrast readability over any background) */
+    .nav-ambient-fade {
+      position: absolute;
+      top: -30px;
+      bottom: -30px;
+      right: -2rem;
+      width: 280px;
+      background: radial-gradient(ellipse 100% 100% at 100% 50%, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 60%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Individual navigation links: High contrast, clearly readable on black */
+    .spread-v-link {
+      position: relative;
+      z-index: 1;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem; /* Clean readable size */
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      color: #E6D5B8; /* High-contrast warm sand/cream — clearly legible against deep black */
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 1), 0 0 18px rgba(0, 0, 0, 0.95);
+      text-decoration: none;
+      padding: 5px 0;
+      transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
+      white-space: nowrap;
+    }
+    .spread-v-link:hover {
+      color: #F8EEDB; /* Bright radiant cream */
+      text-shadow: 0 0 14px rgba(248, 238, 219, 0.6), 0 1px 8px rgba(0, 0, 0, 1);
+      transform: translateX(-4px);
+    }
+    .spread-v-link.active {
+      color: #E2C9A5;
+      font-weight: 700;
+    }
+
+    /* ── PROTOTYPE 1: CURRENT STRAIGHT BAR ─────────────────────────── */
     .header-style-1 {
       background: #000000;
+      position: sticky;
+      top: 0;
+      z-index: 40;
     }
     .header-style-1 .header-inner {
       height: 120px;
@@ -54,11 +182,14 @@
       background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.15) 80%, transparent 100%);
     }
 
-    /* ── PROTOTYPE 2: TIGHT & ORGANIC (Links close to fade) ─── */
+    /* ── PROTOTYPE 2: TIGHT & ORGANIC ───────────────────────────────── */
     .header-style-2 {
       background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.95) 75%, transparent 100%);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 40;
     }
     .header-style-2 .header-inner {
       height: 84px;
@@ -73,11 +204,14 @@
       background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.15) 75%, transparent 100%);
     }
 
-    /* ── PROTOTYPE 3: WAX SEAL OVERHANG (Logo anchors into fade) ─ */
+    /* ── PROTOTYPE 3: WAX SEAL OVERHANG ─────────────────────────────── */
     .header-style-3 {
       background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.92) 80%, transparent 100%);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 40;
     }
     .header-style-3 .header-inner {
       height: 78px;
@@ -97,10 +231,13 @@
                   linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 65%, transparent 100%);
     }
 
-    /* ── PROTOTYPE 4: FLOATING ISLAND / CAPSULE (Modern Luxury) ─ */
+    /* ── PROTOTYPE 4: FLOATING ISLAND / CAPSULE ─────────────────────── */
     .header-style-4 {
       background: transparent;
       padding-top: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
     }
     .header-style-4 .header-inner {
       height: auto;
@@ -109,7 +246,6 @@
       background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(226, 201, 165, 0.15);
       border-radius: 9999px;
       padding: 10px 28px;
       box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0,0,0,0.6);
@@ -126,295 +262,371 @@
     }
   </style>
 </head>
-<body class="bg-red-soil text-[#e2c9a5] min-h-screen antialiased selection:bg-brand-forest selection:text-[#e2c9a5]">
+<body class="bg-black text-[#e2c9a5] min-h-screen antialiased selection:bg-brand-forest selection:text-[#e2c9a5]">
 
-  <!-- FLOATING PROTOTYPE SWITCHER (Bottom Bar) -->
-  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#121212]/95 border border-[#e2c9a5]/30 rounded-2xl p-2.5 shadow-2xl backdrop-blur-md flex items-center gap-2 max-w-2xl w-[94vw] sm:w-auto">
-    <div class="hidden sm:flex items-center gap-2 pl-3 pr-2 text-xs font-serif font-bold text-[#e2c9a5] border-r border-white/10">
-      <i data-lucide="sparkles" class="w-4 h-4 text-brand-gold"></i>
-      <span>Header Fade Styles:</span>
-    </div>
-    <div class="grid grid-cols-2 sm:flex items-center gap-1.5 w-full sm:w-auto">
-      <button onclick="setPrototype(1)" id="btn-proto-1" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-brand-forest text-brand-cream border border-brand-forest/60">
-        1. Current Straight Bar
-      </button>
-      <button onclick="setPrototype(2)" id="btn-proto-2" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 border border-white/5">
-        2. Tight &amp; Organic
-      </button>
-      <button onclick="setPrototype(3)" id="btn-proto-3" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 border border-white/5">
-        3. Wax Seal Overhang
-      </button>
-      <button onclick="setPrototype(4)" id="btn-proto-4" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 border border-white/5">
-        4. Floating Island Pill
-      </button>
-    </div>
-  </div>
+  <!-- ══════════════════════════════════════════════════════════════════
+       VERTICAL RIGHT-SIDE NAVIGATION (SPREAD FROM BOOK VISIT TO BOTTOM)
+       ══════════════════════════════════════════════════════════════════ -->
+  <aside id="vertical-right-nav" aria-label="Quick Navigation">
+    <!-- Subtle ambient edge fade (ensures readability over any background) -->
+    <div class="nav-ambient-fade"></div>
 
-  <!-- THE TESTED HEADER COMPONENT -->
-  <header id="main-header" class="sticky top-0 z-40 transition-all duration-300 header-style-1">
+    <!-- Evenly Spaced Pure Text Links (High-contrast, clearly readable on black) -->
+    <a href="#hero" class="spread-v-link active" title="Jump to Home">Home</a>
+    <a href="#categories" class="spread-v-link" title="Jump to Farm Shop">Farm Shop</a>
+    <a href="#wholesale" class="spread-v-link" title="Jump to Wholesale">Wholesale</a>
+    <a href="#categories" class="spread-v-link" title="Jump to Farm Visits">Farm Visits</a>
+    <a href="#journal" class="spread-v-link" title="Jump to Journal">Journal</a>
+    <a href="#hero" class="spread-v-link" title="Jump to Our Story">Our Story</a>
+    <a href="#footer" class="spread-v-link" title="Jump to Contact">Contact</a>
+  </aside>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       THE TESTED HEADER COMPONENT (LOGO REMAINS 100% FULL ORIGINAL SIZE)
+       ══════════════════════════════════════════════════════════════════ -->
+  <header id="main-header" class="header-style-5 transition-all duration-300">
     <div class="header-inner w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 transition-all duration-300">
 
-      <!-- Official Brand Logo -->
+      <!-- Official Brand Logo (UNTOUCHED 100% FULL SIZE) -->
       <a href="index.html" class="logo-wrapper flex items-center justify-center group py-0.5 flex-shrink-0 text-center transition-all duration-300">
+        <!-- Soft Organic Fade Right Under the Logo -->
+        <div class="logo-fade-underlay hidden"></div>
         <img id="header-logo-img" src="assets/images/logo.png" alt="Purreins Frequency" class="h-[76px] lg:h-[94px] w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden xl:flex items-center space-x-6 2xl:space-x-8 text-xs 2xl:text-sm font-medium flex-shrink-0">
+      <!-- Desktop Nav Links (Hidden in Option 5, visible in Options 1-4) -->
+      <nav class="desktop-horizontal-nav hidden xl:flex items-center space-x-6 2xl:space-x-8 text-xs 2xl:text-sm font-medium flex-shrink-0">
         <a href="#hero"          class="nav-link py-2 text-[#e2c9a5]">Home</a>
         <a href="#categories"    class="nav-link py-2 text-[#cbb89d]">Farm Shop</a>
         <a href="#wholesale"     class="nav-link py-2 text-[#cbb89d]">Wholesale</a>
         <a href="#categories"    class="nav-link py-2 text-[#cbb89d]">Farm Visits</a>
         <a href="#journal"       class="nav-link py-2 text-[#cbb89d]">Journal</a>
-        <a href="#philosophy"    class="nav-link py-2 text-[#cbb89d]">Our Story</a>
+        <a href="#hero"          class="nav-link py-2 text-[#cbb89d]">Our Story</a>
         <a href="#footer"        class="nav-link py-2 text-[#cbb89d]">Contact</a>
       </nav>
 
-      <!-- Right Actions -->
-      <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
-        <a href="#categories" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition">
+      <!-- Right Actions (Book Visit Box & Cart Button) -->
+      <div class="header-right-actions flex items-center gap-3 sm:gap-4 flex-shrink-0">
+        <a href="#categories" id="book-visit-btn" class="inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase transition shadow-md">
           <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
           <span>Book Visit</span>
         </a>
 
         <!-- Cart Button -->
-        <button class="relative p-2.5 rounded-sm bg-black/40 hover:bg-brand-forest/30 text-[#e2c9a5] transition border border-white/10">
+        <button class="relative p-2.5 rounded-sm bg-black/60 hover:bg-brand-forest/30 text-[#e2c9a5] transition" title="Shopping Basket">
           <i data-lucide="shopping-bag" class="w-5 h-5"></i>
           <span class="absolute -top-1 -right-1 w-5 h-5 bg-brand-forest text-[#e2c9a5] text-[10px] font-bold rounded-full flex items-center justify-center">2</span>
         </button>
       </div>
     </div>
 
-    <!-- Active Fade Extension Layer -->
+    <!-- Active Fade Extension Layer (Used in options 1-4) -->
     <div class="fade-extension"></div>
   </header>
 
-  <!-- STYLE EXPLANATION BANNER -->
-  <aside id="style-desc" class="bg-black/60 border-b border-white/5 py-3 px-4 text-center text-xs text-[#cbb89d]/80">
-    <span class="font-bold text-[#e2c9a5]">Option 1 Active:</span> Full-width 120px solid black block with an 72px straight horizontal linear gradient extending below. Notice the distance between the nav links and where the fade begins.
-  </aside>
+  <!-- ══════════════════════════════════════════════════════════════════
+       MAIN CONTENT CONTAINER: SCALED DOWN BY 10% (zoom: 0.9)
+       Everything inside here is 10% smaller.
+       The Logo, Puppies (Canvas), and Side Nav are EXCLUDED.
+       ══════════════════════════════════════════════════════════════════ -->
+  <main id="main-content" class="site-scale-down">
 
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- HERO SECTION                                    -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <section id="hero" class="relative bg-warm-gradient pt-10 pb-20 lg:py-20 border-b border-black/50 overflow-hidden">
-    <!-- Ambient Glows -->
-    <div class="absolute top-1/3 -left-32 w-96 h-96 bg-brand-moss/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 right-0 w-80 h-80 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative bg-black pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <!-- Left Copy -->
+          <div class="lg:col-span-6 space-y-7 text-center lg:text-left">
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-6xl font-bold tracking-tight leading-[1.12] text-[#e2c9a5]">
+              <span class="block">Purreins Frequency,</span>
+              <span class="block mt-1 sm:mt-2 italic text-brand-gold font-normal">waves of raw &amp; real resources.</span>
+            </h1>
 
-        <!-- Left Copy -->
-        <div class="lg:col-span-6 space-y-7 text-center lg:text-left">
-          <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-6xl font-bold tracking-tight leading-[1.12] text-[#e2c9a5]">
-            <span class="block">Purreins Frequency,</span>
-            <span class="block mt-1 sm:mt-2 italic text-brand-gold font-normal">waves of raw &amp; real resources.</span>
-          </h1>
+            <p class="text-brand-oat/75 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              From cold-processed soaps and fresh pasture duck eggs to heirloom quilts, whole herbal stems, and setting curd—we cultivate everything in harmony with nature's natural rhythm.
+            </p>
 
-          <p class="text-brand-oat/75 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            From cold-processed soaps and fresh pasture duck eggs to heirloom quilts, whole herbal stems, and setting curd—we cultivate everything in harmony with nature's natural rhythm.
-          </p>
-
-          <!-- Trust Badges -->
-          <div class="p-3.5 sm:p-4 rounded-sm bg-black/60 border border-white/10 shadow-lg">
-            <div class="grid grid-cols-3 gap-3 sm:gap-4">
-              <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-sm bg-brand-forest/40 text-brand-mossLight flex items-center justify-center flex-shrink-0 border border-brand-forest/50">
-                  <i data-lucide="shield-check" class="w-5 h-5"></i>
+            <!-- Trust Badges -->
+            <div class="p-3.5 sm:p-4 rounded-sm bg-black/60 shadow-lg">
+              <div class="grid grid-cols-3 gap-3 sm:gap-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-sm bg-brand-forest/40 text-brand-mossLight flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-brand-cream">100% Organic</p>
+                    <p class="text-[11px] text-brand-oat/70">Zero synthetics</p>
+                  </div>
                 </div>
-                <div>
-                  <p class="text-xs font-bold text-brand-cream">100% Organic</p>
-                  <p class="text-[11px] text-brand-oat/70">Zero synthetics</p>
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-sm bg-black text-brand-gold flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="sun" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-brand-cream">Pasture Raised</p>
+                    <p class="text-[11px] text-brand-oat/70">Happy free ducks</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-sm bg-black/40 text-brand-gold flex items-center justify-center flex-shrink-0 border border-black/60">
-                  <i data-lucide="sun" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <p class="text-xs font-bold text-brand-cream">Pasture Raised</p>
-                  <p class="text-[11px] text-brand-oat/70">Happy free ducks</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-sm bg-black/40 text-brand-cream flex items-center justify-center flex-shrink-0 border border-black/60">
-                  <i data-lucide="feather" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <p class="text-xs font-bold text-brand-cream">Handcrafted</p>
-                  <p class="text-[11px] text-brand-oat/70">Artisanal batches</p>
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-sm bg-black text-brand-cream flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="feather" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-brand-cream">Handcrafted</p>
+                    <p class="text-[11px] text-brand-oat/70">Artisanal batches</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Right Hero Visual -->
-        <div class="lg:col-span-6 relative flex items-center justify-center">
-          <div class="relative w-full max-w-xl lg:max-w-none">
-            <!-- Ambient Glow -->
-            <div class="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-brand-forest/20 via-brand-gold/15 to-brand-earth/20 rounded-full blur-3xl opacity-75 pointer-events-none"></div>
-
-            <!-- Faded Hero Image (Atmospheric Edge Dissolve) -->
-            <div class="hero-visual-fade aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden">
-              <img src="assets/images/hero-basket.jpg" alt="Artisanal coir straw basket with pasture duck eggs, cold-process soaps tied with textured cotton thread, black mud pot of fresh curd, whole herbal stems, and rolled quilt" class="w-full h-full object-cover object-center transform transition duration-700 hover:scale-105">
+          <!-- Right Hero Visual (All Products & Vertical Wood Table Perfectly Visible) -->
+          <div class="lg:col-span-6 relative flex items-center justify-center">
+            <div class="relative w-full max-w-md lg:max-w-none">
+              <div class="hero-visual-fade aspect-[3/4] w-full overflow-hidden">
+                <img src="assets/images/hero-vertical.jpg" alt="Artisanal coir straw basket with pasture duck eggs, handcrafted Honey &amp; Oat soaps, black mud pot of fresh curd with wooden spoon, and rolled waffle quilt" class="w-full h-full object-cover object-center">
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- PRODUCT STALLS                                  -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <section id="categories" class="py-20 bg-soil-dark">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <!-- Stable Bar Section Header -->
-      <div class="stable-bar rounded-sm">
-        <span class="stable-bar-label">Our Natural Bounty</span>
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-          <h2 class="stable-bar-title text-3xl sm:text-4xl">Five Pillars of Living Wellness</h2>
-          <p class="stable-bar-sub">From soil to skin — clean, sustainable, handcrafted.</p>
         </div>
       </div>
+    </section>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
-        <div class="stall-card group text-center">
-          <div class="stall-header justify-center"><span class="stall-label">Organic Soaps</span></div>
-          <div class="stall-body flex flex-col items-center pt-5 pb-4">
-            <div class="w-14 h-14 rounded-sm bg-brand-gold/15 text-brand-gold flex items-center justify-center mb-3 border border-brand-gold/25"><i data-lucide="droplets" class="w-7 h-7"></i></div>
-            <p class="text-xs text-brand-oat/65">Cold-process soaps</p>
+    <!-- PRODUCT CATEGORIES SECTION -->
+    <section id="categories" class="py-20 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="stable-bar rounded-sm mb-12">
+          <span class="stable-bar-label">Our Natural Bounty</span>
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
+            <h2 class="stable-bar-title text-3xl sm:text-4xl">Five Pillars of Living Wellness</h2>
+            <p class="stable-bar-sub">From soil to skin — clean, sustainable, handcrafted.</p>
           </div>
         </div>
-        <div class="stall-card group text-center">
-          <div class="stall-header justify-center"><span class="stall-label">Farm Herbs</span></div>
-          <div class="stall-body flex flex-col items-center pt-5 pb-4">
-            <div class="w-14 h-14 rounded-sm bg-brand-forest/25 text-brand-mossLight flex items-center justify-center mb-3 border border-brand-forest/40"><i data-lucide="leaf" class="w-7 h-7"></i></div>
-            <p class="text-xs text-brand-oat/65">Fresh &amp; sun-dried</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="stall-card p-6 rounded-sm bg-black flex flex-col gap-4">
+            <div class="aspect-square w-full rounded-sm overflow-hidden img-zoom-wrapper">
+              <img src="assets/images/duck-eggs.jpg" alt="Pasture Duck Eggs" class="w-full h-full object-cover">
+            </div>
+            <h3 class="font-serif text-2xl text-brand-cream font-bold">Pasture Duck Eggs</h3>
+            <p class="text-sm text-brand-oat/70 leading-relaxed">Pasture-foraged rich yolks from unconfined, happy ducks enjoying fresh green pastures daily.</p>
           </div>
-        </div>
-        <div class="stall-card group text-center">
-          <div class="stall-header justify-center"><span class="stall-label">Microgreens</span></div>
-          <div class="stall-body flex flex-col items-center pt-5 pb-4">
-            <div class="w-14 h-14 rounded-sm bg-brand-sage/20 text-brand-leaf flex items-center justify-center mb-3 border border-brand-sage/30"><i data-lucide="sprout" class="w-7 h-7"></i></div>
-            <p class="text-xs text-brand-oat/65">Living enzyme trays</p>
+
+          <div class="stall-card p-6 rounded-sm bg-black flex flex-col gap-4">
+            <div class="aspect-square w-full rounded-sm overflow-hidden img-zoom-wrapper">
+              <img src="assets/images/hero-vertical.jpg" alt="Cold Process Soaps" class="w-full h-full object-cover">
+            </div>
+            <h3 class="font-serif text-2xl text-brand-cream font-bold">Cold-Process Soaps</h3>
+            <p class="text-sm text-brand-oat/70 leading-relaxed">Cured slowly over 6 weeks with cold-pressed virgin oils, raw honey, and wild-harvested herbs.</p>
           </div>
-        </div>
-        <div class="stall-card group text-center">
-          <div class="stall-header justify-center"><span class="stall-label">Duck Eggs</span></div>
-          <div class="stall-body flex flex-col items-center pt-5 pb-4">
-            <div class="w-14 h-14 rounded-sm bg-brand-clay/20 text-brand-oat flex items-center justify-center mb-3 border border-brand-clay/30"><i data-lucide="egg" class="w-7 h-7"></i></div>
-            <p class="text-xs text-brand-oat/65">Pasture-foraged rich yolks</p>
-          </div>
-        </div>
-        <div class="stall-card group text-center">
-          <div class="stall-header justify-center"><span class="stall-label">Handmade Quilts</span></div>
-          <div class="stall-body flex flex-col items-center pt-5 pb-4">
-            <div class="w-14 h-14 rounded-sm bg-white/10 text-brand-cream flex items-center justify-center mb-3 border border-white/15"><i data-lucide="scissors" class="w-7 h-7"></i></div>
-            <p class="text-xs text-brand-oat/65">Natural cotton heirlooms</p>
+
+          <div class="stall-card p-6 rounded-sm bg-black flex flex-col gap-4">
+            <div class="aspect-square w-full rounded-sm overflow-hidden img-zoom-wrapper">
+              <img src="assets/images/duck-family.jpg" alt="Duck Sanctuary" class="w-full h-full object-cover">
+            </div>
+            <h3 class="font-serif text-2xl text-brand-cream font-bold">Duck Sanctuary Visits</h3>
+            <p class="text-sm text-brand-oat/70 leading-relaxed">Walk through the sanctuary, meet the friendly Pekin ducks, and experience ethical stewardship firsthand.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════════════════════════════════════════ -->
-  <!-- PHILOSOPHY BANNER                               -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <section id="philosophy" class="py-20 bg-barnwood-dark relative overflow-hidden border-y border-black/50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-7 space-y-6">
-          <h2 class="font-serif text-3xl sm:text-5xl font-bold leading-tight text-brand-cream">
-            Everything Cultivated from Soil, <span class="italic font-normal text-brand-gold">is Nature</span>.
-          </h2>
-          <p class="text-brand-oat/70 text-base sm:text-lg font-light leading-relaxed">
-            When food is grown in mineral-deficient soil soaked with pesticides, its living vitality is broken. At <strong class="text-brand-cream">Purreins Frequency</strong>, we cultivate biodynamic living soil teeming with fungal mycorrhizae, allowing plants and herbs to express their highest therapeutic potential.
-          </p>
-        </div>
-        <div class="lg:col-span-5">
-          <div class="aspect-[4/3] rounded-lg overflow-hidden border border-white/10 shadow-2xl">
-            <img src="assets/images/craft-quilt.jpg" alt="Artisan Quilt" class="w-full h-full object-cover">
+    <!-- WHOLESALE BANNER -->
+    <section id="wholesale" class="py-16 bg-black relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="space-y-3 text-center lg:text-left max-w-2xl">
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">Supplying Cafes, Restaurants &amp; Eco-Stores</h2>
+            <p class="text-brand-oat/80 text-sm sm:text-base font-light">
+              Need regular pasture duck eggs, heirloom quilt rolls, custom handcrafted soap batches, or fresh whole herbs? We offer wholesale tier pricing and custom packaging.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="wholesale.html" class="bg-brand-forest hover:bg-brand-sage text-brand-cream px-7 py-3.5 rounded-sm font-medium text-sm transition shadow-xl flex items-center gap-2">
+              <span>Explore Wholesale</span>
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WHOLESALE CALLOUT BANNER -->
-  <section id="wholesale" class="py-16 bg-soil-dark border-y border-white/10 shadow-2xl relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-        <div class="space-y-3 text-center lg:text-left max-w-2xl">
-          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">Supplying Cafes, Restaurants &amp; Eco-Stores</h2>
-          <p class="text-brand-oat/80 text-sm sm:text-base font-light">
-            Need regular pasture duck eggs, heirloom quilt rolls, custom handcrafted soap batches, or fresh whole herbs? We offer wholesale tier pricing and custom packaging.
-          </p>
+    <!-- JOURNAL SECTION -->
+    <section id="journal" class="py-20 bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">The Farmstead Journal</h2>
+        <p class="text-brand-oat/70 text-sm max-w-xl mx-auto">Seasonal notes on regenerative agriculture, natural curing rhythms, and pasture duck stewardship.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="bg-black text-brand-oat/65 pt-16 pb-36">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs">
+        <p>© 2026 UP Purreins. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       FLOATING PROTOTYPE CONTROL BAR (Bottom Dock)
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#0c0c0c]/95 rounded-2xl p-3 shadow-2xl backdrop-blur-md flex flex-col gap-2.5 max-w-4xl w-[95vw] border border-white/10">
+    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
+      <div class="flex items-center gap-2 text-xs font-serif font-bold text-[#e2c9a5]">
+        <i data-lucide="sparkles" class="w-4 h-4 text-brand-gold"></i>
+        <span>Navigation Layout Prototype (10% Smaller Content Active):</span>
+      </div>
+
+      <!-- Motion Controls & Status -->
+      <div class="flex items-center flex-wrap gap-2">
+        <div id="motion-status-badge" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Stopped (Gliding In Slowly)</span>
         </div>
-        <div class="flex flex-wrap gap-4 justify-center">
-          <a href="#categories" class="bg-brand-forest hover:bg-brand-sage text-brand-cream px-7 py-3.5 rounded-sm font-medium text-sm transition shadow-xl flex items-center gap-2 border border-brand-mossLight/30">
-            <span>Explore Wholesale</span>
-          </a>
-        </div>
+
+        <!-- Simulation Scroll Button -->
+        <button onclick="simulateScroll()" class="px-2.5 py-1 rounded bg-brand-forest/40 hover:bg-brand-forest text-brand-cream text-[10px] font-semibold transition flex items-center gap-1">
+          <i data-lucide="play" class="w-3 h-3"></i>
+          <span>Simulate Scroll Motion</span>
+        </button>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer id="footer" class="bg-barnwood-dark text-brand-oat/65 pt-16 pb-28 border-t border-black/70">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs">
-      <p>© 2026 UP Purreins. All rights reserved.</p>
+    <!-- Style Selector Buttons -->
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 w-full">
+      <button onclick="setPrototype(5)" id="btn-proto-5" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-brand-forest text-brand-cream border border-brand-forest/60 shadow-lg text-center">
+        ★ 5. Evenly Spread Rail (Under Book Visit)
+      </button>
+      <button onclick="setPrototype(1)" id="btn-proto-1" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 text-center">
+        1. Classic Straight Bar
+      </button>
+      <button onclick="setPrototype(2)" id="btn-proto-2" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 text-center">
+        2. Tight &amp; Organic
+      </button>
+      <button onclick="setPrototype(3)" id="btn-proto-3" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 text-center">
+        3. Wax Seal Overhang
+      </button>
+      <button onclick="setPrototype(4)" id="btn-proto-4" class="proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 text-center">
+        4. Floating Pill
+      </button>
     </div>
-  </footer>
+
+    <!-- Active Description -->
+    <div id="style-desc" class="text-center text-xs text-[#cbb89d]/80 pt-1 leading-relaxed">
+      <!-- Injected via JS -->
+    </div>
+  </div>
 
   <script>
     lucide.createIcons();
 
+    let currentProto = 5;
+    let scrollDebounceTimer = null;
+    let isScrollingState = false;
+
     const descriptions = {
-      1: `<span class="font-bold text-[#e2c9a5]">Option 1 (Current Straight Bar):</span> A full-width 120px solid black block with a 72px straight horizontal linear gradient extending below. Because the block is tall, the small nav links sit way up in the middle with ~50px of dead black space under them before the fade even starts, creating a "shelf" effect.`,
-      2: `<span class="font-bold text-[#e2c9a5]">Option 2 (Tight & Organic):</span> The header height is reduced to 84px with a soft frosted glass backdrop blur. The nav links sit naturally with only 12px padding below them, so the fade starts right beneath the words. As you scroll, content dissolves into the header with no awkward void.`,
-      3: `<span class="font-bold text-[#e2c9a5]">Option 3 (Wax Seal Overhang):</span> The navbar is trimmed to a sleek 78px. The circular logo hangs slightly downward into the fade like an artisanal wax seal, breaking the straight line. The fade uses a radial gradient bloom under the logo and an eased gradient under the links.`,
-      4: `<span class="font-bold text-[#e2c9a5]">Option 4 (Floating Island Capsule):</span> Ultra-modern luxury approach (used by Aesop & Apple). The entire navbar is housed in a floating pill with a frosted blur. There is NO full-width straight black bar at all—page content scrolls freely behind it with an ambient vignette.`
+      5: `<span class="font-bold text-[#e2c9a5]">Option 5 (10% Smaller Site Content):</span> The entire site content is scaled down by 10% (giving more spacious breathing room), while the <strong class="text-brand-gold">Logo</strong>, the <strong class="text-brand-gold">Dalmatian Puppies</strong>, and the <strong class="text-brand-gold">Side Navigation</strong> remain at full 100% size. The side navigation text is high-contrast and crystal-clear on the black background.`,
+      1: `<span class="font-bold text-[#e2c9a5]">Option 1 (Classic Straight Bar):</span> Full-width 120px solid black block with horizontal links.`,
+      2: `<span class="font-bold text-[#e2c9a5]">Option 2 (Tight &amp; Organic):</span> 84px header height with soft frosted glass blur.`,
+      3: `<span class="font-bold text-[#e2c9a5]">Option 3 (Wax Seal Overhang):</span> 78px navbar with circular logo hanging downward.`,
+      4: `<span class="font-bold text-[#e2c9a5]">Option 4 (Floating Island Capsule):</span> Floating pill capsule. Content scrolls freely behind it.`
     };
 
     function setPrototype(n) {
+      currentProto = n;
       const header = document.getElementById('main-header');
       const desc = document.getElementById('style-desc');
       const logoImg = document.getElementById('header-logo-img');
       const logoWrapper = document.querySelector('.logo-wrapper');
+      const verticalNav = document.getElementById('vertical-right-nav');
+      const statusBadge = document.getElementById('motion-status-badge');
 
-      // Reset classes
-      header.className = 'sticky top-0 z-40 transition-all duration-300 header-style-' + n;
+      header.className = 'transition-all duration-300 header-style-' + n;
       logoWrapper.classList.remove('logo-anchor');
 
-      if (n === 1) {
+      if (n === 5) {
+        verticalNav.style.display = 'flex';
         logoImg.className = 'h-[76px] lg:h-[94px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
-      } else if (n === 2) {
-        logoImg.className = 'h-[64px] lg:h-[74px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
-      } else if (n === 3) {
-        logoImg.className = 'h-[80px] lg:h-[96px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
-        logoWrapper.classList.add('logo-anchor');
-      } else if (n === 4) {
-        logoImg.className = 'h-[52px] lg:h-[60px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
+        if (statusBadge) statusBadge.parentElement.style.display = 'flex';
+      } else {
+        verticalNav.style.display = 'none';
+        if (statusBadge) statusBadge.parentElement.style.display = 'none';
+
+        if (n === 1) {
+          logoImg.className = 'h-[76px] lg:h-[94px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
+        } else if (n === 2) {
+          logoImg.className = 'h-[64px] lg:h-[74px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
+        } else if (n === 3) {
+          logoImg.className = 'h-[80px] lg:h-[96px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
+          logoWrapper.classList.add('logo-anchor');
+        } else if (n === 4) {
+          logoImg.className = 'h-[52px] lg:h-[60px] w-auto object-contain transition-transform duration-300 group-hover:scale-105';
+        }
       }
 
-      // Update buttons
-      for (let i = 1; i <= 4; i++) {
+      for (let i = 1; i <= 5; i++) {
         const btn = document.getElementById('btn-proto-' + i);
+        if (!btn) continue;
         if (i === n) {
-          btn.className = 'proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-brand-forest text-brand-cream border border-brand-forest/60 shadow-lg';
+          btn.className = 'proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-brand-forest text-brand-cream border border-brand-forest/60 shadow-lg text-center';
         } else {
-          btn.className = 'proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 border border-white/5';
+          btn.className = 'proto-btn px-3 py-1.5 rounded-lg text-[11px] font-semibold transition bg-white/5 hover:bg-white/10 text-brand-oat/70 text-center';
         }
       }
 
       desc.innerHTML = descriptions[n];
       lucide.createIcons();
     }
+
+    // ── SCROLL MOTION: IMMEDIATELY TRIGGERS SLOW ENTRANCE ON STOP ──────
+    function handleScroll() {
+      if (currentProto !== 5) return;
+      const nav = document.getElementById('vertical-right-nav');
+      const statusBadge = document.getElementById('motion-status-badge');
+      if (!nav) return;
+
+      // When user starts scrolling: quickly glides off-screen
+      if (!isScrollingState) {
+        isScrollingState = true;
+        nav.classList.add('is-scrolling');
+        if (statusBadge) {
+          statusBadge.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span><span>Scrolling (Gliding Out)</span>';
+          statusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-950/80 text-amber-300 border border-amber-500/30';
+        }
+      }
+
+      clearTimeout(scrollDebounceTimer);
+
+      // As soon as scrolling ceases: NO delay, immediately start gliding in very slowly
+      scrollDebounceTimer = setTimeout(() => {
+        isScrollingState = false;
+        nav.classList.remove('is-scrolling');
+        if (statusBadge) {
+          statusBadge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span>Stopped (Gliding In Slowly)</span>';
+          statusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30';
+        }
+      }, 50);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // ── SIMULATE SCROLL MOTION FOR INSTANT TESTING ───────────────────────
+    function simulateScroll() {
+      const currentY = window.scrollY;
+      const targetY = currentY < 300 ? currentY + 500 : currentY - 500;
+      window.scrollTo({
+        top: targetY,
+        behavior: 'smooth'
+      });
+    }
+
+    // Initialize with Option 5 active on page load
+    setPrototype(5);
   </script>
+
+  <!-- Real Dalmatian Guardians Engine (Puppies roam at 100% full scale) -->
+  <script src="assets/js/dalmatian-guardians.js?v=ultra_hd_clear_v11"></script>
 </body>
 </html>

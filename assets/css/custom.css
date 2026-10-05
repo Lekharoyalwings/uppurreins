@@ -320,16 +320,30 @@ header {
   }
 }
 
-/* Universal Subtle Edge Fade for ALL Images across the site */
+/* Hero Visual Mask — Generous bounds so all products are 100% visible */
 .hero-visual-fade,
-.hero-vertical-blend,
+.hero-vertical-blend {
+  position: relative;
+  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 50%, #000000 88%, rgba(0, 0, 0, 0.7) 96%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 75% at 50% 50%, #000000 88%, rgba(0, 0, 0, 0.7) 96%, transparent 100%);
+}
+
+.hero-visual-fade img,
+.hero-vertical-blend img {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+/* Universal Subtle Edge Fade for other content images across the site */
 .img-fade-blend,
 .fade-into-bg,
 .img-zoom-wrapper img,
 .stall-card img,
 .product-card img,
 article img,
-main img:not([src*="logo"]) {
+main img:not([src*="logo"]):not([src*="hero"]) {
   position: relative;
   -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%);
   mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%);
@@ -505,3 +519,32 @@ header .text-brand-mossLight {
   50%       { transform: translateY(-7px); }
 }
 .animate-bounce-subtle { animation: bounce-subtle 3s ease-in-out infinite; }
+
+/* ════════════════════════════════════════════════════
+   10% COMPACT SITE SCALE (EXCLUDING LOGO & PUPPIES)
+   ════════════════════════════════════════════════════ */
+.site-scale-down,
+main {
+  zoom: 0.9;
+}
+@supports not (zoom: 0.9) {
+  .site-scale-down,
+  main {
+    transform: scale(0.9);
+    transform-origin: top center;
+    width: 111.111%;
+    margin-left: -5.555%;
+  }
+}
+
+footer {
+  zoom: 0.9;
+}
+
+.logo-wrapper,
+#header-logo-img,
+#dalmatian-canvas,
+#vertical-right-nav {
+  zoom: 1 !important;
+}
+
