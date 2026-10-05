@@ -35,9 +35,91 @@
     }
   </script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="stylesheet" href="assets/css/custom.css?v=20261005_clean_v10">
+  <style>
+    /* Clean Floating Separate Navigation (Drops down from Book Visit, disappears on cursor leave / scroll / 8s) */
+    .apple-vertical-bar {
+      position: fixed;
+      top: 96px;
+      right: 2rem;
+      z-index: 60;
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      min-width: unset !important;
+      pointer-events: none;
+    }
+    @media (min-width: 640px) {
+      .apple-vertical-bar {
+        display: flex;
+      }
+    }
+    .apple-vertical-bar.nav-open {
+      pointer-events: auto !important;
+    }
+    @media (min-width: 1024px) {
+      .apple-vertical-bar {
+        top: 108px;
+        right: 2.25rem;
+        gap: 14px;
+      }
+    }
+    .apple-vertical-bar .apple-nav-link {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #FAF7F2 !important;
+      text-decoration: none;
+      padding: 4px 8px;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.9);
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  color 0.2s ease,
+                  text-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+    /* All options fade in together and drop down in unison */
+    .apple-vertical-bar.nav-open .apple-nav-link,
+    .apple-vertical-bar:hover .apple-nav-link {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
+    }
+    .apple-vertical-bar .apple-nav-link:hover {
+      background: transparent !important;
+      border-radius: 0 !important;
+      color: #FFFFFF !important;
+      text-shadow: 0 0 14px rgba(255, 255, 255, 0.75), 0 1px 8px rgba(0, 0, 0, 0.95);
+      transform: translateY(0) translateX(-3px) !important;
+    }
+    .apple-vertical-bar .apple-nav-link.active {
+      color: #E2C9A5 !important;
+      font-weight: 600;
+    }
+    .apple-nav-divider-v {
+      display: none !important;
+    }
+    .apple-nav-slide {
+      display: none !important;
+    }
+  </style>
 </head>
-<body class="bg-red-soil antialiased flex flex-col min-h-screen">
+<body class="bg-black antialiased flex flex-col min-h-screen">
 
 <!-- Navigation -->
   <header class="sticky top-0 z-40 bg-black transition">
@@ -46,19 +128,14 @@
         <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-[57px] sm:h-[72px] md:h-[86px] lg:h-[94px] xl:h-[103px] w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden xl:flex items-center space-x-6 2xl:space-x-8 text-xs 2xl:text-sm font-medium flex-shrink-0">
-        <a href="index.html"     class="nav-link py-2 text-[#cbb89d]">Home</a>
-        <a href="shop.html"      class="nav-link py-2 text-[#cbb89d]">Farm Shop</a>
-        <a href="wholesale.html" class="nav-link py-2 text-[#cbb89d]">Wholesale</a>
-        <a href="visit.html"     class="nav-link py-2 text-[#cbb89d]">Farm Visits</a>
-        <a href="blog.html"      class="nav-link py-2 text-[#cbb89d]">Journal</a>
-        <a href="about.html"     class="nav-link py-2 text-[#e2c9a5] font-semibold">Our Story</a>
-        <a href="contact.html"   class="nav-link py-2 text-[#cbb89d]">Contact</a>
-      </nav>
+      <!-- Right Actions & Book Visit Tab (Triggers Clean Side Navigation) -->
+      <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+        <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#FAF7F2] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>Book Visit</span>
+        </a>
 
-      <div class="flex items-center gap-3 flex-shrink-0">
-        <button onclick="window.cart.openDrawer()" class="relative p-2.5 rounded-sm bg-black/40 hover:bg-brand-forest/30 text-[#e2c9a5] transition border border-white/10">
+        <button onclick="window.cart.openDrawer()" class="relative p-2.5 rounded-sm bg-black/40 hover:bg-brand-forest/30 text-[#e2c9a5] transition border border-white/10" title="Shopping Basket">
           <i data-lucide="shopping-bag" class="w-5 h-5"></i>
           <span class="cart-count-badge absolute -top-1 -right-1 w-5 h-5 bg-brand-forest text-[#e2c9a5] text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
         </button>
@@ -70,6 +147,17 @@
     <!-- Seamless Bottom Fade Gradient into page scroll -->
     <div class="header-bottom-fade"></div>
   </header>
+
+  <!-- Clean Separate Floating Navigation (Slides in from the right vertically) -->
+  <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Vertical Slide Navigation">
+    <a href="index.html"     class="apple-nav-link">Home</a>
+    <a href="shop.html"      class="apple-nav-link">Farm Shop</a>
+    <a href="wholesale.html" class="apple-nav-link">Wholesale</a>
+    <a href="visit.html"     class="apple-nav-link">Farm Visits</a>
+    <a href="blog.html"      class="apple-nav-link">Journal</a>
+    <a href="about.html"     class="apple-nav-link active">Our Story</a>
+    <a href="contact.html"   class="apple-nav-link">Contact</a>
+  </nav>
 
 <!-- Mobile Drawer Menu -->
   <div id="mobile-menu-drawer" class="fixed inset-0 z-50 hidden">
@@ -111,7 +199,7 @@
   </section>
 
   <!-- Narrative Section -->
-  <main class="flex-1 bg-soil-dark py-20">
+  <main class="flex-1 bg-black py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-12 items-center mb-24">
         <div class="lg:col-span-6 space-y-6">
@@ -124,12 +212,9 @@
             We founded <strong class="text-[#e2c9a5]">Purreins Frequency</strong> to prove there is another way: where ducks graze freely along wetland reeds, whole herbs thrive on rich natural compost, and handcrafted curd soap cured patiently over 6 weeks provides pure nourishment to human skin.
           </p>
         </div>
-        <div class="lg:col-span-6">
-          <div class="stall-card overflow-hidden shadow-2xl">
-            <div class="stall-header">
-              <span class="stall-label">Artisan Harvest — Baskets, Soaps &amp; Eggs</span>
-            </div>
-            <img src="assets/images/hero-basket.jpg" alt="Artisanal coir straw basket with pasture duck eggs, handmade soaps, leaves, and rolled quilt" class="w-full h-96 object-cover">
+        <div class="lg:col-span-6 flex items-center justify-center">
+          <div class="img-fade-blend aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden">
+            <img src="assets/images/hero-basket.jpg" alt="Artisanal coir straw basket with pasture duck eggs, handmade soaps, leaves, and rolled quilt" class="w-full h-full object-cover">
           </div>
         </div>
       </div>
@@ -228,6 +313,58 @@
     document.addEventListener('DOMContentLoaded', () => {
       if (window.lucide) lucide.createIcons();
     });
+  </script>
+
+  <!-- Clean Floating Separate Navigation Logic -->
+  <script>
+    (function() {
+      const bookBtn = document.getElementById('book-visit-btn');
+      const vertBar = document.getElementById('apple-vertical-bar');
+      if (!vertBar) return;
+
+      let leaveTimer = null;
+      let autoCloseTimer = null;
+
+      function openNav() {
+        clearTimeout(leaveTimer);
+        clearTimeout(autoCloseTimer);
+        vertBar.classList.add('nav-open');
+        // Exactly 8 seconds auto-disappear timer
+        autoCloseTimer = setTimeout(() => {
+          closeNav();
+        }, 8000);
+      }
+
+      function closeNav() {
+        clearTimeout(leaveTimer);
+        clearTimeout(autoCloseTimer);
+        vertBar.classList.remove('nav-open');
+      }
+
+      function scheduleClose(delay = 180) {
+        clearTimeout(leaveTimer);
+        leaveTimer = setTimeout(() => {
+          closeNav();
+        }, delay);
+      }
+
+      // 1. Open when cursor moves to the Book Visit tab
+      if (bookBtn) {
+        bookBtn.addEventListener('mouseenter', openNav);
+        bookBtn.addEventListener('mouseleave', () => scheduleClose(200));
+      }
+
+      // 2. Keep open when cursor is over the options list
+      vertBar.addEventListener('mouseenter', () => {
+        clearTimeout(leaveTimer);
+      });
+      vertBar.addEventListener('mouseleave', () => scheduleClose(150));
+
+      // 3. Immediately disappear when scrolling
+      window.addEventListener('scroll', closeNav, { passive: true });
+      window.addEventListener('wheel', closeNav, { passive: true });
+      window.addEventListener('touchmove', closeNav, { passive: true });
+    })();
   </script>
 </body>
 </html>

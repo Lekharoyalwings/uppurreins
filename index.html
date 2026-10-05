@@ -82,13 +82,13 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="assets/css/custom.css?v=20261005_clean_v10">
   <style>
-    /* Clean Separate Floating Navigation (Slides from right, no containers) */
+    /* Clean Floating Separate Navigation (Drops down from Book Visit, disappears on cursor leave / scroll / 8s) */
     .apple-vertical-bar {
       position: fixed;
       top: 96px;
       right: 2rem;
       z-index: 60;
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: flex-end;
       gap: 12px;
@@ -101,6 +101,11 @@
       padding: 0 !important;
       min-width: unset !important;
       pointer-events: none;
+    }
+    @media (min-width: 640px) {
+      .apple-vertical-bar {
+        display: flex;
+      }
     }
     .apple-vertical-bar.nav-open {
       pointer-events: auto !important;
@@ -125,19 +130,19 @@
       border-radius: 0 !important;
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.9);
       opacity: 0;
-      transform: translateX(18px);
+      transform: translateY(-10px);
       pointer-events: none;
-      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
                   color 0.2s ease,
                   text-shadow 0.2s ease;
       white-space: nowrap;
     }
-    /* All options fade in together in unison — no cascading drop */
+    /* All options fade in together and drop down in unison */
     .apple-vertical-bar.nav-open .apple-nav-link,
     .apple-vertical-bar:hover .apple-nav-link {
       opacity: 1 !important;
-      transform: translateX(0) !important;
+      transform: translateY(0) !important;
       pointer-events: auto !important;
     }
     .apple-vertical-bar .apple-nav-link:hover {
@@ -145,7 +150,7 @@
       border-radius: 0 !important;
       color: #FFFFFF !important;
       text-shadow: 0 0 14px rgba(255, 255, 255, 0.75), 0 1px 8px rgba(0, 0, 0, 0.95);
-      transform: translateX(-4px) !important;
+      transform: translateY(0) translateX(-3px) !important;
     }
     .apple-vertical-bar .apple-nav-link.active {
       color: #E2C9A5 !important;
@@ -769,7 +774,7 @@
     <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold pr-1">Chat with Farm</span>
   </a>
 
-  <!-- Clean Floating Separate Navigation Logic (Slides in from the right vertically on Book Visit hover only) -->
+  <!-- Clean Floating Separate Navigation Logic -->
   <script>
     (function() {
       const bookBtn = document.getElementById('book-visit-btn');
@@ -777,58 +782,47 @@
       if (!vertBar) return;
 
       let leaveTimer = null;
+      let autoCloseTimer = null;
 
       function openNav() {
         clearTimeout(leaveTimer);
+        clearTimeout(autoCloseTimer);
         vertBar.classList.add('nav-open');
+        // Exactly 8 seconds auto-disappear timer
+        autoCloseTimer = setTimeout(() => {
+          closeNav();
+        }, 8000);
       }
 
-      function scheduleClose(delay = 320) {
+      function closeNav() {
+        clearTimeout(leaveTimer);
+        clearTimeout(autoCloseTimer);
+        vertBar.classList.remove('nav-open');
+      }
+
+      function scheduleClose(delay = 180) {
         clearTimeout(leaveTimer);
         leaveTimer = setTimeout(() => {
-          vertBar.classList.remove('nav-open');
-          leaveTimer = null;
+          closeNav();
         }, delay);
       }
 
-      // 1. Open strictly when cursor moves to the Book Visit tab
+      // 1. Open when cursor moves to the Book Visit tab
       if (bookBtn) {
         bookBtn.addEventListener('mouseenter', openNav);
-        bookBtn.addEventListener('mouseleave', () => scheduleClose(320));
+        bookBtn.addEventListener('mouseleave', () => scheduleClose(200));
       }
 
       // 2. Keep open when cursor is over the options list
-      vertBar.addEventListener('mouseenter', openNav);
-      vertBar.addEventListener('mouseleave', () => scheduleClose(320));
+      vertBar.addEventListener('mouseenter', () => {
+        clearTimeout(leaveTimer);
+      });
+      vertBar.addEventListener('mouseleave', () => scheduleClose(150));
 
-      // 3. Smooth bridge between Book Visit button and the vertical options corridor
-      window.addEventListener('mousemove', (e) => {
-        if (!vertBar.classList.contains('nav-open')) return;
-
-        let inSafeZone = false;
-        if (bookBtn) {
-          const bRect = bookBtn.getBoundingClientRect();
-          if (e.clientX >= bRect.left - 20 && e.clientX <= bRect.right + 30 &&
-              e.clientY >= bRect.top - 15 && e.clientY <= bRect.bottom + 25) {
-            inSafeZone = true;
-          }
-        }
-
-        const vRect = vertBar.getBoundingClientRect();
-        if (e.clientX >= vRect.left - 35 && e.clientX <= window.innerWidth &&
-            e.clientY >= (bookBtn ? bookBtn.getBoundingClientRect().top : vRect.top - 20) &&
-            e.clientY <= vRect.bottom + 25) {
-          inSafeZone = true;
-        }
-
-        if (inSafeZone) {
-          clearTimeout(leaveTimer);
-        } else {
-          if (!leaveTimer) {
-            scheduleClose(280);
-          }
-        }
-      }, { passive: true });
+      // 3. Immediately disappear when scrolling
+      window.addEventListener('scroll', closeNav, { passive: true });
+      window.addEventListener('wheel', closeNav, { passive: true });
+      window.addEventListener('touchmove', closeNav, { passive: true });
     })();
   </script>
 

@@ -560,7 +560,7 @@ footer {
   top: 96px; /* Positioned directly under Book Visit tab */
   right: 2rem;
   z-index: 60;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
@@ -572,6 +572,12 @@ footer {
   padding: 0 !important;
   min-width: unset !important;
   pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .apple-vertical-bar {
+    display: flex;
+  }
 }
 
 .apple-vertical-bar.nav-open {
@@ -600,34 +606,34 @@ footer {
   border-radius: 0 !important;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.9);
   
-  /* Initial state: subtle lateral offset for gentle drift */
+  /* Initial state: drops down gently from top (-10px) */
   opacity: 0;
-  transform: translateX(18px);
+  transform: translateY(-10px);
   pointer-events: none;
   
   /* Gentle, slow fade-in motion in unison */
-  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               color 0.2s ease,
               text-shadow 0.2s ease;
   white-space: nowrap;
 }
 
-/* Open state: all links fade in together in unison (no dropping one by one) */
+/* Open state: all links fade in together and drop down in unison */
 .apple-vertical-bar.nav-open .apple-nav-link,
 .apple-vertical-bar:hover .apple-nav-link {
   opacity: 1 !important;
-  transform: translateX(0) !important;
+  transform: translateY(0) !important;
   pointer-events: auto !important;
 }
 
-/* Hover state on individual link — subtle luminous glow, absolutely NO rounded pill box */
+/* Hover state on individual link */
 .apple-vertical-bar .apple-nav-link:hover {
   background: transparent !important;
   border-radius: 0 !important;
   color: #FFFFFF !important;
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.75), 0 1px 8px rgba(0, 0, 0, 0.95);
-  transform: translateX(-4px) !important;
+  transform: translateY(0) translateX(-3px) !important;
 }
 
 .apple-vertical-bar .apple-nav-link.active {
