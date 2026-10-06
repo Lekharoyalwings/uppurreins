@@ -624,16 +624,74 @@ header {
   position: relative;
   pointer-events: auto;
   z-index: 10;
-  isolation: isolate;
 }
 
 #book-visit-nav-zone::after {
+  display: none !important;
+}
+
+#book-visit-btn {
+  position: relative;
+  isolation: isolate;
+}
+
+#book-visit-btn::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: calc(100% + 20px);
+  width: calc(100% + 18px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, 
+    #000000 0%, 
+    #000000 45%, 
+    rgba(0, 0, 0, 0.6) 75%, 
+    rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+#header-cart-btn,
+.header-cart-btn,
+button[title="Shopping Basket"] {
+  position: relative;
+  isolation: isolate;
+}
+
+#header-cart-btn::after,
+.header-cart-btn::after,
+button[title="Shopping Basket"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% + 16px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, 
+    #000000 0%, 
+    #000000 45%, 
+    rgba(0, 0, 0, 0.6) 75%, 
+    rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+#mobile-menu-btn {
+  position: relative;
+  isolation: isolate;
+}
+
+#mobile-menu-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% + 16px);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 50%, 
@@ -651,8 +709,12 @@ header {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
   }
-  #book-visit-nav-zone::after {
-    width: calc(100% + 16px);
+  #book-visit-btn::after,
+  #header-cart-btn::after,
+  .header-cart-btn::after,
+  button[title="Shopping Basket"]::after,
+  #mobile-menu-btn::after {
+    width: calc(100% + 14px);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
   }
