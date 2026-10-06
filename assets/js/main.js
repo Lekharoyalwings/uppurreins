@@ -19,29 +19,84 @@ function setupNavigation() {
   const mobileMenu = document.getElementById('mobile-menu-drawer');
   const mobileClose = document.getElementById('mobile-menu-close');
   const mobileBackdrop = document.getElementById('mobile-menu-backdrop');
+  const drawerContent = mobileMenu ? mobileMenu.querySelector('.drawer-content') : null;
+
+  function openMobileNav() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('hidden');
+    void mobileMenu.offsetWidth;
+    if (mobileBackdrop) {
+      mobileBackdrop.classList.add('open');
+      mobileBackdrop.classList.remove('opacity-0');
+    }
+    if (drawerContent) {
+      drawerContent.classList.add('open');
+      drawerContent.classList.remove('opacity-0', '-translate-y-2');
+    }
+    if (mobileBtn) {
+      mobileBtn.setAttribute('aria-expanded', 'true');
+      const icon = mobileBtn.querySelector('i');
+      if (icon) {
+        icon.setAttribute('data-lucide', 'x');
+        if (window.lucide && typeof lucide.createIcons === 'function') {
+          lucide.createIcons();
+        }
+      }
+    }
+  }
+
+  function closeMobileNav() {
+    if (!mobileMenu) return;
+    if (mobileBackdrop) {
+      mobileBackdrop.classList.remove('open');
+      mobileBackdrop.classList.add('opacity-0');
+    }
+    if (drawerContent) {
+      drawerContent.classList.remove('open');
+      drawerContent.classList.add('opacity-0', '-translate-y-2');
+    }
+    if (mobileBtn) {
+      mobileBtn.setAttribute('aria-expanded', 'false');
+      const icon = mobileBtn.querySelector('i');
+      if (icon) {
+        icon.setAttribute('data-lucide', 'menu');
+        if (window.lucide && typeof lucide.createIcons === 'function') {
+          lucide.createIcons();
+        }
+      }
+    }
+    setTimeout(() => {
+      mobileMenu.classList.add('hidden');
+    }, 300);
+  }
 
   if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', () => {
-      mobileMenu.classList.remove('hidden');
-      setTimeout(() => {
-        if (mobileBackdrop) mobileBackdrop.classList.remove('opacity-0');
-        mobileMenu.querySelector('.drawer-content')?.classList.remove('translate-x-full');
-      }, 10);
+    mobileBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isClosed = mobileMenu.classList.contains('hidden') || (drawerContent && !drawerContent.classList.contains('open'));
+      if (isClosed) {
+        openMobileNav();
+      } else {
+        closeMobileNav();
+      }
     });
   }
 
-  const closeMobileNav = () => {
-    if (mobileMenu) {
-      if (mobileBackdrop) mobileBackdrop.classList.add('opacity-0');
-      mobileMenu.querySelector('.drawer-content')?.classList.add('translate-x-full');
-      setTimeout(() => {
-        mobileMenu.classList.add('hidden');
-      }, 300);
-    }
-  };
-
   if (mobileClose) mobileClose.addEventListener('click', closeMobileNav);
   if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileNav);
+
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      closeMobileNav();
+    }
+  });
 }
 
 // Quick View Product Modal

@@ -579,7 +579,7 @@ header {
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
-  z-index: 50 !important;
+  z-index: 70 !important;
   background-color: transparent !important;
   background: transparent !important;
   border: none !important;
@@ -806,9 +806,146 @@ button[title="Shopping Basket"]::after {
   font-weight: 700;
 }
 
+/* Individual black oval halo behind desktop apple-nav-link options */
+.apple-vertical-bar .apple-nav-link {
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+.apple-vertical-bar .apple-nav-link::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -4px -14px !important;
+  border-radius: 9999px !important;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, 
+    #000000 0%, 
+    #000000 45%, 
+    rgba(0, 0, 0, 0.72) 72%, 
+    rgba(0, 0, 0, 0) 100%) !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
 /* Remove hairline dividers completely */
 .apple-nav-divider-v {
   display: none !important;
+}
+
+/* ════════════════════════════════════════════════════
+   MOBILE FLOATING NAVIGATION WITH BLURRY BACKGROUND
+   Website visible & blurred in background, floating separate
+   options on the right side with individual black oval halos.
+   ════════════════════════════════════════════════════ */
+#mobile-menu-drawer {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 60 !important;
+  display: none;
+  pointer-events: none;
+}
+
+#mobile-menu-drawer:not(.hidden) {
+  display: block !important;
+}
+
+#mobile-menu-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: auto !important;
+}
+
+#mobile-menu-backdrop.open {
+  opacity: 1 !important;
+}
+
+#mobile-menu-drawer .drawer-content {
+  position: fixed !important;
+  top: 84px !important;
+  right: 1rem !important;
+  z-index: 65 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 10px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: auto !important;
+  max-width: max-content !important;
+  height: auto !important;
+  opacity: 0;
+  transform: translateY(-8px) !important;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: auto !important;
+}
+
+#mobile-menu-drawer .drawer-content.open {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+@media (min-width: 640px) {
+  #mobile-menu-drawer .drawer-content {
+    top: 98px !important;
+    right: 1.5rem !important;
+    gap: 12px !important;
+  }
+}
+
+/* Mobile separate navigation options — individual oval black halo fade, NO WHITE, NO LINES */
+.mobile-nav-link {
+  position: relative !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  color: #e2c9a5 !important; /* Exact match with organic farm store & site text — NEVER WHITE */
+  text-decoration: none !important;
+  padding: 6px 16px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  white-space: nowrap !important;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85) !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease !important;
+}
+
+.mobile-nav-link::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -4px -14px !important;
+  border-radius: 9999px !important;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, 
+    #000000 0%, 
+    #000000 45%, 
+    rgba(0, 0, 0, 0.72) 72%, 
+    rgba(0, 0, 0, 0) 100%) !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+  color: #F2EAD8 !important; /* Warm cream hover — NEVER WHITE */
+  text-shadow: 0 0 12px rgba(226, 201, 165, 0.6), 0 1px 8px rgba(0, 0, 0, 0.95) !important;
+}
+
+.mobile-nav-link.active {
+  color: #C8995A !important; /* Harvest gold accent — NEVER WHITE */
+  font-weight: 700 !important;
 }
 
 /* ════════════════════════════════════════════════════

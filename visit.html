@@ -255,11 +255,133 @@
       color: #C8995A !important;
       font-weight: 700;
     }
+    .apple-vertical-bar .apple-nav-link {
+      position: relative !important;
+      isolation: isolate !important;
+    }
+    .apple-vertical-bar .apple-nav-link::after {
+      content: "" !important;
+      position: absolute !important;
+      inset: -4px -14px !important;
+      border-radius: 9999px !important;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, 
+        #000000 0%, 
+        #000000 45%, 
+        rgba(0, 0, 0, 0.72) 72%, 
+        rgba(0, 0, 0, 0) 100%) !important;
+      pointer-events: none !important;
+      z-index: -1 !important;
+    }
     .apple-nav-divider-v {
       display: none !important;
     }
     .apple-nav-slide {
       display: none !important;
+    }
+
+    /* Mobile Floating Navigation with Blurry Background */
+    header {
+      z-index: 70 !important;
+    }
+    #mobile-menu-drawer {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 60 !important;
+      display: none;
+      pointer-events: none;
+    }
+    #mobile-menu-drawer:not(.hidden) {
+      display: block !important;
+    }
+    #mobile-menu-backdrop {
+      position: fixed !important;
+      inset: 0 !important;
+      background: rgba(0, 0, 0, 0.35) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      pointer-events: auto !important;
+    }
+    #mobile-menu-backdrop.open {
+      opacity: 1 !important;
+    }
+    #mobile-menu-drawer .drawer-content {
+      position: fixed !important;
+      top: 84px !important;
+      right: 1rem !important;
+      z-index: 65 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-end !important;
+      gap: 10px !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      width: auto !important;
+      max-width: max-content !important;
+      height: auto !important;
+      opacity: 0;
+      transform: translateY(-8px) !important;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      pointer-events: auto !important;
+    }
+    #mobile-menu-drawer .drawer-content.open {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+    @media (min-width: 640px) {
+      #mobile-menu-drawer .drawer-content {
+        top: 98px !important;
+        right: 1.5rem !important;
+        gap: 12px !important;
+      }
+    }
+    .mobile-nav-link {
+      position: relative !important;
+      isolation: isolate !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.05em !important;
+      color: #e2c9a5 !important;
+      text-decoration: none !important;
+      padding: 6px 16px !important;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 9999px !important;
+      outline: none !important;
+      box-shadow: none !important;
+      white-space: nowrap !important;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85) !important;
+      transition: color 0.2s ease, text-shadow 0.2s ease !important;
+    }
+    .mobile-nav-link::after {
+      content: "" !important;
+      position: absolute !important;
+      inset: -4px -14px !important;
+      border-radius: 9999px !important;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, 
+        #000000 0%, 
+        #000000 45%, 
+        rgba(0, 0, 0, 0.72) 72%, 
+        rgba(0, 0, 0, 0) 100%) !important;
+      pointer-events: none !important;
+      z-index: -1 !important;
+    }
+    .mobile-nav-link:hover,
+    .mobile-nav-link:focus {
+      color: #F2EAD8 !important;
+      text-shadow: 0 0 12px rgba(226, 201, 165, 0.6), 0 1px 8px rgba(0, 0, 0, 0.95) !important;
+    }
+    .mobile-nav-link.active {
+      color: #C8995A !important;
+      font-weight: 700 !important;
     }
   </style>
 </head>
@@ -288,7 +410,6 @@
           <span class="text-[#e2c9a5]">Look</span>
         </a>
 
-
         <!-- Mobile/Tablet Menu Button (No border line) -->
         <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-sm bg-black/40 hover:bg-black/60 text-[#e2c9a5] transition border-0">
           <i data-lucide="menu" class="w-6 h-6"></i>
@@ -307,29 +428,20 @@
     <a href="contact.html"   class="apple-nav-link">Contact</a>
   </nav>
 
-<!-- Mobile Menu Drawer -->
-  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 hidden">
-    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-brand-dark/85 backdrop-blur-sm opacity-0 transition-opacity"></div>
-    <div class="drawer-content fixed top-0 right-0 w-4/5 max-w-sm h-full bg-barnwood shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform border-l border-black/60">
-      <div>
-        <div class="flex items-center justify-between pb-6 border-b border-white/10">
-          <a href="index.html" class="flex items-center">
-            <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-[57px] sm:h-[72px] w-auto object-contain">
-          </a>
-          <button id="mobile-menu-close" class="p-2 rounded-sm bg-black/40 text-[#e2c9a5]/70 hover:text-[#e2c9a5]">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-        </div>
-        <nav class="flex flex-col space-y-1 mt-6 text-base font-medium">
-          <a href="index.html"     class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="home"         class="w-4 h-4 text-brand-mossLight"></i> Home</a>
-          <a href="shop.html"      class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="shopping-bag"  class="w-4 h-4 text-brand-mossLight"></i> Farm Store</a>
-          <a href="wholesale.html" class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="boxes"         class="w-4 h-4 text-brand-mossLight"></i> Wholesale</a>
-          <a href="blog.html"      class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="book-open"     class="w-4 h-4 text-brand-mossLight"></i> Journal</a>
-          <a href="about.html"     class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 border-b border-white/5 hover:bg-white/5 rounded-sm transition"><i data-lucide="heart"         class="w-4 h-4 text-brand-mossLight"></i> Our Story</a>
-          <a href="contact.html"   class="flex items-center gap-3 text-brand-cream/80 hover:text-brand-cream py-2.5 px-3 hover:bg-white/5 rounded-sm transition">                    <i data-lucide="map-pin"       class="w-4 h-4 text-brand-mossLight"></i> Contact</a>
-        </nav>
-      </div>
-    </div>
+  <!-- Mobile Floating Navigation with Blurry Background -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 hidden" aria-label="Mobile Navigation Drawer">
+    <!-- Blurry translucent backdrop showing website underneath -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/35 backdrop-blur-md opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Floating separate links on the right side under toggle (No big black box, no lines) -->
+    <nav class="drawer-content fixed top-[84px] sm:top-[98px] right-4 sm:right-6 flex flex-col items-end gap-2.5 bg-transparent p-0 border-0 shadow-none opacity-0 -translate-y-2 transition-all duration-300 pointer-events-auto" aria-label="Mobile Navigation">
+      <a href="index.html"     class="mobile-nav-link">Home</a>
+      <a href="shop.html"      class="mobile-nav-link">Farm Store</a>
+      <a href="wholesale.html" class="mobile-nav-link">Wholesale</a>
+      <a href="blog.html"      class="mobile-nav-link">Journal</a>
+      <a href="about.html"     class="mobile-nav-link">Our Story</a>
+      <a href="contact.html"   class="mobile-nav-link">Contact</a>
+    </nav>
   </div>
 
   <!-- Page Banner -->
