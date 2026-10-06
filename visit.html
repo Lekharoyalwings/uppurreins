@@ -39,6 +39,12 @@
   <style>
     /* Header & Navigation — Transparent Center, Soft Localized Fades Under Logo & Buttons */
     header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 50 !important;
       background-color: transparent !important;
       background: transparent !important;
       border: none !important;
@@ -200,8 +206,8 @@
 </head>
 <body class="bg-red-soil antialiased flex flex-col min-h-screen">
 
-<!-- Main Navigation (Stationary at top, Transparent center, Localized fades under logo & buttons) -->
-  <header class="sticky top-0 z-40 bg-transparent transition border-0 relative pointer-events-none">
+<!-- Main Navigation (Stationary fixed at top, Transparent center, Localized fades under logo & buttons) -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-transparent transition border-0 pointer-events-none">
     <div class="w-full px-4 sm:px-6 lg:px-8 h-24 sm:h-28 lg:h-32 flex items-center justify-between gap-4">
 
       <!-- Official Brand Logo (Bigger, In natural place, No movement) -->
@@ -269,7 +275,7 @@
   </div>
 
   <!-- Page Banner -->
-  <div class="bg-warm-gradient py-14 border-b border-black/40 translate-x-[5%]" style="transform: translateX(5%);">
+  <div class="bg-warm-gradient pt-28 sm:pt-32 lg:pt-36 pb-14 border-b border-black/40 translate-x-[5%]" style="transform: translateX(5%);">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-mossLight mb-2 block">Step Onto Living Land</span>
       <h1 class="font-serif text-4xl sm:text-5xl font-bold text-brand-cream mb-4">Farm Visits &amp; Workshops</h1>
