@@ -75,6 +75,7 @@
       pointer-events: auto;
       z-index: 10;
       isolation: isolate;
+      transform: translateX(5%);
     }
     #book-visit-nav-zone::after {
       content: "";
@@ -124,6 +125,13 @@
       padding: 0 !important;
       min-width: unset !important;
       pointer-events: none;
+      transform: translateX(5%);
+    }
+    main {
+      transform: translateX(5%);
+    }
+    footer {
+      transform: translateX(5%);
     }
     @media (min-width: 640px) {
       .apple-vertical-bar {
@@ -199,8 +207,8 @@
         <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-[68px] sm:h-[84px] md:h-[98px] lg:h-[110px] xl:h-[120px] w-auto object-contain">
       </a>
 
-      <!-- Right Actions & Look Dropdown Trigger (In place, No border lines, No movement) -->
-      <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+      <!-- Right Actions & Look Dropdown Trigger (In place, No border lines, Shifted 5% to the right) -->
+      <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0 translate-x-[5%]" style="transform: translateX(5%);">
 
         <!-- Look Button with Green Wooden Signboard Symbol (No border line) -->
         <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition border-0">
@@ -218,7 +226,7 @@
   </header>
 
   <!-- Clean Separate Floating Navigation (Slides in from the right vertically) -->
-  <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Vertical Slide Navigation">
+  <nav id="apple-vertical-bar" class="apple-vertical-bar translate-x-[5%]" style="transform: translateX(5%);" aria-label="Vertical Slide Navigation">
     <a href="index.html"     class="apple-nav-link">Home</a>
     <a href="shop.html"      class="apple-nav-link">Farm Store</a>
     <a href="wholesale.html" class="apple-nav-link">Wholesale</a>
@@ -228,7 +236,7 @@
   </nav>
 
   <!-- Content -->
-  <main class="flex-1 flex items-center justify-center p-6 text-center">
+  <main class="flex-1 flex items-center justify-center p-6 text-center translate-x-[5%]" style="transform: translateX(5%);">
     <div class="max-w-md w-full py-16 px-8 rounded-2xl bg-[#0a0a0a] border border-white/10 shadow-2xl">
       <div class="inline-flex p-4 rounded-full bg-white/5 border border-white/10 text-brand-mossLight mb-6">
         <i data-lucide="compass" class="w-12 h-12"></i>
@@ -252,7 +260,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="py-6 border-t border-white/10 text-center text-xs text-[#cbb89d]/50">
+  <footer class="py-6 border-t border-white/10 text-center text-xs text-[#cbb89d]/50 translate-x-[5%]" style="transform: translateX(5%);">
     <p>&copy; 2026 UP Purreins. Farm to Fork • Raw &amp; Real Resources.</p>
   </footer>
 

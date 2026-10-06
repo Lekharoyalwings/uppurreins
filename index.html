@@ -124,6 +124,7 @@
       pointer-events: auto;
       z-index: 10;
       isolation: isolate;
+      transform: translateX(5%);
     }
     #book-visit-nav-zone::after {
       content: "";
@@ -223,6 +224,13 @@
       padding: 0 !important;
       min-width: unset !important;
       pointer-events: none;
+      transform: translateX(5%);
+    }
+    main#main-content, main {
+      transform: translateX(5%);
+    }
+    footer {
+      transform: translateX(5%);
     }
     @media (min-width: 640px) {
       .apple-vertical-bar {
@@ -299,8 +307,8 @@
         <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-[68px] sm:h-[84px] md:h-[98px] lg:h-[110px] xl:h-[120px] w-auto object-contain">
       </a>
 
-      <!-- Right Actions & Look Dropdown Trigger (In place, No border lines, No movement) -->
-      <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+      <!-- Right Actions & Look Dropdown Trigger (In place, No border lines, Shifted 5% to the right) -->
+      <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0 translate-x-[5%]" style="transform: translateX(5%);">
 
         <!-- Look Button with Green Wooden Signboard Symbol (No border line) -->
         <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition border-0">
@@ -323,7 +331,7 @@
   </header>
 
   <!-- Clean Separate Floating Navigation (Slides in from the right vertically) -->
-  <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Vertical Slide Navigation">
+  <nav id="apple-vertical-bar" class="apple-vertical-bar translate-x-[5%]" style="transform: translateX(5%);" aria-label="Vertical Slide Navigation">
     <a href="index.html"     class="apple-nav-link active">Home</a>
     <a href="shop.html"      class="apple-nav-link">Farm Store</a>
     <a href="wholesale.html" class="apple-nav-link">Wholesale</a>
@@ -365,9 +373,9 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════ -->
-  <!-- MAIN SITE CONTENT (SCALED DOWN BY 10%)          -->
+  <!-- MAIN SITE CONTENT (SCALED DOWN BY 10%, SHIFTED 5% TO THE RIGHT) -->
   <!-- ═══════════════════════════════════════════════ -->
-  <main id="main-content" class="site-scale-down">
+  <main id="main-content" class="site-scale-down translate-x-[5%]" style="transform: translateX(5%);">
 
   <!-- ═══════════════════════════════════════════════ -->
   <!-- HERO SECTION                                    -->
@@ -713,7 +721,7 @@
   <!-- ═══════════════════════════════════════════════ -->
   <!-- FOOTER                                          -->
   <!-- ═══════════════════════════════════════════════ -->
-  <footer class="bg-black text-brand-oat/65 pt-16 pb-12 mt-auto">
+  <footer class="bg-black text-brand-oat/65 pt-16 pb-12 mt-auto translate-x-[5%]" style="transform: translateX(5%);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12">
 

@@ -96,6 +96,7 @@
       pointer-events: auto;
       z-index: 10;
       isolation: isolate;
+      transform: translateX(5%);
     }
     #book-visit-nav-zone::after {
       content: "";
@@ -145,6 +146,13 @@
       padding: 0 !important;
       min-width: unset !important;
       pointer-events: none;
+      transform: translateX(5%);
+    }
+    main {
+      transform: translateX(5%);
+    }
+    footer {
+      transform: translateX(5%);
     }
     @media (min-width: 640px) {
       .apple-vertical-bar {
@@ -221,8 +229,8 @@
         <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-[68px] sm:h-[84px] md:h-[98px] lg:h-[110px] xl:h-[120px] w-auto object-contain">
       </a>
 
-      <!-- Right Actions & Look Dropdown Trigger (In place, No border lines, No movement) -->
-      <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+      <!-- Right Actions & Look Dropdown Trigger (In place, No border lines, Shifted 5% to the right) -->
+      <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0 translate-x-[5%]" style="transform: translateX(5%);">
 
         <!-- Look Button with Green Wooden Signboard Symbol (No border line) -->
         <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition border-0">
@@ -250,7 +258,7 @@
   </header>
 
   <!-- Clean Separate Floating Navigation (Slides in from the right vertically) -->
-  <nav id="apple-vertical-bar" class="apple-vertical-bar" aria-label="Vertical Slide Navigation">
+  <nav id="apple-vertical-bar" class="apple-vertical-bar translate-x-[5%]" style="transform: translateX(5%);" aria-label="Vertical Slide Navigation">
     <a href="index.html"     class="apple-nav-link">Home</a>
     <a href="shop.html"      class="apple-nav-link active">Farm Store</a>
     <a href="wholesale.html" class="apple-nav-link">Wholesale</a>
@@ -286,7 +294,7 @@
   </div>
 
   <!-- Page Banner -->
-  <div class="bg-warm-gradient py-12 border-b border-black/40">
+  <div class="bg-warm-gradient py-12 border-b border-black/40 translate-x-[5%]" style="transform: translateX(5%);">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-mossLight mb-2 block">Direct From Living Earth</span>
       <h1 class="font-serif text-4xl sm:text-5xl font-bold text-brand-cream mb-4">The Organic Farm Store</h1>
@@ -297,7 +305,7 @@
   </div>
 
   <!-- Shop Main Content -->
-  <main class="flex-1 bg-soil-dark">
+  <main class="flex-1 bg-soil-dark translate-x-[5%]" style="transform: translateX(5%);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
       <!-- Stable Bar Section Header -->
@@ -354,7 +362,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-barnwood-dark border-t border-black/60 py-12 mt-auto">
+  <footer class="bg-barnwood-dark border-t border-black/60 py-12 mt-auto translate-x-[5%]" style="transform: translateX(5%);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs">
       <p class="text-brand-oat/50">© 2026 UP Purreins. 100% Organic &amp; Chemical-Free Living.</p>
     </div>
