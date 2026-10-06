@@ -593,7 +593,6 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform: translate(-20%, 5%);
   pointer-events: auto;
   z-index: 10;
   isolation: isolate;
@@ -620,7 +619,6 @@ header {
   pointer-events: auto;
   z-index: 10;
   isolation: isolate;
-  transform: translateX(5%);
 }
 
 #book-visit-nav-zone::after {
@@ -671,7 +669,6 @@ header {
   padding: 0 !important;
   min-width: unset !important;
   pointer-events: none;
-  transform: translateX(5%);
 }
 
 @media (min-width: 640px) {
@@ -754,7 +751,6 @@ header {
   display: flex;
   align-items: center;
   gap: 12px;
-  transform: translateX(5%);
 }
 
 .apple-nav-slide {
