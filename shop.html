@@ -84,14 +84,16 @@
     .header-logo-link::after {
       content: "";
       position: absolute;
-      top: -1mm;
-      left: -1mm;
-      right: -1mm;
-      bottom: -1mm;
-      background: radial-gradient(ellipse at 50% 50%, 
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + 24px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, 
         #000000 0%, 
-        #000000 50%, 
-        rgba(0, 0, 0, 0.6) 80%, 
+        #000000 45%, 
+        rgba(0, 0, 0, 0.6) 75%, 
         rgba(0, 0, 0, 0) 100%);
       pointer-events: none;
       z-index: -1;
@@ -105,30 +107,30 @@
     #book-visit-nav-zone::after {
       content: "";
       position: absolute;
-      top: -1mm;
-      left: -1mm;
-      right: -1mm;
-      bottom: -1mm;
-      background: radial-gradient(ellipse at 50% 50%, 
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + 20px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, 
         #000000 0%, 
-        #000000 50%, 
-        rgba(0, 0, 0, 0.6) 80%, 
+        #000000 45%, 
+        rgba(0, 0, 0, 0.6) 75%, 
         rgba(0, 0, 0, 0) 100%);
       pointer-events: none;
       z-index: -1;
     }
     @media (max-width: 639px) {
       .header-logo-link::after {
-        top: -1mm;
-        left: -1mm;
-        right: -1mm;
-        bottom: -1mm;
+        width: calc(100% + 16px);
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
       }
       #book-visit-nav-zone::after {
-        top: -1mm;
-        left: -1mm;
-        right: -1mm;
-        bottom: -1mm;
+        width: calc(100% + 16px);
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
       }
     }
     /* Clean Floating Navigation (Drops down from Look tab, disappears on cursor leave / 8s) */
