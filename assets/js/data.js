@@ -398,7 +398,11 @@ const BLOG_POSTS = [
       <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
     `,
     tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
-  },
+  }
+];
+
+// Staged for Day After (Wednesday, Oct 14, 2026) - Cadence: 2 blogs per day
+const STAGED_BLOG_POSTS = [
   {
     id: "blog-03-rushing",
     drop: "Drop 03",
