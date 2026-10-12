@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Is eating healthy, healthy? • Purreins Frequency</title>
+
+  <!-- Favicon & Brand Icons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              forest:    '#4E693B',
+              sage:      '#688450',
+              leaf:      '#7F9D64',
+              mossLight: '#8EB264',
+              earth:     '#6E3725',
+              clay:      '#8A4532',
+              cream:     '#E2C9A5',
+              oat:       '#CBB89D',
+              sand:      '#C2AE95',
+              gold:      '#D6AB66',
+              barnwood:  '#3B2412',
+              dark:      '#000000',
+              iron:      '#0e0e0e'
+            }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans:  ['Plus Jakarta Sans', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Full Black Pure Tone & Atmospheric Glow */
+    html, body {
+      background-color: #000000 !important;
+      color: #CBB89D;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Fixed Clean Header with Localized Fades */
+    header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 50 !important;
+      background: transparent !important;
+      pointer-events: none;
+    }
+    .header-logo-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+      z-index: 10;
+      isolation: isolate;
+    }
+    .header-logo-link::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + 28px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, #000000 0%, #000000 45%, rgba(0, 0, 0, 0.6) 75%, transparent 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    #book-visit-btn {
+      position: relative;
+      pointer-events: auto;
+      isolation: isolate;
+    }
+    #book-visit-btn::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + 18px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, #000000 0%, #000000 45%, rgba(0, 0, 0, 0.6) 75%, transparent 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* 70% Immense Background Photo with Intense Fade into Black */
+    .cinematic-bg-canvas {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      background-color: #000000;
+    }
+
+    @media (min-width: 1024px) {
+      .cinematic-bg-canvas {
+        width: 72vw; /* Exactly ~70% of screen width */
+      }
+    }
+
+    .cinematic-bg-canvas img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: contrast(1.10) brightness(0.85);
+      /* Intense feather mask dissolving deeply from left to right */
+      -webkit-mask-image: linear-gradient(to right, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.02) 15%, 
+        rgba(0, 0, 0, 0.20) 32%, 
+        rgba(0, 0, 0, 0.65) 58%, 
+        rgba(0, 0, 0, 0.95) 80%, 
+        #000000 100%);
+      mask-image: linear-gradient(to right, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.02) 15%, 
+        rgba(0, 0, 0, 0.20) 32%, 
+        rgba(0, 0, 0, 0.65) 58%, 
+        rgba(0, 0, 0, 0.95) 80%, 
+        #000000 100%);
+      transition: opacity 0.35s ease-in-out;
+    }
+
+    /* Extra Multi-Layer Dark Fades for Maximum Drama */
+    .fade-overlay-left {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #000000 0%, rgba(0,0,0,0.92) 25%, rgba(0,0,0,0.4) 60%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .fade-overlay-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 180px;
+      background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.85) 45%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .fade-overlay-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 240px;
+      background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0.95) 50%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .fade-overlay-radial {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 75% 50%, transparent 35%, rgba(0,0,0,0.45) 75%, #000000 100%);
+      pointer-events: none;
+    }
+
+    /* Ambient soft vignette overlay */
+    .ambient-glow {
+      position: fixed;
+      top: 25%;
+      right: 10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(142, 178, 100, 0.04) 0%, rgba(214, 171, 102, 0.02) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Smooth Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000000; }
+    ::-webkit-scrollbar-thumb { background: #1f2d18; border-radius: 3px; }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-mossLight selection:text-black bg-black">
+
+  <!-- 70% IMMERSIVE CINEMATIC BACKGROUND -->
+  <div class="cinematic-bg-canvas">
+    <img id="cinematic-bg-img" src="assets/images/blog1_eating_healthy.jpg" alt="Wholesome Farmstead Feast">
+    <div class="fade-overlay-left"></div>
+    <div class="fade-overlay-top"></div>
+    <div class="fade-overlay-bottom"></div>
+    <div class="fade-overlay-radial"></div>
+  </div>
+
+  <div class="ambient-glow"></div>
+
+  <!-- FIXED ATMOSPHERIC HEADER -->
+  <header>
+    <div class="w-full px-6 sm:px-10 lg:px-14 h-24 sm:h-28 flex items-center justify-between gap-4">
+      <!-- Brand Logo -->
+      <a href="index.html" class="header-logo-link flex items-center justify-center">
+        <img src="assets/images/logo.png" alt="Purreins Frequency" class="h-14 sm:h-16 md:h-20 w-auto object-contain">
+      </a>
+
+      <!-- Navigation Actions -->
+      <div class="flex items-center gap-3">
+        <a href="blog.html" class="inline-flex items-center gap-1.5 text-brand-oat/75 hover:text-[#e2c9a5] text-xs uppercase tracking-wider font-semibold px-3 py-1.5 rounded-sm bg-black/40 hover:bg-black/60 transition border border-[#8EB264]/20 pointer-events-auto">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span>Journal</span>
+        </a>
+        <a href="visit.html" id="book-visit-btn" class="inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition">
+          <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2v20" stroke="#8A9E6E" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M4 4.5h12l4 3.5-4 3.5H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z" fill="#4A5E3A" stroke="#8A9E6E" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M6 7.2h8M7.5 9.2h5" stroke="#8A9E6E" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M9 22h6" stroke="#8A9E6E" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Look</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SCROLLING CONTENT (Left 30-45% of Screen on Solid Black) -->
+  <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 pt-32 sm:pt-36 lg:pt-40 pb-28 relative z-10">
+    <div class="w-full lg:w-[50%] xl:w-[46%]">
+
+      <!-- LEFT SIDE: THE BLOG (Text Scrolls Smoothly) -->
+      <main id="blog-article-content" class="w-full space-y-10">
+        <!-- Top Breadcrumb / Category & Date -->
+        <div class="space-y-4 border-b border-[#E2C9A5]/15 pb-8">
+          <div class="flex items-center gap-3 text-xs tracking-widest uppercase font-semibold text-brand-mossLight">
+            <span class="inline-block w-2 h-2 rounded-full bg-brand-mossLight animate-pulse"></span>
+            <span>Nutrition &amp; Intuition</span>
+            <span class="text-brand-gold/40">•</span>
+            <span class="text-brand-oat/70">Oct 13, 2026</span>
+            <span class="text-brand-gold/40">•</span>
+            <span class="text-brand-oat/70">Drop 01 (Slide 06)</span>
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#E2C9A5] leading-[1.12] tracking-tight">
+            Is eating healthy, healthy?
+          </h1>
+
+          <p class="text-xs text-brand-oat/60 uppercase tracking-widest font-mono">
+            Dispatches from the forest • <span class="text-brand-cream">Purreins Frequency</span>
+          </p>
+        </div>
+
+        <!-- THE EXACT HANDWRITTEN COPY (Zero grammar changes, only typos fixed) -->
+        <div class="space-y-7 text-[15px] sm:text-[17px] leading-[1.8] text-[#CBB89D]/95 font-light">
+          
+          <p class="text-lg sm:text-xl text-[#E2C9A5] font-normal leading-relaxed">
+            In the world of AI crafting us diet charts, what does eating healthy look like? It looks vegan? Organic? Fresh?
+          </p>
+
+          <p>
+            Eating healthy in simple means, eating what is right for your body and for your metabolism. It means giving your body exactly what it is asking for. It is feeling satisfied with what you've eaten. It is what builds your body for you. Forget the charts, forget the supplements, forget the timing. Just curate your diet for the first few days to ‘eating all the things that you crave for’.
+          </p>
+
+          <!-- Core Transition List -->
+          <div class="my-8 p-6 bg-brand-forest/10 border border-brand-mossLight/20 rounded-sm space-y-3 font-mono text-xs sm:text-sm tracking-wide">
+            <div class="flex items-start gap-3 text-brand-cream">
+              <span class="text-brand-gold font-bold">✦</span>
+              <span>This first step will take you to a clean transition from unorganized to organic eating.</span>
+            </div>
+            <div class="flex items-start gap-3 text-brand-cream">
+              <span class="text-brand-gold font-bold">✦</span>
+              <span>This step will give you a balanced diet between cravings and nutrition.</span>
+            </div>
+            <div class="flex items-start gap-3 text-brand-cream">
+              <span class="text-brand-gold font-bold">✦</span>
+              <span>This will eventually set tone for daily food and festive food.</span>
+            </div>
+          </div>
+
+          <p>
+            Only thing to keep on mind is that, feeding your mind is the only way to quiet it and focus on what your body needs. In traditional plans, this probably sounds unhealthy, but its actually the opposite of that. When you push away to noise, the underlying problem shows up, for instance, craving sugar is a result of missing glucose in your diet, sugar may temporarily mask that away, but the glucose is still lacking.
+          </p>
+
+          <!-- Callout / Rhythmic Quote -->
+          <div class="py-4 my-8 pl-6 border-l-2 border-brand-gold/60 space-y-3">
+            <p class="font-serif text-xl sm:text-2xl text-brand-gold italic font-normal leading-relaxed">
+              “On our first chat, we are obviously taking sugar as the topic, because everyone flags it as unhealthy, the truth however is that sugar disguises itself in many forms; some that are healthy; some that are unhealthy. You need to find the forms of sugar that are healthy for you.”
+            </p>
+          </div>
+
+          <!-- Staccato Truths -->
+          <div class="space-y-2 py-2 font-serif text-xl sm:text-2xl text-brand-cream">
+            <p class="text-brand-oat/75">Not because the Internet said so.</p>
+            <p class="text-brand-oat/75">Not because the video said so.</p>
+            <p class="text-brand-gold font-bold italic">But because your body is saying so.</p>
+          </div>
+
+          <p class="font-serif italic text-2xl sm:text-3xl text-[#E2C9A5] pt-6 border-t border-[#E2C9A5]/15">
+            Take time, give yourself the time and feeding that it needs to identify these, have a sugary day ^-^
+          </p>
+
+        </div>
+
+        <!-- Custom Hashtags & Journal Footer -->
+        <div class="pt-10 border-t border-[#E2C9A5]/15 space-y-6">
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full bg-brand-forest/20 border border-brand-mossLight/30 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-brand-forest/20 border border-brand-mossLight/30 text-brand-mossLight font-medium">#IntuitiveEating</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-brand-forest/20 border border-brand-mossLight/30 text-brand-mossLight font-medium">#BodyWisdom</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-brand-forest/20 border border-brand-mossLight/30 text-brand-mossLight font-medium">#RealFoodNutrition</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-brand-forest/20 border border-brand-mossLight/30 text-brand-mossLight font-medium">#EatWhatYouCrave</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-brand-forest/20 border border-brand-mossLight/30 text-brand-mossLight font-medium">#NaturalSugars</span>
+          </div>
+
+          <!-- Next Journal Pager -->
+          <div class="p-5 rounded-sm bg-brand-forest/10 border border-brand-mossLight/20 flex items-center justify-between mt-6">
+            <div>
+              <p class="text-[10px] tracking-widest uppercase font-mono text-brand-oat/60">Next Entry</p>
+              <p class="font-serif text-lg text-[#E2C9A5]">Why’re we doing everything the hard way?</p>
+            </div>
+            <a href="journal-02-why-are-we-doing-everything-the-hard-way.html" class="text-brand-gold hover:text-brand-cream text-xs uppercase tracking-widest font-semibold flex items-center gap-1.5 transition">
+              <span>Read Drop 02</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-brand-oat/60 pt-4">
+            <p>© 2026 UP Purreins. 100% Organic &amp; Chemical-Free Living.</p>
+            <a href="shop.html" class="text-brand-gold hover:text-brand-cream flex items-center gap-1">
+              <span>Visit Farm Store</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+
+
+  <script>
+    if (window.lucide) lucide.createIcons();
+
+  </script>
+</body>
+</html>

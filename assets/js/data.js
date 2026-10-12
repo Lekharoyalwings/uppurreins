@@ -339,48 +339,91 @@ const FARM_VISITS = [
 
 const BLOG_POSTS = [
   {
-    id: "blog-frequency-nature",
-    title: "The Alchemy of Cold-Process Soap",
-    category: "Artisan Craft",
-    date: "Sep 02, 2026",
-    readTime: "5 min read",
-    author: "UP Purreins Farm Team",
-    image: "assets/images/artisan-soaps.jpg",
-    excerpt: "Why curing soap for 6 weeks retains natural glycerin, respects pure essential oils, and nourishes the skin barrier.",
+    id: "blog-01-eating-healthy",
+    drop: "Drop 01",
+    title: "Is eating healthy, healthy?",
+    category: "Nutrition & Intuition",
+    date: "Oct 13, 2026",
+    readTime: "4 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog1_eating_healthy.jpg",
+    url: "journal-01-is-eating-healthy-healthy.html",
+    excerpt: "In the world of AI crafting us diet charts, what does eating healthy look like? Eating what is right for your body and your metabolism. Forget the charts, forget the supplements.",
     content: `
-      <p class="mb-4">At Purreins Frequency, our soapmaking is a slow, patient craft. Unlike industrial detergents stripped of glycerin, our cold-processed bars retain all natural moisturizing properties.</p>
-      <h3 class="text-xl font-serif font-bold text-[#e2c9a5] mt-6 mb-3">Pure Natural Oils &amp; Clays</h3>
-      <p class="mb-4">We formulate with saponified extra virgin olive oil, raw virgin coconut oil, and rich shea butter, scented exclusively with steam-distilled essential oils and fresh whole herbal stems.</p>
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">In the world of AI crafting us diet charts, what does eating healthy look like? It looks vegan? Organic? Fresh?</p>
+      <p class="mb-4">Eating healthy in simple means, eating what is right for your body and for your metabolism. It means giving your body exactly what it is asking for. It is feeling satisfied with what you've eaten. It is what builds your body for you. Forget the charts, forget the supplements, forget the timing. Just curate your diet for the first few days to ‘eating all the things that you crave for’.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>This first step will take you to a clean transition from unorganized to organic eating.</span></div>
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>This step will give you a balanced diet between cravings and nutrition.</span></div>
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>This will eventually set tone for daily food and festive food.</span></div>
+      </div>
+      <p class="mb-4">Only thing to keep on mind is that, feeding your mind is the only way to quiet it and focus on what your body needs. In traditional plans, this probably sounds unhealthy, but its actually the opposite of that. When you push away to noise, the underlying problem shows up, for instance, craving sugar is a result of missing glucose in your diet, sugar may temporarily mask that away, but the glucose is still lacking.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-lg sm:text-xl text-[#D6AB66] italic leading-relaxed">“On our first chat, we are obviously taking sugar as the topic, because everyone flags it as unhealthy, the truth however is that sugar disguises itself in many forms; some that are healthy; some that are unhealthy. You need to find the forms of sugar that are healthy for you.”</p>
+      </div>
+      <div class="space-y-1.5 py-2 font-serif text-lg sm:text-xl text-[#E2C9A5]">
+        <p class="text-[#CBB89D]/75">Not because the Internet said so.</p>
+        <p class="text-[#CBB89D]/75">Not because the video said so.</p>
+        <p class="text-[#D6AB66] font-bold italic">But because your body is saying so.</p>
+      </div>
+      <p class="font-serif italic text-xl sm:text-2xl text-[#E2C9A5] pt-5 mt-5 border-t border-[#E2C9A5]/15">Take time, give yourself the time and feeding that it needs to identify these, have a sugary day ^-^</p>
     `,
-    tags: ["Organic Soap", "Natural Living", "Chemical Free"]
+    tags: ["PurreinsFrequency", "IntuitiveEating", "BodyWisdom", "RealFoodNutrition", "EatWhatYouCrave", "NaturalSugars"]
   },
   {
-    id: "blog-duck-eggs-difference",
-    title: "Pasture-Raised Duck Eggs: The Chef’s & Baker’s Secret",
-    category: "Farm Life",
-    date: "Aug 20, 2026",
-    readTime: "4 min read",
-    author: "Homestead Keeper",
-    image: "assets/images/duck-eggs.jpg",
-    excerpt: "Thicker albumen, richer golden yolks, and double the Omega-3s: why pasture-roaming duck eggs elevate culinary baking to an art.",
+    id: "blog-02-hard-way",
+    drop: "Drop 02",
+    title: "Why’re we doing everything the hard way?",
+    category: "Farmstead Lore",
+    date: "Oct 13, 2026",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog2_hard_way.jpg",
+    url: "journal-02-why-are-we-doing-everything-the-hard-way.html",
+    excerpt: "In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a convenience-free life? Convenience and speed isn’t the way towards getting healthy.",
     content: `
-      <p class="mb-4">If you have never cracked open a freshly laid pasture duck egg, you are in for a culinary revelation. The yolk is noticeably larger, deep sunset-orange, and possesses decadent buttery richness.</p>
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a holistic, convenience-free life?</p>
+      <p class="mb-4">Well, turns out, that convenience and speed isn’t the way towards getting healthy.</p>
+      <p class="mb-4">All our plants, all our ducks, all our soaps are made Organically, as in made By Nature, not by intimidating the process of nature. The time needed to do that is the time we use to focus on our human instincts and soul purpose of being on planet earth.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60 space-y-1.5">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic">Sounds spiritual?</p>
+        <p class="text-xs sm:text-sm text-[#CBB89D]/80 leading-relaxed">Not quite, not everything that is about Nature and holistic living, has to do with spirituality, most has to do with just existing and being in sync with the elements.</p>
+      </div>
+      <div class="space-y-2.5 bg-[#4E693B]/10 border border-[#8EB264]/20 p-5 rounded-sm my-6 text-xs sm:text-sm">
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Waking up with sun, falling asleep with the sun, using the rain, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the EXERCISE.</strong></p></div>
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Tilling the soil, harvesting produce, making food, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the GYM.</strong></p></div>
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Keeping it healthy, watching it grow, multiplying it, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the TASK.</strong></p></div>
+      </div>
+      <p class="mb-4">Get through all this, in the day, and the time you have remaining, is what you will need to start being spiritual.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
     `,
-    tags: ["Duck Eggs", "Pasture Raised", "Baking Tips"]
+    tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
   },
   {
-    id: "blog-heirloom-quilts",
-    title: "The Tactile Comfort of Organic Cotton Quilt Rolls",
-    category: "Heirloom Living",
-    date: "Aug 10, 2026",
-    readTime: "4 min read",
-    author: "Artisan Weaver",
-    image: "assets/images/quilt-roll.jpg",
-    excerpt: "Natural unbleached cotton, plant dyes, and traditional hand-stitching create breathable bedding that lasts generations.",
+    id: "blog-03-rushing",
+    drop: "Drop 03",
+    title: "What’re we all rushing towards?",
+    category: "Slow Living & Philosophy",
+    date: "Oct 14, 2026",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog3_rushing.jpg",
+    url: "journal-03-what-are-we-all-rushing-towards.html",
+    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
     content: `
-      <p class="mb-4">Sleeping under pure organic cotton reconnects your body with natural frequencies. Zero microplastics, zero chemical flame retardants—pure tactile comfort.</p>
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
+      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
+      </div>
+      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
+      </div>
+      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
     `,
-    tags: ["Heirloom Quilts", "Organic Cotton", "Slow Living"]
+    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
   }
 ];
 
