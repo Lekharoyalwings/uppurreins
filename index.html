@@ -1043,6 +1043,11 @@
       // ── Blog Posts ─────────────────────────────────
       const blogGrid = document.getElementById('home-blog-grid');
       if (blogGrid) {
+        if (BLOG_POSTS.length === 2) {
+          blogGrid.className = "grid md:grid-cols-2 gap-6 max-w-4xl mx-auto";
+        } else {
+          blogGrid.className = "grid md:grid-cols-3 gap-6";
+        }
         blogGrid.innerHTML = BLOG_POSTS.slice(0, 3).map(post => `
           <article class="stall-card card-hover">
             <div class="stall-header">

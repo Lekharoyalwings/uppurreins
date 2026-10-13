@@ -398,12 +398,16 @@ const BLOG_POSTS = [
       <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
     `,
     tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
-  },
+  }
+];
+
+// Staged for Tomorrow (Wednesday, Oct 14, 2026) — Strictly 2 blogs per day cadence
+const STAGED_BLOG_POSTS = [
   {
     id: "blog-03-rushing",
     title: "What’re we all rushing towards?",
     category: "Slow Living & Philosophy",
-    date: "Oct 13, 2026",
+    date: "Oct 14, 2026",
     readTime: "3 min read",
     author: "Purreins Frequency",
     image: "assets/images/blog3_rushing.jpg",
@@ -425,8 +429,6 @@ const BLOG_POSTS = [
     tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
   }
 ];
-
-const STAGED_BLOG_POSTS = [];
 
 const FAQS = [
   {
