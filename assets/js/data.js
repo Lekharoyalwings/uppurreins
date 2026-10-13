@@ -14,6 +14,8 @@ const BRAND_CONFIG = {
   wholesaleEmail: "wholesale@purreinsfrequency.com",
   address: "347/A Royalwings Nilayam, Kallapara, Sadak road, Kizhakkambalam, Oorakadu, Kunnathunad, Ernakulam 683562",
   hours: "Tuesday – Sunday: 8:00 AM – 6:00 PM (Monday Closed for Regeneration)",
+  upiId: "7204271822@upi",
+  upiHolderName: "Purreins Frequency",
   socials: {
     instagram: "https://instagram.com",
     facebook: "https://facebook.com",
@@ -396,16 +398,12 @@ const BLOG_POSTS = [
       <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
     `,
     tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
-  }
-];
-
-// Staged for Day After (Wednesday, Oct 14, 2026) - Cadence: 2 blogs per day
-const STAGED_BLOG_POSTS = [
+  },
   {
     id: "blog-03-rushing",
     title: "What’re we all rushing towards?",
     category: "Slow Living & Philosophy",
-    date: "Oct 14, 2026",
+    date: "Oct 13, 2026",
     readTime: "3 min read",
     author: "Purreins Frequency",
     image: "assets/images/blog3_rushing.jpg",
@@ -427,6 +425,8 @@ const STAGED_BLOG_POSTS = [
     tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
   }
 ];
+
+const STAGED_BLOG_POSTS = [];
 
 const FAQS = [
   {

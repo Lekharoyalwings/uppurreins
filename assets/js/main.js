@@ -143,10 +143,15 @@ function openProductModal(productId) {
           <p class="text-xs text-[#e2c9a5]/90 leading-relaxed">${product.ingredients}</p>
         </div>
 
+        <div class="mb-5 p-3 rounded-lg bg-brand-gold/10 border border-brand-gold/25 flex items-center gap-2.5 text-xs text-brand-gold">
+          <i data-lucide="clock" class="w-4 h-4 flex-shrink-0"></i>
+          <span><strong>Pre-Order Item:</strong> Handcrafted small batch. Releases next month.</span>
+        </div>
+
         <div class="flex items-center gap-3">
           <button onclick="window.cart.addItem('${product.id}'); closeProductModal();" class="flex-1 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] py-3.5 px-6 rounded-xl font-medium flex items-center justify-center gap-2 shadow-lg transition">
             <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-            <span>Add to Basket</span>
+            <span>Pre-Order (Ships Next Month)</span>
           </button>
           <button onclick="inquireProduct('${product.name}')" class="p-3.5 border border-white/20 hover:border-brand-mossLight rounded-xl text-[#e2c9a5] hover:bg-white/5 transition" title="Ask a question via WhatsApp">
             <i data-lucide="help-circle" class="w-5 h-5"></i>

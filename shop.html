@@ -500,6 +500,25 @@
         </div>
       </div>
 
+      <!-- Pre-Order Seasonal Harvest Notice -->
+      <div class="mb-8 p-4 sm:p-5 rounded-sm bg-brand-forest/20 border border-brand-forest/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-sm bg-brand-forest/30 text-brand-mossLight flex items-center justify-center flex-shrink-0 border border-brand-forest/50 mt-0.5">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-serif font-bold text-brand-gold text-base">Small-Batch Season Underway — Pre-Orders Open</h4>
+            <p class="text-xs text-brand-oat/80 leading-relaxed mt-0.5">
+              All our farmstead offerings (curd cold-process soaps, pasture duck eggs, whole herbs, and quilts) are currently being handcrafted and naturally cured. <strong>Available starting next month.</strong> Pre-order now to reserve your batch.
+            </p>
+          </div>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs font-semibold whitespace-nowrap self-start sm:self-center">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>Ships Next Month</span>
+        </span>
+      </div>
+
       <!-- Filter & Search Toolbar -->
       <div class="flex flex-col lg:flex-row items-center justify-between gap-6 mb-10 pb-6 border-b border-white/10">
 
@@ -626,6 +645,11 @@
               <div>
                 <h3 class="font-serif font-bold text-brand-cream text-lg hover:text-brand-mossLight cursor-pointer transition line-clamp-1" onclick="openProductModal('${product.id}')">${product.name}</h3>
                 <p class="text-xs text-brand-oat/60 mt-1 line-clamp-2">${product.description}</p>
+                <div class="mt-2.5">
+                  <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-brand-gold bg-brand-gold/10 px-2 py-0.5 rounded-sm border border-brand-gold/25">
+                    <i data-lucide="clock" class="w-3 h-3"></i> Pre-Order • Ships Next Month
+                  </span>
+                </div>
               </div>
               <div class="pt-4 mt-4 border-t border-black/30 flex items-center justify-between">
                 <div>
@@ -636,8 +660,9 @@
                   <button onclick="openProductModal('${product.id}')" class="p-2 rounded-sm bg-white/8 hover:bg-white/15 text-brand-cream transition" title="Quick Details">
                     <i data-lucide="eye" class="w-4 h-4"></i>
                   </button>
-                  <button onclick="window.cart.addItem('${product.id}')" class="p-2 rounded-sm bg-brand-forest/40 hover:bg-brand-forest text-brand-cream transition" title="Add to Basket">
-                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                  <button onclick="window.cart.addItem('${product.id}')" class="px-3 py-2 rounded-sm bg-brand-forest hover:bg-brand-sage text-brand-cream transition flex items-center gap-1.5 text-xs font-semibold shadow-md" title="Pre-Order Now">
+                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                    <span>Pre-Order</span>
                   </button>
                 </div>
               </div>
