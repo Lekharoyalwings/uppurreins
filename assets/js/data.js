@@ -340,7 +340,6 @@ const FARM_VISITS = [
 const BLOG_POSTS = [
   {
     id: "blog-01-eating-healthy",
-    drop: "Drop 01",
     title: "Is eating healthy, healthy?",
     category: "Nutrition & Intuition",
     date: "Oct 13, 2026",
@@ -372,7 +371,6 @@ const BLOG_POSTS = [
   },
   {
     id: "blog-02-hard-way",
-    drop: "Drop 02",
     title: "Why’re we doing everything the hard way?",
     category: "Farmstead Lore",
     date: "Oct 13, 2026",
@@ -405,7 +403,6 @@ const BLOG_POSTS = [
 const STAGED_BLOG_POSTS = [
   {
     id: "blog-03-rushing",
-    drop: "Drop 03",
     title: "What’re we all rushing towards?",
     category: "Slow Living & Philosophy",
     date: "Oct 14, 2026",
