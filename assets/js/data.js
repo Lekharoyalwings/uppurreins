@@ -13,7 +13,7 @@ const BRAND_CONFIG = {
   email: "hello@purreinsfrequency.com",
   wholesaleEmail: "wholesale@purreinsfrequency.com",
   address: "347/A Royalwings Nilayam, Kallapara, Sadak road, Kizhakkambalam, Oorakadu, Kunnathunad, Ernakulam 683562",
-  hours: "Tuesday – Sunday: 8:00 AM – 6:00 PM (Monday Closed for Regeneration)",
+  hours: "Every Day: 07:00 – 17:00",
   upiId: "7204271822@upi",
   upiHolderName: "Purreins Frequency",
   socials: {
@@ -281,61 +281,61 @@ const PRODUCTS = [
   }
 ];
 
-// CLEAR 1-DAY FARM VISITS (Simple calculation per visitor per day, open Tue–Sun)
+// FARMSTEAD EXPERIENCES (1–2 Hours Visit • Open Every Day 07:00 – 17:00)
 const FARM_VISITS = [
   {
-    id: "tour-farmstead-day-pass",
-    title: "Full Farmstead Experience (1 Day Visit)",
-    duration: "1 Day Visit",
+    id: "tour-farmstead-experience",
+    title: "Farmstead Experience",
+    duration: "1–2 Hours Visit",
     pricePerPerson: 450,
     image: "assets/images/hero-basket.jpg",
-    badge: "Most Popular",
-    days: "Open Daily (Tue – Sun)",
-    timing: "9:00 AM – 5:00 PM",
-    description: "Spend a relaxing day at our organic farm. Walk living soil permaculture beds, feed pasture ducks by the pond, and enjoy farmstead hospitality.",
+    badge: "Farm Walk",
+    days: "Open Every Day",
+    timing: "07:00 – 17:00",
+    description: "A small, peaceful 1–2 hour farmstead walk. Explore living soil permaculture beds, see herbal gardens, feed pasture ducks by the water, and enjoy fresh herbal farm hospitality.",
     included: [
-      "Full 1-day farm access (permaculture beds & living soil grounds)",
+      "1–2 hours guided farmstead immersion (living soil permaculture)",
       "Meet and feed free-roaming pasture ducks by the pond",
-      "Interactive whole herbal stem harvesting session",
-      "Complimentary fresh herbal tea & farm hospitality"
+      "Interactive whole herbal stem walk",
+      "Complimentary fresh farm herbal welcome drink"
     ],
-    times: ["Morning Entry (9:00 AM – 1:00 PM)", "Afternoon Entry (1:00 PM – 5:00 PM)"]
+    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"]
   },
   {
-    id: "tour-duckling-homestead",
-    title: "Duckling Meadow & Family Day (1 Day Visit)",
-    duration: "1 Day Visit",
+    id: "tour-duckling-meadow",
+    title: "Duckling Meadow Experience",
+    duration: "1–2 Hours Visit",
     pricePerPerson: 350,
     image: "assets/images/duck-family.jpg",
-    badge: "Family Friendly",
-    days: "Open Daily (Tue – Sun)",
-    timing: "9:00 AM – 5:00 PM",
-    description: "Experience our pasture-roaming ducks in their natural pond habitat. Learn about ethical free-range egg collection and heritage poultry care.",
+    badge: "Duckling Meadow",
+    days: "Open Every Day",
+    timing: "07:00 – 17:00",
+    description: "A gentle 1–2 hour experience with pasture ducks and ducklings in their natural pond habitat. Learn about ethical free-range duck keeping and natural straw nesting.",
     included: [
-      "Feed and spend time with free-range heritage ducks along wetland reeds",
-      "Fresh egg collection and straw nest preparation session",
-      "Complimentary half-dozen pasture duck eggs to take home",
-      "Educational talk on regenerative duck-assisted permaculture"
+      "Feed and interact with free-range heritage ducks along wetland reeds",
+      "Gentle duckling meadow time and straw nest walk",
+      "Complimentary pasture duck eggs to take home",
+      "Peaceful 1–2 hour immersion by the pond reedbeds"
     ],
-    times: ["Morning Entry (9:00 AM – 1:00 PM)", "Afternoon Entry (1:00 PM – 5:00 PM)"]
+    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"]
   },
   {
-    id: "tour-soap-masterclass",
-    title: "Cold-Process Soap Workshop & Day Visit",
-    duration: "1 Day Workshop",
+    id: "tour-make-your-own-soap",
+    title: "Make Your Own Soap",
+    duration: "1–2 Hours",
     pricePerPerson: 950,
     image: "assets/images/artisan-soaps.jpg",
-    badge: "Craft Workshop",
-    days: "Open Daily (Tue – Sun)",
-    timing: "11:00 AM – 3:00 PM",
-    description: "Full day access to the farm grounds plus hands-on artisan soapmaking. Formulate your own custom 500g soap block using farm herbs, natural clays, and curd.",
+    badge: "Artisan Craft",
+    days: "Open Every Day",
+    timing: "07:00 – 17:00",
+    description: "A hands-on 1–2 hour artisanal soapmaking session. Formulate and pour your own custom cold-process curd soap bar using pure plant oils, farm herbs, and natural earth clays.",
     included: [
-      "Full 1-day farm access and guided workshop",
-      "Formulate and craft your own custom 500g soap block",
-      "All organic ingredients, molds, and safety gear provided",
-      "Recipe handbook and soap-curing guide to take home"
+      "1–2 hours guided hands-on soapmaking session",
+      "Formulate your own custom cold-process curd soap bar",
+      "Pure plant oils, wild botanical stems, and molds provided",
+      "Take your newly crafted soap bar home with curing guide"
     ],
-    times: ["Workshop Session (11:00 AM – 3:00 PM)"]
+    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"]
   }
 ];
 
@@ -445,7 +445,7 @@ const FAQS = [
   },
   {
     q: "How does Farm Visit booking work?",
-    a: "Booking is simple: choose any day between Tuesday and Sunday for a 1-day farm visit. The rate is calculated simply as [Number of Guests] × [Price per person]. You can confirm your booking instantly via WhatsApp or pay upon arrival."
+    a: "Booking is simple: choose any day between 07:00 and 17:00 for a peaceful 1–2 hours farmstead visit. The rate is calculated simply as [Number of Guests] × [Price per person]. You can confirm your booking instantly via WhatsApp or pay upon arrival."
   }
 ];
 
