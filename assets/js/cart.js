@@ -338,10 +338,7 @@ class CartManager {
     message += `• *Name:* ${cust.name || 'Not specified'}\n`;
     message += `• *Phone / WhatsApp:* ${cust.phone || 'Not specified'}\n`;
     message += `• *Delivery Address:* ${cust.address || 'Standard Farmstead Collection / To Confirm'}\n`;
-    if (cust.notes) {
-      message += `• *Special Instructions:* ${cust.notes}\n`;
-    }
-    message += `\nHello! I would like to confirm this order in INR with ${BRAND_CONFIG.companyName}. Please let me know the harvest schedule & UPI/Payment details. Thank you!`;
+    message += `\nHello! I would like to confirm this order in INR with ${BRAND_CONFIG.companyName}. Please share the bank transfer / payment details and harvest schedule. Thank you!`;
 
     const encoded = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${BRAND_CONFIG.whatsappNumber}?text=${encoded}`;
@@ -385,67 +382,102 @@ class CartManager {
     }
     this.collectCustomerFromForm();
     const finalTotal = this.getFinalTotal();
-    const upiId = (typeof BRAND_CONFIG !== 'undefined' && BRAND_CONFIG.upiId) ? BRAND_CONFIG.upiId : '7204271822@upi';
-    const upiName = (typeof BRAND_CONFIG !== 'undefined' && BRAND_CONFIG.upiHolderName) ? BRAND_CONFIG.upiHolderName : 'Purreins Frequency';
-    
-    // Standard UPI URI format
-    const upiString = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(upiName)}&am=${finalTotal}&cu=INR&tn=${encodeURIComponent('Purreins Frequency Pre-Order')}`;
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(upiString)}&bgcolor=ffffff&color=000000&margin=2`;
+    const bank = (typeof BRAND_CONFIG !== 'undefined' && BRAND_CONFIG.bankDetails) ? BRAND_CONFIG.bankDetails : {
+      accountName: 'Purreins Frequency',
+      accountNumber: 'Please contact for account number',
+      bankName: 'Direct Bank Transfer',
+      ifscCode: 'Please contact for IFSC',
+      branch: 'Ernakulam',
+      accountType: 'Current Account',
+      paymentLink: ''
+    };
 
     let modal = document.getElementById('cart-payment-modal');
     if (!modal) {
       const modalHTML = `
         <div id="cart-payment-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden opacity-0 transition-opacity">
-          <div class="bg-[#121212] border border-white/15 rounded-sm max-w-md w-full p-6 sm:p-8 shadow-2xl relative text-center">
+          <div class="bg-[#121212] border border-white/15 rounded-sm max-w-md w-full p-6 sm:p-8 shadow-2xl relative text-left">
             <button onclick="window.cart.closePaymentModal()" class="absolute top-4 right-4 p-2 text-[#cbb89d]/60 hover:text-[#e2c9a5] rounded-sm hover:bg-white/5 transition">
               <i data-lucide="x" class="w-5 h-5"></i>
             </button>
 
-            <div class="w-12 h-12 rounded-sm bg-brand-gold/15 text-brand-gold border border-brand-gold/30 mx-auto mb-3 flex items-center justify-center">
-              <i data-lucide="qr-code" class="w-6 h-6"></i>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-11 h-11 rounded-sm bg-brand-gold/15 text-brand-gold border border-brand-gold/30 flex items-center justify-center shrink-0">
+                <i data-lucide="building-2" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="font-serif text-xl font-bold text-[#e2c9a5]">Direct Bank Transfer</h3>
+                <p class="text-xs text-[#cbb89d]/75">Transfer directly to our farmstead bank account.</p>
+              </div>
             </div>
-
-            <h3 class="font-serif text-2xl font-bold text-[#e2c9a5] mb-1">Direct Bank / UPI Payment</h3>
-            <p class="text-xs text-[#cbb89d]/75 mb-4">Pay directly to our bank with 0% gateway fee. Pre-order is reserved instantly upon payment.</p>
 
             <!-- Order Total & Pre-Order Badge -->
-            <div class="bg-black/60 p-4 rounded-sm border border-white/10 mb-5 space-y-1.5">
+            <div class="bg-black/60 p-3.5 rounded-sm border border-white/10 mb-4 space-y-1">
               <span class="text-[11px] uppercase tracking-wider text-brand-mossLight font-semibold block">✦ Pre-Order Allocation (Ships Next Month)</span>
-              <p class="text-xs text-[#cbb89d]">Total Payable Amount:</p>
-              <p class="text-3xl font-serif font-bold text-brand-gold" id="upi-modal-amount">INR ${finalTotal.toLocaleString('en-IN')}</p>
-            </div>
-
-            <!-- QR Code Box -->
-            <div class="bg-white p-3 rounded-sm inline-block shadow-lg border-4 border-[#e2c9a5]/30 mb-4">
-              <img id="upi-qr-image" src="${qrUrl}" alt="Scan to Pay via UPI" class="w-48 h-48 mx-auto object-contain block" />
-            </div>
-
-            <!-- UPI ID Copy Bar -->
-            <div class="flex items-center justify-between gap-2 bg-black/60 border border-white/15 px-3 py-2 rounded-sm text-xs mb-4">
-              <div class="text-left min-w-0">
-                <span class="text-[10px] text-[#cbb89d]/50 block uppercase tracking-wider">UPI ID / VPA</span>
-                <span class="font-mono text-[#e2c9a5] font-semibold truncate block" id="upi-id-display">${upiId}</span>
+              <div class="flex items-baseline justify-between pt-1">
+                <span class="text-xs text-[#cbb89d]">Payable Amount:</span>
+                <span class="text-2xl font-serif font-bold text-brand-gold" id="bank-modal-amount">INR ${finalTotal.toLocaleString('en-IN')}</span>
               </div>
-              <button onclick="window.cart.copyUpiId()" id="upi-copy-btn" class="px-3 py-1.5 rounded-sm bg-white/10 hover:bg-white/20 text-[#e2c9a5] text-xs font-semibold flex items-center gap-1 transition">
-                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                <span>Copy</span>
-              </button>
             </div>
 
-            <!-- Mobile Direct Pay Button -->
-            <a id="upi-mobile-pay-link" href="${upiString}" class="sm:hidden w-full bg-brand-gold hover:bg-[#c49b55] text-black font-semibold py-2.5 px-4 rounded-sm mb-3 flex items-center justify-center gap-2 text-xs transition">
-              <i data-lucide="smartphone" class="w-4 h-4"></i>
-              <span>Tap to Open GPay / PhonePe / Paytm</span>
-            </a>
+            <!-- Bank Details Cards -->
+            <div class="space-y-2.5 mb-4 text-xs">
+              <!-- Beneficiary / Account Name -->
+              <div class="flex items-center justify-between gap-2 bg-black/60 border border-white/10 px-3 py-2 rounded-sm">
+                <div>
+                  <span class="text-[10px] text-[#cbb89d]/60 block uppercase tracking-wider">Account Name</span>
+                  <span class="text-[#e2c9a5] font-medium" id="bank-acc-name">${bank.accountName}</span>
+                </div>
+                <button onclick="window.cart.copyBankField(document.getElementById('bank-acc-name').textContent, 'Account Name')" class="px-2.5 py-1 rounded-sm bg-white/10 hover:bg-white/20 text-[#e2c9a5] text-[11px] font-medium flex items-center gap-1 transition shrink-0">
+                  <i data-lucide="copy" class="w-3 h-3"></i><span>Copy</span>
+                </button>
+              </div>
 
-            <!-- WhatsApp Screenshot Confirmation -->
-            <div class="space-y-2">
-              <p class="text-[11px] text-[#cbb89d]/70 leading-relaxed">
-                After paying, click below to confirm your order details and attach your payment screenshot:
+              <!-- Account Number -->
+              <div class="flex items-center justify-between gap-2 bg-black/60 border border-white/10 px-3 py-2 rounded-sm">
+                <div>
+                  <span class="text-[10px] text-[#cbb89d]/60 block uppercase tracking-wider">Account Number</span>
+                  <span class="font-mono text-brand-gold font-bold tracking-wider text-sm" id="bank-acc-no">${bank.accountNumber}</span>
+                </div>
+                <button onclick="window.cart.copyBankField(document.getElementById('bank-acc-no').textContent, 'Account Number')" class="px-2.5 py-1 rounded-sm bg-white/10 hover:bg-white/20 text-[#e2c9a5] text-[11px] font-medium flex items-center gap-1 transition shrink-0">
+                  <i data-lucide="copy" class="w-3 h-3"></i><span>Copy</span>
+                </button>
+              </div>
+
+              <!-- Bank & Branch -->
+              <div class="grid grid-cols-2 gap-2">
+                <div class="bg-black/60 border border-white/10 px-3 py-2 rounded-sm">
+                  <span class="text-[10px] text-[#cbb89d]/60 block uppercase tracking-wider">Bank Name</span>
+                  <span class="text-[#e2c9a5] font-medium block truncate" id="bank-name-display">${bank.bankName}</span>
+                </div>
+                <div class="bg-black/60 border border-white/10 px-3 py-2 rounded-sm">
+                  <span class="text-[10px] text-[#cbb89d]/60 block uppercase tracking-wider">IFSC Code</span>
+                  <div class="flex items-center justify-between">
+                    <span class="font-mono text-brand-gold font-bold text-xs" id="bank-ifsc-display">${bank.ifscCode}</span>
+                    <button onclick="window.cart.copyBankField(document.getElementById('bank-ifsc-display').textContent, 'IFSC Code')" class="text-[#e2c9a5]/70 hover:text-[#e2c9a5] transition">
+                      <i data-lucide="copy" class="w-3 h-3"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Optional Direct Payment Link Button -->
+            <div id="bank-payment-link-container" class="${bank.paymentLink ? '' : 'hidden'} mb-4">
+              <a id="bank-payment-link-btn" href="${bank.paymentLink || '#'}" target="_blank" rel="noopener" class="w-full bg-brand-gold hover:bg-[#c49b55] text-black font-semibold py-2.5 px-4 rounded-sm flex items-center justify-center gap-2 text-xs transition">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                <span>Open Direct Payment Link</span>
+              </a>
+            </div>
+
+            <!-- WhatsApp UTR / Transfer Confirmation -->
+            <div class="space-y-2 pt-2 border-t border-white/10">
+              <p class="text-[11px] text-[#cbb89d]/70 leading-relaxed text-center">
+                After completing the transfer, share your reference number or payment receipt on WhatsApp to confirm your allocation:
               </p>
               <button onclick="window.cart.confirmPaidWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 px-4 rounded-sm font-semibold flex items-center justify-center gap-2 shadow-lg transition text-xs sm:text-sm">
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>Confirm Order on WhatsApp (Attach Screenshot)</span>
+                <span>Confirm Transfer via WhatsApp (Share Ref / Receipt)</span>
               </button>
             </div>
           </div>
@@ -454,11 +486,21 @@ class CartManager {
       document.body.insertAdjacentHTML('beforeend', modalHTML);
       modal = document.getElementById('cart-payment-modal');
     } else {
-      document.getElementById('upi-modal-amount').textContent = `INR ${finalTotal.toLocaleString('en-IN')}`;
-      document.getElementById('upi-qr-image').src = qrUrl;
-      document.getElementById('upi-id-display').textContent = upiId;
-      const mobLink = document.getElementById('upi-mobile-pay-link');
-      if (mobLink) mobLink.href = upiString;
+      document.getElementById('bank-modal-amount').textContent = `INR ${finalTotal.toLocaleString('en-IN')}`;
+      document.getElementById('bank-acc-name').textContent = bank.accountName;
+      document.getElementById('bank-acc-no').textContent = bank.accountNumber;
+      document.getElementById('bank-name-display').textContent = bank.bankName;
+      document.getElementById('bank-ifsc-display').textContent = bank.ifscCode;
+      const linkContainer = document.getElementById('bank-payment-link-container');
+      const linkBtn = document.getElementById('bank-payment-link-btn');
+      if (linkContainer && linkBtn) {
+        if (bank.paymentLink) {
+          linkBtn.href = bank.paymentLink;
+          linkContainer.classList.remove('hidden');
+        } else {
+          linkContainer.classList.add('hidden');
+        }
+      }
     }
 
     modal.classList.remove('hidden');
@@ -479,18 +521,15 @@ class CartManager {
     }
   }
 
-  copyUpiId() {
-    const upiId = (typeof BRAND_CONFIG !== 'undefined' && BRAND_CONFIG.upiId) ? BRAND_CONFIG.upiId : '7204271822@upi';
-    navigator.clipboard.writeText(upiId).then(() => {
-      const btn = document.getElementById('upi-copy-btn');
-      if (btn) {
-        btn.innerHTML = '<span>Copied!</span>';
-        setTimeout(() => {
-          btn.innerHTML = '<i data-lucide="copy" class="w-3.5 h-3.5"></i><span>Copy</span>';
-          if (window.lucide) lucide.createIcons();
-        }, 2000);
-      }
-      this.showToast('UPI ID copied to clipboard');
+  copyBankField(text, fieldName) {
+    if (!text || text.includes('Please contact')) {
+      this.showToast(`Direct details will be confirmed with you via WhatsApp`);
+      return;
+    }
+    navigator.clipboard.writeText(text).then(() => {
+      this.showToast(`${fieldName} copied to clipboard`);
+    }).catch(() => {
+      this.showToast(`${fieldName}: ${text}`);
     });
   }
 
@@ -499,9 +538,9 @@ class CartManager {
     const finalTotal = this.getFinalTotal();
     const cust = this.customer;
 
-    let message = `🌿 *Pre-Order Payment Completed - ${BRAND_CONFIG.companyName}*\n`;
+    let message = `🌿 *Pre-Order Bank Transfer Notice - ${BRAND_CONFIG.companyName}*\n`;
     message += `----------------------------------------\n`;
-    message += `*Total Paid:* INR ${finalTotal.toLocaleString('en-IN')}\n`;
+    message += `*Total Amount:* INR ${finalTotal.toLocaleString('en-IN')}\n`;
     message += `*Customer Name:* ${cust.name || 'N/A'}\n`;
     message += `*Contact Phone:* ${cust.phone || 'N/A'}\n`;
     message += `*Delivery Address:* ${cust.address || 'Standard Farmstead Collection'}\n`;
@@ -512,7 +551,7 @@ class CartManager {
       message += `${index + 1}. ${item.name} (${item.unit}) × ${item.quantity}\n`;
     });
     message += `----------------------------------------\n`;
-    message += `Hello! I have completed the direct bank payment via UPI QR. I am sharing my payment screenshot/reference ID here for order confirmation. Thank you!`;
+    message += `Hello! I am confirming my pre-order via direct bank transfer. I am sharing my transaction reference / receipt details here for allocation. Thank you!`;
 
     const encoded = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${BRAND_CONFIG.whatsappNumber}?text=${encoded}`;
@@ -610,8 +649,8 @@ class CartManager {
 
             <div class="flex flex-col gap-2">
               <button onclick="window.cart.openPaymentModal()" class="w-full bg-brand-gold hover:bg-[#c49b55] text-black font-semibold py-3 px-4 rounded-sm flex items-center justify-center gap-2 shadow-lg transition text-xs sm:text-sm">
-                <i data-lucide="qr-code" class="w-4 h-4 text-black"></i>
-                <span>Pay Direct via UPI / Bank QR (0% Fee)</span>
+                <i data-lucide="building-2" class="w-4 h-4 text-black"></i>
+                <span>Direct Bank Transfer Details</span>
               </button>
               <button onclick="window.cart.checkoutWhatsApp()" class="w-full bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] py-2.5 px-4 rounded-sm font-medium flex items-center justify-center gap-2 transition border border-brand-mossLight/30 text-xs">
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
