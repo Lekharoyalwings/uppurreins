@@ -14,8 +14,15 @@ const BRAND_CONFIG = {
   wholesaleEmail: "look@uppurreins.com",
   address: "347/A Royalwings Nilayam, Kallapara, Sadak road, Kizhakkambalam, Oorakadu, Kunnathunad, Ernakulam 683562",
   hours: "Every Day: 07:00 – 17:00",
-  upiId: "7204271822@upi",
-  upiHolderName: "Purreins Frequency",
+  bankDetails: {
+    accountName: "Purreins Frequency",
+    accountNumber: "Contact for Account No",
+    bankName: "Direct Bank Transfer",
+    ifscCode: "Contact for IFSC",
+    branch: "Ernakulam",
+    accountType: "Current Account",
+    paymentLink: "" // Add direct payment link URL here
+  },
   socials: {
     instagram: "https://instagram.com",
     facebook: "https://facebook.com",
@@ -339,12 +346,40 @@ const FARM_VISITS = [
   }
 ];
 
-const BLOG_POSTS = [
+// Master Dispatches Schedule — Strictly 1 post per day at 4:40 AM IST
+const ALL_BLOG_DISPATCHES = [
+  {
+    id: "blog-03-rushing",
+    title: "What’re we all rushing towards?",
+    category: "Slow Living & Philosophy",
+    date: "Oct 15, 2026",
+    publishAt: "2026-10-15T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog3_rushing.jpg",
+    url: "journal-03-what-are-we-all-rushing-towards.html",
+    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
+      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
+      </div>
+      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
+      </div>
+      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
+    `,
+    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
+  },
   {
     id: "blog-02-hard-way",
     title: "Why’re we doing everything the hard way?",
     category: "Farmstead Lore",
     date: "Oct 14, 2026",
+    publishAt: "2026-10-14T04:40:00+05:30",
     readTime: "3 min read",
     author: "Purreins Frequency",
     image: "assets/images/blog2_hard_way.jpg",
@@ -373,6 +408,7 @@ const BLOG_POSTS = [
     title: "Is eating healthy, healthy?",
     category: "Nutrition & Intuition",
     date: "Oct 13, 2026",
+    publishAt: "2026-10-13T04:40:00+05:30",
     readTime: "4 min read",
     author: "Purreins Frequency",
     image: "assets/images/blog1_eating_healthy.jpg",
@@ -401,34 +437,14 @@ const BLOG_POSTS = [
   }
 ];
 
-// Staged Dispatches — Strictly ONE dispatch per day cadence
-const STAGED_BLOG_POSTS = [
-  {
-    id: "blog-03-rushing",
-    title: "What’re we all rushing towards?",
-    category: "Slow Living & Philosophy",
-    date: "Oct 15, 2026",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog3_rushing.jpg",
-    url: "journal-03-what-are-we-all-rushing-towards.html",
-    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
-      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
-      </div>
-      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
-      </div>
-      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
-    `,
-    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
-  }
-];
+// Fully autonomous client-side schedule: unlocks strictly at 4:40 AM IST on each post's date
+const _now = new Date();
+const BLOG_POSTS = ALL_BLOG_DISPATCHES
+  .filter(post => !post.publishAt || new Date(post.publishAt) <= _now)
+  .sort((a, b) => new Date(b.publishAt || b.date) - new Date(a.publishAt || a.date));
+
+const STAGED_BLOG_POSTS = ALL_BLOG_DISPATCHES
+  .filter(post => post.publishAt && new Date(post.publishAt) > _now);
 
 const FAQS = [
   {
