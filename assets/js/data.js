@@ -349,6 +349,57 @@ const FARM_VISITS = [
 // Master Dispatches Schedule — Strictly 1 post per day at 4:40 AM IST
 const ALL_BLOG_DISPATCHES = [
   {
+    id: "blog-06-soaps-made-of",
+    title: "What are soaps made of?",
+    category: "Artisan Craft & Science",
+    date: "Oct 18, 2026",
+    publishAt: "2026-10-18T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog6_soap_ingredients.jpg",
+    url: "journal-06-what-are-soaps-made-of.html",
+    excerpt: "At Purreins Frequency, we use all farm produced ingredients with one “chemical agent” called Sodium Hydroxide NaOH, the breakdown of Sea Salt using electricity. Simple and heavy is the way to squishy skin.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">At Purreins Frequency, we use all farm-produced ingredients with one “chemical agent” called Sodium Hydroxide (NaOH), which is the breakdown of Sea Salt using electricity. This in real language is not a chemical—it's a byproduct of nature.</p>
+      <p class="mb-4">So our soaps are, oh so gently, blessed by Sea Breeze, and we add to that our freshly sourced products from cows and soil. We wouldn't claim to be 100% natural, because the process of turning Sea Salt into NaOH crystals is not natural, BUT we will claim and stand by being the brand that makes use of this byproduct crystal in the most ORGANIC WAY possible.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“We obviously cannot disclose the exact components for trademark reasons, but we assure you that when you use our soaps, the rich mixture of cleansing and nourishing will make your skin feel healthy and hungry for more ^_^”</p>
+      </div>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] mb-6">Simple and heavy is the way to squishy skin.</p>
+      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Click here to experience luxurious showering with our organic soaps.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
+          <span>Visit Farm Store</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    `,
+    tags: ["PurreinsFrequency", "WhatAreSoapsMadeOf", "SeaBreezeSoap", "ColdProcessTruth", "SodiumHydroxide", "SquishySkin", "FarmsteadStore"]
+  },
+  {
+    id: "blog-05-ai-speed",
+    title: "How fast should your AI agent be?",
+    category: "Technology & Mindset",
+    date: "Oct 17, 2026",
+    publishAt: "2026-10-17T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog5_ai_agent_speed.jpg",
+    url: "journal-05-how-fast-should-your-ai-agent-be.html",
+    excerpt: "AI is not a person, but hey it is kind of a person, right? Be nice to AI, give it time, let it cook. We eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is not a person, but hey it is kind of a person, right?</p>
+      <p class="mb-4">Let’s be realistic about our expectation from AI just because it's AI. It is a tool that is here to make our lives easier, but not jetfast, we don't even need that.</p>
+      <p class="mb-4">One, it's going to crash the damn agent for loading it with so much task within an unrealistic timeframe. Think about it: asking your Mac to run 5 YouTube videos in the background, while asking it to export 6 keys as PDFs, while asking it to install 7 softwares, while asking it to update the existing 8 apps, while trying to ask it to also edit your photos. Your computer is going to heat up so much, you could start cooking on it.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“THAT is exact, rather more happens when you ask your AI agents to do all these tasks together and be insanely fast at it. It's burning tokens, data, and internet at an insane rate that's not even comparable, qualifying for a big downtime. For days. Yes.”</p>
+      </div>
+      <p class="mb-4 font-serif text-xl sm:text-2xl text-[#E2C9A5] italic">Be nice to AI, give it time, let it cook.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">We here at Purreins Frequency, eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.</p>
+    `,
+    tags: ["PurreinsFrequency", "AINotJetFast", "LetItCook", "AgentMindset", "HeavyBreakfast", "RhythmOverSpeed"]
+  },
+  {
     id: "blog-04-sustainable-ai",
     title: "Sustainable AI?",
     category: "Technology & Ecology",
