@@ -349,6 +349,37 @@ const FARM_VISITS = [
 // Master Dispatches Schedule — Strictly 1 post per day at 4:40 AM IST
 const ALL_BLOG_DISPATCHES = [
   {
+    id: "blog-08-curd-is-dairy",
+    title: "Curd is dairy too, right?",
+    category: "Nutrition & Intuition",
+    date: "Oct 20, 2026",
+    publishAt: "2026-10-20T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog8_curd_is_dairy.jpg",
+    url: "journal-08-curd-is-dairy-too-right.html",
+    excerpt: "Remember I told you we are all Lactose intolerant? Curd, unlike other dairy products, is fermented—literally killing away the sugar and giving you pure, gut-friendly acid that turns your body into a self-curing powerhouse.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Remember I told you we are all Lactose intolerant? How is curd any different and why we should take it regularly?</p>
+      <p class="mb-4">Curd, unlike other dairy products, is fermented (an anaerobic metabolic process where micro-organisms like yeast and bacteria break down carbohydrates such as glucose into acids, gases, or alcohol to produce cellular energy). This literally kills away the sugar and gives you pure, gut-friendly acid that stimulates faster and cleaner digestion.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“Taking curd everyday feeds your good gut bacteria and multiplies into many, many more good gut bacterias that keep regular watch on your system, and get you capable to fight any misalignment immediately and provide for instant cure. So your body becomes a self-curing powerhouse without the need of antibiotics, meds, long rest.”</p>
+      </div>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Keep eyes out for curds with preservatives—that's not what we are talking about here, that's just bad, very bad bacteria.</span></div>
+      </div>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">Make your own curd for your inner self and <span class="text-[#D6AB66]">use our curd soap for your outer self ^-^</span></p>
+      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Nourish your outer self with our cold-process farmstead curd soaps.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
+          <span>Explore Curd Soaps in Farm Store</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    `,
+    tags: ["PurreinsFrequency", "CurdIsDifferent", "FermentedGutHealth", "SelfCuringPowerhouse", "CurdSoap", "InnerAndOuterSelf"]
+  },
+  {
     id: "blog-07-lactose-intolerant",
     title: "We are all naturally Lactose intolerant?",
     category: "Nutrition & Intuition",
