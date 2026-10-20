@@ -349,6 +349,68 @@ const FARM_VISITS = [
 // Master Dispatches Schedule — Strictly 1 post per day at 4:40 AM IST
 const ALL_BLOG_DISPATCHES = [
   {
+    id: "blog-10-banana-leaf-soap",
+    title: "Why do we make banana soaps from leaf not the fruit?",
+    category: "Artisan Craft & Science",
+    date: "Oct 22, 2026",
+    publishAt: "2026-10-22T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog10_banana_leaf_soap.jpg",
+    url: "journal-10-why-do-we-make-banana-soaps-from-leaf-not-the-fruit.html",
+    excerpt: "Yes, our banana soaps are made from freshly harvested banana leaves from our farm. With natural antimicrobial detox properties, green-tea-level anti-inflammatory compounds, and natural UV shielding, they heal from the root.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yes, our banana soaps are made from the banana leaves, freshly harvested from our farm. It focuses on cleansing and evening skin texture.</p>
+      <p class="mb-4">The banana leaf is known for its antimicrobial properties, acting as a natural detox on your skin. It also has the same anti-inflammatory presence found in green tea—this strips away any acne or redness from the surface, and regular use can cure it from the root too. One other cool factor is that banana leaves are natural shielders, protecting your skin from intense sun exposure and artificial UV indoor light exposure.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>If initial usage causes burning or irritation on skin, please give a break of a few days before using it again. As the antimicrobial effect starts working, it may cause burning on some sensitive skin types—this just means that the soap is doing good on you and is healing something from underneath.</span></div>
+      </div>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">We take full responsibility in saying this: “Nothing in nature is allergic—especially nothing that is edible is ever allergic—until you have antibiotics inside that are killing your good bacterias inside and confusing your body on the natural digestive process,” hence our soaps are safe naturally.</p>
+      </div>
+      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Detox, shield, and heal from the root with our farm-harvested soaps.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
+          <span>Visit Farm Store &amp; Explore Soaps</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    `,
+    tags: ["PurreinsFrequency", "BananaLeafSoap", "NaturalUVShield", "AntimicrobialDetox", "NothingInNatureIsAllergic", "RootHealing"]
+  },
+  {
+    id: "blog-09-swaddle-is-addictive",
+    title: "Swaddle is addictive.",
+    category: "Conscious Parenting & Rhythm",
+    date: "Oct 21, 2026",
+    publishAt: "2026-10-21T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog9_swaddle_quilt.jpg",
+    url: "journal-09-swaddle-is-addictive.html",
+    excerpt: "Swaddling helps babies sleep, they say—but only till they mature into their bodies. Once they show the first signs of rolling over, keeping them swaddled stops them from exploring their limbs and syncing with nature.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Swaddle your baby and that helps them relax and sleep better; they say.</p>
+      <p class="mb-4">Well, yes—swaddling your baby helps them sleep better and probably relax too, <strong class="text-[#E2C9A5] font-medium">but only till they mature.</strong> Babies mature? Yes, babies mature into their bodies and try learning to use their body parts, move around, and even try talking. So to facilitate these movements, you stop swaddling your baby when they show the first signs of rolling over onto their tummy.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Disclaimer: If you keep them swaddled and simulating the feeling of still being in the womb, it prevents them from trying to move anything at all.</span></div>
+      </div>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“Does that mean you should completely stop swaddling your baby, even when rocking them to sleep? YES, because babies haven't yet synced with the circadian rhythm of nature—they will try to explore their body anytime they're awake. This can be early in the morning, middle of the day, or even middle of the night.”</p>
+      </div>
+      <p class="mb-4">Your role as a parent is to give them the feeling of being secure and safe, and the space to grow up into a fully developed little human to big human.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">You can cover them gently with a <span class="text-[#D6AB66]">throw blanket or even a quilt</span>, while keeping the temperature just right—this will help them relax and rock them to sleep naturally.</p>
+      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Wrap them in breathable, hand-stitched organic cotton quilts &amp; throws.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
+          <span>Explore Heirloom Quilt Rolls</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    `,
+    tags: ["PurreinsFrequency", "ConsciousParenting", "CircadianRhythm", "LetBabiesMove", "HeirloomQuilts", "NaturalGrowth"]
+  },
+  {
     id: "blog-08-curd-is-dairy",
     title: "Curd is dairy too, right?",
     category: "Nutrition & Intuition",
