@@ -1,11 +1,11 @@
 // UP Purreins & Purreins Frequency - Central Data Store
-// Curated pure-living catalog: Coir/Straw Baskets, Soaps, Duck Eggs, Quilt Rolls & Herbal Stems
+// Curated pure-living catalog: Curd Soaps, Pasture Duck Eggs, GOTS Quilt Rolls & Organic Moringa/Tulsi Leaves
 
 const BRAND_CONFIG = {
   brandName: "UP Purreins",
   companyName: "Purreins Frequency",
   tagline: "Purreins Frequency, waves of raw & real resources.",
-  description: "Handcrafted soaps, pasture duck eggs in straw, natural quilt rolls, fresh herbal stems, and hand-woven coir baskets.",
+  description: "Handcrafted curd soaps, pasture duck eggs in straw, GOTS & OEKO-TEX certified artisanal quilt rolls, and sun-cured moringa and sacred tulsi leaves.",
   currency: "INR",
   currencySymbol: "INR ",
   phone: "+91 72042 71822",
@@ -33,28 +33,27 @@ const BRAND_CONFIG = {
 const CATEGORIES = [
   { id: "all", name: "All Offerings", icon: "sparkles" },
   { id: "bundles", name: "Farmstead Hampers", icon: "gift" },
-  { id: "soaps", name: "Soaps", icon: "droplets" },
+  { id: "soaps", name: "Curd Soaps", icon: "droplets" },
   { id: "duck-eggs", name: "Pasture Duck Eggs", icon: "egg" },
-  { id: "quilts", name: "Heirloom Quilt Rolls", icon: "scissors" },
-  { id: "herbs", name: "Herbal Stems & Leaves", icon: "leaf" },
-  { id: "coir", name: "Coir & Straw Crafts", icon: "box" }
+  { id: "quilts", name: "Artisanal Quilt Rolls", icon: "scissors" },
+  { id: "herbs", name: "Herbal Leaves", icon: "leaf" }
 ];
 
 const PRODUCTS = [
   // CURATED FARMSTEAD HAMPERS (Each with unique image)
   {
-    id: "bundle-straw-coir-basket",
-    name: "The Farmstead Straw & Coir Harvest Hamper",
+    id: "bundle-farmstead-harvest",
+    name: "The Farmstead Harvest Hamper",
     category: "bundles",
     price: 1450,
-    unit: "Woven Coir Basket with Eggs, Soaps & Fresh Leaves",
+    unit: "Artisanal Gift Hamper with Eggs, Curd Soaps & Leaves",
     badge: "Signature Hamper",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 47,
     image: "assets/images/hero-basket.jpg",
-    description: "Our signature artisanal gift hamper: a hand-woven organic straw and coir basket filled with fresh pasture duck eggs on straw, two cold-process soaps crafted with farmstead curd and wrapped in plain organic paper stating only the flavor, tied with textured off-white cotton thread with natural seed flecks, alongside whole leafy herbal stems and an earthen black pot of fresh setting curd.",
-    ingredients: "Handcrafted Coir & Straw Basket + 6 Pasture Duck Eggs + 2 Curd Soaps with Textured Cotton Thread + Fresh Herbal Stems + Setting Curd Pot.",
+    description: "Our signature artisanal gift hamper: fresh pasture-roaming duck eggs nestled in golden straw, two cold-process curd soaps wrapped in plain unbranded organic paper stating only the flavor, tied with textured off-white cotton thread with natural seed flecks, alongside sun-cured sacred tulsi and moringa leaves, and an earthen pot of fresh setting curd.",
+    ingredients: "6 Pasture Duck Eggs in Straw + 2 Farmstead Curd Soaps + Sun-Cured Sacred Tulsi & Moringa Leaves + Earthen Setting Curd Pot.",
     benefits: ["100% natural, biodegradable materials", "Soothes the senses with natural earthy textures", "Direct farm-to-table presentation with zero plastic"],
     inStock: true,
     isFeatured: true,
@@ -62,7 +61,7 @@ const PRODUCTS = [
   },
   {
     id: "bundle-heirloom-quilt-hamper",
-    name: "The Heirloom Quilt Roll & Soap Hamper",
+    name: "The Artisanal Quilt Roll & Curd Soap Hamper",
     category: "bundles",
     price: 5800,
     unit: "Master Collector Living Hamper",
@@ -71,85 +70,103 @@ const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 22,
     image: "assets/images/quilt-hamper.jpg",
-    description: "The complete artisanal home upgrade: a queen-size hand-stitched organic cotton quilt roll tied with textured cotton twine, paired with two cold-process soaps wrapped in plain unbranded organic paper and whole dried herbal stems in a wooden gift crate.",
-    ingredients: "Queen Organic Cotton Quilt Roll + 2 Cold-Process Soaps + Dried Herbal Stems + Rustic Wooden Crate.",
-    benefits: ["GOTS-certified organic cotton with zero synthetic fibers", "Hypoallergenic and naturally breathable", "Handcrafted durability built to last generations"],
+    description: "The complete artisanal home upgrade: a queen-size artisanal quilt roll crafted from GOTS-certified and OEKO-TEX certified organically dyed cotton, tied with textured cotton twine, paired with two cold-process curd soaps wrapped in plain unbranded organic paper and sun-cured herbal leaves in a rustic wooden gift crate.",
+    ingredients: "Queen GOTS & OEKO-TEX Certified Organic Quilt Roll + 2 Cold-Process Curd Soaps + Sun-Cured Herbal Leaves + Rustic Wooden Crate.",
+    benefits: ["GOTS-certified and OEKO-TEX certified organic cotton with zero synthetic fibers", "Hypoallergenic, breathable, and organically dyed", "Handcrafted durability built to last generations"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: false
   },
   {
     id: "bundle-nest-crate",
-    name: "The Pasture Duck Egg & Soap Nest",
+    name: "The Pasture Duck Egg & Curd Soap Nest",
     category: "bundles",
     price: 950,
-    unit: "Shallow Coir Tray with Eggs & Soap",
+    unit: "Wooden Tray with Eggs & Soap",
     badge: "Daily Ritual",
     badgeType: "featured",
     rating: 4.9,
     reviewsCount: 34,
     image: "assets/images/egg-soap-nest.jpg",
-    description: "A calming morning pairing: fresh pasture-roaming duck eggs nestled in golden straw and raw coir fibers, alongside an oat, curd, and honey cold-process soap wrapped in simple organic paper and tied with textured cotton thread with natural flecks, with a whole fresh herbal stem.",
-    ingredients: "Half-Dozen Pasture Duck Eggs + 1 Artisanal Curd Soap Bar + Fresh Herbal Stems in Straw Bed.",
+    description: "A calming morning pairing: fresh pasture-roaming duck eggs nestled in golden straw, alongside an artisanal curd soap bar wrapped in simple organic paper and tied with textured cotton thread with natural flecks, with sun-cured sacred tulsi leaves.",
+    ingredients: "Half-Dozen Pasture Duck Eggs + 1 Farmstead Curd Soap Bar + Sun-Cured Sacred Tulsi in Straw Bed.",
     benefits: ["Rich in natural nutrients and skin-loving lipids", "Zero chemical pesticides or artificial additives", "Packaged in eco-friendly compostable straw bedding"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
 
-  // SOAPS (Simplified naming, clean packaging: organic paper with only flavor name, no company logo)
+  // CURD SOAPS (Wrapped in plain unbranded organic paper with only flavor name, tied with seed-flecked cotton thread)
   {
-    id: "soap-wild-honey-oat",
-    name: "Honey & Oat Soap",
+    id: "soap-curd",
+    name: "Curd Soap",
     category: "soaps",
     price: 280,
     unit: "120g Artisan Bar",
-    badge: "Bestseller",
+    badge: "Signature Curd",
     badgeType: "featured",
     rating: 4.9,
     reviewsCount: 38,
     image: "assets/images/artisan-soaps.jpg",
-    description: "Cold-processed soap enriched with fresh farmstead curd, raw unpasteurized honey, organic colloidal oats, and pure shea butter. Wrapped in plain organic paper showing only the flavor name, tied with textured off-white cotton thread with natural seed flecks. Aged 6 weeks for rich, creamy lather.",
-    ingredients: "Saponified Extra Virgin Olive Oil, Virgin Coconut Oil, Farmstead Organic Curd, Raw Farm Honey, Organic Colloidal Oats, Raw Shea Butter.",
-    benefits: ["Natural lactic acid from farm curd gently clarifies and softens", "Deeply hydrating & calming for sensitive skin", "Tied with textured cotton thread, zero company logos on packaging"],
+    description: "Cold-processed soap crafted with fresh farmstead curd and pure skin-nourishing botanical oils. Wrapped in plain unbranded organic paper stating only the flavor name, tied with textured off-white cotton thread with natural seed flecks. Aged 6 weeks for a dense, ultra-gentle, skin-softening lather.",
+    ingredients: "Saponified Extra Virgin Olive Oil, Farmstead Organic Curd, Cold-Pressed Coconut Oil, Raw Shea Butter, Castor Seed Oil.",
+    benefits: ["Natural lactic acid from living farm curd gently softens and clarifies", "Deeply hydrating and restorative for delicate, sensitive skin", "Tied with textured cotton thread, zero company logos on packaging"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
   {
-    id: "soap-eucalyptus-clay",
-    name: "Eucalyptus & Clay Soap",
-    category: "soaps",
-    price: 280,
-    unit: "120g Artisan Bar",
-    badge: "Mineral Dense",
-    badgeType: "organic",
-    rating: 4.8,
-    reviewsCount: 24,
-    image: "assets/images/artisan-soaps.jpg",
-    description: "Clarifying soap loaded with mineral-dense French green clay, steam-distilled eucalyptus, and wild tea tree oil. Wrapped in plain organic paper with only the soap flavor, tied with textured off-white cotton thread.",
-    ingredients: "Saponified Extra Virgin Olive Oil, French Green Clay, Organic Eucalyptus Globulus Oil, Organic Melaleuca (Tea Tree) Oil, Castor Seed Oil.",
-    benefits: ["Draws out impurities and clarifies pores", "Invigorating aromatherapy with pure essential oils", "No palm oil, parabens, or artificial dyes"],
-    inStock: true,
-    isFeatured: false,
-    wholesaleAvailable: true
-  },
-  {
-    id: "soap-lavender-calendula",
-    name: "Calendula & Lavender Soap",
+    id: "soap-banana-bamboo",
+    name: "Banana & Bamboo Soap",
     category: "soaps",
     price: 320,
     unit: "120g Artisan Bar",
-    badge: "Cold Cured",
+    badge: "Silica Rich",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 42,
     image: "assets/images/artisan-soaps.jpg",
-    description: "Infused with whole organic calendula petals hand-harvested from our permaculture beds and mountain lavender oil. Wrapped in plain organic paper with flavor name, tied with textured cotton thread.",
-    ingredients: "Solar-infused Calendula Olive Oil, Organic Lavender Essential Oil, Babassu Oil, Cocoa Butter, Whole Calendula Florets.",
-    benefits: ["Soothes delicate skin", "Relaxing floral herbal aroma", "Aged for 6 weeks for ultra-creamy lather"],
+    description: "Botanical cold-process bar crafted with real farmstead banana purée and organic bamboo extract rich in bio-silica. Wrapped in plain organic paper showing only the flavor name, tied with textured off-white cotton thread.",
+    ingredients: "Fresh Farmstead Ripe Banana Purée, Organic Bamboo Extract, Saponified Olive Oil, Virgin Coconut Oil, Raw Cocoa Butter.",
+    benefits: ["Natural potassium and fruit moisture promote smooth skin elasticity", "Bamboo silica strengthens skin barrier and softens texture", "Aged 6 weeks with zero artificial fragrances, colors, or synthetics"],
     inStock: true,
     isFeatured: true,
+    wholesaleAvailable: true
+  },
+  {
+    id: "soap-moringa",
+    name: "Moringa Soap",
+    category: "soaps",
+    price: 290,
+    unit: "120g Artisan Bar",
+    badge: "Nutrient Dense",
+    badgeType: "organic",
+    rating: 4.9,
+    reviewsCount: 29,
+    image: "assets/images/artisan-soaps.jpg",
+    description: "Nutrient-packed cold-process soap infused with freshly ground organic moringa leaf powder and cold-pressed moringa seed oil from our farmstead trees. Wrapped in plain organic paper with only the flavor name, tied with textured cotton thread.",
+    ingredients: "Organic Farm-Harvested Moringa Leaf (Moringa oleifera), Cold-Pressed Moringa Seed Oil, Saponified Extra Virgin Olive Oil, Virgin Coconut Oil, Shea Butter.",
+    benefits: ["Abundant in vitamins A, C, and E for deep cellular nourishment", "Potent antioxidants purify environmental stressors naturally", "Zero palm oil, chemical preservatives, or synthetic additives"],
+    inStock: true,
+    isFeatured: true,
+    wholesaleAvailable: true
+  },
+  {
+    id: "soap-dry-grass",
+    name: "Dry Grass Soap",
+    category: "soaps",
+    price: 290,
+    unit: "120g Artisan Bar",
+    badge: "Earthy Botanical",
+    badgeType: "organic",
+    rating: 4.8,
+    reviewsCount: 24,
+    image: "assets/images/artisan-soaps.jpg",
+    description: "Grounding, therapeutic cold-process soap infused with aromatic solar-cured meadow dry grass and wholesome botanical oils. Offers gentle textural exfoliation and an authentic earthy farmstead aroma. Wrapped in plain organic paper tied with textured seed-flecked cotton thread.",
+    ingredients: "Solar-Cured Aromatic Native Dry Grass, Saponified Olive Oil, Virgin Coconut Oil, Farmstead Curd, Raw Shea Butter.",
+    benefits: ["Fine natural dry grass fibers provide gentle, non-abrasive skin polishing", "Grounding earthy notes from pure sun-dried meadow botanicals", "Creamy, moisturizing lather cured naturally for 6 weeks"],
+    inStock: true,
+    isFeatured: false,
     wholesaleAvailable: true
   },
 
@@ -173,45 +190,45 @@ const PRODUCTS = [
     wholesaleAvailable: true
   },
 
-  // HANDCRAFTED QUILT ROLLS
+  // ARTISANAL QUILT ROLLS & ORGANIC COTTON LINEN
   {
-    id: "quilt-heirloom-patchwork",
-    name: "Heirloom Artisan Patchwork Quilt Roll",
+    id: "quilt-heirloom-artisan",
+    name: "Heirloom Artisanal Quilt Roll",
     category: "quilts",
     price: 5400,
     unit: "90\" x 90\" Queen Quilt Roll",
-    badge: "Hand-Stitched",
+    badge: "GOTS & OEKO-TEX",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 16,
     image: "assets/images/quilt-roll.jpg",
-    description: "Artisan-stitched quilt crafted with unbleached organic cotton and naturally plant-dyed textile remnants. Rolled and tied with raw jute twine.",
-    ingredients: "100% Organic GOTS-Certified Cotton, naturally dyed with madder root and indigo.",
-    benefits: ["Zero synthetic microplastics or chemical flame retardants", "Breathable thermal regulation for deep, restful sleep", "Hand-stitched durability made to pass down generations"],
+    description: "Artisanal quilt roll crafted with unbleached organic cotton and organically dyed textile fabrics. Certified GOTS and OEKO-TEX Standard 100, ensuring complete freedom from synthetic chemicals and harsh irritants. Rolled and tied with raw cotton twine.",
+    ingredients: "100% GOTS-Certified & OEKO-TEX Certified Organic Cotton, organically dyed with natural botanical dyes.",
+    benefits: ["GOTS certified & OEKO-TEX certified (zero harmful chemicals or synthetics)", "Organically dyed with gentle, sustainable plant extracts", "Breathable thermal regulation for deep, restorative sleep"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: false
   },
   {
-    id: "quilt-organic-indigo-throw",
-    name: "Hand-Dyed Organic Cotton Linen Blanket Roll",
+    id: "quilt-organic-linen-throw",
+    name: "Organically Dyed Cotton Linen Blanket Roll",
     category: "quilts",
     price: 2800,
     unit: "50\" x 70\" Throw Blanket Roll",
-    badge: "Plant Dyed",
+    badge: "GOTS & OEKO-TEX",
     badgeType: "organic",
     rating: 4.8,
     reviewsCount: 12,
     image: "assets/images/quilt-roll.jpg",
-    description: "Cozy lap throw hand-dyed in small wooden fermentation vats using farm-grown organic indigo leaves. Neatly rolled and tied with rustic twine.",
-    ingredients: "100% Organic Unbleached Hand-Spun Cotton, Organic Indigofera tinctoria dye.",
-    benefits: ["Pure plant dye is hypoallergenic and skin-soothing", "Lightweight yet exceptionally cozy for all seasons", "Each piece features unique artisanal ombre patterning"],
+    description: "Cozy lap throw blanket roll woven from premium organic cotton and linen, organically dyed in earthy botanical hues. Certified GOTS and OEKO-TEX Standard 100 for pure, hypoallergenic living. Neatly rolled and tied with rustic twine.",
+    ingredients: "GOTS-Certified & OEKO-TEX Certified Organic Cotton & Pure Linen, organically dyed with natural plant extracts.",
+    benefits: ["Organically dyed, skin-soothing & hypoallergenic", "GOTS & OEKO-TEX certified with zero synthetic mordants or chemicals", "Lightweight yet exceptionally cozy for all seasons"],
     inStock: true,
     isFeatured: false,
     wholesaleAvailable: true
   },
 
-  // HERBAL STEMS & LEAVES (Unique image for fresh stems)
+  // HERBAL LEAVES
   {
     id: "herb-sacred-tulsi",
     name: "Sun-Cured Sacred Tulsi Leaves",
@@ -231,57 +248,19 @@ const PRODUCTS = [
     wholesaleAvailable: true
   },
   {
-    id: "herb-rosemary-sage-bundle",
-    name: "Fresh Farmstead Rosemary & Sage Whole Stems",
+    id: "herb-moringa-leaves",
+    name: "Sun-Dried Organic Moringa Leaves",
     category: "herbs",
-    price: 190,
-    unit: "Fresh Harvest Whole Stem Bundle",
-    badge: "Fresh Stems",
+    price: 220,
+    unit: "100g Hand-Tied Leaf Bundle / Jar",
+    badge: "Farm Harvest",
     badgeType: "fresh",
-    rating: 4.8,
-    reviewsCount: 15,
-    image: "assets/images/rosemary-sage-stems.jpg",
-    description: "Hand-tied with organic unbleached cotton string. Fresh aromatic rosemary whole branch paired with garden-grown cleansing sage stems.",
-    ingredients: "Fresh Cut Rosemary Whole Stems (Salvia rosmarinus), Organic Garden Sage Stems (Salvia officinalis).",
-    benefits: ["Intense natural aroma for room freshness and culinary use", "Can be hung dry in warm kitchens", "Harvested same morning of dispatch"],
-    inStock: true,
-    isFeatured: false,
-    wholesaleAvailable: true
-  },
-
-  // COIR & STRAW CRAFTS (Unique image for basket)
-  {
-    id: "craft-coir-soap-deck",
-    name: "Hand-Loomed Coconut Coir Soap Deck",
-    category: "coir",
-    price: 150,
-    unit: "Natural Coir Fiber Draining Tray",
-    badge: "Zero Waste",
-    badgeType: "organic",
     rating: 4.9,
-    reviewsCount: 28,
-    image: "assets/images/coir-products.jpg",
-    description: "Woven entirely by hand from raw coconut husk coir fiber. Drains excess water away from soap bars, extending bar longevity naturally.",
-    ingredients: "100% Untreated Raw Coconut Coir Fiber.",
-    benefits: ["Naturally antimicrobial and quick-drying", "Extends artisanal soap life by 30%", "Completely compostable at end of life"],
-    inStock: true,
-    isFeatured: false,
-    wholesaleAvailable: true
-  },
-  {
-    id: "craft-straw-coir-basket",
-    name: "Hand-Woven Natural Straw & Coir Farm Basket",
-    category: "coir",
-    price: 750,
-    unit: "Artisan Basket with Handles",
-    badge: "Hand Woven",
-    badgeType: "featured",
-    rating: 5.0,
-    reviewsCount: 17,
-    image: "assets/images/straw-basket-craft.jpg",
-    description: "Traditional sturdy storage and harvest basket crafted from natural straw and coir fiber. Perfect for holding farm eggs, soaps, and textiles.",
-    ingredients: "Natural Coir Husk Fibers and Dried Meadow Straw.",
-    benefits: ["Sturdy braided construction with dual handles", "Zero plastic or synthetic varnishes", "Timeless organic aesthetic for any living space"],
+    reviewsCount: 26,
+    image: "assets/images/rosemary-sage-stems.jpg",
+    description: "Hand-harvested sun-dried whole moringa leaves from our living soil farmstead trees. Naturally abundant in bio-available iron, plant protein, and protective antioxidants, tied with organic cotton twine.",
+    ingredients: "100% Organically Grown Whole Moringa Leaves (Moringa oleifera).",
+    benefits: ["Dense with essential vitamins, iron, and amino acids", "Gentle sun-drying locks in active phytochemicals and chlorophyll", "Perfect for nourishing herbal teas, broths, and daily wellness"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
@@ -346,261 +325,12 @@ const FARM_VISITS = [
   }
 ];
 
-// Master Dispatches Schedule — Strictly 1 post per day at 4:40 AM IST
-const ALL_BLOG_DISPATCHES = [
-  {
-    id: "blog-10-banana-leaf-soap",
-    title: "Why do we make banana soaps from leaf not the fruit?",
-    category: "Artisan Craft & Science",
-    date: "Oct 22, 2026",
-    publishAt: "2026-10-22T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog10_banana_leaf_soap.jpg",
-    url: "journal-10-why-do-we-make-banana-soaps-from-leaf-not-the-fruit.html",
-    excerpt: "Yes, our banana soaps are made from freshly harvested banana leaves from our farm. With natural antimicrobial detox properties, green-tea-level anti-inflammatory compounds, and natural UV shielding, they heal from the root.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yes, our banana soaps are made from the banana leaves, freshly harvested from our farm. It focuses on cleansing and evening skin texture.</p>
-      <p class="mb-4">The banana leaf is known for its antimicrobial properties, acting as a natural detox on your skin. It also has the same anti-inflammatory presence found in green tea—this strips away any acne or redness from the surface, and regular use can cure it from the root too. One other cool factor is that banana leaves are natural shielders, protecting your skin from intense sun exposure and artificial UV indoor light exposure.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>If initial usage causes burning or irritation on skin, please give a break of a few days before using it again. As the antimicrobial effect starts working, it may cause burning on some sensitive skin types—this just means that the soap is doing good on you and is healing something from underneath.</span></div>
-      </div>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">We take full responsibility in saying this: “Nothing in nature is allergic—especially nothing that is edible is ever allergic—until you have antibiotics inside that are killing your good bacterias inside and confusing your body on the natural digestive process,” hence our soaps are safe naturally.</p>
-      </div>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Detox, shield, and heal from the root with our farm-harvested soaps.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Visit Farm Store &amp; Explore Soaps</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "BananaLeafSoap", "NaturalUVShield", "AntimicrobialDetox", "NothingInNatureIsAllergic", "RootHealing"]
-  },
-  {
-    id: "blog-09-swaddle-is-addictive",
-    title: "Swaddle is addictive.",
-    category: "Conscious Parenting & Rhythm",
-    date: "Oct 21, 2026",
-    publishAt: "2026-10-21T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog9_swaddle_quilt.jpg",
-    url: "journal-09-swaddle-is-addictive.html",
-    excerpt: "Swaddling helps babies sleep, they say—but only till they mature into their bodies. Once they show the first signs of rolling over, keeping them swaddled stops them from exploring their limbs and syncing with nature.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Swaddle your baby and that helps them relax and sleep better; they say.</p>
-      <p class="mb-4">Well, yes—swaddling your baby helps them sleep better and probably relax too, <strong class="text-[#E2C9A5] font-medium">but only till they mature.</strong> Babies mature? Yes, babies mature into their bodies and try learning to use their body parts, move around, and even try talking. So to facilitate these movements, you stop swaddling your baby when they show the first signs of rolling over onto their tummy.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Disclaimer: If you keep them swaddled and simulating the feeling of still being in the womb, it prevents them from trying to move anything at all.</span></div>
-      </div>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“Does that mean you should completely stop swaddling your baby, even when rocking them to sleep? YES, because babies haven't yet synced with the circadian rhythm of nature—they will try to explore their body anytime they're awake. This can be early in the morning, middle of the day, or even middle of the night.”</p>
-      </div>
-      <p class="mb-4">Your role as a parent is to give them the feeling of being secure and safe, and the space to grow up into a fully developed little human to big human.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">You can cover them gently with a <span class="text-[#D6AB66]">throw blanket or even a quilt</span>, while keeping the temperature just right—this will help them relax and rock them to sleep naturally.</p>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Wrap them in breathable, hand-stitched organic cotton quilts &amp; throws.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Explore Heirloom Quilt Rolls</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "ConsciousParenting", "CircadianRhythm", "LetBabiesMove", "HeirloomQuilts", "NaturalGrowth"]
-  },
-  {
-    id: "blog-08-curd-is-dairy",
-    title: "Curd is dairy too, right?",
-    category: "Nutrition & Intuition",
-    date: "Oct 20, 2026",
-    publishAt: "2026-10-20T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog8_curd_is_dairy.jpg",
-    url: "journal-08-curd-is-dairy-too-right.html",
-    excerpt: "Remember I told you we are all Lactose intolerant? Curd, unlike other dairy products, is fermented—literally killing away the sugar and giving you pure, gut-friendly acid that turns your body into a self-curing powerhouse.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Remember I told you we are all Lactose intolerant? How is curd any different and why we should take it regularly?</p>
-      <p class="mb-4">Curd, unlike other dairy products, is fermented (an anaerobic metabolic process where micro-organisms like yeast and bacteria break down carbohydrates such as glucose into acids, gases, or alcohol to produce cellular energy). This literally kills away the sugar and gives you pure, gut-friendly acid that stimulates faster and cleaner digestion.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“Taking curd everyday feeds your good gut bacteria and multiplies into many, many more good gut bacterias that keep regular watch on your system, and get you capable to fight any misalignment immediately and provide for instant cure. So your body becomes a self-curing powerhouse without the need of antibiotics, meds, long rest.”</p>
-      </div>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Keep eyes out for curds with preservatives—that's not what we are talking about here, that's just bad, very bad bacteria.</span></div>
-      </div>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">Make your own curd for your inner self and <span class="text-[#D6AB66]">use our curd soap for your outer self ^-^</span></p>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Nourish your outer self with our cold-process farmstead curd soaps.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Explore Curd Soaps in Farm Store</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "CurdIsDifferent", "FermentedGutHealth", "SelfCuringPowerhouse", "CurdSoap", "InnerAndOuterSelf"]
-  },
-  {
-    id: "blog-07-lactose-intolerant",
-    title: "We are all naturally Lactose intolerant?",
-    category: "Nutrition & Intuition",
-    date: "Oct 19, 2026",
-    publishAt: "2026-10-19T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog7_lactose_intolerant.jpg",
-    url: "journal-07-we-are-all-naturally-lactose-intolerant.html",
-    excerpt: "Yep, we are all naturally lactose intolerant. But this fact hides behind the chemicals in commercial pasteurization. Stopping dairy early gives your body time to make space for good bacteria.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yep, we are all naturally lactose intolerant. But this fact hides behind the many chemicals added to the commercial pasteurization process that makes digestion more suitable for the short term. Continued intake of this eventually trains your body to digest it as normal food over time.</p>
-      <p class="mb-4">The true effect of dairy products flares up either when you are too sensitive to it as a baby, or when you give it a long break and come back to it. First one, is as good as very good reflex and high presence of good bacteria. The second one, is where your body heals and clears away the bad bacteria and the natural effect shows.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“So does that mean you should stop taking in dairy and never have it again? Not quite, but yeah, because it is not doing anything but stocking up a set of illnesses that will show when your body gets old and doesn't have the young strength to keep producing new good bacteria.”</p>
-      </div>
-      <p class="mb-4">Stopping it early will give your body time to clear it out and make space for new good bacteria that will stay healthy and multiply through your old age and more.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">Well, you still need some kind of “milk” to take in your Matcha and Tea and Coffee, yes, and you have various options to choose from: Coconut milk. Cashew milk. Almond milk. Rice milk. Groundnut milk. La la la.</p>
-    `,
-    tags: ["PurreinsFrequency", "LactoseIntolerance", "DairyTruth", "PlantMilks", "GutBacteria", "RealNutrition"]
-  },
-  {
-    id: "blog-06-soaps-made-of",
-    title: "What are soaps made of?",
-    category: "Artisan Craft & Science",
-    date: "Oct 18, 2026",
-    publishAt: "2026-10-18T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog6_soap_ingredients.jpg",
-    url: "journal-06-what-are-soaps-made-of.html",
-    excerpt: "At Purreins Frequency, we use all farm produced ingredients with one “chemical agent” called Sodium Hydroxide NaOH, the breakdown of Sea Salt using electricity. Simple and heavy is the way to squishy skin.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">At Purreins Frequency, we use all farm-produced ingredients with one “chemical agent” called Sodium Hydroxide (NaOH), which is the breakdown of Sea Salt using electricity. This in real language is not a chemical—it's a byproduct of nature.</p>
-      <p class="mb-4">So our soaps are, oh so gently, blessed by Sea Breeze, and we add to that our freshly sourced products from cows and soil. We wouldn't claim to be 100% natural, because the process of turning Sea Salt into NaOH crystals is not natural, BUT we will claim and stand by being the brand that makes use of this byproduct crystal in the most ORGANIC WAY possible.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“We obviously cannot disclose the exact components for trademark reasons, but we assure you that when you use our soaps, the rich mixture of cleansing and nourishing will make your skin feel healthy and hungry for more ^_^”</p>
-      </div>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] mb-6">Simple and heavy is the way to squishy skin.</p>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Click here to experience luxurious showering with our organic soaps.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Visit Farm Store</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "WhatAreSoapsMadeOf", "SeaBreezeSoap", "ColdProcessTruth", "SodiumHydroxide", "SquishySkin", "FarmsteadStore"]
-  },
-  {
-    id: "blog-05-ai-speed",
-    title: "How fast should your AI agent be?",
-    category: "Technology & Mindset",
-    date: "Oct 17, 2026",
-    publishAt: "2026-10-17T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog5_ai_agent_speed.jpg",
-    url: "journal-05-how-fast-should-your-ai-agent-be.html",
-    excerpt: "AI is not a person, but hey it is kind of a person, right? Be nice to AI, give it time, let it cook. We eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is not a person, but hey it is kind of a person, right?</p>
-      <p class="mb-4">Let’s be realistic about our expectation from AI just because it's AI. It is a tool that is here to make our lives easier, but not jetfast, we don't even need that.</p>
-      <p class="mb-4">One, it's going to crash the damn agent for loading it with so much task within an unrealistic timeframe. Think about it: asking your Mac to run 5 YouTube videos in the background, while asking it to export 6 keys as PDFs, while asking it to install 7 softwares, while asking it to update the existing 8 apps, while trying to ask it to also edit your photos. Your computer is going to heat up so much, you could start cooking on it.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“THAT is exact, rather more happens when you ask your AI agents to do all these tasks together and be insanely fast at it. It's burning tokens, data, and internet at an insane rate that's not even comparable, qualifying for a big downtime. For days. Yes.”</p>
-      </div>
-      <p class="mb-4 font-serif text-xl sm:text-2xl text-[#E2C9A5] italic">Be nice to AI, give it time, let it cook.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">We here at Purreins Frequency, eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.</p>
-    `,
-    tags: ["PurreinsFrequency", "AINotJetFast", "LetItCook", "AgentMindset", "HeavyBreakfast", "RhythmOverSpeed"]
-  },
-  {
-    id: "blog-04-sustainable-ai",
-    title: "Sustainable AI?",
-    category: "Technology & Ecology",
-    date: "Oct 16, 2026",
-    publishAt: "2026-10-16T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog4_sustainable_ai.jpg",
-    url: "journal-04-sustainable-ai.html",
-    excerpt: "In the world of AI skyrocketing every second and sustainability figuring out a way to conclude itself, AI by itself can be or already is sustainable. When AI does technical things for me, I can give my human hours to the farm.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yes, you read that right. In the world of AI skyrocketing every second and sustainability figuring out a way to conclude itself, AI by itself can be or already is sustainable.</p>
-      <p class="mb-4">Being a farmer, I say this because when AI does technical things for me on the computers, on the machines, and on my phones, I can give my human time and working hours into the farm harvesting, nurturing my seeds, and meditating with the sun.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“AI is actually making our life sustainable in a way that the human race has not yet fully understood its capabilities. If you tap into the mechanics of AI and configure it to work for you, then you can work on yourself and spiritually take yourself to a level where the world actually feels like bliss.”</p>
-      </div>
-      <p class="mb-4">You can start by giving more time to learning what AI is and what your everyday is, and connecting the two to each other so the automatics are done by the AI, and the thinking, creativity, and manufacturing are done by you.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Automatics, technical maintenance, and data routing belong to algorithms.</span></div>
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Soil tending, craftsmanship, sensory feeling, and presence belong to humans.</span></div>
-      </div>
-      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">This might seem like a techie dev statement, but <strong class="text-[#D6AB66] font-semibold">AI is the essential ground for sustainability.</strong></p>
-    `,
-    tags: ["PurreinsFrequency", "SustainableAI", "FarmsteadTech", "NatureAndCode", "ConsciousAutomation", "HumanHours"]
-  },
-  {
-    id: "blog-03-rushing",
-    title: "What’re we all rushing towards?",
-    category: "Slow Living & Philosophy",
-    date: "Oct 15, 2026",
-    publishAt: "2026-10-15T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog3_rushing.jpg",
-    url: "journal-03-what-are-we-all-rushing-towards.html",
-    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
-      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
-      </div>
-      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
-      </div>
-      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
-    `,
-    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
-  },
-  {
-    id: "blog-02-hard-way",
-    title: "Why’re we doing everything the hard way?",
-    category: "Farmstead Lore",
-    date: "Oct 14, 2026",
-    publishAt: "2026-10-14T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog2_hard_way.jpg",
-    url: "journal-02-why-are-we-doing-everything-the-hard-way.html",
-    excerpt: "In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a convenience-free life? Convenience and speed isn’t the way towards getting healthy.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a holistic, convenience-free life?</p>
-      <p class="mb-4">Well, turns out, that convenience and speed isn’t the way towards getting healthy.</p>
-      <p class="mb-4">All our plants, all our ducks, all our soaps are made Organically, as in made By Nature, not by intimidating the process of nature. The time needed to do that is the time we use to focus on our human instincts and soul purpose of being on planet earth.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60 space-y-1.5">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic">Sounds spiritual?</p>
-        <p class="text-xs sm:text-sm text-[#CBB89D]/80 leading-relaxed">Not quite, not everything that is about Nature and holistic living, has to do with spirituality, most has to do with just existing and being in sync with the elements.</p>
-      </div>
-      <div class="space-y-2.5 bg-[#4E693B]/10 border border-[#8EB264]/20 p-5 rounded-sm my-6 text-xs sm:text-sm">
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Waking up with sun, falling asleep with the sun, using the rain, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the EXERCISE.</strong></p></div>
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Tilling the soil, harvesting produce, making food, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the GYM.</strong></p></div>
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Keeping it healthy, watching it grow, multiplying it, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the TASK.</strong></p></div>
-      </div>
-      <p class="mb-4">Get through all this, in the day, and the time you have remaining, is what you will need to start being spiritual.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
-    `,
-    tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
-  },
+const BLOG_POSTS = [
   {
     id: "blog-01-eating-healthy",
     title: "Is eating healthy, healthy?",
     category: "Nutrition & Intuition",
     date: "Oct 13, 2026",
-    publishAt: "2026-10-13T04:40:00+05:30",
     readTime: "4 min read",
     author: "Purreins Frequency",
     image: "assets/images/blog1_eating_healthy.jpg",
@@ -629,14 +359,62 @@ const ALL_BLOG_DISPATCHES = [
   }
 ];
 
-// Fully autonomous client-side schedule: unlocks strictly at 4:40 AM IST on each post's date
-const _now = new Date();
-const BLOG_POSTS = ALL_BLOG_DISPATCHES
-  .filter(post => !post.publishAt || new Date(post.publishAt) <= _now)
-  .sort((a, b) => new Date(b.publishAt || b.date) - new Date(a.publishAt || a.date));
-
-const STAGED_BLOG_POSTS = ALL_BLOG_DISPATCHES
-  .filter(post => post.publishAt && new Date(post.publishAt) > _now);
+// Staged Dispatches — Strictly ONE dispatch per day cadence
+const STAGED_BLOG_POSTS = [
+  {
+    id: "blog-02-hard-way",
+    title: "Why’re we doing everything the hard way?",
+    category: "Farmstead Lore",
+    date: "Oct 14, 2026",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog2_hard_way.jpg",
+    url: "journal-02-why-are-we-doing-everything-the-hard-way.html",
+    excerpt: "In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a convenience-free life? Convenience and speed isn’t the way towards getting healthy.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a holistic, convenience-free life?</p>
+      <p class="mb-4">Well, turns out, that convenience and speed isn’t the way towards getting healthy.</p>
+      <p class="mb-4">All our plants, all our ducks, all our soaps are made Organically, as in made By Nature, not by intimidating the process of nature. The time needed to do that is the time we use to focus on our human instincts and soul purpose of being on planet earth.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60 space-y-1.5">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic">Sounds spiritual?</p>
+        <p class="text-xs sm:text-sm text-[#CBB89D]/80 leading-relaxed">Not quite, not everything that is about Nature and holistic living, has to do with spirituality, most has to do with just existing and being in sync with the elements.</p>
+      </div>
+      <div class="space-y-2.5 bg-[#4E693B]/10 border border-[#8EB264]/20 p-5 rounded-sm my-6 text-xs sm:text-sm">
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Waking up with sun, falling asleep with the sun, using the rain, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the EXERCISE.</strong></p></div>
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Tilling the soil, harvesting produce, making food, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the GYM.</strong></p></div>
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Keeping it healthy, watching it grow, multiplying it, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the TASK.</strong></p></div>
+      </div>
+      <p class="mb-4">Get through all this, in the day, and the time you have remaining, is what you will need to start being spiritual.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
+    `,
+    tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
+  },
+  {
+    id: "blog-03-rushing",
+    title: "What’re we all rushing towards?",
+    category: "Slow Living & Philosophy",
+    date: "Oct 15, 2026",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog3_rushing.jpg",
+    url: "journal-03-what-are-we-all-rushing-towards.html",
+    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
+      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
+      </div>
+      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
+      </div>
+      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
+    `,
+    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
+  }
+];
 
 const FAQS = [
   {
@@ -648,8 +426,8 @@ const FAQS = [
     a: "Yes! Every single bar of UP Purreins soap is cold-processed using pure natural olive, coconut, shea, and sweet almond oils. We scent exclusively with pure steam-distilled essential oils and color with wild clays and plant extracts. Zero artificial dyes, zero palm oil, zero phthalates."
   },
   {
-    q: "Can we order custom gift hampers with straw baskets?",
-    a: "Yes! Our hand-woven straw and coir hampers can be customized with your choice of cold-process soaps, pasture duck eggs, and organic quilt rolls for festive gifting, wedding favors, and corporate hampers."
+    q: "Can we order custom farmstead gift hampers?",
+    a: "Yes! Our artisanal farmstead hampers can be customized with your choice of cold-process curd soaps, pasture duck eggs, sun-cured moringa and sacred tulsi leaves, and GOTS-certified organic quilt rolls for festive gifting, wedding favors, and corporate hampers."
   },
   {
     q: "How does Farm Visit booking work?",
@@ -659,25 +437,32 @@ const FAQS = [
 
 const WHOLESALE_TIERS = [
   {
-    category: "Handcrafted Soaps",
-    minOrder: "30 Bars (Assorted scents)",
+    category: "Handcrafted Curd Soaps",
+    minOrder: "30 Bars (Assorted varieties: Curd, Banana & Bamboo, Moringa, Dry Grass)",
     discount: "35% - 45% off retail",
-    packaging: "Plain unbranded organic Kraft paper noting only soap flavor, tied with textured cotton thread",
+    packaging: "Plain unbranded organic Kraft paper noting only soap flavor, tied with textured seed-flecked cotton thread",
     leadTime: "3-5 business days"
   },
   {
-    category: "Heirloom Quilt Rolls",
+    category: "Artisanal Quilt Rolls",
     minOrder: "10 Rolls / Throws",
     discount: "Trade & boutique wholesale rates",
-    packaging: "Rolled with raw jute twine & care cards",
+    packaging: "GOTS & OEKO-TEX certified, organically dyed, rolled with raw cotton twine & care cards",
     leadTime: "Handcrafted to order"
   },
   {
     category: "Fresh Pasture Duck Eggs",
     minOrder: "10 Cartons (Weekly standing order)",
     discount: "Direct bakery & restaurant rates",
-    packaging: "Molded pulp cartons in straw bed",
+    packaging: "Molded pulp cartons in clean straw bed",
     leadTime: "Daily morning collection"
+  },
+  {
+    category: "Sun-Cured Herbal Leaves",
+    minOrder: "20 Packs (Moringa Leaves & Sacred Tulsi)",
+    discount: "Apothecary & cafe wholesale rates",
+    packaging: "Aroma-sealed jars / hand-tied organic bundles",
+    leadTime: "3-5 business days"
   }
 ];
 
@@ -688,7 +473,7 @@ const MARKET_EVENTS = [
     city: "Kochi",
     venue: "The Grounds, Chakola Mill, Kalamassery",
     timing: "Seasonal Weekend Edition (11:00 AM – 10:00 PM)",
-    focus: "Soaps, Quilt Rolls, Coir Baskets",
+    focus: "Curd Soaps, GOTS Quilt Rolls, Farm Leaves",
     highlight: "Kerala's premier youth & conscious lifestyle flea market",
     status: "Upcoming Edition"
   },
@@ -698,7 +483,7 @@ const MARKET_EVENTS = [
     city: "Kochi",
     venue: "Govt LP School Grounds, Kakkanad",
     timing: "Every Sunday Morning (8:00 AM – 11:00 AM)",
-    focus: "Pasture Duck Eggs, Soaps, Whole Herbal Stems",
+    focus: "Pasture Duck Eggs, Curd Soaps, Sun-Cured Leaves",
     highlight: "Direct farm-to-table community for health-conscious families",
     status: "Recurring Weekly"
   },
