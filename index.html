@@ -879,15 +879,22 @@
         <span class="stable-bar-label">Wisdom &amp; Recipes</span>
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
           <h2 class="stable-bar-title text-3xl sm:text-4xl">The Farm Journal</h2>
-          <a href="blog.html" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-mossLight hover:text-brand-leaf transition relative z-10">
+          <a href="blog.html?all=1" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-mossLight hover:text-brand-leaf transition relative z-10">
             <span>Read All Articles</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
         </div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6" id="home-blog-grid">
-        <!-- Injected via JavaScript -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="home-blog-grid">
+        <!-- Injected via JavaScript: Always shows the 3 newest articles -->
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="blog.html?all=1" class="btn-primary px-8 py-3.5 rounded-sm font-semibold text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2">
+          <span>Read All Articles</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
       </div>
 
     </div>
@@ -971,7 +978,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/data.js"></script>
+  <script src="assets/js/data.js?v=20261021_latest"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
   <script>

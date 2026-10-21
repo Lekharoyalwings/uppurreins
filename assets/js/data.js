@@ -379,12 +379,261 @@ const FARM_VISITS = [
   }
 ];
 
-const BLOG_POSTS = [
+// Master Dispatches Schedule — Strictly 1 post per day at 4:40 AM IST (Newest First)
+const ALL_BLOG_DISPATCHES = [
+  {
+    id: "blog-10-banana-leaf-soap",
+    title: "Why do we make banana soaps from leaf not the fruit?",
+    category: "Artisan Craft & Science",
+    date: "Oct 22, 2026",
+    publishAt: "2026-10-22T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog10_banana_leaf_soap.jpg",
+    url: "journal-10-why-do-we-make-banana-soaps-from-leaf-not-the-fruit.html",
+    excerpt: "Yes, our banana soaps are made from freshly harvested banana leaves from our farm. With natural antimicrobial detox properties, green-tea-level anti-inflammatory compounds, and natural UV shielding, they heal from the root.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yes, our banana soaps are made from the banana leaves, freshly harvested from our farm. It focuses on cleansing and evening skin texture.</p>
+      <p class="mb-4">The banana leaf is known for its antimicrobial properties, acting as a natural detox on your skin. It also has the same anti-inflammatory presence found in green tea—this strips away any acne or redness from the surface, and regular use can cure it from the root too. One other cool factor is that banana leaves are natural shielders, protecting your skin from intense sun exposure and artificial UV indoor light exposure.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>If initial usage causes burning or irritation on skin, please give a break of a few days before using it again. As the antimicrobial effect starts working, it may cause burning on some sensitive skin types—this just means that the soap is doing good on you and is healing something from underneath.</span></div>
+      </div>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">We take full responsibility in saying this: “Nothing in nature is allergic—especially nothing that is edible is ever allergic—until you have antibiotics inside that are killing your good bacterias inside and confusing your body on the natural digestive process,” hence our soaps are safe naturally.</p>
+      </div>
+      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Detox, shield, and heal from the root with our farm-harvested soaps.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
+          <span>Visit Farm Store &amp; Explore Soaps</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    `,
+    tags: ["PurreinsFrequency", "BananaLeafSoap", "NaturalUVShield", "AntimicrobialDetox", "NothingInNatureIsAllergic", "RootHealing"]
+  },
+  {
+    id: "blog-09-swaddle-is-addictive",
+    title: "Swaddle is addictive.",
+    category: "Conscious Parenting & Rhythm",
+    date: "Oct 21, 2026",
+    publishAt: "2026-10-21T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog9_swaddle_quilt.jpg",
+    url: "journal-09-swaddle-is-addictive.html",
+    excerpt: "Swaddling helps babies sleep, they say—but only till they mature into their bodies. Once they show the first signs of rolling over, keeping them swaddled stops them from exploring their limbs and syncing with nature.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Swaddle your baby and that helps them relax and sleep better; they say.</p>
+      <p class="mb-4">Well, yes—swaddling your baby helps them sleep better and probably relax too, <strong class="text-[#E2C9A5] font-medium">but only till they mature.</strong> Babies mature? Yes, babies mature into their bodies and try learning to use their body parts, move around, and even try talking. So to facilitate these movements, you stop swaddling your baby when they show the first signs of rolling over onto their tummy.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Disclaimer: If you keep them swaddled and simulating the feeling of still being in the womb, it prevents them from trying to move anything at all.</span></div>
+      </div>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“Does that mean you should completely stop swaddling your baby, even when rocking them to sleep? YES, because babies haven't yet synced with the circadian rhythm of nature—they will try to explore their body anytime they're awake. This can be early in the morning, middle of the day, or even middle of the night.”</p>
+      </div>
+      <p class="mb-4">Your role as a parent is to give them the feeling of being secure and safe, and the space to grow up into a fully developed little human to big human.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">You can cover them gently with a <span class="text-[#D6AB66]">throw blanket or even a quilt</span>, while keeping the temperature just right—this will help them relax and rock them to sleep naturally.</p>
+      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Wrap them in breathable, hand-stitched organic cotton quilts &amp; throws.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
+          <span>Explore Heirloom Quilt Rolls</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    `,
+    tags: ["PurreinsFrequency", "ConsciousParenting", "CircadianRhythm", "LetBabiesMove", "HeirloomQuilts", "NaturalGrowth"]
+  },
+  {
+    id: "blog-08-curd-is-dairy",
+    title: "Curd is dairy too, right?",
+    category: "Nutrition & Intuition",
+    date: "Oct 20, 2026",
+    publishAt: "2026-10-20T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog8_curd_is_dairy.jpg",
+    url: "journal-08-curd-is-dairy-too-right.html",
+    excerpt: "Remember I told you we are all Lactose intolerant? Curd, unlike other dairy products, is fermented—literally killing away the sugar and giving you pure, gut-friendly acid that turns your body into a self-curing powerhouse.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Remember I told you we are all Lactose intolerant? How is curd any different and why we should take it regularly?</p>
+      <p class="mb-4">Curd, unlike other dairy products, is fermented (an anaerobic metabolic process where micro-organisms like yeast and bacteria break down carbohydrates such as glucose into acids, gases, or alcohol to produce cellular energy). This literally kills away the sugar and gives you pure, gut-friendly acid that stimulates faster and cleaner digestion.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“Taking curd everyday feeds your good gut bacteria and multiplies into many, many more good gut bacterias that keep regular watch on your system, and get you capable to fight any misalignment immediately and provide for instant cure. So your body becomes a self-curing powerhouse without the need of antibiotics, meds, long rest.”</p>
+      </div>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Keep eyes out for curds with preservatives—that's not what we are talking about here, that's just bad, very bad bacteria.</span></div>
+      </div>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">Make your own curd for your inner self and <span class="text-[#D6AB66]">use our curd soap for your outer self ^-^</span></p>
+      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Nourish your outer self with our cold-process farmstead curd soaps.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
+          <span>Explore Curd Soaps in Farm Store</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    `,
+    tags: ["PurreinsFrequency", "CurdIsDifferent", "FermentedGutHealth", "SelfCuringPowerhouse", "CurdSoap", "InnerAndOuterSelf"]
+  },
+  {
+    id: "blog-07-lactose-intolerant",
+    title: "We are all naturally Lactose intolerant?",
+    category: "Nutrition & Intuition",
+    date: "Oct 19, 2026",
+    publishAt: "2026-10-19T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog7_lactose_intolerant.jpg",
+    url: "journal-07-we-are-all-naturally-lactose-intolerant.html",
+    excerpt: "Yep, we are all naturally lactose intolerant. But this fact hides behind the chemicals in commercial pasteurization. Stopping dairy early gives your body time to make space for good bacteria.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yep, we are all naturally lactose intolerant. But this fact hides behind the many chemicals added to the commercial pasteurization process that makes digestion more suitable for the short term. Continued intake of this eventually trains your body to digest it as normal food over time.</p>
+      <p class="mb-4">The true effect of dairy products flares up either when you are too sensitive to it as a baby, or when you give it a long break and come back to it. First one, is as good as very good reflex and high presence of good bacteria. The second one, is where your body heals and clears away the bad bacteria and the natural effect shows.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“So does that mean you should stop taking in dairy and never have it again? Not quite, but yeah, because it is not doing anything but stocking up a set of illnesses that will show when your body gets old and doesn't have the young strength to keep producing new good bacteria.”</p>
+      </div>
+      <p class="mb-4">Stopping it early will give your body time to clear it out and make space for new good bacteria that will stay healthy and multiply through your old age and more.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">Well, you still need some kind of “milk” to take in your Matcha and Tea and Coffee, yes, and you have various options to choose from: Coconut milk. Cashew milk. Almond milk. Rice milk. Groundnut milk. La la la.</p>
+    `,
+    tags: ["PurreinsFrequency", "LactoseIntolerance", "DairyTruth", "PlantMilks", "GutBacteria", "RealNutrition"]
+  },
+  {
+    id: "blog-06-soaps-made-of",
+    title: "What are soaps made of?",
+    category: "Artisan Craft & Science",
+    date: "Oct 18, 2026",
+    publishAt: "2026-10-18T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog6_soap_ingredients.jpg",
+    url: "journal-06-what-are-soaps-made-of.html",
+    excerpt: "At Purreins Frequency, we use all farm produced ingredients with one “chemical agent” called Sodium Hydroxide NaOH, the breakdown of Sea Salt using electricity. Simple and heavy is the way to squishy skin.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">At Purreins Frequency, we use all farm-produced ingredients with one “chemical agent” called Sodium Hydroxide (NaOH), which is the breakdown of Sea Salt using electricity. This in real language is not a chemical—it's a byproduct of nature.</p>
+      <p class="mb-4">So our soaps are, oh so gently, blessed by Sea Breeze, and we add to that our freshly sourced products from cows and soil. We wouldn't claim to be 100% natural, because the process of turning Sea Salt into NaOH crystals is not natural, BUT we will claim and stand by being the brand that makes use of this byproduct crystal in the most ORGANIC WAY possible.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“We obviously cannot disclose the exact components for trademark reasons, but we assure you that when you use our soaps, the rich mixture of cleansing and nourishing will make your skin feel healthy and hungry for more ^_^”</p>
+      </div>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] mb-6">Simple and heavy is the way to squishy skin.</p>
+      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Click here to experience luxurious showering with our organic soaps.</p>
+        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
+          <span>Visit Farm Store</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    `,
+    tags: ["PurreinsFrequency", "WhatAreSoapsMadeOf", "SeaBreezeSoap", "ColdProcessTruth", "SodiumHydroxide", "SquishySkin", "FarmsteadStore"]
+  },
+  {
+    id: "blog-05-ai-speed",
+    title: "How fast should your AI agent be?",
+    category: "Technology & Mindset",
+    date: "Oct 17, 2026",
+    publishAt: "2026-10-17T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog5_ai_agent_speed.jpg",
+    url: "journal-05-how-fast-should-your-ai-agent-be.html",
+    excerpt: "AI is not a person, but hey it is kind of a person, right? Be nice to AI, give it time, let it cook. We eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is not a person, but hey it is kind of a person, right?</p>
+      <p class="mb-4">Let’s be realistic about our expectation from AI just because it's AI. It is a tool that is here to make our lives easier, but not jetfast, we don't even need that.</p>
+      <p class="mb-4">One, it's going to crash the damn agent for loading it with so much task within an unrealistic timeframe. Think about it: asking your Mac to run 5 YouTube videos in the background, while asking it to export 6 keys as PDFs, while asking it to install 7 softwares, while asking it to update the existing 8 apps, while trying to ask it to also edit your photos. Your computer is going to heat up so much, you could start cooking on it.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“THAT is exact, rather more happens when you ask your AI agents to do all these tasks together and be insanely fast at it. It's burning tokens, data, and internet at an insane rate that's not even comparable, qualifying for a big downtime. For days. Yes.”</p>
+      </div>
+      <p class="mb-4 font-serif text-xl sm:text-2xl text-[#E2C9A5] italic">Be nice to AI, give it time, let it cook.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">We here at Purreins Frequency, eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.</p>
+    `,
+    tags: ["PurreinsFrequency", "AINotJetFast", "LetItCook", "AgentMindset", "HeavyBreakfast", "RhythmOverSpeed"]
+  },
+  {
+    id: "blog-04-sustainable-ai",
+    title: "Sustainable AI?",
+    category: "Technology & Ecology",
+    date: "Oct 16, 2026",
+    publishAt: "2026-10-16T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog4_sustainable_ai.jpg",
+    url: "journal-04-sustainable-ai.html",
+    excerpt: "In the world of AI skyrocketing every second and sustainability figuring out a way to conclude itself, AI by itself can be or already is sustainable. When AI does technical things for me, I can give my human hours to the farm.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yes, you read that right. In the world of AI skyrocketing every second and sustainability figuring out a way to conclude itself, AI by itself can be or already is sustainable.</p>
+      <p class="mb-4">Being a farmer, I say this because when AI does technical things for me on the computers, on the machines, and on my phones, I can give my human time and working hours into the farm harvesting, nurturing my seeds, and meditating with the sun.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“AI is actually making our life sustainable in a way that the human race has not yet fully understood its capabilities. If you tap into the mechanics of AI and configure it to work for you, then you can work on yourself and spiritually take yourself to a level where the world actually feels like bliss.”</p>
+      </div>
+      <p class="mb-4">You can start by giving more time to learning what AI is and what your everyday is, and connecting the two to each other so the automatics are done by the AI, and the thinking, creativity, and manufacturing are done by you.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Automatics, technical maintenance, and data routing belong to algorithms.</span></div>
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Soil tending, craftsmanship, sensory feeling, and presence belong to humans.</span></div>
+      </div>
+      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">This might seem like a techie dev statement, but <strong class="text-[#D6AB66] font-semibold">AI is the essential ground for sustainability.</strong></p>
+    `,
+    tags: ["PurreinsFrequency", "SustainableAI", "FarmsteadTech", "NatureAndCode", "ConsciousAutomation", "HumanHours"]
+  },
+  {
+    id: "blog-03-rushing",
+    title: "What’re we all rushing towards?",
+    category: "Slow Living & Philosophy",
+    date: "Oct 15, 2026",
+    publishAt: "2026-10-15T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog3_rushing.jpg",
+    url: "journal-03-what-are-we-all-rushing-towards.html",
+    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
+      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
+      </div>
+      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
+      </div>
+      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
+    `,
+    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
+  },
+  {
+    id: "blog-02-hard-way",
+    title: "Why’re we doing everything the hard way?",
+    category: "Farmstead Lore",
+    date: "Oct 14, 2026",
+    publishAt: "2026-10-14T04:40:00+05:30",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog2_hard_way.jpg",
+    url: "journal-02-why-are-we-doing-everything-the-hard-way.html",
+    excerpt: "In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a convenience-free life? Convenience and speed isn’t the way towards getting healthy.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a holistic, convenience-free life?</p>
+      <p class="mb-4">Well, turns out, that convenience and speed isn’t the way towards getting healthy.</p>
+      <p class="mb-4">All our plants, all our ducks, all our soaps are made Organically, as in made By Nature, not by intimidating the process of nature. The time needed to do that is the time we use to focus on our human instincts and soul purpose of being on planet earth.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60 space-y-1.5">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic">Sounds spiritual?</p>
+        <p class="text-xs sm:text-sm text-[#CBB89D]/80 leading-relaxed">Not quite, not everything that is about Nature and holistic living, has to do with spirituality, most has to do with just existing and being in sync with the elements.</p>
+      </div>
+      <div class="space-y-2.5 bg-[#4E693B]/10 border border-[#8EB264]/20 p-5 rounded-sm my-6 text-xs sm:text-sm">
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Waking up with sun, falling asleep with the sun, using the rain, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the EXERCISE.</strong></p></div>
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Tilling the soil, harvesting produce, making food, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the GYM.</strong></p></div>
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Keeping it healthy, watching it grow, multiplying it, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the TASK.</strong></p></div>
+      </div>
+      <p class="mb-4">Get through all this, in the day, and the time you have remaining, is what you will need to start being spiritual.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
+    `,
+    tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
+  },
   {
     id: "blog-01-eating-healthy",
     title: "Is eating healthy, healthy?",
     category: "Nutrition & Intuition",
     date: "Oct 13, 2026",
+    publishAt: "2026-10-13T04:40:00+05:30",
     readTime: "4 min read",
     author: "Purreins Frequency",
     image: "assets/images/blog1_eating_healthy.jpg",
@@ -413,62 +662,14 @@ const BLOG_POSTS = [
   }
 ];
 
-// Staged Dispatches — Strictly ONE dispatch per day cadence
-const STAGED_BLOG_POSTS = [
-  {
-    id: "blog-02-hard-way",
-    title: "Why’re we doing everything the hard way?",
-    category: "Farmstead Lore",
-    date: "Oct 14, 2026",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog2_hard_way.jpg",
-    url: "journal-02-why-are-we-doing-everything-the-hard-way.html",
-    excerpt: "In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a convenience-free life? Convenience and speed isn’t the way towards getting healthy.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a holistic, convenience-free life?</p>
-      <p class="mb-4">Well, turns out, that convenience and speed isn’t the way towards getting healthy.</p>
-      <p class="mb-4">All our plants, all our ducks, all our soaps are made Organically, as in made By Nature, not by intimidating the process of nature. The time needed to do that is the time we use to focus on our human instincts and soul purpose of being on planet earth.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60 space-y-1.5">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic">Sounds spiritual?</p>
-        <p class="text-xs sm:text-sm text-[#CBB89D]/80 leading-relaxed">Not quite, not everything that is about Nature and holistic living, has to do with spirituality, most has to do with just existing and being in sync with the elements.</p>
-      </div>
-      <div class="space-y-2.5 bg-[#4E693B]/10 border border-[#8EB264]/20 p-5 rounded-sm my-6 text-xs sm:text-sm">
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Waking up with sun, falling asleep with the sun, using the rain, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the EXERCISE.</strong></p></div>
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Tilling the soil, harvesting produce, making food, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the GYM.</strong></p></div>
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Keeping it healthy, watching it grow, multiplying it, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the TASK.</strong></p></div>
-      </div>
-      <p class="mb-4">Get through all this, in the day, and the time you have remaining, is what you will need to start being spiritual.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
-    `,
-    tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
-  },
-  {
-    id: "blog-03-rushing",
-    title: "What’re we all rushing towards?",
-    category: "Slow Living & Philosophy",
-    date: "Oct 15, 2026",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog3_rushing.jpg",
-    url: "journal-03-what-are-we-all-rushing-towards.html",
-    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
-      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
-      </div>
-      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
-      </div>
-      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
-    `,
-    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
-  }
-];
+// Fully autonomous client-side schedule: unlocks strictly at 4:40 AM IST on each post's date, sorted newest first
+const _now = new Date();
+const BLOG_POSTS = ALL_BLOG_DISPATCHES
+  .filter(post => !post.publishAt || new Date(post.publishAt) <= _now)
+  .sort((a, b) => new Date(b.publishAt || b.date) - new Date(a.publishAt || a.date));
+
+const STAGED_BLOG_POSTS = ALL_BLOG_DISPATCHES
+  .filter(post => post.publishAt && new Date(post.publishAt) > _now);
 
 const FAQS = [
   {

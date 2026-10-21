@@ -469,11 +469,25 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="stable-bar rounded-sm">
         <span class="stable-bar-label">Farmstead Chronicles</span>
-        <h2 class="stable-bar-title text-3xl sm:text-4xl">Latest Articles &amp; Farmstead Lore</h2>
-        <p class="stable-bar-sub">Dispatches directly from the forest • Authentic philosophy, intuitive nutrition, and homestead rhythms.</p>
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
+          <div>
+            <h2 class="stable-bar-title text-3xl sm:text-4xl" id="journal-section-title">Latest Articles &amp; Farmstead Lore</h2>
+            <p class="stable-bar-sub">Dispatches directly from the forest • Authentic philosophy, intuitive nutrition, and homestead rhythms.</p>
+          </div>
+          <button id="header-read-all-btn" onclick="showAllBlogArticles()" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-mossLight hover:text-brand-cream transition relative z-10 cursor-pointer">
+            <span>Read All Articles</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
       </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-articles-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-articles-grid">
         <!-- Injected via JS -->
+      </div>
+      <div class="text-center mt-10" id="blog-read-all-container">
+        <button onclick="showAllBlogArticles()" class="btn-primary px-8 py-3.5 rounded-sm font-semibold text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2 cursor-pointer">
+          <span>Read All Articles</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
       </div>
     </div>
   </main>
@@ -496,15 +510,33 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/data.js"></script>
+  <script src="assets/js/data.js?v=20261021_latest"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
+    let showingAllArticles = new URLSearchParams(window.location.search).get('all') === '1';
+
+    function showAllBlogArticles() {
+      showingAllArticles = true;
+      renderBlogArticles();
+    }
+
     function renderBlogArticles() {
       const grid = document.getElementById('blog-articles-grid');
+      const readAllContainer = document.getElementById('blog-read-all-container');
+      const headerReadAllBtn = document.getElementById('header-read-all-btn');
       if (!grid) return;
 
-      grid.innerHTML = BLOG_POSTS.map(post => `
+      const postsToRender = showingAllArticles ? BLOG_POSTS : BLOG_POSTS.slice(0, 3);
+
+      if (readAllContainer) {
+        readAllContainer.style.display = (showingAllArticles || BLOG_POSTS.length <= 3) ? 'none' : 'block';
+      }
+      if (headerReadAllBtn) {
+        headerReadAllBtn.style.display = (showingAllArticles || BLOG_POSTS.length <= 3) ? 'none' : 'inline-flex';
+      }
+
+      grid.innerHTML = postsToRender.map(post => `
         <article class="stall-card card-hover flex flex-col justify-between group">
           <div>
             <div class="stall-header">
