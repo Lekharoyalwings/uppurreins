@@ -491,6 +491,168 @@
   <main class="flex-1 bg-soil-dark translate-x-[3%]" style="transform: translateX(3%);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- FARMSTEAD LOOKBOOK (TOP OF FARM STORE)          -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <section id="farmstead-lookbook" class="mb-16">
+        <div class="stable-bar rounded-sm">
+          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+            <div>
+              <span class="stable-bar-label">The Farmstead Lookbook • Chapter 01</span>
+              <h2 class="stable-bar-title text-3xl sm:text-4xl">Heirloom Solid Pastel Quilts &amp; Printed Throws</h2>
+              <p class="stable-bar-sub mt-1">
+                Every quilt is 100% solid pastel brushed cotton filled with Tamizhnad Ilavam Panju (zero prints). Every reversible throw blanket is solid pastel on one side and printed with that shade's signature motif on the other.
+              </p>
+            </div>
+            <!-- Lookbook Collection Tabs (Quilts active; Soaps ready for next drop) -->
+            <div class="flex flex-wrap items-center gap-2 self-start lg:self-end">
+              <button type="button" onclick="switchLookbookTab('quilts')" id="lb-tab-quilts" class="px-3.5 py-2 rounded-sm text-xs font-semibold bg-brand-gold text-brand-dark shadow-md transition flex items-center gap-1.5">
+                <i data-lucide="scissors" class="w-3.5 h-3.5"></i>
+                <span>01. Quilts &amp; Throws (6 Pastels)</span>
+              </button>
+              <button type="button" onclick="switchLookbookTab('soaps')" id="lb-tab-soaps" class="px-3.5 py-2 rounded-sm text-xs font-medium bg-brand-barnwood/60 text-brand-oat/75 border border-white/15 hover:bg-brand-barnwood transition flex items-center gap-1.5">
+                <i data-lucide="droplets" class="w-3.5 h-3.5"></i>
+                <span>02. Curd Soaps Lookbook</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUILTS & THROWS LOOKBOOK PANEL -->
+        <div id="lookbook-panel-quilts" class="space-y-6">
+          <!-- Featured Interactive Lookbook Stage -->
+          <div class="stall-card overflow-hidden border border-brand-gold/30">
+            <div class="stall-header flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="stall-label text-brand-gold" id="lb-active-code">Colorway 01 / 06</span>
+                <span class="text-xs text-brand-oat/60">•</span>
+                <span class="text-xs font-semibold text-brand-cream" id="lb-active-subtitle">Pastel Butter Yellow &amp; Five-Pointed Stars</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="stepLookbook(-1)" class="px-2.5 py-1 rounded-sm bg-black/50 hover:bg-brand-forest text-brand-cream text-xs border border-white/15 transition flex items-center gap-1" title="Previous Colorway">
+                  <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+                  <span>Prev</span>
+                </button>
+                <button type="button" onclick="stepLookbook(1)" class="px-2.5 py-1 rounded-sm bg-black/50 hover:bg-brand-forest text-brand-cream text-xs border border-white/15 transition flex items-center gap-1" title="Next Colorway">
+                  <span>Next</span>
+                  <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-0">
+              <!-- Left: Large Editorial Lookbook Photo -->
+              <div class="lg:col-span-7 relative bg-black/60 min-h-[300px] sm:min-h-[400px] overflow-hidden">
+                <img id="lb-active-img" src="assets/images/lookbook-yellow-stars.jpg?v=1" alt="Pastel Butter Yellow Solid Quilt and Star Printed Throw Blanket" class="w-full h-full object-cover transition-opacity duration-300">
+                <div class="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+                  <span id="lb-active-pill" class="px-3 py-1 rounded-sm text-xs font-semibold bg-black/80 text-brand-cream border border-white/15 backdrop-blur-sm">
+                    Solid Pastel Butter Yellow Quilt + Star-Printed Reversible Throw
+                  </span>
+                  <span class="px-2.5 py-1 rounded-sm text-[11px] font-medium bg-brand-forest/90 text-brand-cream border border-brand-mossLight/40">
+                    GOTS &amp; OEKO-TEX Certified Fabric
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right: Colorway Swatch Selector & Construction Details -->
+              <div class="lg:col-span-5 p-6 sm:p-7 flex flex-col justify-between bg-brand-dark/70 space-y-6">
+                <div class="space-y-4">
+                  <div class="flex items-center gap-2.5">
+                    <span id="lb-active-swatch-dot" class="w-5 h-5 rounded-full border border-white/30 shadow-inner flex-shrink-0" style="background-color: #F4E098;"></span>
+                    <h3 id="lb-active-title" class="font-serif font-bold text-2xl sm:text-3xl text-brand-cream">Pastel Butter Yellow</h3>
+                  </div>
+
+                  <p id="lb-active-desc" class="text-xs sm:text-sm text-brand-oat/80 leading-relaxed">
+                    Warm, soothing butter-yellow organically dyed brushed cotton. The plump 3-channel heirloom quilt is 100% solid pastel butter yellow on both sides, while the matching reversible throw blanket is solid pastel butter yellow on one side and crisp unbleached white printed with delicate pastel yellow five-pointed stars on the other.
+                  </p>
+
+                  <!-- Two-Piece Construction Breakdown -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                    <div class="p-3 rounded-sm bg-black/35 border border-white/10">
+                      <span class="text-[10px] font-mono uppercase tracking-wider text-brand-gold block">The Heirloom Quilt</span>
+                      <p class="text-xs font-semibold text-brand-cream mt-0.5" id="lb-active-quilt-spec">100% Solid Pastel Butter Yellow</p>
+                      <p class="text-[11px] text-brand-oat/60 mt-0.5">3-channel Tamizhnad Ilavam Panju filling • Zero prints • 40"×50" &amp; 55"×90"</p>
+                    </div>
+                    <div class="p-3 rounded-sm bg-black/35 border border-white/10">
+                      <span class="text-[10px] font-mono uppercase tracking-wider text-brand-mossLight block">The Reversible Throw</span>
+                      <p class="text-xs font-semibold text-brand-cream mt-0.5" id="lb-active-throw-spec">Five-Pointed Stars Print + Solid Side</p>
+                      <p class="text-[11px] text-brand-oat/60 mt-0.5">Printed white one side, solid pastel reverse • 40"×50" &amp; 55"×90"</p>
+                    </div>
+                  </div>
+
+                  <!-- Interactive 6 Pastel Swatch Buttons -->
+                  <div class="pt-2">
+                    <span class="text-[11px] font-mono uppercase tracking-wider text-brand-oat/60 block mb-2.5">Select Pastel Colorway &amp; Signature Print (All 6):</span>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="lb-swatch-buttons">
+                      <!-- Injected via JS -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick Shop Actions -->
+                <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <button type="button" onclick="openProductModal('quilt-heirloom-individual')" class="px-3.5 py-2 rounded-sm bg-brand-forest hover:bg-brand-sage text-brand-cream text-xs font-semibold transition flex items-center gap-1.5 shadow-md">
+                      <i data-lucide="Layers" class="w-3.5 h-3.5"></i>
+                      <span>Shop Solid Quilt</span>
+                    </button>
+                    <button type="button" onclick="openProductModal('quilt-throw-adult')" class="px-3.5 py-2 rounded-sm bg-brand-barnwood hover:bg-brand-earth text-brand-cream text-xs font-semibold border border-white/15 transition flex items-center gap-1.5">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                      <span>Shop Printed Throw</span>
+                    </button>
+                  </div>
+                  <button type="button" onclick="filterCategory('quilts'); document.getElementById('shop-products-grid').scrollIntoView({behavior: 'smooth'});" class="text-xs text-brand-gold hover:underline font-medium flex items-center gap-1">
+                    <span>Filter Quilts Below</span>
+                    <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- All 6 Pastel Colorways & Distinct Prints Gallery Grid -->
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="lookbook-6-cards-grid">
+            <!-- Injected via JS so every colorway card is visible at a glance -->
+          </div>
+        </div>
+
+        <!-- CURD SOAPS LOOKBOOK PANEL (Ready for Soap Photos) -->
+        <div id="lookbook-panel-soaps" class="hidden">
+          <div class="stall-card p-6 sm:p-8 border border-brand-gold/30">
+            <div class="grid lg:grid-cols-12 gap-6 items-center">
+              <div class="lg:col-span-5 rounded-sm overflow-hidden border border-white/10 aspect-[4/3] bg-black/50">
+                <img src="assets/images/artisan-soaps.jpg" alt="Cold-Processed Farmstead Curd Soaps" class="w-full h-full object-cover">
+              </div>
+              <div class="lg:col-span-7 space-y-4">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs font-semibold">
+                  <i data-lucide="droplets" class="w-3.5 h-3.5"></i>
+                  <span>Chapter 02 • Pure Cold-Process Soap Alchemy</span>
+                </span>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-brand-cream">7 Farmstead Curd Soap Formulations</h3>
+                <p class="text-xs sm:text-sm text-brand-oat/80 leading-relaxed">
+                  Crafted exclusively with <strong>fresh cold-pressed coconut oil</strong>, <strong>farmstead fresh organic curd</strong>, and the single whole botanical named on each bar — with zero virgin olive oil, zero castor oil, zero shea butter, and zero synthetic additives. Wrapped in plain unbranded organic paper stating only the flavor name, tied with seed-flecked off-white cotton thread.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Curd Soap</span>
+                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Banana &amp; Bamboo Soap</span>
+                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Moringa Soap</span>
+                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Dry Grass Soap</span>
+                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Turmeric Soap</span>
+                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Coffee Soap</span>
+                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Activated Charcoal Soap</span>
+                </div>
+                <div class="pt-3">
+                  <button type="button" onclick="filterCategory('soaps'); document.getElementById('shop-products-grid').scrollIntoView({behavior: 'smooth'});" class="px-4 py-2 rounded-sm bg-brand-forest hover:bg-brand-sage text-brand-cream text-xs font-semibold transition inline-flex items-center gap-1.5 shadow-md">
+                    <span>Browse All 7 Curd Soaps Below</span>
+                    <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Stable Bar Section Header -->
       <div class="stable-bar rounded-sm">
         <span class="stable-bar-label">Artisanal Catalog</span>
@@ -575,6 +737,185 @@
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
+    const QUILT_LOOKBOOK = [
+      {
+        index: 0,
+        code: "Colorway 01 / 06",
+        name: "Pastel Butter Yellow",
+        shortLabel: "Butter Yellow • Stars",
+        motif: "Five-Pointed Stars",
+        swatchHex: "#F4E098",
+        image: "assets/images/lookbook-yellow-stars.jpg?v=1",
+        quiltSpec: "100% Solid Pastel Butter Yellow",
+        throwSpec: "Yellow Stars on White + Solid Reverse",
+        pillText: "Solid Pastel Butter Yellow Quilt + Star-Printed Reversible Throw",
+        description: "Warm, soothing butter-yellow organically dyed brushed cotton. The plump 3-channel heirloom quilt (filled with Tamizhnad Ilavam Panju) is 100% solid pastel butter yellow on both sides, while the matching reversible throw blanket is solid pastel butter yellow on one side and crisp unbleached white printed with delicate pastel yellow five-pointed stars on the other."
+      },
+      {
+        index: 1,
+        code: "Colorway 02 / 06",
+        name: "Pastel Peach Apricot",
+        shortLabel: "Peach • Suns",
+        motif: "Radiant Suns",
+        swatchHex: "#F4C6A8",
+        image: "assets/images/lookbook-peach-suns.jpg?v=1",
+        quiltSpec: "100% Solid Pastel Peach Apricot",
+        throwSpec: "Peach Suns on White + Solid Reverse",
+        pillText: "Solid Pastel Peach Quilt + Sun-Printed Reversible Throw",
+        description: "Soft, sun-warmed pastel peach-apricot brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel peach on both sides (zero prints), paired with our reversible throw blanket featuring solid pastel peach on one side and white printed with geometric pastel peach sun motifs on the other."
+      },
+      {
+        index: 2,
+        code: "Colorway 03 / 06",
+        name: "Pastel Mint Sage Green",
+        shortLabel: "Mint Green • Trees",
+        motif: "Minimalist Trees",
+        swatchHex: "#C5E0C2",
+        image: "assets/images/lookbook-mint-trees.jpg?v=1",
+        quiltSpec: "100% Solid Pastel Mint Green",
+        throwSpec: "Mint Trees on White + Solid Reverse",
+        pillText: "Solid Pastel Mint Green Quilt + Tree-Printed Reversible Throw",
+        description: "Refreshing, botanical pastel mint-sage green brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel mint green on both sides, paired with our reversible throw blanket featuring solid pastel mint green on one side and white printed with delicate pastel green canopy trees on the other."
+      },
+      {
+        index: 3,
+        code: "Colorway 04 / 06",
+        name: "Pastel Lavender Lilac",
+        shortLabel: "Lavender • Clouds",
+        motif: "Dreamy Clouds",
+        swatchHex: "#D8CCE4",
+        image: "assets/images/lookbook-lavender-clouds.jpg?v=1",
+        quiltSpec: "100% Solid Pastel Lavender",
+        throwSpec: "Lavender Clouds on White + Solid Reverse",
+        pillText: "Solid Pastel Lavender Quilt + Cloud-Printed Reversible Throw",
+        description: "Calm, dusky pastel lavender-lilac brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel lavender on both sides, paired with our reversible throw blanket featuring solid pastel lavender on one side and white printed with soft pastel lavender clouds on the other."
+      },
+      {
+        index: 4,
+        code: "Colorway 05 / 06",
+        name: "Pastel Misty Blue-Grey",
+        shortLabel: "Misty Blue • Moons",
+        motif: "Crescent Moons",
+        swatchHex: "#C6D2DC",
+        image: "assets/images/lookbook-bluegrey-moons.jpg?v=1",
+        quiltSpec: "100% Solid Pastel Misty Blue-Grey",
+        throwSpec: "Blue-Grey Crescent Moons + Solid Reverse",
+        pillText: "Solid Pastel Misty Blue-Grey Quilt + Moon-Printed Reversible Throw",
+        description: "Serene twilight pastel misty blue-grey brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel blue-grey on both sides, paired with our reversible throw blanket featuring solid pastel blue-grey on one side and white printed with gentle crescent moons on the other."
+      },
+      {
+        index: 5,
+        code: "Colorway 06 / 06",
+        name: "Pastel Blush Pink",
+        shortLabel: "Blush Pink • Swirls",
+        motif: "Gentle Swirls",
+        swatchHex: "#F0C4CE",
+        image: "assets/images/lookbook-pink-swirls.jpg?v=1",
+        quiltSpec: "100% Solid Pastel Blush Pink",
+        throwSpec: "Pink Swirls on White + Solid Reverse",
+        pillText: "Solid Pastel Blush Pink Quilt + Swirl-Printed Reversible Throw",
+        description: "Tender petal-soft pastel blush pink brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel blush pink on both sides, paired with our reversible throw blanket featuring solid pastel blush pink on one side and white printed with delicate pastel pink spiral swirls on the other."
+      }
+    ];
+
+    let activeLookbookIndex = 0;
+
+    function renderLookbook() {
+      const item = QUILT_LOOKBOOK[activeLookbookIndex];
+      const imgEl = document.getElementById('lb-active-img');
+      if (imgEl) {
+        imgEl.src = item.image;
+        imgEl.alt = item.pillText;
+      }
+      const codeEl = document.getElementById('lb-active-code');
+      if (codeEl) codeEl.textContent = item.code;
+      const subEl = document.getElementById('lb-active-subtitle');
+      if (subEl) subEl.textContent = `${item.name} & ${item.motif}`;
+      const pillEl = document.getElementById('lb-active-pill');
+      if (pillEl) pillEl.textContent = item.pillText;
+      const dotEl = document.getElementById('lb-active-swatch-dot');
+      if (dotEl) dotEl.style.backgroundColor = item.swatchHex;
+      const titleEl = document.getElementById('lb-active-title');
+      if (titleEl) titleEl.textContent = item.name;
+      const descEl = document.getElementById('lb-active-desc');
+      if (descEl) descEl.textContent = item.description;
+      const qSpecEl = document.getElementById('lb-active-quilt-spec');
+      if (qSpecEl) qSpecEl.textContent = item.quiltSpec;
+      const tSpecEl = document.getElementById('lb-active-throw-spec');
+      if (tSpecEl) tSpecEl.textContent = item.throwSpec;
+
+      const swatchContainer = document.getElementById('lb-swatch-buttons');
+      if (swatchContainer) {
+        swatchContainer.innerHTML = QUILT_LOOKBOOK.map((c, idx) => `
+          <button type="button" onclick="selectLookbookItem(${idx})" class="px-2.5 py-2 rounded-sm text-left text-[11px] font-medium transition flex items-center gap-2 border ${idx === activeLookbookIndex ? 'bg-brand-forest/40 border-brand-gold text-brand-cream shadow-sm' : 'bg-black/35 border-white/10 text-brand-oat/70 hover:bg-black/55 hover:text-brand-cream'}">
+            <span class="w-3.5 h-3.5 rounded-full flex-shrink-0 border border-black/40" style="background-color: ${c.swatchHex};"></span>
+            <span class="truncate">${c.shortLabel}</span>
+          </button>
+        `).join('');
+      }
+
+      const cardsGrid = document.getElementById('lookbook-6-cards-grid');
+      if (cardsGrid) {
+        cardsGrid.innerHTML = QUILT_LOOKBOOK.map((c, idx) => `
+          <div onclick="selectLookbookItem(${idx}); document.getElementById('farmstead-lookbook').scrollIntoView({behavior: 'smooth'});" class="stall-card card-hover cursor-pointer transition ${idx === activeLookbookIndex ? 'ring-1 ring-brand-gold' : ''}">
+            <div class="stall-header flex items-center justify-between">
+              <span class="stall-label flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full inline-block border border-black/40" style="background-color: ${c.swatchHex};"></span>
+                <span>0${idx + 1}. ${c.name}</span>
+              </span>
+              <span class="text-[10px] font-mono uppercase tracking-wider text-brand-gold">${c.motif} Print</span>
+            </div>
+            <div class="relative img-zoom-wrapper aspect-[4/3] bg-black/50 overflow-hidden">
+              <img src="${c.image}" alt="${c.pillText}" class="w-full h-full object-cover">
+              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-0.5 rounded-sm text-[10px] font-semibold bg-black/80 text-brand-cream border border-white/15">
+                Solid Quilt + ${c.motif} Throw
+              </span>
+            </div>
+            <div class="stall-body space-y-2">
+              <div class="flex items-center justify-between gap-2">
+                <h4 class="font-serif font-bold text-base text-brand-cream">${c.name}</h4>
+                <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/30 text-brand-mossLight border border-brand-forest/40 font-medium">Solid &amp; Printed Pair</span>
+              </div>
+              <p class="text-[11px] text-brand-oat/70 leading-relaxed">
+                <strong class="text-brand-cream">Quilt:</strong> ${c.quiltSpec} (No Print)<br>
+                <strong class="text-brand-cream">Throw:</strong> ${c.throwSpec}
+              </p>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function selectLookbookItem(idx) {
+      activeLookbookIndex = idx;
+      renderLookbook();
+    }
+
+    function stepLookbook(dir) {
+      activeLookbookIndex = (activeLookbookIndex + dir + QUILT_LOOKBOOK.length) % QUILT_LOOKBOOK.length;
+      renderLookbook();
+    }
+
+    function switchLookbookTab(tab) {
+      const qPanel = document.getElementById('lookbook-panel-quilts');
+      const sPanel = document.getElementById('lookbook-panel-soaps');
+      const qBtn = document.getElementById('lb-tab-quilts');
+      const sBtn = document.getElementById('lb-tab-soaps');
+      if (tab === 'soaps') {
+        qPanel.classList.add('hidden');
+        sPanel.classList.remove('hidden');
+        sBtn.className = 'px-3.5 py-2 rounded-sm text-xs font-semibold bg-brand-gold text-brand-dark shadow-md transition flex items-center gap-1.5';
+        qBtn.className = 'px-3.5 py-2 rounded-sm text-xs font-medium bg-brand-barnwood/60 text-brand-oat/75 border border-white/15 hover:bg-brand-barnwood transition flex items-center gap-1.5';
+      } else {
+        sPanel.classList.add('hidden');
+        qPanel.classList.remove('hidden');
+        qBtn.className = 'px-3.5 py-2 rounded-sm text-xs font-semibold bg-brand-gold text-brand-dark shadow-md transition flex items-center gap-1.5';
+        sBtn.className = 'px-3.5 py-2 rounded-sm text-xs font-medium bg-brand-barnwood/60 text-brand-oat/75 border border-white/15 hover:bg-brand-barnwood transition flex items-center gap-1.5';
+      }
+    }
+
     let activeCategory = 'all';
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -675,6 +1016,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      renderLookbook();
       renderCategoryPills();
       renderProducts();
       document.getElementById('shop-search').addEventListener('input', renderProducts);
