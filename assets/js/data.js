@@ -39,6 +39,16 @@ const CATEGORIES = [
   { id: "herbs", name: "Herbal Leaves", icon: "leaf" }
 ];
 
+// Master 6 Pastel Colorways Palette & Signature Nature Prints
+const PASTEL_COLORWAYS = [
+  { id: "lavender", name: "Pastel Lavender", motif: "Dreamy Clouds", hex: "#D8CCE4", image: "assets/images/lookbook-lavender-clouds.jpg" },
+  { id: "bluegrey", name: "Pastel Misty Blue-Grey", motif: "Crescent Moons", hex: "#C6D2DC", image: "assets/images/lookbook-bluegrey-moons.jpg" },
+  { id: "pink",     name: "Pastel Blush Pink", motif: "Gentle Swirls", hex: "#F0C4CE", image: "assets/images/lookbook-pink-swirls.jpg" },
+  { id: "mint",     name: "Pastel Mint Green", motif: "Minimalist Trees", hex: "#C5E0C2", image: "assets/images/lookbook-mint-trees.jpg" },
+  { id: "peach",    name: "Pastel Peach", motif: "Radiant Suns", hex: "#F4C6A8", image: "assets/images/lookbook-peach-suns.jpg" },
+  { id: "yellow",   name: "Pastel Butter Yellow", motif: "Five-Pointed Stars", hex: "#F4E098", image: "assets/images/lookbook-yellow-stars.jpg" }
+];
+
 const PRODUCTS = [
   // CURATED FARMSTEAD HAMPERS (Each with unique image)
   {
@@ -215,14 +225,15 @@ const PRODUCTS = [
     category: "quilts",
     price: 5400,
     unit: "40\" × 50\" Solid Pastel Kids Quilt • Tamizhnad Ilavam Panju",
-    badge: "Solid Pastel • Ilavam Panju",
+    badge: "Pastel Lavender • Solid Quilt",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 16,
-    image: "assets/images/quilt-roll.jpg?v=4",
-    description: "Handcrafted solid pastel kids quilt filled with 100% natural Ilavam Panju (pure silk cotton harvested from Tamizhnad) and encased in ultra-soft, brushed organically dyed solid pastel cotton fabric (available in Pastel Butter Yellow, Pastel Peach, Pastel Mint Green, Pastel Lavender, Pastel Misty Blue-Grey, and Pastel Blush Pink — our quilts are 100% solid pastel with no prints). While the handcrafted quilt itself is not separately certified, the organic cotton fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with eco-friendly plastic-free labels and a handcrafted tote carry bag.",
+    image: "assets/images/lookbook-lavender-clouds.jpg?v=1",
+    colorways: PASTEL_COLORWAYS,
+    description: "Handcrafted solid pastel kids quilt filled with 100% natural Ilavam Panju (pure silk cotton harvested from Tamizhnad) and encased in ultra-soft, brushed organically dyed solid pastel cotton fabric (available in all 6 pastel shades: Pastel Lavender, Pastel Misty Blue-Grey, Pastel Blush Pink, Pastel Mint Green, Pastel Peach, and Pastel Butter Yellow — our quilts are 100% solid pastel with zero prints). While the handcrafted quilt itself is not separately certified, the organic cotton fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with eco-friendly plastic-free labels and a handcrafted tote carry bag.",
     ingredients: "Natural Ilavam Panju (Silk Cotton harvested from Tamizhnad) Filling + Handcrafted from 100% Solid Pastel GOTS & OEKO-TEX Certified Organic Cotton Fabric, organically dyed.",
-    benefits: ["100% solid pastel brushed cotton with pure Tamizhnad Ilavam Panju (silk cotton) filling", "Crafted from GOTS & OEKO-TEX certified fabric (zero synthetics, zero plastic, eco-friendly labels)", "Available in 6 soothing pastel shades • Kids size (40\" × 50\")"],
+    benefits: ["100% solid pastel brushed cotton with pure Tamizhnad Ilavam Panju (silk cotton) filling", "Crafted from GOTS & OEKO-TEX certified fabric (zero synthetics, zero plastic, eco-friendly labels)", "Available in all 6 soothing pastel shades • Kids size (40\" × 50\")"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: false
@@ -233,14 +244,15 @@ const PRODUCTS = [
     category: "quilts",
     price: 5800,
     unit: "55\" × 90\" Solid Pastel Individual Quilt • Tamizhnad Ilavam Panju",
-    badge: "Solid Pastel • Ilavam Panju",
+    badge: "Pastel Misty Blue • Solid Quilt",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 21,
-    image: "assets/images/quilt-roll.jpg?v=4",
-    description: "Master solid pastel individual quilt (55\" × 90\") filled with 100% natural Ilavam Panju (silk cotton harvested from Tamizhnad) and encased in ultra-soft, brushed organically dyed solid pastel cotton fabric (available in Pastel Butter Yellow, Pastel Peach, Pastel Mint Green, Pastel Lavender, Pastel Misty Blue-Grey, and Pastel Blush Pink — our quilts are 100% solid pastel with no prints). While the handcrafted quilt itself is not separately certified, the organic cotton fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with 100% eco-friendly plastic-free labels and a handcrafted tote carry bag.",
+    image: "assets/images/lookbook-bluegrey-moons.jpg?v=1",
+    colorways: PASTEL_COLORWAYS,
+    description: "Master solid pastel individual quilt (55\" × 90\") filled with 100% natural Ilavam Panju (silk cotton harvested from Tamizhnad) and encased in ultra-soft, brushed organically dyed solid pastel cotton fabric (available in all 6 pastel shades: Pastel Misty Blue-Grey, Pastel Lavender, Pastel Blush Pink, Pastel Mint Green, Pastel Peach, and Pastel Butter Yellow — our quilts are 100% solid pastel with zero prints). While the handcrafted quilt itself is not separately certified, the organic cotton fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with 100% eco-friendly plastic-free labels and a handcrafted tote carry bag.",
     ingredients: "Natural Ilavam Panju (Silk Cotton harvested from Tamizhnad) Filling + Handcrafted from 100% Solid Pastel GOTS & OEKO-TEX Certified Organic Cotton Fabric, organically dyed.",
-    benefits: ["100% solid pastel brushed cotton with pure Tamizhnad Ilavam Panju filling for cloud-like comfort", "Crafted from GOTS & OEKO-TEX certified fabric with eco-friendly labels and zero plastic", "Available in 6 soothing pastel shades • Individual size (55\" × 90\")"],
+    benefits: ["100% solid pastel brushed cotton with pure Tamizhnad Ilavam Panju filling for cloud-like comfort", "Crafted from GOTS & OEKO-TEX certified fabric with eco-friendly labels and zero plastic", "Available in all 6 soothing pastel shades • Individual size (55\" × 90\")"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: false
@@ -251,14 +263,15 @@ const PRODUCTS = [
     category: "quilts",
     price: 2400,
     unit: "40\" × 50\" Kids Throw • Solid Pastel One Side, Printed Other Side",
-    badge: "Solid & Printed Sides",
+    badge: "Pastel Blush Pink • Swirls Print",
     badgeType: "organic",
     rating: 4.8,
     reviewsCount: 14,
-    image: "assets/images/quilt-throw.jpg?v=3",
-    description: "Lightweight, ultra-soft reversible kids throw blanket handcrafted from organic cotton thread yarns: solid pastel brushed cotton on one side and white with delicate pastel nature prints on the other side (Pastel Butter Yellow with Stars, Pastel Peach with Suns, Pastel Mint Green with Trees, Pastel Lavender with Clouds, Pastel Misty Blue-Grey with Crescent Moons, and Pastel Blush Pink with Swirls). While the finished throw itself is not separately certified, the organic fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with eco-friendly labels (zero plastic) and a handcrafted tote carry bag.",
+    image: "assets/images/lookbook-pink-swirls.jpg?v=1",
+    colorways: PASTEL_COLORWAYS,
+    description: "Lightweight, ultra-soft reversible kids throw blanket handcrafted from organic cotton thread yarns: solid pastel brushed cotton on one side and white with delicate pastel nature prints on the other side (Pastel Blush Pink with Swirls, Pastel Mint Green with Trees, Pastel Lavender with Clouds, Pastel Misty Blue-Grey with Crescent Moons, Pastel Peach with Suns, and Pastel Butter Yellow with Stars). While the finished throw itself is not separately certified, the organic fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with eco-friendly labels (zero plastic) and a handcrafted tote carry bag.",
     ingredients: "Handcrafted from 100% GOTS-Certified & OEKO-TEX Certified Organic Cotton Fabric (Solid Pastel One Side & Printed Other Side), organically dyed.",
-    benefits: ["Reversible: solid pastel brushed cotton on one side, delicate pastel print on the other side", "Made from GOTS & OEKO-TEX certified fabric with eco-friendly labels and zero plastic", "Available in 6 pastel colorways • Kids size (40\" × 50\")"],
+    benefits: ["Reversible: solid pastel brushed cotton on one side, delicate pastel print on the other side", "Made from GOTS & OEKO-TEX certified fabric with eco-friendly labels and zero plastic", "Available in all 6 distinct pastel colorways • Kids size (40\" × 50\")"],
     inStock: true,
     isFeatured: false,
     wholesaleAvailable: true
@@ -269,14 +282,15 @@ const PRODUCTS = [
     category: "quilts",
     price: 3200,
     unit: "55\" × 90\" Adult Throw • Solid Pastel One Side, Printed Other Side",
-    badge: "Solid & Printed Sides",
+    badge: "Pastel Mint Green • Trees Print",
     badgeType: "organic",
     rating: 4.9,
     reviewsCount: 18,
-    image: "assets/images/quilt-throw.jpg?v=3",
-    description: "Generous reversible adult throw blanket (55\" × 90\") handcrafted from organic cotton thread yarns: solid pastel brushed cotton on one side and white with delicate pastel nature prints on the other side (Pastel Butter Yellow with Stars, Pastel Peach with Suns, Pastel Mint Green with Trees, Pastel Lavender with Clouds, Pastel Misty Blue-Grey with Crescent Moons, and Pastel Blush Pink with Swirls). While the finished throw itself is not separately certified, the organic fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with eco-friendly labels (zero plastic) and a handcrafted tote carry bag.",
+    image: "assets/images/lookbook-mint-trees.jpg?v=1",
+    colorways: PASTEL_COLORWAYS,
+    description: "Generous reversible adult throw blanket (55\" × 90\") handcrafted from organic cotton thread yarns: solid pastel brushed cotton on one side and white with delicate pastel nature prints on the other side (Pastel Mint Green with Trees, Pastel Misty Blue-Grey with Crescent Moons, Pastel Lavender with Clouds, Pastel Blush Pink with Swirls, Pastel Peach with Suns, and Pastel Butter Yellow with Stars). While the finished throw itself is not separately certified, the organic fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with eco-friendly labels (zero plastic) and a handcrafted tote carry bag.",
     ingredients: "Handcrafted from 100% GOTS-Certified & OEKO-TEX Certified Organic Cotton Fabric (Solid Pastel One Side & Printed Other Side), organically dyed.",
-    benefits: ["Reversible: solid pastel brushed cotton on one side, delicate pastel print on the other side", "Made from GOTS & OEKO-TEX certified fabric with 100% eco-friendly plastic-free labels", "Available in 6 pastel colorways • Adult size (55\" × 90\")"],
+    benefits: ["Reversible: solid pastel brushed cotton on one side, delicate pastel print on the other side", "Made from GOTS & OEKO-TEX certified fabric with 100% eco-friendly plastic-free labels", "Available in all 6 distinct pastel colorways • Adult size (55\" × 90\")"],
     inStock: true,
     isFeatured: false,
     wholesaleAvailable: true

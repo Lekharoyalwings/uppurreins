@@ -733,9 +733,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/data.js?v=20261021_v5"></script>
+  <script src="assets/js/data.js?v=20261022_v1"></script>
   <script src="assets/js/cart.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20261022_v1"></script>
   <script>
     const QUILT_LOOKBOOK = [
       {
@@ -818,7 +818,47 @@
       }
     ];
 
-    let activeLookbookIndex = 0;
+    // Randomize initial Lookbook view on page load so visitors experience a fresh pastel shade every time
+    let activeLookbookIndex = Math.floor(Math.random() * QUILT_LOOKBOOK.length);
+
+    // Randomize & balance catalog quilt colors on load to ensure an eclectic mix across all stalls
+    function randomizeQuiltCatalogColors() {
+      if (typeof PASTEL_COLORWAYS === 'undefined' || !PASTEL_COLORWAYS.length) return;
+      const quiltProducts = PRODUCTS.filter(p => p.colorways && p.colorways.length > 0);
+      if (quiltProducts.length === 0) return;
+      
+      // Shuffle colorways so all quilt/throw cards start on distinct pastel colors
+      const shuffled = [...PASTEL_COLORWAYS].sort(() => Math.random() - 0.5);
+      quiltProducts.forEach((product, idx) => {
+        const cw = shuffled[idx % shuffled.length];
+        product.image = `${cw.image}?v=1`;
+        const isThrow = product.id.includes('throw');
+        product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
+        product.activeColorwayId = cw.id;
+      });
+    }
+
+    function swapProductCardColor(productId, colorwayId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product || !product.colorways) return;
+      const cw = product.colorways.find(c => c.id === colorwayId);
+      if (!cw) return;
+      product.image = `${cw.image}?v=1`;
+      const isThrow = product.id.includes('throw');
+      product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
+      product.activeColorwayId = cw.id;
+
+      const imgEl = document.getElementById(`card-img-${productId}`);
+      const badgeEl = document.getElementById(`card-badge-${productId}`);
+      if (imgEl) {
+        imgEl.style.opacity = '0.5';
+        setTimeout(() => {
+          imgEl.src = product.image;
+          imgEl.style.opacity = '1';
+        }, 120);
+      }
+      if (badgeEl) badgeEl.textContent = product.badge;
+    }
 
     function renderLookbook() {
       const item = QUILT_LOOKBOOK[activeLookbookIndex];
@@ -972,18 +1012,35 @@
       } else {
         emptyState.classList.add('hidden');
         grid.innerHTML = filtered.map(product => `
-          <div class="stall-card card-hover">
-            <div class="stall-header">
-              <span class="stall-label">${product.category === 'bundles' ? 'Farmstead Hamper' : product.category.replace('-', ' ')}</span>
-            </div>
-            <div class="relative img-zoom-wrapper h-52 cursor-pointer" onclick="openProductModal('${product.id}')">
-              <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
-              <span class="absolute top-3 left-3 text-[11px] px-2.5 py-0.5 rounded-sm font-medium ${product.badgeType === 'organic' ? 'badge-organic' : product.badgeType === 'fresh' ? 'badge-fresh' : 'badge-featured'}">
-                ${product.badge}
-              </span>
-            </div>
-            <div class="stall-body flex-1 flex flex-col justify-between">
-              <div>
+          <div class="stall-card card-hover flex flex-col justify-between" id="stall-card-${product.id}">
+            <div>
+              <div class="stall-header flex items-center justify-between">
+                <span class="stall-label">${product.category === 'bundles' ? 'Farmstead Hamper' : product.category.replace('-', ' ')}</span>
+                ${product.colorways ? `<span class="text-[10px] font-mono uppercase tracking-wider text-brand-gold">6 Pastel Shades</span>` : ''}
+              </div>
+              <div class="relative img-zoom-wrapper h-52 cursor-pointer" onclick="openProductModal('${product.id}')">
+                <img id="card-img-${product.id}" src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-opacity duration-300">
+                <span id="card-badge-${product.id}" class="absolute top-3 left-3 text-[11px] px-2.5 py-0.5 rounded-sm font-medium ${product.badgeType === 'organic' ? 'badge-organic' : product.badgeType === 'fresh' ? 'badge-fresh' : 'badge-featured'}">
+                  ${product.badge}
+                </span>
+              </div>
+              ${product.colorways ? `
+                <!-- Interactive Pastel Colorway Swatches (Click to swap card color instantly) -->
+                <div class="px-3.5 py-2 bg-black/25 border-b border-white/5 flex items-center justify-between" onclick="event.stopPropagation();">
+                  <span class="text-[10px] font-mono text-brand-oat/60 uppercase tracking-wider">Mix &amp; Match:</span>
+                  <div class="flex items-center gap-1.5">
+                    ${product.colorways.map(cw => `
+                      <button type="button" 
+                        onclick="swapProductCardColor('${product.id}', '${cw.id}'); event.stopPropagation();" 
+                        title="${cw.name} (${product.id.includes('throw') ? cw.motif + ' Print' : 'Solid Quilt'})" 
+                        class="w-4 h-4 rounded-full border border-black/50 hover:scale-125 transition transform focus:outline-none focus:ring-1 focus:ring-brand-gold shadow-sm" 
+                        style="background-color: ${cw.hex};">
+                      </button>
+                    `).join('')}
+                  </div>
+                </div>
+              ` : ''}
+              <div class="stall-body">
                 <h3 class="font-serif font-bold text-brand-cream text-lg hover:text-brand-mossLight cursor-pointer transition line-clamp-1" onclick="openProductModal('${product.id}')">${product.name}</h3>
                 <p class="text-xs text-brand-oat/60 mt-1 line-clamp-2">${product.description}</p>
                 <div class="mt-2.5">
@@ -992,7 +1049,9 @@
                   </span>
                 </div>
               </div>
-              <div class="pt-4 mt-4 border-t border-black/30 flex items-center justify-between">
+            </div>
+            <div class="px-4 pb-4">
+              <div class="pt-3 border-t border-black/30 flex items-center justify-between">
                 <div>
                   <span class="text-[11px] text-brand-oat/40 block">${product.unit}</span>
                   <span class="font-bold text-brand-gold text-base">INR ${product.price.toLocaleString('en-IN')}</span>
@@ -1016,6 +1075,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      randomizeQuiltCatalogColors();
       renderLookbook();
       renderCategoryPills();
       renderProducts();

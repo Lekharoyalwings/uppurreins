@@ -120,26 +120,52 @@ function openProductModal(productId) {
     modal = document.getElementById('product-detail-modal');
   }
 
+  const isThrow = product.id.includes('throw');
+  const initialColorway = product.colorways ? (product.colorways.find(c => c.id === product.activeColorwayId) || product.colorways[0]) : null;
+
   const body = document.getElementById('product-modal-body');
   body.innerHTML = `
     <div class="grid md:grid-cols-2 gap-6 items-start">
-      <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg">
-        <img src="${product.image}" alt="${product.name}" class="w-full h-72 object-cover" />
+      <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg bg-black/60">
+        <img id="modal-product-img" src="${product.image}" alt="${product.name}" class="w-full h-72 sm:h-84 object-cover transition-opacity duration-300" />
       </div>
       <div>
         <div class="flex items-center gap-2 mb-2">
-          <span class="text-xs px-2.5 py-0.5 rounded-full font-medium ${product.badgeType === 'organic' ? 'bg-brand-forest/40 text-brand-mossLight border border-brand-mossLight/30' : 'bg-brand-gold/20 text-brand-gold border border-brand-gold/30'}">
+          <span id="modal-product-badge" class="text-xs px-2.5 py-0.5 rounded-full font-medium ${product.badgeType === 'organic' ? 'bg-brand-forest/40 text-brand-mossLight border border-brand-mossLight/30' : 'bg-brand-gold/20 text-brand-gold border border-brand-gold/30'}">
             ${product.badge}
           </span>
           <span class="text-xs text-[#cbb89d]/70">• ${product.unit}</span>
         </div>
         <h3 class="text-2xl font-serif font-bold text-[#e2c9a5] mb-2">${product.name}</h3>
-        <p class="text-2xl font-bold text-brand-gold mb-4">INR ${product.price.toLocaleString('en-IN')}</p>
+        <p class="text-2xl font-bold text-brand-gold mb-3">INR ${product.price.toLocaleString('en-IN')}</p>
         
+        ${product.colorways ? `
+          <!-- Pastel Colorway & Signature Motif Selector inside Modal -->
+          <div class="mb-4 p-3 rounded-lg bg-black/35 border border-white/10">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-brand-gold">Choose Pastel Shade &amp; Motif:</span>
+              <span id="modal-selected-cw-label" class="text-xs text-brand-cream font-medium">${initialColorway ? initialColorway.name : 'Select a Shade'}</span>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5" id="modal-colorway-buttons">
+              ${product.colorways.map(cw => `
+                <button type="button" 
+                  onclick="selectModalColorway('${product.id}', '${cw.id}')" 
+                  class="modal-cw-btn px-2 py-1.5 rounded text-left text-xs bg-white/5 hover:bg-white/15 border border-white/10 flex items-center gap-1.5 transition">
+                  <span class="w-3 h-3 rounded-full flex-shrink-0 border border-black/40" style="background-color: ${cw.hex};"></span>
+                  <span class="text-[11px] text-[#e2c9a5] truncate">${cw.name.replace('Pastel ', '')}</span>
+                </button>
+              `).join('')}
+            </div>
+            <p id="modal-cw-spec-note" class="text-[11px] text-[#cbb89d]/80 mt-2 leading-relaxed">
+              ${isThrow ? `Reversible: solid pastel on one side, crisp unbleached white with signature motif print on the other.` : `100% solid pastel brushed cotton on both sides (zero prints), 3 plump channels filled with Tamizhnad Ilavam Panju.`}
+            </p>
+          </div>
+        ` : ''}
+
         <p class="text-[#cbb89d] text-sm leading-relaxed mb-4">${product.description}</p>
         
-        <div class="bg-white/5 p-4 rounded-xl mb-6 border border-white/10">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-2">Pure Ingredients & Sourcing</h4>
+        <div class="bg-white/5 p-4 rounded-xl mb-4 border border-white/10">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-2">Pure Ingredients &amp; Sourcing</h4>
           <p class="text-xs text-[#e2c9a5]/90 leading-relaxed">${product.ingredients}</p>
         </div>
 
@@ -169,6 +195,43 @@ function openProductModal(productId) {
   }, 10);
 
   if (window.lucide) lucide.createIcons();
+}
+
+function selectModalColorway(productId, colorwayId) {
+  const product = PRODUCTS.find(p => p.id === productId);
+  if (!product || !product.colorways) return;
+  const cw = product.colorways.find(c => c.id === colorwayId);
+  if (!cw) return;
+
+  const isThrow = product.id.includes('throw');
+  product.image = `${cw.image}?v=1`;
+  product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
+  product.activeColorwayId = cw.id;
+
+  const imgEl = document.getElementById('modal-product-img');
+  const badgeEl = document.getElementById('modal-product-badge');
+  const labelEl = document.getElementById('modal-selected-cw-label');
+  const noteEl = document.getElementById('modal-cw-spec-note');
+
+  if (imgEl) {
+    imgEl.style.opacity = '0.5';
+    setTimeout(() => {
+      imgEl.src = product.image;
+      imgEl.style.opacity = '1';
+    }, 100);
+  }
+  if (badgeEl) badgeEl.textContent = product.badge;
+  if (labelEl) labelEl.textContent = `${cw.name} (${cw.motif})`;
+  if (noteEl) {
+    noteEl.textContent = isThrow
+      ? `Reversible: solid ${cw.name} on one side, crisp unbleached white with ${cw.motif} print on the other.`
+      : `100% solid ${cw.name} on both sides (zero prints), filled with Tamizhnad Ilavam Panju.`;
+  }
+
+  // Also sync the card on the shop page if present
+  if (typeof swapProductCardColor === 'function') {
+    swapProductCardColor(productId, colorwayId);
+  }
 }
 
 function closeProductModal() {
