@@ -157,7 +157,7 @@ function openProductModal(productId) {
               `).join('')}
             </div>
             <p id="modal-cw-spec-note" class="text-[11px] text-[#cbb89d]/80 mt-2 leading-relaxed">
-              ${isThrow ? `Reversible: solid pastel on one side, crisp unbleached white with signature motif print on the other.` : `100% solid pastel brushed cotton on both sides (zero prints), 3 plump channels filled with Tamizhnad Ilavam Panju.`}
+              ${isThrow ? `Reversible: solid pastel on one side, crisp unbleached white with signature motif print on the other.` : `100% solid pastel brushed cotton on both sides (unadorned solid pastel), 3 plump channels filled with Tamizhnad Ilavam Panju.`}
             </p>
           </div>
         ` : ''}
@@ -225,7 +225,7 @@ function selectModalColorway(productId, colorwayId) {
   if (noteEl) {
     noteEl.textContent = isThrow
       ? `Reversible: solid ${cw.name} on one side, crisp unbleached white with ${cw.motif} print on the other.`
-      : `100% solid ${cw.name} on both sides (zero prints), filled with Tamizhnad Ilavam Panju.`;
+      : `100% solid ${cw.name} on both sides (unadorned solid pastel), filled with Tamizhnad Ilavam Panju.`;
   }
 
   // Also sync the card on the shop page if present

@@ -407,7 +407,7 @@
           }
         }
 
-        // Clamp dog strictly inside visible viewport (guarantees zero disappearance on zoom)
+        // Clamp dog strictly inside visible viewport (prevents disappearance on zoom)
         this.clampDogInside(dog);
       }
     }
