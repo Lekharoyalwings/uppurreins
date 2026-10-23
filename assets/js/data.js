@@ -32,6 +32,7 @@ const BRAND_CONFIG = {
 
 const CATEGORIES = [
   { id: "all", name: "All Offerings", icon: "sparkles" },
+  { id: "produce", name: "Microgreens & Mushrooms", icon: "sprout" },
   { id: "bundles", name: "Farmstead Hampers", icon: "gift" },
   { id: "soaps", name: "Curd Soaps", icon: "droplets" },
   { id: "duck-eggs", name: "Pasture Duck Eggs", icon: "egg" },
@@ -401,6 +402,44 @@ const PRODUCTS = [
     description: "Sun-dried whole organic moringa leaves harvested fresh from our farmstead trees, retaining natural plant protein, bioavailable iron, active chlorophyll, and nutritional vitality. Packed in non-plastic packs.",
     ingredients: "100% Organically Grown Whole Moringa Leaves (Moringa oleifera).",
     benefits: ["Dense with essential vitamins, bio-available iron, and amino acids", "Gentle sun-drying preserves active chlorophyll and plant vitality", "Packed in non-plastic packs for everyday wellness"],
+    inStock: true,
+    isFeatured: true,
+    wholesaleAvailable: true
+  },
+
+  // LIVING HARVEST: MICROGREENS (Earthen Pots) & MUSHROOMS (Biodegradable Buckets)
+  {
+    id: "produce-living-microgreens",
+    name: "Living Microgreens in Earthen Pots",
+    category: "produce",
+    price: 240,
+    unit: "Living Terracotta Pot",
+    badge: "Earthen Pot • No Plastic",
+    badgeType: "organic",
+    rating: 4.9,
+    reviewsCount: 34,
+    image: "assets/images/microgreens-earthen-pots.jpg",
+    description: "Vibrant living microgreens grown directly in handcrafted terracotta earthen clay pots without plastic trays. Snip fresh at your table at peak nutritional vitality.",
+    ingredients: "100% Organically sprouted living microgreens in porous terracotta clay pot.",
+    benefits: ["Grown in mineral living soil inside reusable clay pots", "Delivered alive for maximum freshness and active enzymes", "Completely plastic-free from root to harvest"],
+    inStock: true,
+    isFeatured: true,
+    wholesaleAvailable: true
+  },
+  {
+    id: "produce-farmstead-mushrooms",
+    name: "Farmstead Mushrooms in Biodegradable Buckets",
+    category: "produce",
+    price: 360,
+    unit: "Fruiting Bio Bucket",
+    badge: "Biodegradable Bucket • No Bags",
+    badgeType: "fresh",
+    rating: 5.0,
+    reviewsCount: 28,
+    image: "assets/images/mushrooms-biodegradable-buckets.jpg",
+    description: "Plump gourmet farmstead mushrooms fruiting naturally out of biodegradable plant-fiber buckets instead of plastic grow bags. Clean, chemical-free, and rich in natural umami.",
+    ingredients: "100% Organically cultivated oyster mushrooms in biodegradable plant-fiber bucket.",
+    benefits: ["Grown in biodegradable plant-fiber buckets, never in plastic bags", "Dense with natural protein, beta-glucans, and minerals", "Harvested fresh at prime culinary tenderness"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
@@ -777,6 +816,13 @@ const FAQS = [
 ];
 
 const WHOLESALE_TIERS = [
+  {
+    category: "Living Microgreens & Mushrooms",
+    minOrder: "15 Pots / Bio Buckets (Weekly standing order)",
+    discount: "Direct restaurant & cafe wholesale rates",
+    packaging: "Earthen clay pots & biodegradable fiber buckets",
+    leadTime: "Harvested fresh on delivery morning"
+  },
   {
     category: "Handcrafted Curd Soaps",
     minOrder: "30 Bars (Assorted varieties: Curd, Banana & Bamboo, Moringa, Dry Grass)",
