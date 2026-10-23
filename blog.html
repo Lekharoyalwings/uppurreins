@@ -474,20 +474,366 @@
             <h2 class="stable-bar-title text-3xl sm:text-4xl" id="journal-section-title">Latest Articles &amp; Farmstead Lore</h2>
             <p class="stable-bar-sub">Dispatches directly from the forest • Authentic philosophy, intuitive nutrition, and homestead rhythms.</p>
           </div>
-          <button id="header-read-all-btn" onclick="showAllBlogArticles()" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-mossLight hover:text-brand-cream transition relative z-10 cursor-pointer">
-            <span>Read All Articles</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </button>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-oat/50 uppercase tracking-widest">
+            <span>10 Dispatches Available</span>
+          </div>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-articles-grid">
-        <!-- Injected via JS -->
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Artisan Craft & Science</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 22, 2026</span>
+            </div>
+            <a href="journal-10-why-do-we-make-banana-soaps-from-leaf-not-the-fruit.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog10_banana_leaf_soap.jpg" alt="Why do we make banana soaps from leaf not the fruit?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-10-why-do-we-make-banana-soaps-from-leaf-not-the-fruit.html">Why do we make banana soaps from leaf not the fruit?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">Yes, our banana soaps are made from freshly harvested banana leaves from our farm. With natural antimicrobial detox properties, green-tea-level anti-inflammatory compounds, and natural UV shielding, they heal from the root.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#BananaLeafSoap</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#NaturalUVShield</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#AntimicrobialDetox</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#NothingInNatureIsAllergic</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#RootHealing</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-10-why-do-we-make-banana-soaps-from-leaf-not-the-fruit.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-10-banana-leaf-soap')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Conscious Parenting & Rhythm</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 21, 2026</span>
+            </div>
+            <a href="journal-09-swaddle-is-addictive.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog9_swaddle_quilt.jpg?v=4" alt="Swaddle is addictive." class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-09-swaddle-is-addictive.html">Swaddle is addictive.</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">Swaddling helps babies sleep, they say—but only till they mature into their bodies. Once they show the first signs of rolling over, keeping them swaddled stops them from exploring their limbs and syncing with nature.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#ConsciousParenting</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#CircadianRhythm</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#LetBabiesMove</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#HeirloomQuilts</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#NaturalGrowth</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-09-swaddle-is-addictive.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-09-swaddle-is-addictive')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Nutrition & Intuition</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 20, 2026</span>
+            </div>
+            <a href="journal-08-curd-is-dairy-too-right.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog8_curd_is_dairy.jpg" alt="Curd is dairy too, right?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-08-curd-is-dairy-too-right.html">Curd is dairy too, right?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">Remember I told you we are all Lactose intolerant? Curd, unlike other dairy products, is fermented—literally killing away the sugar and giving you pure, gut-friendly acid that turns your body into a self-curing powerhouse.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#CurdIsDifferent</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#FermentedGutHealth</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#SelfCuringPowerhouse</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#CurdSoap</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#InnerAndOuterSelf</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-08-curd-is-dairy-too-right.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-08-curd-is-dairy')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Nutrition & Intuition</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 19, 2026</span>
+            </div>
+            <a href="journal-07-we-are-all-naturally-lactose-intolerant.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog7_lactose_intolerant.jpg" alt="We are all naturally Lactose intolerant?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-07-we-are-all-naturally-lactose-intolerant.html">We are all naturally Lactose intolerant?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">Yep, we are all naturally lactose intolerant. But this fact hides behind the chemicals in commercial pasteurization. Stopping dairy early gives your body time to make space for good bacteria.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#LactoseIntolerance</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#DairyTruth</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PlantMilks</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#GutBacteria</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#RealNutrition</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-07-we-are-all-naturally-lactose-intolerant.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-07-lactose-intolerant')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Artisan Craft & Science</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 18, 2026</span>
+            </div>
+            <a href="journal-06-what-are-soaps-made-of.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog6_soap_ingredients.jpg" alt="What are soaps made of?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-06-what-are-soaps-made-of.html">What are soaps made of?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">At Purreins Frequency, we use all farm produced ingredients with one “chemical agent” called Sodium Hydroxide NaOH, the breakdown of Sea Salt using electricity. Simple and heavy is the way to squishy skin.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#WhatAreSoapsMadeOf</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#SeaBreezeSoap</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#ColdProcessTruth</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#SodiumHydroxide</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#SquishySkin</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#FarmsteadStore</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-06-what-are-soaps-made-of.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-06-soaps-made-of')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Technology & Mindset</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 17, 2026</span>
+            </div>
+            <a href="journal-05-how-fast-should-your-ai-agent-be.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog5_ai_agent_speed.jpg" alt="How fast should your AI agent be?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-05-how-fast-should-your-ai-agent-be.html">How fast should your AI agent be?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">AI is not a person, but hey it is kind of a person, right? Be nice to AI, give it time, let it cook. We eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#AINotJetFast</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#LetItCook</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#AgentMindset</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#HeavyBreakfast</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#RhythmOverSpeed</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-05-how-fast-should-your-ai-agent-be.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-05-ai-speed')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Technology & Ecology</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 16, 2026</span>
+            </div>
+            <a href="journal-04-sustainable-ai.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog4_sustainable_ai.jpg" alt="Sustainable AI?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-04-sustainable-ai.html">Sustainable AI?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">In the world of AI skyrocketing every second and sustainability figuring out a way to conclude itself, AI by itself can be or already is sustainable. When AI does technical things for me, I can give my human hours to the farm.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#SustainableAI</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#FarmsteadTech</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#NatureAndCode</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#ConsciousAutomation</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#HumanHours</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-04-sustainable-ai.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-04-sustainable-ai')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Slow Living & Philosophy</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 15, 2026</span>
+            </div>
+            <a href="journal-03-what-are-we-all-rushing-towards.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog3_rushing.jpg" alt="What’re we all rushing towards?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-03-what-are-we-all-rushing-towards.html">What’re we all rushing towards?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#SlowDown</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#SequenceOfNature</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#StopTheRush</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#MindfulPace</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#HumanExistence</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-03-what-are-we-all-rushing-towards.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-03-rushing')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Farmstead Lore</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 14, 2026</span>
+            </div>
+            <a href="journal-02-why-are-we-doing-everything-the-hard-way.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog2_hard_way.jpg" alt="Why’re we doing everything the hard way?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-02-why-are-we-doing-everything-the-hard-way.html">Why’re we doing everything the hard way?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a convenience-free life? Convenience and speed isn’t the way towards getting healthy.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#ConvenienceFree</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#NatureIsTheGym</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#ForestLiving</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#OrganicallyMade</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#FarmsteadRhythm</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-02-why-are-we-doing-everything-the-hard-way.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-02-hard-way')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
+
+        <article class="stall-card card-hover flex flex-col justify-between group">
+          <div>
+            <div class="stall-header">
+              <span class="stall-label">Nutrition & Intuition</span>
+              <span class="text-brand-oat/50 text-[11px] ml-auto relative z-10 font-mono">Oct 13, 2026</span>
+            </div>
+            <a href="journal-01-is-eating-healthy-healthy.html" class="block relative h-60 img-zoom-wrapper cursor-pointer overflow-hidden rounded-t-sm">
+              <img src="assets/images/blog1_eating_healthy.jpg" alt="Is eating healthy, healthy?" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </a>
+            <div class="stall-body">
+              <h3 class="font-serif font-bold text-xl text-brand-cream hover:text-brand-mossLight transition mb-3">
+                <a href="journal-01-is-eating-healthy-healthy.html">Is eating healthy, healthy?</a>
+              </h3>
+              <p class="text-xs text-brand-oat/70 leading-relaxed line-clamp-3 mb-4 font-light">In the world of AI crafting us diet charts, what does eating healthy look like? Eating what is right for your body and your metabolism. Forget the charts, forget the supplements.</p>
+              
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#PurreinsFrequency</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#IntuitiveEating</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#BodyWisdom</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#RealFoodNutrition</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#EatWhatYouCrave</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/25 text-brand-mossLight font-medium">#NaturalSugars</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 pb-4 border-t border-black/30 pt-4 flex gap-2">
+            <a href="journal-01-is-eating-healthy-healthy.html" class="flex-1 btn-primary py-2.5 rounded-sm text-xs font-semibold text-center block tracking-wide uppercase">
+              Read Full Dispatch
+            </a>
+            <button onclick="openArticleModal('blog-01-eating-healthy')" class="px-3.5 py-2.5 btn-secondary rounded-sm text-xs text-brand-cream hover:text-brand-gold transition" title="Quick Read Modal">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </article>
       </div>
-      <div class="text-center mt-10" id="blog-read-all-container">
-        <button onclick="showAllBlogArticles()" class="btn-primary px-8 py-3.5 rounded-sm font-semibold text-xs sm:text-sm uppercase tracking-wider inline-flex items-center gap-2 cursor-pointer">
-          <span>Read All Articles</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
+      <div class="text-center mt-12 py-6 border-t border-white/5" id="blog-read-all-container">
+        <p class="font-serif italic text-lg text-brand-cream/80">You have reached the beginning of the dispatches archive.</p>
+        <p class="text-xs text-brand-oat/50 mt-1">Dispatches published from the organic forest farmstead.</p>
       </div>
     </div>
   </main>
@@ -510,11 +856,11 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/data.js?v=20261023_v3_fixed_quotes"></script>
+  <script src="assets/js/data.js?v=20261023_v4_prerendered"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js?v=20261023_v2_cleanest"></script>
   <script>
-    let showingAllArticles = new URLSearchParams(window.location.search).get('all') === '1';
+    let showingAllArticles = true;
 
     function showAllBlogArticles() {
       showingAllArticles = true;
