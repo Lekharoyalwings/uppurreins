@@ -101,6 +101,7 @@ function setupNavigation() {
 
 // Quick View Product Modal
 function openProductModal(productId) {
+  window.currentOpenProductId = productId;
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
 
@@ -120,66 +121,99 @@ function openProductModal(productId) {
     modal = document.getElementById('product-detail-modal');
   }
 
+  const isDe = (window.currentLang === 'de');
   const isThrow = product.id.includes('throw');
   const initialColorway = product.colorways ? (product.colorways.find(c => c.id === product.activeColorwayId) || product.colorways[0]) : null;
+
+  const name = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'name') : product.name;
+  const badge = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'badge') : product.badge;
+  const unit = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'unit') : product.unit;
+  const desc = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'description') : product.description;
+  const ingredients = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'ingredients') : product.ingredients;
+  const priceFormatted = (typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`;
+
+  const chooseShadeHeader = isDe ? 'Pastellton & Naturmuster wählen:' : 'Choose Pastel Shade & Motif:';
+  const cwDisplayName = initialColorway ? (isDe && initialColorway.name_de ? initialColorway.name_de : initialColorway.name) : (isDe ? 'Farbton wählen' : 'Select a Shade');
+  const cwMotifName = initialColorway ? (isDe && initialColorway.motif_de ? initialColorway.motif_de : initialColorway.motif) : '';
+  
+  let specNote = '';
+  if (product.colorways) {
+    if (isThrow) {
+      specNote = isDe 
+        ? 'Wendbar: Angeraute einfarbige Pastell-Bio-Baumwolle auf der einen Seite, ungebleichtes Rohweiß mit feinem Naturmuster-Druck auf der anderen Seite.'
+        : 'Reversible: solid pastel on one side, crisp unbleached white with signature motif print on the other.';
+    } else {
+      specNote = isDe
+        ? '100% einfarbig angeraute Bio-Baumwolle auf beiden Seiten (schlichtes Pastell), gefüllt mit 3 prallen Kammern aus Tamizhnad Ilavam Panju (Seidenbaumwolle).'
+        : '100% solid pastel brushed cotton on both sides (unadorned solid pastel), 3 plump channels filled with Tamizhnad Ilavam Panju.';
+    }
+  }
+
+  const pureIngHeader = isDe ? 'Reine Zutaten & Herkunft' : 'Pure Ingredients & Sourcing';
+  const preOrderNotice = isDe ? '<strong>Vorbestellung:</strong> Handgefertigte Kleinserie. Versand im nächsten Monat.' : '<strong>Pre-Order Item:</strong> Handcrafted small batch. Releases next month.';
+  const preOrderBtnText = isDe ? 'Vorbestellen (Versand nächsten Monat)' : 'Pre-Order (Ships Next Month)';
+  const askBtnTitle = isDe ? 'Frage per WhatsApp stellen' : 'Ask a question via WhatsApp';
 
   const body = document.getElementById('product-modal-body');
   body.innerHTML = `
     <div class="grid md:grid-cols-2 gap-6 items-start">
       <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg bg-black/60">
-        <img id="modal-product-img" src="${product.image}" alt="${product.name}" class="w-full h-72 sm:h-84 object-cover transition-opacity duration-300" />
+        <img id="modal-product-img" src="${product.image}" alt="${name}" class="w-full h-72 sm:h-84 object-cover transition-opacity duration-300" />
       </div>
       <div>
         <div class="flex items-center gap-2 mb-2">
           <span id="modal-product-badge" class="text-xs px-2.5 py-0.5 rounded-full font-medium ${product.badgeType === 'organic' ? 'bg-brand-forest/40 text-brand-mossLight border border-brand-mossLight/30' : 'bg-brand-gold/20 text-brand-gold border border-brand-gold/30'}">
-            ${product.badge}
+            ${badge}
           </span>
-          <span class="text-xs text-[#cbb89d]/70">• ${product.unit}</span>
+          <span class="text-xs text-[#cbb89d]/70">• ${unit}</span>
         </div>
-        <h3 class="text-2xl font-serif font-bold text-[#e2c9a5] mb-2">${(typeof window.getLocalized === 'function') ? window.getLocalized(product, 'name') : product.name}</h3>
-        <p class="text-2xl font-bold text-brand-gold mb-3">${(typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`}</p>
+        <h3 class="text-2xl font-serif font-bold text-[#e2c9a5] mb-2">${name}</h3>
+        <p class="text-2xl font-bold text-brand-gold mb-3">${priceFormatted}</p>
         
         ${product.colorways ? `
           <!-- Pastel Colorway & Signature Motif Selector inside Modal -->
           <div class="mb-4 p-3 rounded-lg bg-black/35 border border-white/10">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-brand-gold">Choose Pastel Shade &amp; Motif:</span>
-              <span id="modal-selected-cw-label" class="text-xs text-brand-cream font-medium">${initialColorway ? initialColorway.name : 'Select a Shade'}</span>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-brand-gold">${chooseShadeHeader}</span>
+              <span id="modal-selected-cw-label" class="text-xs text-brand-cream font-medium">${cwDisplayName}${cwMotifName ? ' (' + cwMotifName + ')' : ''}</span>
             </div>
             <div class="grid grid-cols-3 gap-1.5" id="modal-colorway-buttons">
-              ${product.colorways.map(cw => `
+              ${product.colorways.map(cw => {
+                const buttonCwName = isDe && cw.name_de ? cw.name_de.replace('Pastell-', '') : cw.name.replace('Pastel ', '');
+                return `
                 <button type="button" 
                   onclick="selectModalColorway('${product.id}', '${cw.id}')" 
                   class="modal-cw-btn px-2 py-1.5 rounded text-left text-xs bg-white/5 hover:bg-white/15 border border-white/10 flex items-center gap-1.5 transition">
                   <span class="w-3 h-3 rounded-full flex-shrink-0 border border-black/40" style="background-color: ${cw.hex};"></span>
-                  <span class="text-[11px] text-[#e2c9a5] truncate">${cw.name.replace('Pastel ', '')}</span>
+                  <span class="text-[11px] text-[#e2c9a5] truncate">${buttonCwName}</span>
                 </button>
-              `).join('')}
+              `;
+              }).join('')}
             </div>
             <p id="modal-cw-spec-note" class="text-[11px] text-[#cbb89d]/80 mt-2 leading-relaxed">
-              ${isThrow ? `Reversible: solid pastel on one side, crisp unbleached white with signature motif print on the other.` : `100% solid pastel brushed cotton on both sides (unadorned solid pastel), 3 plump channels filled with Tamizhnad Ilavam Panju.`}
+              ${specNote}
             </p>
           </div>
         ` : ''}
 
-        <p class="text-[#cbb89d] text-sm leading-relaxed mb-4">${product.description}</p>
+        <p class="text-[#cbb89d] text-sm leading-relaxed mb-4">${desc}</p>
         
         <div class="bg-white/5 p-4 rounded-xl mb-4 border border-white/10">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-2">Pure Ingredients &amp; Sourcing</h4>
-          <p class="text-xs text-[#e2c9a5]/90 leading-relaxed">${product.ingredients}</p>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-2">${pureIngHeader}</h4>
+          <p class="text-xs text-[#e2c9a5]/90 leading-relaxed">${ingredients}</p>
         </div>
 
         <div class="mb-5 p-3 rounded-lg bg-brand-gold/10 border border-brand-gold/25 flex items-center gap-2.5 text-xs text-brand-gold">
           <i data-lucide="clock" class="w-4 h-4 flex-shrink-0"></i>
-          <span><strong>Pre-Order Item:</strong> Handcrafted small batch. Releases next month.</span>
+          <span>${preOrderNotice}</span>
         </div>
 
         <div class="flex items-center gap-3">
           <button onclick="window.cart.addItem('${product.id}'); closeProductModal();" class="flex-1 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] py-3.5 px-6 rounded-xl font-medium flex items-center justify-center gap-2 shadow-lg transition">
             <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-            <span>${window.currentLang === 'de' ? 'Vorbestellen (Versand nächsten Monat)' : 'Pre-Order (Ships Next Month)'}</span>
+            <span>${preOrderBtnText}</span>
           </button>
-          <button onclick="inquireProduct('${product.name}')" class="p-3.5 border border-white/20 hover:border-brand-mossLight rounded-xl text-[#e2c9a5] hover:bg-white/5 transition" title="Ask a question via WhatsApp">
+          <button onclick="inquireProduct('${name}')" class="p-3.5 border border-white/20 hover:border-brand-mossLight rounded-xl text-[#e2c9a5] hover:bg-white/5 transition" title="${askBtnTitle}">
             <i data-lucide="help-circle" class="w-5 h-5"></i>
           </button>
         </div>
@@ -203,9 +237,16 @@ function selectModalColorway(productId, colorwayId) {
   const cw = product.colorways.find(c => c.id === colorwayId);
   if (!cw) return;
 
+  const isDe = (window.currentLang === 'de');
   const isThrow = product.id.includes('throw');
+  const cwName = (isDe && cw.name_de) ? cw.name_de : cw.name;
+  const cwMotif = (isDe && cw.motif_de) ? cw.motif_de : cw.motif;
+
   product.image = `${cw.image}?v=1`;
   product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
+  if (isDe) {
+    product.badge_de = isThrow ? `${cwName} • ${cwMotif}-Druck` : `${cwName} • Steppdecke`;
+  }
   product.activeColorwayId = cw.id;
 
   const imgEl = document.getElementById('modal-product-img');
@@ -220,12 +261,16 @@ function selectModalColorway(productId, colorwayId) {
       imgEl.style.opacity = '1';
     }, 100);
   }
-  if (badgeEl) badgeEl.textContent = product.badge;
-  if (labelEl) labelEl.textContent = `${cw.name} (${cw.motif})`;
+  if (badgeEl) {
+    badgeEl.textContent = (isDe && product.badge_de) ? product.badge_de : product.badge;
+  }
+  if (labelEl) {
+    labelEl.textContent = `${cwName} (${cwMotif})`;
+  }
   if (noteEl) {
     noteEl.textContent = isThrow
-      ? `Reversible: solid ${cw.name} on one side, crisp unbleached white with ${cw.motif} print on the other.`
-      : `100% solid ${cw.name} on both sides (unadorned solid pastel), filled with Tamizhnad Ilavam Panju.`;
+      ? (isDe ? `Wendbar: Einfarbig ${cwName} auf einer Seite, ungebleichtes Rohweiß mit ${cwMotif}-Druck auf der anderen Seite.` : `Reversible: solid ${cw.name} on one side, crisp unbleached white with ${cw.motif} print on the other.`)
+      : (isDe ? `100% einfarbig ${cwName} auf beiden Seiten (schlichtes Pastell), gefüllt mit Tamizhnad Ilavam Panju.` : `100% solid ${cw.name} on both sides (unadorned solid pastel), filled with Tamizhnad Ilavam Panju.`);
   }
 
   // Also sync the card on the shop page if present
@@ -235,6 +280,7 @@ function selectModalColorway(productId, colorwayId) {
 }
 
 function closeProductModal() {
+  window.currentOpenProductId = null;
   const modal = document.getElementById('product-detail-modal');
   if (modal) {
     modal.classList.add('opacity-0');

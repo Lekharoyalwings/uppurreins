@@ -42,18 +42,22 @@ const CATEGORIES = [
 
 // Master 6 Pastel Colorways Palette & Signature Nature Prints
 const PASTEL_COLORWAYS = [
-  { id: "lavender", name: "Pastel Lavender", motif: "Dreamy Clouds", hex: "#D8CCE4", image: "assets/images/lookbook-lavender-clouds.jpg" },
-  { id: "bluegrey", name: "Pastel Misty Blue-Grey", motif: "Crescent Moons", hex: "#C6D2DC", image: "assets/images/lookbook-bluegrey-moons.jpg" },
-  { id: "pink",     name: "Pastel Blush Pink", motif: "Gentle Swirls", hex: "#F0C4CE", image: "assets/images/lookbook-pink-swirls.jpg" },
-  { id: "mint",     name: "Pastel Mint Green", motif: "Minimalist Trees", hex: "#C5E0C2", image: "assets/images/lookbook-mint-trees.jpg" },
-  { id: "peach",    name: "Pastel Peach", motif: "Radiant Suns", hex: "#F4C6A8", image: "assets/images/lookbook-peach-suns.jpg" },
-  { id: "yellow",   name: "Pastel Butter Yellow", motif: "Five-Pointed Stars", hex: "#F4E098", image: "assets/images/lookbook-yellow-stars.jpg" }
+  { id: "lavender", name: "Pastel Lavender", name_de: "Pastell-Lavendel", motif: "Dreamy Clouds", motif_de: "Traumwolken", hex: "#D8CCE4", image: "assets/images/lookbook-lavender-clouds.jpg" },
+  { id: "bluegrey", name: "Pastel Misty Blue-Grey", name_de: "Pastell-Nebelblau-Grau", motif: "Crescent Moons", motif_de: "Mondsicheln", hex: "#C6D2DC", image: "assets/images/lookbook-bluegrey-moons.jpg" },
+  { id: "pink",     name: "Pastel Blush Pink", name_de: "Pastell-Zartrosa", motif: "Gentle Swirls", motif_de: "Sanfte Strudel", hex: "#F0C4CE", image: "assets/images/lookbook-pink-swirls.jpg" },
+  { id: "mint",     name: "Pastel Mint Green", name_de: "Pastell-Minzgrün", motif: "Minimalist Trees", motif_de: "Minimalistische Bäume", hex: "#C5E0C2", image: "assets/images/lookbook-mint-trees.jpg" },
+  { id: "peach",    name: "Pastel Peach", name_de: "Pastell-Pfirsich", motif: "Radiant Suns", motif_de: "Strahlende Sonnen", hex: "#F4C6A8", image: "assets/images/lookbook-peach-suns.jpg" },
+  { id: "yellow",   name: "Pastel Butter Yellow", name_de: "Pastell-Buttergelb", motif: "Five-Pointed Stars", motif_de: "Fünfzackige Sterne", hex: "#F4E098", image: "assets/images/lookbook-yellow-stars.jpg" }
 ];
 
 const PRODUCTS = [
   // CURATED FARMSTEAD HAMPERS (Each with unique image)
   {
     id: "bundle-farmstead-harvest",
+    description_de: "Unser exklusiver Hof-Präsentkorb: Frische Weide-Enteneier im Strohbett, zwei kaltgesiedete Quarkseifen in naturbelassenem Papier mit schlichter Sortenbezeichnung, verpackt mit Samen-gesprenkeltem Baumwollfaden, sonnengetrocknetes Tulsi- und Moringakraut im weißen Bio-Beutel und ein traditioneller Tontopf mit frischem Hof-Quark.",
+    unit_de: "Handgefertigter Präsentkorb mit Eiern, Quarkseifen & Kräutern",
+    badge_de: "Hof-Präsentkorb",
+    ingredients_de: "6 Weide-Enteneier im Strohbett + 2 Hof-Quarkseifen + Sonnengetrocknetes Tulsi & Moringa im weißen Beutel + Tontopf mit Hof-Quark.",
     name: "The Farmstead Harvest Hamper",
     name_de: "Der Hof-Ernte-Präsentkorb",
     category: "bundles",
@@ -74,6 +78,10 @@ const PRODUCTS = [
   },
   {
     id: "bundle-heirloom-quilt-hamper",
+    description_de: "Das vollendete Wohn- und Wellness-Set: Eine handgefertigte Einzelbett-Steppdecke (60\" × 90\") gefüllt mit natürlicher Ilavam Panju (Seidenbaumwolle), GOTS & OEKO-TEX zertifiziert, biologisch gefärbt, gebunden mit rustikalem Baumwollgarn, zusammen mit zwei echten Quarkseifen und sonnengetrockneten Hofkräutern in einer rustikalen Holzkiste.",
+    unit_de: "Exklusives Hof-Sammlerset mit Steppdecke",
+    badge_de: "Kunsthandwerk",
+    ingredients_de: "Einzelbett (60\" × 90\") Ilavam Panju Steppdecke + 2 Kaltprozess-Quarkseifen + Sonnengetrocknete Kräuterblätter + Rustikale Holzkiste.",
     name: "The Artisanal Quilt Roll & Curd Soap Hamper",
     name_de: "Hof-Präsentkorb mit Steppdecke & Quarkseifen",
     category: "bundles",
@@ -94,6 +102,10 @@ const PRODUCTS = [
   },
   {
     id: "bundle-nest-crate",
+    description_de: "Ein liebevoll arrangiertes Nest aus goldenem Naturstroh mit 6 tagesfrischen Weide-Enteneiern und zwei handgesiedeten Quarkseifen, gebunden mit ungebleichtem Baumwollgarn.",
+    unit_de: "Frische Enteneier & Kaltprozess-Seifenset",
+    badge_de: "Frisch vom Hof",
+    ingredients_de: "6 Weide-Enteneier im Strohbett + 2 Kaltprozess-Quarkseifen im ungebleichten Naturpapier.",
     name: "The Pasture Duck Egg & Curd Soap Nest",
     name_de: "Weide-Enteneier & Quarkseifen-Nest",
     category: "bundles",
@@ -116,6 +128,10 @@ const PRODUCTS = [
   // CURD SOAPS (Sculptural 3D Bubble Cubes • 3x3 rounded spheres all around, wrapped in plain unbranded organic paper stating ONLY the botanical name with NO word 'Soap', tied with seed-flecked cotton thread)
   {
     id: "soap-curd",
+    description_de: "Reine, kaltgerührte Quarkseife mit unserer charakteristischen skulpturalen 3D-Bubble-Cube-Form. Gesiedet aus reinem kaltgepresstem Kokosöl, frischem hofeigenem Bio-Quark und sonst nichts. Sanfter, rückfettender Schaum mit natürlicher Milchsäure für empfindliche Haut.",
+    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
+    badge_de: "Echte Hof-Quarkseife",
+    ingredients_de: "Reines kaltgepresstes Kokosöl + Frischer Bio-Quark + Quellwasser + Verseifungslauge (vollständig verseift).",
     name: "Curd",
     name_de: "Quarkseife Pure",
     category: "soaps",
@@ -136,6 +152,10 @@ const PRODUCTS = [
   },
   {
     id: "soap-banana",
+    description_de: "Kaltgesiedete 3D-Bubble-Cube-Seife, angereichert mit nährstoffreichem, sonnengetrocknetem Bananenblatt-Auszug und frischem Bio-Quark. Sanft peelend und feuchtigkeitsspendend.",
+    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
+    badge_de: "Bananenblatt-Extrakt",
+    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Wilder Bananenblatt-Extrakt.",
     name: "Banana",
     name_de: "Bananenseife",
     category: "soaps",
@@ -156,6 +176,10 @@ const PRODUCTS = [
   },
   {
     id: "soap-bamboo",
+    description_de: "Skulpturale 3D-Bubble-Cube-Seife mit mineralstoffreicher Bambus-Kieselsäure und cremiger Bio-Quarkbasis. Reinigt porentief und beruhigt beanspruchte Haut.",
+    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
+    badge_de: "Bambus-Kieselsäure",
+    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Natürlicher Bambussprossen-Auszug.",
     name: "Bamboo",
     name_de: "Bambusseife",
     category: "soaps",
@@ -176,6 +200,10 @@ const PRODUCTS = [
   },
   {
     id: "soap-moringa",
+    description_de: "Kaltprozess-Seife mit sonnengetrocknetem Bio-Moringablattpulver und Quark. Reich an Antioxidantien, Vitaminen und Mineralien für ein strahlendes Hautbild.",
+    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
+    badge_de: "Grünes Moringablatt",
+    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Bio-Moringablattpulver.",
     name: "Moringa",
     name_de: "Moringaseife",
     category: "soaps",
@@ -196,6 +224,10 @@ const PRODUCTS = [
   },
   {
     id: "soap-dry-grass",
+    description_de: "Handgerührte Seife mit dem Duft sonnengetrockneter Wiesenkräuter und wildem Heu, verfeinert mit Bio-Quark für milde, erdende Körperpflege.",
+    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
+    badge_de: "Wiesenkräuter & Heu",
+    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Wilder Wiesenheuextrakt.",
     name: "Dry Grass",
     name_de: "Trockengras-Seife",
     category: "soaps",
@@ -216,6 +248,10 @@ const PRODUCTS = [
   },
   {
     id: "soap-turmeric",
+    description_de: "Warme goldgelbe 3D-Bubble-Cube-Seife mit handgemahlenem wildem Bio-Kurkuma und cremiger Quarkbasis für sanfte Klärung und natürlichen Teint.",
+    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
+    badge_de: "Wilder Gelbwurz",
+    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Handgemahlener Bio-Kurkuma.",
     name: "Turmeric",
     name_de: "Kurkumaseife",
     category: "soaps",
@@ -236,6 +272,10 @@ const PRODUCTS = [
   },
   {
     id: "soap-coffee",
+    description_de: "Tiefbraune Kaltprozess-Seife mit frisch geröstetem Arabica-Kaffee und Bio-Quark. Belebt die Mikrozirkulation und peelt sanft bei der Morgenwäsche.",
+    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
+    badge_de: "Espresso Peeling",
+    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Gerösteter Hochland-Kaffeesatz.",
     name: "Coffee",
     name_de: "Kaffeeseife",
     category: "soaps",
@@ -259,6 +299,10 @@ const PRODUCTS = [
   // PASTURE DUCK EGGS
   {
     id: "eggs-pasture-duck-6",
+    description_de: "6 tagesfrische Eier unserer freilaufenden Enten. Reich an Omega-3-Fettsäuren, mit tief orangem Eigelb und fester Konsistenz, ideal für feine Backwaren und Genießerfrühstück.",
+    unit_de: "6 Eier im Strohkarton",
+    badge_de: "Freilandhaltung",
+    ingredients_de: "100% frische Eier von freilaufenden Weide-Enten in Naturstroh gebettet.",
     name: "Pasture-Roaming Duck Eggs (Half Dozen • 6 Eggs)",
     name_de: "Weide-Enteneier (Halbes Dutzend • 6 Eier)",
     category: "duck-eggs",
@@ -279,6 +323,10 @@ const PRODUCTS = [
   },
   {
     id: "eggs-pasture-duck-24",
+    description_de: "24 tagesfrische Weide-Enteneier in einer stabilen Holzkiste auf weichem Naturstroh. Direkt vom morgendlichen Einsammeln verpackt.",
+    unit_de: "24 Eier in Hofstiege",
+    badge_de: "Vorratskiste",
+    ingredients_de: "24 frische Weide-Enteneier auf reinem Naturstroh.",
     name: "Pasture-Roaming Duck Eggs — Farmstead Pack (24 Eggs / 2 Dozen)",
     name_de: "Weide-Enteneier — Hofpackung (24 Eier / 2 Dutzend)",
     category: "duck-eggs",
@@ -301,6 +349,10 @@ const PRODUCTS = [
   // ARTISANAL QUILT ROLLS & ORGANIC COTTON LINEN (4 Distinct Products)
   {
     id: "quilt-heirloom-kids",
+    description_de: "Handgefertigte, einfarbige Pastell-Kindersteppdecke (40\" × 60\"), gefüllt mit 100% natürlicher Ilavam Panju (reine Seidenbaumwolle aus Tamizhnad) und eingefasst in samtweichem, angerautem Bio-Baumwollstoff (erhältlich in allen 6 sanften Pastelltönen: Pastell-Lavendel, Pastell-Nebelblau-Grau, Pastell-Zartrosa, Pastell-Minzgrün, Pastell-Pfirsich und Pastell-Buttergelb). Der Stoff ist GOTS- und OEKO-TEX Standard 100-zertifiziert, atmungsaktiv, antiallergen und wunderbar leicht. Inklusive handgefertigter Baumwoll-Tragetasche.",
+    unit_de: "40\" × 60\" Einfarbige Pastell-Kinderdecke • Tamizhnad Ilavam Panju",
+    badge_de: "Für Kinder & Welpen",
+    ingredients_de: "100% natürliche Ilavam Panju (Seidenbaumwolle aus Tamizhnad) + Handgefertigt aus 100% einfarbigem GOTS- & OEKO-TEX-zertifiziertem Bio-Baumwollstoff, biologisch gefärbt.",
     name: "Heirloom Artisanal Quilt — Kids (40\" × 60\")",
     name_de: "Handgefertigte Steppdecke — Kinder (40\" × 60\")",
     category: "quilts",
@@ -322,6 +374,10 @@ const PRODUCTS = [
   },
   {
     id: "quilt-heirloom-individual",
+    description_de: "Handgefertigte, einfarbige Pastell-Steppdecke für Einzelbetten (60\" × 90\"), gefüllt mit 100% natürlicher Ilavam Panju (reine Seidenbaumwolle, geerntet in Tamizhnad) und eingefasst in samtweichem, angerautem und biologisch gefärbtem Bio-Baumwollstoff (erhältlich in allen 6 Pastelltönen: Pastell-Nebelblau-Grau, Pastell-Lavendel, Pastell-Zartrosa, Pastell-Minzgrün, Pastell-Pfirsich und Pastell-Buttergelb — unsere Steppdecken sind 100% einfarbig pastellfarben, völlig unbedruckt). Während die handgefertigte Decke selbst kein separates Siegel trägt, ist der verwendete Bio-Baumwollstoff GOTS- und OEKO-TEX Standard 100-zertifiziert. Veredelt mit 100% umweltfreundlichen, plastikfreien Etiketten und inklusive handgefertigter Baumwoll-Tragetasche.",
+    unit_de: "60\" × 90\" Einfarbige Pastell-Einzelbettdecke • Tamizhnad Ilavam Panju",
+    badge_de: "Pastell-Nebelblau • Steppdecke",
+    ingredients_de: "100% natürliche Ilavam Panju (Seidenbaumwolle aus Tamizhnad) + Handgefertigt aus 100% einfarbigem GOTS- & OEKO-TEX-zertifiziertem Bio-Baumwollstoff, biologisch gefärbt.",
     name: "Heirloom Artisanal Quilt — Individual (60\" × 90\")",
     name_de: "Handgefertigte Steppdecke — Einzelbett (60\" × 90\")",
     category: "quilts",
@@ -343,6 +399,10 @@ const PRODUCTS = [
   },
   {
     id: "quilt-throw-kids",
+    description_de: "Federleichte, samtweiche wendbare Bio-Kinderkuscheldecke (40\" × 60\"): Angeraute einfarbige Pastell-Bio-Baumwolle auf der einen Seite und naturbelassenes Rohweiß mit feinen Naturmotiven auf der anderen Seite. Hergestellt aus GOTS- und OEKO-TEX-zertifiziertem Bio-Baumwollgarn. Inklusive Baumwoll-Tragetasche.",
+    unit_de: "40\" × 60\" Kinder-Plaid • Wendbar: Pastell & Naturdruck",
+    badge_de: "Pastell-Zartrosa • Strudel-Druck",
+    ingredients_de: "Handgefertigt aus 100% GOTS- & OEKO-TEX-zertifiziertem Bio-Baumwollgewebe (eine Seite Pastell, eine Seite Naturprint), biologisch gefärbt.",
     name: "Organically Dyed Throw Blanket — Kids (40\" × 60\")",
     name_de: "Bio-Kuscheldecke — Kinder (40\" × 60\")",
     category: "quilts",
@@ -364,6 +424,10 @@ const PRODUCTS = [
   },
   {
     id: "quilt-throw-adult",
+    description_de: "Großzügige wendbare Kuscheldecke für Erwachsene (60\" × 90\") aus reiner Bio-Baumwolle: Samtig angerautes einfarbiges Pastell auf der einen Seite und dezente Naturmuster auf ungebleichtem Weiß auf der anderen Seite (Minzgrün mit Bäumen, Nebelblau mit Mondsicheln, Lavendel mit Wolken, Rosa mit Strudeln, Pfirsich mit Sonnen, Buttergelb mit Sternen). Hergestellt aus GOTS- und OEKO-TEX-zertifiziertem Stoff mit plastikfreien Etiketten. Inklusive Baumwoll-Tragetasche.",
+    unit_de: "60\" × 90\" Plaid • Wendbar: Pastell & Naturdruck",
+    badge_de: "Pastell-Minzgrün • Baummuster",
+    ingredients_de: "Handgefertigt aus 100% GOTS- & OEKO-TEX-zertifiziertem Bio-Baumwollgewebe (eine Seite Pastell, eine Seite Naturprint), biologisch gefärbt.",
     name: "Organically Dyed Throw Blanket — Adult (60\" × 90\")",
     name_de: "Bio-Kuscheldecke — Erwachsene (60\" × 90\")",
     category: "quilts",
@@ -387,6 +451,10 @@ const PRODUCTS = [
   // HERBAL LEAVES (Organic White Packets, 100g)
   {
     id: "herb-sacred-tulsi",
+    description_de: "Ganze, schonend an der Morgensonne getrocknete Blätter des Heiligen Basilikums (Krishna & Rama Tulsi) aus eigenem Permakulturanbau. Verpackt im versiegelten weißen Bio-Papierbeutel zur Bewahrung der ätherischen Öle. Ideal für klärenden Kräutertee und Ayurveda-Aufgüsse.",
+    unit_de: "100g Bio-Aromabeutel (Weiß)",
+    badge_de: "Heiliges Hofkraut",
+    ingredients_de: "100% reine, sonnengetrocknete Bio-Tulsiblätter im weißen Aromabeutel.",
     name: "Sun-Cured Sacred Tulsi Leaves (100g)",
     name_de: "Sonnengetrocknete Heilige Tulsi-Blätter (100g)",
     category: "herbs",
@@ -407,6 +475,10 @@ const PRODUCTS = [
   },
   {
     id: "herb-moringa-leaves",
+    description_de: "Sonnengereifte Moringablätter von unseren hofeigenen Bäumen, handverlesen und bei niedriger Temperatur sonnengetrocknet. Vollgepackt mit pflanzlichem Eisen, Kalzium und Antioxidantien. Im weißen Bio-Beutel aromaversiegelt.",
+    unit_de: "100g Bio-Aromabeutel (Weiß)",
+    badge_de: "Vitalstoff-Superfood",
+    ingredients_de: "100% reine Bio-Moringablätter im versiegelten weißen Papierbeutel.",
     name: "Sun-Dried Organic Moringa Leaves (100g)",
     name_de: "Sonnengetrocknete Bio-Moringablätter (100g)",
     category: "herbs",
@@ -429,6 +501,10 @@ const PRODUCTS = [
   // LIVING HARVEST: MICROGREENS (Earthen Pots) & MUSHROOMS (Biodegradable Buckets)
   {
     id: "produce-living-microgreens",
+    description_de: "Frische, lebende Microgreens (Radieschen, Sonnenblume, Senf), die direkt in einem handgefertigten Tontopf auf lebendigem Kompostboden wachsen. Ernten Sie täglich frisch in Ihrer Küche.",
+    unit_de: "1 lebendiger Tontopf mit Bio-Keimlingen",
+    badge_de: "Lebendiges Grün",
+    ingredients_de: "Lebendige Bio-Keimlinge in traditioneller unglasierter Tonschale auf lebendigem Hofboden.",
     name: "Living Microgreens in Earthen Pots",
     name_de: "Lebende Microgreens im Tontopf",
     category: "produce",
@@ -449,6 +525,10 @@ const PRODUCTS = [
   },
   {
     id: "produce-farmstead-mushrooms",
+    description_de: "Auf dem Hof kultivierte Austernpilze, die in biologisch abbaubaren Pflanzenfasereimern auf unserem hofeigenen Stroh wachsen. Täglich besprühen und erntefrische Gourmet-Pilze direkt in Ihrer Küche ernten.",
+    badge_de: "Lebendige Ernte",
+    unit_de: "1 Eimer mit lebendiger Pilzkultur",
+    ingredients_de: "Austernpilzkultur auf hofeigenem Bio-Entenweizenstroh im Pflanzenfasereimer.",
     name: "Farmstead Mushrooms in Biodegradable Buckets",
     name_de: "Hof-Pilze im biologisch abbaubaren Eimer",
     category: "produce",
@@ -1503,6 +1583,14 @@ window.updateSiteLanguageUI = function() {
   // 8. Re-render visit page tours if present
   if (typeof window.renderVisitDynamicGrids === 'function') {
     window.renderVisitDynamicGrids();
+  }
+
+    // Re-render open product modal if visible
+  if (window.currentOpenProductId && typeof openProductModal === 'function') {
+    const modal = document.getElementById('product-detail-modal');
+    if (modal && !modal.classList.contains('hidden')) {
+      openProductModal(window.currentOpenProductId);
+    }
   }
 
   // 9. Re-initialize Lucide icons if available
