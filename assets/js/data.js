@@ -1033,8 +1033,9 @@ const MARKET_EVENTS = [
 ];
 
 
+
 // ============================================================
-// I18N & CURRENCY ENGINE (EN • INR ⇄ DE • EUR)
+// I18N & CURRENCY & FULL-SITE TRANSLATION ENGINE (EN • INR ⇄ DE • EUR)
 // ============================================================
 
 window.currentLang = (function() {
@@ -1057,7 +1058,7 @@ window.getCategoryName = function(catId) {
   const cat = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
   if (!cat) {
     if (catId === 'bundles') {
-      return window.currentLang === 'de' ? 'Hof-Geschenkkörbe' : 'Farmstead Hamper';
+      return window.currentLang === 'de' ? 'Hof-Präsentkörbe' : 'Farmstead Hamper';
     }
     return catId ? catId.replace('-', ' ') : '';
   }
@@ -1086,7 +1087,107 @@ window.formatPrice = function(inrAmount, productOrEur) {
   return `INR ${val.toLocaleString('en-IN')}`;
 };
 
-// UI Translations dictionary
+// Master dictionary of phrases for instant client-side DOM translation
+window.SITE_PHRASES_DE = {
+  // Navigation & Core Buttons
+  "Home": "Startseite",
+  "Farm Store": "Hofladen",
+  "Experiences & Visits": "Hoferlebnisse",
+  "Journal": "Magazin",
+  "About": "Über uns",
+  "Wholesale": "Großhandel",
+  "Contact": "Kontakt",
+  "Book Visit": "Besuch buchen",
+  "Select Date & Reserve": "Datum wählen & reservieren",
+  "Select This Experience": "Dieses Erlebnis wählen",
+  "Pre-Order (Ships Next Month)": "Vorbestellen (Versand nächsten Monat)",
+  "Pre-Order Now": "Jetzt vorbestellen",
+  "Pre-Order": "Vorbestellen",
+  "Add to Basket": "In den Warenkorb",
+  "Quick View": "Vorschau",
+  "Quick Details": "Details ansehen",
+  "Explore Farm Store": "Hofladen entdecken",
+  "Book a Farmstead Visit": "Hoferlebnis buchen",
+  "Book a Farm Experience": "Hoferlebnis buchen",
+  "Confirm Visit Reservation": "Reservierung bestätigen",
+  "Order via WhatsApp": "Per WhatsApp bestellen",
+  "Direct Bank Transfer Checkout": "Kasse: Direkte Banküberweisung",
+  "Direct Bank Transfer": "Direkte Banküberweisung",
+  "Remove": "Entfernen",
+
+  // Headings & Taglines
+  "Crafted with Earth and Living Soil": "Im Einklang mit Erde und lebendigem Boden gefertigt",
+  "Purreins Frequency, waves of raw & real resources.": "Purreins Frequency, Wellen reiner & wahrhaftiger Naturressourcen.",
+  "Six Stalls of Living Wellness": "Sechs Stände lebendigen Wohlbefindens",
+  "Featured Farm Favorites": "Ausgewählte Hof-Lieblinge",
+  "Everything Cultivated from Soil, is Nature.": "Alles, was dem Boden entspringt, ist reine Natur.",
+  "Soil-to-Soul Wellness": "Vom Boden zur Seele — Natürliches Wohlbefinden",
+  "Regenerative Care": "Regenerative Hofpflege",
+  "White Pekin Ducks & Their Straw Sanctuary": "Weiße Pekingenten & ihr Stroh-Paradies",
+  "Supplying Cafes, Restaurants & Eco-Stores": "Belieferung von Cafés, Restaurants & Bioläden",
+  "The Farm Journal": "Das Hof-Magazin",
+  "Farm Offerings": "Hof-Angebote",
+  "Experiences & B2B": "Erlebnisse & Großhandel",
+  "Visit Our Farm": "Besuchen Sie unseren Hof",
+  "The Organic Farm Store": "Der Bio-Hofladen",
+  "Heirloom Solid Pastel Quilts & Printed Throws": "Handgefertigte Pastell-Steppdecken & gemusterte Plaids",
+  "The 7 Sculptural 3D Bubble Cubes": "Die 7 skulpturalen 3D-Bubble-Cube-Seifen",
+  "Effortless Grip & Acupressure Massage": "Müheloser Griff & Akupressur-Massage",
+  "Cold-Processed & Naturally Cured": "Kaltgerührt & natürlich gereift",
+  "Earth Harvests & Handcrafted Goods": "Ernte des Bodens & handgemachte Kostbarkeiten",
+  "Small-Batch Season Underway — Pre-Orders Open": "Kleinserien-Saison eröffnet — Vorbestellungen möglich",
+  "Pre-Order • Ships Next Month": "Vorbestellung • Versand nächsten Monat",
+  "Farm Visits & Experiences": "Hofbesuche & Erlebnisse",
+  "Available Farm Immersions": "Verfügbare Hof-Erlebnisse",
+  "Select Date & Reserve Slots": "Datum wählen & Plätze reservieren",
+  "Visit Reservation Confirmed!": "Hofbesuch erfolgreich reserviert!",
+  "Pop-Up Markets & Regional Fairs": "Pop-Up-Märkte & regionale Bauernmärkte",
+  "Frequently Asked Questions": "Häufig gestellte Fragen (FAQ)",
+  "Pure Ingredients & Sourcing": "Reine Zutaten & Herkunft",
+  "Choose Pastel Shade & Motif:": "Pastellton & Naturmuster wählen:",
+  "No offerings matched your query": "Keine Angebote gefunden",
+  "100% pure, natural, and organically grown at Purreins Frequency farmstead.": "100% rein, natürlich und ökologisch angebaut auf dem Hofgut Purreins Frequency.",
+
+  // Booking Form & Labels
+  "Number of Guests": "Anzahl der Gäste",
+  "Select Date": "Datum wählen",
+  "Select Time Slot": "Zeitfenster wählen",
+  "Full Name": "Vollständiger Name",
+  "Phone / WhatsApp": "Telefon / WhatsApp",
+  "Email Address": "E-Mail-Adresse",
+  "Special Notes": "Besondere Wünsche / Hinweise",
+  "Payable upon arrival or direct bank transfer": "Zahlbar bei Ankunft oder per direkter Banküberweisung",
+  "Payable Amount:": "Zu zahlender Betrag:",
+  "Account Name": "Kontoinhaber",
+  "Account Number": "Kontonummer (IBAN)",
+  "Bank Name": "Bankinstitut",
+  "Branch": "Filiale",
+  "IFSC / SWIFT": "IFSC / SWIFT-Code",
+  "Includes:": "Inklusive:",
+  "Open Every Day": "Täglich geöffnet",
+  "Person": "Person",
+  "Guest": "Gast",
+  "Guests": "Gäste",
+  "Total": "Gesamt",
+  "Subtotal": "Zwischensumme",
+  "Free Delivery": "Kostenlose Lieferung",
+  "Your Harvest Basket": "Ihr Erntekorb",
+  "Your basket is empty": "Ihr Erntekorb ist leer",
+  "Browse our farmstead offerings to add fresh produce and artisan goods.": "Stöbern Sie durch unsere Hofangebote für frische Erzeugnisse und Handwerkskunst.",
+  "Search soaps, herbs, eggs...": "Seifen, Kräuter, Eier durchsuchen...",
+
+  // Categories & Badges
+  "All Offerings": "Alle Angebote",
+  "Living Produce": "Lebendige Erzeugnisse",
+  "Microgreens & Mushrooms": "Microgreens & Hofpilze",
+  "Farmstead Hampers": "Hof-Präsentkörbe",
+  "Curd Soaps": "Quarkseifen",
+  "Pasture Duck Eggs": "Weide-Enteneier",
+  "Artisanal Quilt Rolls": "Handgefertigte Steppdecken",
+  "Herbal Leaves": "Kräuterblätter"
+};
+
+// UI Translations dictionary for code lookups
 window.I18N_DICTIONARY = {
   en: {
     nav_home: "Home",
@@ -1159,13 +1260,178 @@ window.t = function(key) {
   return dict[key] || window.I18N_DICTIONARY.en[key] || key;
 };
 
+// ── Google Translate & DOM Translation Integration ───────────
+function initGoogleTranslateSystem() {
+  if (document.getElementById('google_translate_element')) return;
+
+  // 1. Inject hidden element
+  const div = document.createElement('div');
+  div.id = 'google_translate_element';
+  div.style.display = 'none';
+  document.body.appendChild(div);
+
+  // 2. Inject clean CSS hiding Google branding/toolbars
+  const style = document.createElement('style');
+  style.id = 'google-translate-clean-styles';
+  style.textContent = `
+    .goog-te-banner-frame.skiptranslate, 
+    .goog-te-banner-frame,
+    iframe.goog-te-banner-frame {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+    }
+    body {
+      top: 0px !important;
+      position: static !important;
+    }
+    #goog-gt-tt, 
+    .goog-te-balloon-frame {
+      display: none !important;
+    }
+    .goog-text-highlight {
+      background: none !important;
+      box-shadow: none !important;
+    }
+    #google_translate_element {
+      display: none !important;
+    }
+    .skiptranslate:not(#side-lang-currency-switcher) {
+      display: none !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // 3. Define callback on window
+  window.googleTranslateElementInit = function() {
+    try {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,de',
+        autoDisplay: false,
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+
+      if (window.currentLang === 'de') {
+        applyGoogleTranslateTrigger('de');
+      }
+    } catch (e) {
+      console.warn('Google Translate init notice:', e);
+    }
+  };
+
+  // 4. Inject Google script tag
+  const script = document.createElement('script');
+  script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  script.async = true;
+  document.head.appendChild(script);
+}
+
+function applyGoogleTranslateTrigger(lang) {
+  const host = window.location.hostname;
+  const parts = host.split('.');
+  const root = parts.length > 1 ? '.' + parts.slice(-2).join('.') : '';
+
+  if (lang === 'de') {
+    document.cookie = "googtrans=/en/de; path=/;";
+    if (root) document.cookie = "googtrans=/en/de; path=/; domain=" + root + ";";
+    document.cookie = "googtrans=/en/de; path=/; domain=" + host + ";";
+  } else {
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    if (root) document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + root + ";";
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + host + ";";
+    document.cookie = "googtrans=/en/en; path=/;";
+  }
+
+  const select = document.querySelector('.goog-te-combo') || document.querySelector('select.goog-te-combo');
+  if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event('change'));
+    select.dispatchEvent(new Event('input'));
+  } else {
+    setTimeout(() => {
+      const s = document.querySelector('.goog-te-combo') || document.querySelector('select.goog-te-combo');
+      if (s) {
+        s.value = lang;
+        s.dispatchEvent(new Event('change'));
+      }
+    }, 400);
+  }
+}
+
+// ── Instant Native DOM Text Replacer ──────────────────────────
+function walkAndTranslateDOM(lang) {
+  const isDe = (lang === 'de');
+  const dict = window.SITE_PHRASES_DE || {};
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode: function(node) {
+        if (!node || !node.parentNode) return NodeFilter.FILTER_REJECT;
+        const tag = node.parentNode.nodeName.toLowerCase();
+        if (tag === 'script' || tag === 'style' || tag === 'code' || tag === 'noscript') {
+          return NodeFilter.FILTER_REJECT;
+        }
+        if (node.parentNode.closest('#side-lang-currency-switcher')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  const nodesToProcess = [];
+  while (walker.nextNode()) {
+    nodesToProcess.push(walker.currentNode);
+  }
+
+  nodesToProcess.forEach(node => {
+    if (typeof node.__origText === 'undefined') {
+      node.__origText = node.nodeValue;
+    }
+
+    if (isDe) {
+      let currentVal = node.nodeValue;
+      for (const [enText, deText] of Object.entries(dict)) {
+        if (currentVal.includes(enText)) {
+          currentVal = currentVal.split(enText).join(deText);
+        }
+      }
+      if (currentVal !== node.nodeValue) {
+        node.nodeValue = currentVal;
+      }
+    } else {
+      if (node.nodeValue !== node.__origText) {
+        node.nodeValue = node.__origText;
+      }
+    }
+  });
+
+  // Also translate input placeholders
+  document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+    if (typeof el.__origPlaceholder === 'undefined') {
+      el.__origPlaceholder = el.placeholder;
+    }
+    if (isDe) {
+      if (dict[el.__origPlaceholder]) {
+        el.placeholder = dict[el.__origPlaceholder];
+      }
+    } else {
+      el.placeholder = el.__origPlaceholder;
+    }
+  });
+}
+
 window.setSiteLanguage = function(lang) {
   if (lang !== 'en' && lang !== 'de') lang = 'en';
   window.currentLang = lang;
   try {
     localStorage.setItem('uppurreins_lang', lang);
   } catch (e) {}
+
   window.updateSiteLanguageUI();
+  applyGoogleTranslateTrigger(lang);
 };
 
 window.toggleSiteLanguage = function() {
@@ -1188,7 +1454,10 @@ window.updateSiteLanguageUI = function() {
     }
   }
 
-  // 2. Update navigation links text
+  // 2. Perform DOM phrase translation
+  walkAndTranslateDOM(lang);
+
+  // 3. Update navigation links text
   const navMap = [
     { href: 'index.html', key: 'nav_home' },
     { href: 'shop.html', key: 'nav_shop' },
@@ -1206,19 +1475,19 @@ window.updateSiteLanguageUI = function() {
     });
   });
 
-  // 3. Update Book Visit button in header
+  // 4. Update Book Visit button in header
   const bookVisitBtn = document.getElementById('book-visit-btn');
   if (bookVisitBtn) {
     const span = bookVisitBtn.querySelector('span');
     if (span) span.textContent = window.t('nav_book_visit');
   }
 
-  // 4. Re-render Cart Drawer if cart exists
+  // 5. Re-render Cart Drawer if cart exists
   if (window.cart && typeof window.cart.renderDrawer === 'function') {
     window.cart.renderDrawer();
   }
 
-  // 5. Re-render shop page products if renderProducts exists
+  // 6. Re-render shop page products if renderProducts exists
   if (typeof window.renderProducts === 'function') {
     if (typeof window.renderCategoryPills === 'function') {
       window.renderCategoryPills();
@@ -1226,22 +1495,22 @@ window.updateSiteLanguageUI = function() {
     window.renderProducts();
   }
 
-  // 6. Re-render index page featured products & tours if present
+  // 7. Re-render index page featured products & tours if present
   if (typeof window.renderHomeDynamicGrids === 'function') {
     window.renderHomeDynamicGrids();
   }
 
-  // 7. Re-render visit page tours if present
+  // 8. Re-render visit page tours if present
   if (typeof window.renderVisitDynamicGrids === 'function') {
     window.renderVisitDynamicGrids();
   }
 
-  // 8. Re-initialize Lucide icons if available
+  // 9. Re-initialize Lucide icons if available
   if (window.lucide && typeof window.lucide.createIcons === 'function') {
     window.lucide.createIcons();
   }
 
-  // 9. Dispatch a custom window event for any other listeners
+  // 10. Dispatch a custom window event for any other listeners
   window.dispatchEvent(new CustomEvent('siteLanguageChanged', { detail: { lang } }));
 };
 
@@ -1262,7 +1531,7 @@ function injectSideLangSwitcher() {
       <span class="text-[9px] font-mono text-[#C8995A] font-semibold">₹ INR</span>
     </button>
     <div class="w-5 h-[1px] bg-[#C8995A]/30"></div>
-    <button type="button" id="side-lang-btn-de" onclick="window.setSiteLanguage('de')" class="w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5" title="Auf Deutsch wechseln (EUR €)">
+    <button type="button" id="side-lang-btn-de" onclick="window.setSiteLanguage('de')" class="w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5" title="Auf Deutsch wechseln (EUR €) • Website komplett auf Deutsch übersetzen">
       <span class="text-xs">🇩🇪</span>
       <span class="leading-none text-[11px]">DE</span>
       <span class="text-[9px] font-mono text-[#C8995A] font-semibold">€ EUR</span>
@@ -1270,6 +1539,7 @@ function injectSideLangSwitcher() {
   `;
 
   document.body.appendChild(container);
+  initGoogleTranslateSystem();
   window.updateSiteLanguageUI();
 }
 
