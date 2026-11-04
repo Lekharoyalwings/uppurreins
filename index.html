@@ -1094,7 +1094,7 @@
               <div class="pt-4 mt-4 flex items-center justify-between">
                 <div>
                   <span class="text-xs text-brand-oat/40 block">${product.unit}</span>
-                  <span class="font-bold text-brand-gold text-base">INR ${product.price.toLocaleString('en-IN')}</span>
+                  <span class="font-bold text-brand-gold text-base">${(typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`}</span>
                 </div>
                 <button onclick="window.cart.addItem('${product.id}')" class="p-2.5 rounded-sm bg-brand-forest/30 hover:bg-brand-forest text-brand-cream transition" title="Add to Basket">
                   <i data-lucide="shopping-bag" class="w-4 h-4"></i>
@@ -1116,7 +1116,7 @@
             <div class="relative h-48 img-zoom-wrapper">
               <img src="${tour.image}" alt="${tour.title}" class="w-full h-full object-cover">
               <span class="absolute top-3 right-3 bg-brand-dark/90 text-brand-gold text-xs font-semibold px-3 py-1 rounded-sm">
-                INR ${tour.pricePerPerson.toLocaleString('en-IN')} / Person
+                ${(typeof window.formatPrice === 'function') ? window.formatPrice(tour.pricePerPerson, tour) : `INR ${tour.pricePerPerson.toLocaleString('en-IN')}`} / ${(typeof window.t === 'function') ? window.t('visit_per_person') : 'Person'}
               </span>
             </div>
             <div class="stall-body flex-1 flex flex-col justify-between">

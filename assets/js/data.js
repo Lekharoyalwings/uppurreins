@@ -31,13 +31,13 @@ const BRAND_CONFIG = {
 };
 
 const CATEGORIES = [
-  { id: "all", name: "All Offerings", icon: "sparkles" },
-  { id: "produce", name: "Microgreens & Mushrooms", icon: "sprout" },
-  { id: "bundles", name: "Farmstead Hampers", icon: "gift" },
-  { id: "soaps", name: "Curd Soaps", icon: "droplets" },
-  { id: "duck-eggs", name: "Pasture Duck Eggs", icon: "egg" },
-  { id: "quilts", name: "Artisanal Quilt Rolls", icon: "scissors" },
-  { id: "herbs", name: "Herbal Leaves", icon: "leaf" }
+  { id: "all", name: "All Offerings", name_de: "Alle Angebote", icon: "sparkles" },
+  { id: "produce", name: "Microgreens & Mushrooms", name_de: "Microgreens & Hofpilze", icon: "sprout" },
+  { id: "bundles", name: "Farmstead Hampers", name_de: "Hof-Präsentkörbe", icon: "gift" },
+  { id: "soaps", name: "Curd Soaps", name_de: "Quarkseifen", icon: "droplets" },
+  { id: "duck-eggs", name: "Pasture Duck Eggs", name_de: "Weide-Enteneier", icon: "egg" },
+  { id: "quilts", name: "Artisanal Quilt Rolls", name_de: "Handgefertigte Steppdecken", icon: "scissors" },
+  { id: "herbs", name: "Herbal Leaves", name_de: "Kräuterblätter", icon: "leaf" }
 ];
 
 // Master 6 Pastel Colorways Palette & Signature Nature Prints
@@ -55,8 +55,10 @@ const PRODUCTS = [
   {
     id: "bundle-farmstead-harvest",
     name: "The Farmstead Harvest Hamper",
+    name_de: "Der Hof-Ernte-Präsentkorb",
     category: "bundles",
     price: 4500,
+    priceEUR: 50.00,
     unit: "Artisanal Gift Hamper with Eggs, Curd Soaps & Leaves",
     badge: "Signature Hamper",
     badgeType: "featured",
@@ -73,8 +75,10 @@ const PRODUCTS = [
   {
     id: "bundle-heirloom-quilt-hamper",
     name: "The Artisanal Quilt Roll & Curd Soap Hamper",
+    name_de: "Hof-Präsentkorb mit Steppdecke & Quarkseifen",
     category: "bundles",
     price: 5800,
+    priceEUR: 64.00,
     unit: "Collector Living Quilt & Soap Hamper",
     badge: "Artisan Heirloom",
     badgeType: "featured",
@@ -91,8 +95,10 @@ const PRODUCTS = [
   {
     id: "bundle-nest-crate",
     name: "The Pasture Duck Egg & Curd Soap Nest",
+    name_de: "Weide-Enteneier & Quarkseifen-Nest",
     category: "bundles",
     price: 950,
+    priceEUR: 10.50,
     unit: "Straw Nest with 12 Eggs & Curd Soap",
     badge: "Daily Ritual",
     badgeType: "featured",
@@ -111,8 +117,10 @@ const PRODUCTS = [
   {
     id: "soap-curd",
     name: "Curd",
+    name_de: "Quarkseife Pure",
     category: "soaps",
     price: 440,
+    priceEUR: 4.90,
     unit: "120g 3D Bubble Cube",
     badge: "Creamy Milky Ivory",
     badgeType: "featured",
@@ -129,8 +137,10 @@ const PRODUCTS = [
   {
     id: "soap-banana",
     name: "Banana",
+    name_de: "Bananenseife",
     category: "soaps",
     price: 440,
+    priceEUR: 4.90,
     unit: "120g 3D Bubble Cube",
     badge: "Lush Leaf Green & Warm Yellow",
     badgeType: "featured",
@@ -147,8 +157,10 @@ const PRODUCTS = [
   {
     id: "soap-bamboo",
     name: "Bamboo",
+    name_de: "Bambusseife",
     category: "soaps",
     price: 440,
+    priceEUR: 4.90,
     unit: "120g 3D Bubble Cube",
     badge: "Pale Yellow-Green",
     badgeType: "featured",
@@ -165,8 +177,10 @@ const PRODUCTS = [
   {
     id: "soap-moringa",
     name: "Moringa",
+    name_de: "Moringaseife",
     category: "soaps",
     price: 440,
+    priceEUR: 4.90,
     unit: "120g 3D Bubble Cube",
     badge: "Textured Herbal Green",
     badgeType: "organic",
@@ -183,8 +197,10 @@ const PRODUCTS = [
   {
     id: "soap-dry-grass",
     name: "Dry Grass",
+    name_de: "Trockengras-Seife",
     category: "soaps",
     price: 410,
+    priceEUR: 4.60,
     unit: "120g 3D Bubble Cube",
     badge: "Green-Tinted Meadow",
     badgeType: "organic",
@@ -201,8 +217,10 @@ const PRODUCTS = [
   {
     id: "soap-turmeric",
     name: "Turmeric",
+    name_de: "Kurkumaseife",
     category: "soaps",
     price: 440,
+    priceEUR: 4.90,
     unit: "120g 3D Bubble Cube",
     badge: "Warm Earthy Yellow",
     badgeType: "featured",
@@ -219,8 +237,10 @@ const PRODUCTS = [
   {
     id: "soap-coffee",
     name: "Coffee",
+    name_de: "Kaffeeseife",
     category: "soaps",
     price: 440,
+    priceEUR: 4.90,
     unit: "120g 3D Bubble Cube",
     badge: "Deep Espresso Brown",
     badgeType: "organic",
@@ -240,8 +260,10 @@ const PRODUCTS = [
   {
     id: "eggs-pasture-duck-6",
     name: "Pasture-Roaming Duck Eggs (Half Dozen • 6 Eggs)",
+    name_de: "Weide-Enteneier (Halbes Dutzend • 6 Eier)",
     category: "duck-eggs",
     price: 220,
+    priceEUR: 2.50,
     unit: "6 Jumbo Eggs in Golden Meadow Straw",
     badge: "Pasture Roaming",
     badgeType: "featured",
@@ -258,8 +280,10 @@ const PRODUCTS = [
   {
     id: "eggs-pasture-duck-24",
     name: "Pasture-Roaming Duck Eggs — Farmstead Pack (24 Eggs / 2 Dozen)",
+    name_de: "Weide-Enteneier — Hofpackung (24 Eier / 2 Dutzend)",
     category: "duck-eggs",
     price: 950,
+    priceEUR: 10.50,
     unit: "24 Jumbo Eggs in Natural Meadow Straw",
     badge: "Family Pack",
     badgeType: "featured",
@@ -278,8 +302,10 @@ const PRODUCTS = [
   {
     id: "quilt-heirloom-kids",
     name: "Heirloom Artisanal Quilt — Kids (40\" × 60\")",
+    name_de: "Handgefertigte Steppdecke — Kinder (40\" × 60\")",
     category: "quilts",
-    price: 5400,
+    price: 5099,
+    priceEUR: 56.90,
     unit: "40\" × 60\" Solid Pastel Kids Quilt • Tamizhnad Ilavam Panju",
     badge: "For Kids & Puppies",
     badgeType: "featured",
@@ -297,8 +323,10 @@ const PRODUCTS = [
   {
     id: "quilt-heirloom-individual",
     name: "Heirloom Artisanal Quilt — Individual (60\" × 90\")",
+    name_de: "Handgefertigte Steppdecke — Einzelbett (60\" × 90\")",
     category: "quilts",
-    price: 5800,
+    price: 7099,
+    priceEUR: 78.90,
     unit: "60\" × 90\" Solid Pastel Individual Quilt • Tamizhnad Ilavam Panju",
     badge: "Pastel Misty Blue • Solid Quilt",
     badgeType: "featured",
@@ -316,8 +344,10 @@ const PRODUCTS = [
   {
     id: "quilt-throw-kids",
     name: "Organically Dyed Throw Blanket — Kids (40\" × 60\")",
+    name_de: "Bio-Kuscheldecke — Kinder (40\" × 60\")",
     category: "quilts",
-    price: 2400,
+    price: 3399,
+    priceEUR: 37.90,
     unit: "40\" × 60\" Kids Throw • Solid Pastel One Side, Printed Other Side",
     badge: "Pastel Blush Pink • Swirls Print",
     badgeType: "organic",
@@ -335,8 +365,10 @@ const PRODUCTS = [
   {
     id: "quilt-throw-adult",
     name: "Organically Dyed Throw Blanket — Adult (60\" × 90\")",
+    name_de: "Bio-Kuscheldecke — Erwachsene (60\" × 90\")",
     category: "quilts",
-    price: 3200,
+    price: 4499,
+    priceEUR: 49.90,
     unit: "60\" × 90\" Adult Throw • Solid Pastel One Side, Printed Other Side",
     badge: "Pastel Mint Green • Trees Print",
     badgeType: "organic",
@@ -356,8 +388,10 @@ const PRODUCTS = [
   {
     id: "herb-sacred-tulsi",
     name: "Sun-Cured Sacred Tulsi Leaves (100g)",
+    name_de: "Sonnengetrocknete Heilige Tulsi-Blätter (100g)",
     category: "herbs",
     price: 280,
+    priceEUR: 3.10,
     unit: "100g Non-Plastic Pack",
     badge: "Non-Plastic Pack",
     badgeType: "organic",
@@ -374,8 +408,10 @@ const PRODUCTS = [
   {
     id: "herb-moringa-leaves",
     name: "Sun-Dried Organic Moringa Leaves (100g)",
+    name_de: "Sonnengetrocknete Bio-Moringablätter (100g)",
     category: "herbs",
     price: 320,
+    priceEUR: 3.50,
     unit: "100g Non-Plastic Pack",
     badge: "Non-Plastic Pack",
     badgeType: "fresh",
@@ -394,8 +430,10 @@ const PRODUCTS = [
   {
     id: "produce-living-microgreens",
     name: "Living Microgreens in Earthen Pots",
+    name_de: "Lebende Microgreens im Tontopf",
     category: "produce",
     price: 240,
+    priceEUR: 2.70,
     unit: "Living Terracotta Pot",
     badge: "Earthen Pot • No Plastic",
     badgeType: "organic",
@@ -412,8 +450,10 @@ const PRODUCTS = [
   {
     id: "produce-farmstead-mushrooms",
     name: "Farmstead Mushrooms in Biodegradable Buckets",
+    name_de: "Hof-Pilze im biologisch abbaubaren Eimer",
     category: "produce",
     price: 360,
+    priceEUR: 4.00,
     unit: "Fruiting Bio Bucket",
     badge: "Biodegradable Bucket • No Bags",
     badgeType: "fresh",
@@ -434,60 +474,101 @@ const FARM_VISITS = [
   {
     id: "tour-farmstead-experience",
     title: "Farmstead Experience",
+    title_de: "Bauernhof-Erlebnis",
     duration: "1–2 Hours Visit",
+    duration_de: "1–2 Stunden Besuch",
     pricePerPerson: 450,
+    pricePerPersonEUR: 5.00,
     image: "assets/images/hero-basket.jpg?v=4",
     badge: "Farm Walk",
+    badge_de: "Hofrundgang",
     days: "Open Every Day",
+    days_de: "Täglich geöffnet",
     timing: "07:00 – 17:00",
+    timing_de: "07:00 – 17:00",
     description: "A small, peaceful 1–2 hour farmstead walk. Explore living soil permaculture beds, see herbal gardens, feed pasture ducks by the water, and enjoy fresh herbal farm hospitality.",
+    description_de: "Ein kleiner, friedlicher 1–2-stündiger Hofrundgang. Erkunden Sie Permakultur-Beete auf lebendigem Boden, Kräutergärten, füttern Sie Weidententen am Teich und genießen Sie frische Kräuter-Gastfreundschaft.",
     included: [
       "1–2 hours guided farmstead immersion (living soil permaculture)",
       "Meet and feed free-roaming pasture ducks by the pond",
       "Interactive whole herbal stem walk",
       "Complimentary fresh farm herbal welcome drink"
     ],
-    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"]
+    included_de: [
+      "1–2 Stunden geführte Hof-Immersion (Permakultur auf lebendigem Boden)",
+      "Freilaufende Weidententen am Teich treffen und füttern",
+      "Interaktiver Kräutergarten-Spaziergang",
+      "Kostenloses frisches Kräuter-Willkommensgetränk vom Hof"
+    ],
+    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"],
+    times_de: ["Morgenslot (07:00 – 09:00)", "Vormittagsslot (09:30 – 11:30)", "Mittagsslot (12:00 – 14:00)", "Nachmittagsslot (14:30 – 16:30)"]
   },
   {
     id: "tour-duckling-meadow",
     title: "Duckling Meadow Experience",
+    title_de: "Entenküken-Wiesen-Erlebnis",
     duration: "1–2 Hours Visit",
+    duration_de: "1–2 Stunden Besuch",
     pricePerPerson: 350,
+    pricePerPersonEUR: 3.90,
     image: "assets/images/duck-family.jpg",
     badge: "Duckling Meadow",
+    badge_de: "Entenküken-Wiese",
     days: "Open Every Day",
+    days_de: "Täglich geöffnet",
     timing: "07:00 – 17:00",
+    timing_de: "07:00 – 17:00",
     description: "A gentle 1–2 hour experience with pasture ducks and ducklings in their natural pond habitat. Learn about ethical free-range duck keeping and natural straw nesting.",
+    description_de: "Ein sanftes 1–2-stündiges Erlebnis mit Weidententen und Küken in ihrem natürlichen Teich-Lebensraum. Erfahren Sie mehr über artgerechte Freilandhaltung und natürliche Strohnester.",
     included: [
       "Feed and interact with free-range heritage ducks along wetland reeds",
       "Gentle duckling meadow time and straw nest walk",
       "Complimentary pasture duck eggs to take home",
       "Peaceful 1–2 hour immersion by the pond reedbeds"
     ],
-    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"]
+    included_de: [
+      "Freilaufende Erpel & Enten im Schilfgebiet füttern und beobachten",
+      "Sanfte Zeit auf der Kükenwiese & Spaziergang zu Strohnestern",
+      "Kostenlose frische Weiden-Enteneier zum Mitnehmen",
+      "Friedliche 1–2 Stunden Immersion im Schilfgebiet"
+    ],
+    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"],
+    times_de: ["Morgenslot (07:00 – 09:00)", "Vormittagsslot (09:30 – 11:30)", "Mittagsslot (12:00 – 14:00)", "Nachmittagsslot (14:30 – 16:30)"]
   },
   {
     id: "tour-make-your-own-soap",
     title: "Make Your Own Soap",
+    title_de: "Eigene Seife Herstellen",
     duration: "1–2 Hours",
+    duration_de: "1–2 Stunden",
     pricePerPerson: 950,
+    pricePerPersonEUR: 10.50,
     image: "assets/images/artisan-soaps.jpg",
     badge: "Artisan Craft",
+    badge_de: "Handwerkskunst",
     days: "Open Every Day",
+    days_de: "Täglich geöffnet",
     timing: "07:00 – 17:00",
-    description: "A hands-on 1–2 hour artisanal soapmaking session. Formulate and pour your own custom cold-process curd soap bar using fresh cold-pressed coconut oil, farmstead fresh organic curd, and fresh farm botanicals.",
+    timing_de: "07:00 – 17:00",
+    description: "A hands-on 1–2 hour artisanal soapmaking session. Formulate and pour your own custom cold-process curd soap bar using pure plant oils, farm herbs, and natural earth clays.",
+    description_de: "Ein praktischer 1–2-stündiger Seifensiederkurs. Kreieren und gießen Sie Ihr eigenes kaltgerührtes Stück Quarkseife aus reinen Pflanzenölen, Hofkräutern und Naturtonerden.",
     included: [
       "1–2 hours guided hands-on soapmaking session",
       "Formulate your own custom cold-process curd soap bar",
-      "Fresh cold-pressed coconut oil, farmstead fresh organic curd, and farm botanicals provided",
+      "Pure plant oils, wild botanical stems, and molds provided",
       "Take your newly crafted soap bar home with curing guide"
     ],
-    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"]
+    included_de: [
+      "1–2 Stunden praktischer, geführter Seifensiederkurs",
+      "Kreieren Sie Ihr eigenes handgerührtes Quarkseifenstück",
+      "Reine Pflanzenöle, wilde Hofkräuter und Gussformen inklusive",
+      "Nehmen Sie Ihr handgemachtes Seifenstück mit Reifeanleitung nach Hause"
+    ],
+    times: ["Morning Slot (07:00 – 09:00)", "Mid-Morning Slot (09:30 – 11:30)", "Midday Slot (12:00 – 14:00)", "Afternoon Slot (14:30 – 16:30)"],
+    times_de: ["Morgenslot (07:00 – 09:00)", "Vormittagsslot (09:30 – 11:30)", "Mittagsslot (12:00 – 14:00)", "Nachmittagsslot (14:30 – 16:30)"]
   }
 ];
 
-// Master Dispatches Schedule — Strictly 1 post per day at 4:40 AM IST (Newest First)
 const ALL_BLOG_DISPATCHES = [
   {
     id: "blog-11-productivity-pace",
@@ -950,3 +1031,250 @@ const MARKET_EVENTS = [
     status: "Seasonal Expo"
   }
 ];
+
+
+// ============================================================
+// I18N & CURRENCY ENGINE (EN • INR ⇄ DE • EUR)
+// ============================================================
+
+window.currentLang = (function() {
+  try {
+    return localStorage.getItem('uppurreins_lang') || 'en';
+  } catch (e) {
+    return 'en';
+  }
+})();
+
+window.getLocalized = function(obj, field) {
+  if (!obj) return '';
+  if (window.currentLang === 'de' && obj[field + '_de']) {
+    return obj[field + '_de'];
+  }
+  return obj[field] || '';
+};
+
+window.getCategoryName = function(catId) {
+  const cat = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
+  if (!cat) {
+    if (catId === 'bundles') {
+      return window.currentLang === 'de' ? 'Hof-Geschenkkörbe' : 'Farmstead Hamper';
+    }
+    return catId ? catId.replace('-', ' ') : '';
+  }
+  return window.getLocalized(cat, 'name');
+};
+
+window.formatPrice = function(inrAmount, productOrEur) {
+  if (window.currentLang === 'de') {
+    let eurVal = null;
+    if (productOrEur && typeof productOrEur === 'object') {
+      if (typeof productOrEur.priceEUR === 'number') {
+        eurVal = productOrEur.priceEUR;
+      } else if (typeof productOrEur.pricePerPersonEUR === 'number') {
+        eurVal = productOrEur.pricePerPersonEUR;
+      }
+    } else if (typeof productOrEur === 'number') {
+      eurVal = productOrEur;
+    }
+    if (eurVal === null) {
+      eurVal = (Number(inrAmount) || 0) / 90;
+    }
+    return `€ ${eurVal.toFixed(2).replace('.', ',')}`;
+  }
+  // English: INR
+  const val = Math.round(Number(inrAmount) || 0);
+  return `INR ${val.toLocaleString('en-IN')}`;
+};
+
+// UI Translations dictionary
+window.I18N_DICTIONARY = {
+  en: {
+    nav_home: "Home",
+    nav_shop: "Farm Store",
+    nav_visit: "Experiences & Visits",
+    nav_journal: "Journal",
+    nav_about: "About",
+    nav_wholesale: "Wholesale",
+    nav_contact: "Contact",
+    nav_book_visit: "Book Visit",
+    cart_title: "Your Harvest Basket",
+    cart_subtotal: "Subtotal",
+    cart_free_delivery: "Free Delivery",
+    cart_checkout_transfer: "Direct Bank Transfer Checkout",
+    cart_checkout_whatsapp: "Order via WhatsApp",
+    cart_empty_title: "Your basket is empty",
+    cart_empty_msg: "Browse our farmstead offerings to add fresh produce and artisan goods.",
+    cart_continue: "Explore Farm Store",
+    cart_preorder_notice: "Pre-order only. Small batch, hand-cured. Dispatches next month.",
+    cart_bank_title: "Direct Bank Transfer",
+    cart_bank_desc: "Transfer directly to our farmstead bank account.",
+    btn_add_to_cart: "Add to Basket",
+    btn_added: "Added to Basket!",
+    btn_quick_view: "Quick View",
+    btn_details: "View Details",
+    preorder_badge: "Pre-Order • Ships Next Month",
+    visit_per_person: "Person",
+    visit_reserve: "Select Date & Reserve",
+    visit_includes: "Includes:",
+    visit_open_days: "Open Every Day",
+    visit_timing: "07:00 – 17:00",
+    visit_select_exp: "Select This Experience"
+  },
+  de: {
+    nav_home: "Startseite",
+    nav_shop: "Hofladen",
+    nav_visit: "Hoferlebnisse",
+    nav_journal: "Magazin",
+    nav_about: "Über uns",
+    nav_wholesale: "Großhandel",
+    nav_contact: "Kontakt",
+    nav_book_visit: "Besuch buchen",
+    cart_title: "Ihr Erntekorb",
+    cart_subtotal: "Zwischensumme",
+    cart_free_delivery: "Kostenlose Lieferung",
+    cart_checkout_transfer: "Direkte Banküberweisung / Rechnung",
+    cart_checkout_whatsapp: "Per WhatsApp bestellen",
+    cart_empty_title: "Ihr Erntekorb ist leer",
+    cart_empty_msg: "Entdecken Sie unsere Hofangebote für frische Erzeugnisse und Handwerkskunst.",
+    cart_continue: "Hofladen erkunden",
+    cart_preorder_notice: "Nur Vorbestellung. Kleine Chargen, handgereift. Versand im nächsten Monat.",
+    cart_bank_title: "Direkte Banküberweisung",
+    cart_bank_desc: "Überweisen Sie direkt auf unser offizielles Hofkonto.",
+    btn_add_to_cart: "In den Warenkorb",
+    btn_added: "Hinzugefügt!",
+    btn_quick_view: "Vorschau",
+    btn_details: "Details ansehen",
+    preorder_badge: "Vorbestellung • Versand nächsten Monat",
+    visit_per_person: "Person",
+    visit_reserve: "Datum wählen & reservieren",
+    visit_includes: "Inklusive:",
+    visit_open_days: "Täglich geöffnet",
+    visit_timing: "07:00 – 17:00",
+    visit_select_exp: "Dieses Erlebnis wählen"
+  }
+};
+
+window.t = function(key) {
+  const dict = window.I18N_DICTIONARY[window.currentLang] || window.I18N_DICTIONARY.en;
+  return dict[key] || window.I18N_DICTIONARY.en[key] || key;
+};
+
+window.setSiteLanguage = function(lang) {
+  if (lang !== 'en' && lang !== 'de') lang = 'en';
+  window.currentLang = lang;
+  try {
+    localStorage.setItem('uppurreins_lang', lang);
+  } catch (e) {}
+  window.updateSiteLanguageUI();
+};
+
+window.toggleSiteLanguage = function() {
+  window.setSiteLanguage(window.currentLang === 'en' ? 'de' : 'en');
+};
+
+window.updateSiteLanguageUI = function() {
+  const lang = window.currentLang;
+  
+  // 1. Update side switcher active styles
+  const btnEn = document.getElementById('side-lang-btn-en');
+  const btnDe = document.getElementById('side-lang-btn-de');
+  if (btnEn && btnDe) {
+    if (lang === 'en') {
+      btnEn.className = "w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5 bg-[#4A5E3A] text-[#F2EAD8] shadow-md border border-[#8EB264]/40";
+      btnDe.className = "w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5 text-[#E8DCC8]/60 hover:text-[#F2EAD8] hover:bg-white/5";
+    } else {
+      btnDe.className = "w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5 bg-[#4A5E3A] text-[#F2EAD8] shadow-md border border-[#8EB264]/40";
+      btnEn.className = "w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5 text-[#E8DCC8]/60 hover:text-[#F2EAD8] hover:bg-white/5";
+    }
+  }
+
+  // 2. Update navigation links text
+  const navMap = [
+    { href: 'index.html', key: 'nav_home' },
+    { href: 'shop.html', key: 'nav_shop' },
+    { href: 'visit.html', key: 'nav_visit' },
+    { href: 'blog.html', key: 'nav_journal' },
+    { href: 'about.html', key: 'nav_about' },
+    { href: 'wholesale.html', key: 'nav_wholesale' },
+    { href: 'contact.html', key: 'nav_contact' },
+  ];
+  navMap.forEach(item => {
+    document.querySelectorAll(`a[href="${item.href}"]`).forEach(el => {
+      if (!el.querySelector('img') && !el.classList.contains('header-logo-link') && el.textContent.trim().length > 0) {
+        el.textContent = window.t(item.key);
+      }
+    });
+  });
+
+  // 3. Update Book Visit button in header
+  const bookVisitBtn = document.getElementById('book-visit-btn');
+  if (bookVisitBtn) {
+    const span = bookVisitBtn.querySelector('span');
+    if (span) span.textContent = window.t('nav_book_visit');
+  }
+
+  // 4. Re-render Cart Drawer if cart exists
+  if (window.cart && typeof window.cart.renderDrawer === 'function') {
+    window.cart.renderDrawer();
+  }
+
+  // 5. Re-render shop page products if renderProducts exists
+  if (typeof window.renderProducts === 'function') {
+    if (typeof window.renderCategoryPills === 'function') {
+      window.renderCategoryPills();
+    }
+    window.renderProducts();
+  }
+
+  // 6. Re-render index page featured products & tours if present
+  if (typeof window.renderHomeDynamicGrids === 'function') {
+    window.renderHomeDynamicGrids();
+  }
+
+  // 7. Re-render visit page tours if present
+  if (typeof window.renderVisitDynamicGrids === 'function') {
+    window.renderVisitDynamicGrids();
+  }
+
+  // 8. Re-initialize Lucide icons if available
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+
+  // 9. Dispatch a custom window event for any other listeners
+  window.dispatchEvent(new CustomEvent('siteLanguageChanged', { detail: { lang } }));
+};
+
+function injectSideLangSwitcher() {
+  if (document.getElementById('side-lang-currency-switcher')) {
+    window.updateSiteLanguageUI();
+    return;
+  }
+  const container = document.createElement('div');
+  container.id = 'side-lang-currency-switcher';
+  container.className = 'fixed right-0 top-1/2 -translate-y-1/2 z-[999] flex flex-col items-center gap-1.5 p-1.5 bg-[#141A13]/95 border-l-2 border-y-2 border-[#C8995A]/50 rounded-l-2xl shadow-2xl backdrop-blur-md select-none transition-all';
+  container.setAttribute('aria-label', 'Language and Currency Switcher');
+
+  container.innerHTML = `
+    <button type="button" id="side-lang-btn-en" onclick="window.setSiteLanguage('en')" class="w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5" title="Switch to English (INR ₹)">
+      <span class="text-xs">🇬🇧</span>
+      <span class="leading-none text-[11px]">EN</span>
+      <span class="text-[9px] font-mono text-[#C8995A] font-semibold">₹ INR</span>
+    </button>
+    <div class="w-5 h-[1px] bg-[#C8995A]/30"></div>
+    <button type="button" id="side-lang-btn-de" onclick="window.setSiteLanguage('de')" class="w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5" title="Auf Deutsch wechseln (EUR €)">
+      <span class="text-xs">🇩🇪</span>
+      <span class="leading-none text-[11px]">DE</span>
+      <span class="text-[9px] font-mono text-[#C8995A] font-semibold">€ EUR</span>
+    </button>
+  `;
+
+  document.body.appendChild(container);
+  window.updateSiteLanguageUI();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', injectSideLangSwitcher);
+} else {
+  injectSideLangSwitcher();
+}

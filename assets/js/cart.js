@@ -136,6 +136,22 @@ class CartManager {
     return Math.max(0, subtotal - discount);
   }
 
+  getSubtotalEUR() {
+    return this.items.reduce((sum, item) => {
+      const p = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find(prod => prod.id === item.id) : null;
+      const eur = (p && typeof p.priceEUR === 'number') ? p.priceEUR : (item.priceEUR || (item.price / 90));
+      return sum + (eur * item.quantity);
+    }, 0);
+  }
+
+  getFinalTotalEUR() {
+    const subtotalEUR = this.getSubtotalEUR();
+    if (this.coupon && this.coupon.toUpperCase() === 'HARVEST10') {
+      return subtotalEUR * 0.90;
+    }
+    return subtotalEUR;
+  }
+
   applyCouponCode(code) {
     const clean = code.trim().toUpperCase();
     if (clean === 'HARVEST10') {
@@ -252,62 +268,92 @@ class CartManager {
     if (footer) footer.classList.remove('hidden');
 
     const subtotal = this.getSubtotal();
+    const subtotalEUR = this.getSubtotalEUR();
     const discount = this.getDiscountAmount();
+    const discountEUR = subtotalEUR * (discount > 0 ? 0.10 : 0);
     const finalTotal = this.getFinalTotal();
+    const finalTotalEUR = this.getFinalTotalEUR();
 
-    if (subtotalEl) subtotalEl.textContent = `INR ${subtotal.toLocaleString('en-IN')}`;
+    if (subtotalEl) {
+      subtotalEl.textContent = (typeof window.formatPrice === 'function') 
+        ? window.formatPrice(subtotal, subtotalEUR) 
+        : `INR ${subtotal.toLocaleString('en-IN')}`;
+    }
     
     if (discountRow && discountEl) {
       if (discount > 0) {
         discountRow.classList.remove('hidden');
-        discountEl.textContent = `-INR ${discount.toLocaleString('en-IN')} (${this.coupon})`;
+        const formattedDiscount = (typeof window.formatPrice === 'function')
+          ? window.formatPrice(discount, discountEUR)
+          : `INR ${discount.toLocaleString('en-IN')}`;
+        discountEl.textContent = `-${formattedDiscount} (${this.coupon})`;
       } else {
         discountRow.classList.add('hidden');
       }
     }
 
-    if (totalEl) totalEl.textContent = `INR ${finalTotal.toLocaleString('en-IN')}`;
+    if (totalEl) {
+      totalEl.textContent = (typeof window.formatPrice === 'function')
+        ? window.formatPrice(finalTotal, finalTotalEUR)
+        : `INR ${finalTotal.toLocaleString('en-IN')}`;
+    }
 
     // Free delivery progress
     if (freeDeliveryBanner) {
+      const isDe = window.currentLang === 'de';
       if (subtotal >= this.freeDeliveryThreshold) {
         freeDeliveryBanner.innerHTML = `
           <div class="bg-brand-forest/30 border border-brand-mossLight/30 px-3 py-2 rounded-sm text-xs text-[#e2c9a5] flex items-center gap-2">
             <i data-lucide="sparkles" class="w-4 h-4 text-brand-gold flex-shrink-0"></i>
-            <span><strong>Qualified!</strong> Free Farmstead Delivery unlocked across Tamil Nadu & Kerala.</span>
+            <span><strong>${isDe ? 'Qualifiziert!' : 'Qualified!'}</strong> ${isDe ? 'Kostenlose Hoflieferung freigeschaltet.' : 'Free Farmstead Delivery unlocked across Tamil Nadu & Kerala.'}</span>
           </div>
         `;
       } else {
-        const remaining = (this.freeDeliveryThreshold - subtotal).toLocaleString('en-IN');
+        const remainingVal = this.freeDeliveryThreshold - subtotal;
+        const remainingFormatted = (typeof window.formatPrice === 'function')
+          ? window.formatPrice(remainingVal, remainingVal / 90)
+          : `INR ${remainingVal.toLocaleString('en-IN')}`;
+        const thresholdText = isDe ? 'Ab 15 € Bestellwert' : 'Threshold INR 1,500';
+        const addMoreText = isDe ? `Noch <strong class="text-brand-gold">${remainingFormatted}</strong> für kostenlose Lieferung` : `Add <strong class="text-brand-gold">${remainingFormatted}</strong> more for Free Delivery`;
         freeDeliveryBanner.innerHTML = `
           <div class="bg-white/5 border border-white/10 px-3 py-2 rounded-sm text-xs text-[#cbb89d] flex items-center justify-between gap-2">
-            <span>Add <strong class="text-brand-gold">INR ${remaining}</strong> more for Free Delivery</span>
-            <span class="text-[10px] text-brand-mossLight font-semibold uppercase tracking-wider">Threshold INR 1,500</span>
+            <span>${addMoreText}</span>
+            <span class="text-[10px] text-brand-mossLight font-semibold uppercase tracking-wider">${thresholdText}</span>
           </div>
         `;
       }
     }
 
-    list.innerHTML = this.items.map(item => `
-      <div class="flex items-center gap-3 py-3 border-b border-white/10">
-        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-sm border border-white/15" />
-        <div class="flex-1 min-w-0">
-          <h4 class="font-medium text-sm text-[#e2c9a5] truncate">${item.name}</h4>
-          <p class="text-xs text-[#cbb89d]/70">${item.unit} • INR ${item.price.toLocaleString('en-IN')}</p>
-          <div class="flex items-center gap-2 mt-2">
-            <div class="flex items-center border border-white/15 rounded-sm bg-black/60 overflow-hidden">
-              <button onclick="window.cart.updateQuantity('${item.id}', -1)" class="w-7 h-7 flex items-center justify-center hover:bg-white/10 text-[#e2c9a5] font-bold transition text-xs">-</button>
-              <span class="px-2 text-xs font-semibold text-[#e2c9a5]">${item.quantity}</span>
-              <button onclick="window.cart.updateQuantity('${item.id}', 1)" class="w-7 h-7 flex items-center justify-center hover:bg-white/10 text-[#e2c9a5] font-bold transition text-xs">+</button>
+    list.innerHTML = this.items.map(item => {
+      const p = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find(prod => prod.id === item.id) : null;
+      const itemName = (p && typeof window.getLocalized === 'function') ? window.getLocalized(p, 'name') : item.name;
+      const itemUnit = (p && typeof window.getLocalized === 'function') ? window.getLocalized(p, 'unit') : item.unit;
+      const itemPriceFormatted = (typeof window.formatPrice === 'function') ? window.formatPrice(item.price, p) : `INR ${item.price.toLocaleString('en-IN')}`;
+      const itemTotalEUR = (p && typeof p.priceEUR === 'number') ? (p.priceEUR * item.quantity) : ((item.price / 90) * item.quantity);
+      const itemTotalFormatted = (typeof window.formatPrice === 'function') ? window.formatPrice(item.price * item.quantity, itemTotalEUR) : `INR ${(item.price * item.quantity).toLocaleString('en-IN')}`;
+      const removeText = window.currentLang === 'de' ? 'Entfernen' : 'Remove';
+
+      return `
+        <div class="flex items-center gap-3 py-3 border-b border-white/10">
+          <img src="${item.image}" alt="${itemName}" class="w-16 h-16 object-cover rounded-sm border border-white/15" />
+          <div class="flex-1 min-w-0">
+            <h4 class="font-medium text-sm text-[#e2c9a5] truncate">${itemName}</h4>
+            <p class="text-xs text-[#cbb89d]/70">${itemUnit} • ${itemPriceFormatted}</p>
+            <div class="flex items-center gap-2 mt-2">
+              <div class="flex items-center border border-white/15 rounded-sm bg-black/60 overflow-hidden">
+                <button onclick="window.cart.updateQuantity('${item.id}', -1)" class="w-7 h-7 flex items-center justify-center hover:bg-white/10 text-[#e2c9a5] font-bold transition text-xs">-</button>
+                <span class="px-2 text-xs font-semibold text-[#e2c9a5]">${item.quantity}</span>
+                <button onclick="window.cart.updateQuantity('${item.id}', 1)" class="w-7 h-7 flex items-center justify-center hover:bg-white/10 text-[#e2c9a5] font-bold transition text-xs">+</button>
+              </div>
+              <button onclick="window.cart.removeItem('${item.id}')" class="text-xs text-rose-400 hover:text-rose-300 transition underline ml-2">${removeText}</button>
             </div>
-            <button onclick="window.cart.removeItem('${item.id}')" class="text-xs text-rose-400 hover:text-rose-300 transition underline ml-2">Remove</button>
+          </div>
+          <div class="text-right">
+            <span class="font-semibold text-brand-gold text-sm">${itemTotalFormatted}</span>
           </div>
         </div>
-        <div class="text-right">
-          <span class="font-semibold text-brand-gold text-sm">INR ${(item.price * item.quantity).toLocaleString('en-IN')}</span>
-        </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     if (window.lucide) lucide.createIcons();
   }
@@ -316,29 +362,42 @@ class CartManager {
     if (this.items.length === 0) return;
     this.collectCustomerFromForm();
 
+    const isDe = window.currentLang === 'de';
     const subtotal = this.getSubtotal();
+    const subtotalEUR = this.getSubtotalEUR();
     const discount = this.getDiscountAmount();
+    const discountEUR = subtotalEUR * (discount > 0 ? 0.10 : 0);
     const finalTotal = this.getFinalTotal();
+    const finalTotalEUR = this.getFinalTotalEUR();
     const cust = this.customer;
 
-    let message = `🌿 *New Order Dispatch - ${BRAND_CONFIG.companyName}*\n`;
+    const currencyLabel = isDe ? 'EUR (€)' : 'INR (₹)';
+    let message = isDe ? `🌿 *Neue Vorbestellung - ${BRAND_CONFIG.companyName}*\n` : `🌿 *New Order Dispatch - ${BRAND_CONFIG.companyName}*\n`;
     message += `----------------------------------------\n`;
     this.items.forEach((item, index) => {
-      message += `${index + 1}. *${item.name}* (${item.unit})\n`;
-      message += `   Qty: ${item.quantity} × INR ${item.price.toLocaleString('en-IN')} = INR ${(item.quantity * item.price).toLocaleString('en-IN')}\n`;
+      const p = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find(prod => prod.id === item.id) : null;
+      const itemName = (p && typeof window.getLocalized === 'function') ? window.getLocalized(p, 'name') : item.name;
+      const itemUnit = (p && typeof window.getLocalized === 'function') ? window.getLocalized(p, 'unit') : item.unit;
+      const itemPriceFormatted = (typeof window.formatPrice === 'function') ? window.formatPrice(item.price, p) : `INR ${item.price.toLocaleString('en-IN')}`;
+      const itemTotalEUR = (p && typeof p.priceEUR === 'number') ? (p.priceEUR * item.quantity) : ((item.price / 90) * item.quantity);
+      const itemTotalFormatted = (typeof window.formatPrice === 'function') ? window.formatPrice(item.price * item.quantity, itemTotalEUR) : `INR ${(item.price * item.quantity).toLocaleString('en-IN')}`;
+      message += `${index + 1}. *${itemName}* (${itemUnit})\n`;
+      message += `   Menge/Qty: ${item.quantity} × ${itemPriceFormatted} = ${itemTotalFormatted}\n`;
     });
     message += `----------------------------------------\n`;
-    message += `*Subtotal:* INR ${subtotal.toLocaleString('en-IN')}\n`;
+    message += isDe ? `*Zwischensumme:* ${window.formatPrice(subtotal, subtotalEUR)}\n` : `*Subtotal:* INR ${subtotal.toLocaleString('en-IN')}\n`;
     if (discount > 0) {
-      message += `*Discount (${this.coupon}):* -INR ${discount.toLocaleString('en-IN')}\n`;
+      message += isDe ? `*Rabatt (${this.coupon}):* -${window.formatPrice(discount, discountEUR)}\n` : `*Discount (${this.coupon}):* -INR ${discount.toLocaleString('en-IN')}\n`;
     }
-    message += `*Total Order Value:* INR ${finalTotal.toLocaleString('en-IN')}\n`;
+    message += isDe ? `*Gesamtbetrag:* ${window.formatPrice(finalTotal, finalTotalEUR)}\n` : `*Total Order Value:* INR ${finalTotal.toLocaleString('en-IN')}\n`;
     message += `----------------------------------------\n`;
-    message += `📦 *Delivery & Customer Details:*\n`;
-    message += `• *Name:* ${cust.name || 'Not specified'}\n`;
-    message += `• *Phone / WhatsApp:* ${cust.phone || 'Not specified'}\n`;
-    message += `• *Delivery Address:* ${cust.address || 'Standard Farmstead Collection / To Confirm'}\n`;
-    message += `\nHello! I would like to confirm this order in INR with ${BRAND_CONFIG.companyName}. Please share the bank transfer / payment details and harvest schedule. Thank you!`;
+    message += isDe ? `📦 *Liefer- & Kontaktdaten:*\n` : `📦 *Delivery & Customer Details:*\n`;
+    message += `• *Name:* ${cust.name || (isDe ? 'Nicht angegeben' : 'Not specified')}\n`;
+    message += `• *Telefon / WhatsApp:* ${cust.phone || (isDe ? 'Nicht angegeben' : 'Not specified')}\n`;
+    message += `• *Lieferadresse:* ${cust.address || (isDe ? 'Hofabholung / Nach Rücksprache' : 'Standard Farmstead Collection / To Confirm')}\n`;
+    message += isDe 
+      ? `\nHallo! Ich möchte diese Vorbestellung in ${currencyLabel} bei ${BRAND_CONFIG.companyName} bestätigen. Bitte teilen Sie mir die Banküberweisungsdetails mit. Vielen Dank!`
+      : `\nHello! I would like to confirm this order in ${currencyLabel} with ${BRAND_CONFIG.companyName}. Please share the bank transfer / payment details and harvest schedule. Thank you!`;
 
     const encoded = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${BRAND_CONFIG.whatsappNumber}?text=${encoded}`;
@@ -415,8 +474,8 @@ class CartManager {
             <div class="bg-black/60 p-3.5 rounded-sm border border-white/10 mb-4 space-y-1">
               <span class="text-[11px] uppercase tracking-wider text-brand-mossLight font-semibold block">✦ Pre-Order Allocation (Ships Next Month)</span>
               <div class="flex items-baseline justify-between pt-1">
-                <span class="text-xs text-[#cbb89d]">Payable Amount:</span>
-                <span class="text-2xl font-serif font-bold text-brand-gold" id="bank-modal-amount">INR ${finalTotal.toLocaleString('en-IN')}</span>
+                <span class="text-xs text-[#cbb89d]">${window.currentLang === 'de' ? 'Zu zahlender Betrag:' : 'Payable Amount:'}</span>
+                <span class="text-2xl font-serif font-bold text-brand-gold" id="bank-modal-amount">${(typeof window.formatPrice === 'function') ? window.formatPrice(finalTotal, this.getFinalTotalEUR()) : `INR ${finalTotal.toLocaleString('en-IN')}`}</span>
               </div>
             </div>
 

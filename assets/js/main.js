@@ -136,8 +136,8 @@ function openProductModal(productId) {
           </span>
           <span class="text-xs text-[#cbb89d]/70">• ${product.unit}</span>
         </div>
-        <h3 class="text-2xl font-serif font-bold text-[#e2c9a5] mb-2">${product.name}</h3>
-        <p class="text-2xl font-bold text-brand-gold mb-3">INR ${product.price.toLocaleString('en-IN')}</p>
+        <h3 class="text-2xl font-serif font-bold text-[#e2c9a5] mb-2">${(typeof window.getLocalized === 'function') ? window.getLocalized(product, 'name') : product.name}</h3>
+        <p class="text-2xl font-bold text-brand-gold mb-3">${(typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`}</p>
         
         ${product.colorways ? `
           <!-- Pastel Colorway & Signature Motif Selector inside Modal -->
@@ -177,7 +177,7 @@ function openProductModal(productId) {
         <div class="flex items-center gap-3">
           <button onclick="window.cart.addItem('${product.id}'); closeProductModal();" class="flex-1 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] py-3.5 px-6 rounded-xl font-medium flex items-center justify-center gap-2 shadow-lg transition">
             <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-            <span>Pre-Order (Ships Next Month)</span>
+            <span>${window.currentLang === 'de' ? 'Vorbestellen (Versand nächsten Monat)' : 'Pre-Order (Ships Next Month)'}</span>
           </button>
           <button onclick="inquireProduct('${product.name}')" class="p-3.5 border border-white/20 hover:border-brand-mossLight rounded-xl text-[#e2c9a5] hover:bg-white/5 transition" title="Ask a question via WhatsApp">
             <i data-lucide="help-circle" class="w-5 h-5"></i>

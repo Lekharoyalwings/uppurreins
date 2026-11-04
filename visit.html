@@ -620,7 +620,7 @@
               </li>
               <li class="flex items-start gap-2.5">
                 <i data-lucide="trash-2" class="w-4 h-4 text-brand-mossLight flex-shrink-0 mt-0.5"></i>
-                <span><strong class="text-brand-cream">Strictly No Single-Use Plastic:</strong> We are a plastic-free farm sanctuary. Bring your reusable canteen; clean spring water is provided.</span>
+                <span><strong class="text-brand-cream">Zero Single-Use Plastic:</strong> We are a zero-waste sanctuary. Bring your reusable canteen; clean spring water is provided.</span>
               </li>
               <li class="flex items-start gap-2.5">
                 <i data-lucide="smile" class="w-4 h-4 text-brand-mossLight flex-shrink-0 mt-0.5"></i>
@@ -659,9 +659,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/data.js?v=20261024_v1_blog11"></script>
+  <script src="assets/js/data.js"></script>
   <script src="assets/js/cart.js"></script>
-  <script src="assets/js/main.js?v=20261023_v2_cleanest"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     let guestCount = 2;
     let lastBookingData = null;
@@ -671,25 +671,37 @@
       const select = document.getElementById('book-experience');
       
       if (grid) {
-        grid.innerHTML = FARM_VISITS.map(tour => `
+        grid.innerHTML = FARM_VISITS.map(tour => {
+          const title = (typeof window.getLocalized === 'function') ? window.getLocalized(tour, 'title') : tour.title;
+          const duration = (typeof window.getLocalized === 'function') ? window.getLocalized(tour, 'duration') : tour.duration;
+          const days = (typeof window.getLocalized === 'function') ? window.getLocalized(tour, 'days') : tour.days;
+          const badge = (typeof window.getLocalized === 'function') ? window.getLocalized(tour, 'badge') : tour.badge;
+          const desc = (typeof window.getLocalized === 'function') ? window.getLocalized(tour, 'description') : tour.description;
+          const incList = (window.currentLang === 'de' && tour.included_de) ? tour.included_de : tour.included;
+          const priceFmt = (typeof window.formatPrice === 'function') ? window.formatPrice(tour.pricePerPerson, tour) : `INR ${tour.pricePerPerson.toLocaleString('en-IN')}`;
+          const perPerson = (typeof window.t === 'function') ? window.t('visit_per_person') : 'Person';
+          const selectText = (typeof window.t === 'function') ? window.t('visit_select_exp') : 'Select This Experience';
+          const includesHeader = (typeof window.t === 'function') ? window.t('visit_includes') : 'Includes:';
+
+          return `
           <div class="stall-card card-hover flex flex-col justify-between">
             <div>
               <div class="stall-header">
-                <span class="stall-label">${tour.duration} • ${tour.days}</span>
-                <span class="text-brand-gold text-xs font-semibold ml-auto relative z-10">INR ${tour.pricePerPerson.toLocaleString('en-IN')} / Person</span>
+                <span class="stall-label">${duration} • ${days}</span>
+                <span class="text-brand-gold text-xs font-semibold ml-auto relative z-10">${priceFmt} / ${perPerson}</span>
               </div>
               <div class="relative h-52 img-zoom-wrapper">
-                <img src="${tour.image}" alt="${tour.title}" class="w-full h-full object-cover">
+                <img src="${tour.image}" alt="${title}" class="w-full h-full object-cover">
                 <span class="absolute top-3 right-3 bg-brand-dark/90 text-brand-cream text-[11px] font-bold px-2.5 py-0.5 rounded-sm">
-                  ${tour.badge}
+                  ${badge}
                 </span>
               </div>
               <div class="stall-body">
-                <h3 class="font-serif font-bold text-xl text-brand-cream mt-1 mb-2">${tour.title}</h3>
-                <p class="text-xs text-brand-oat/60 leading-relaxed mb-4">${tour.description}</p>
+                <h3 class="font-serif font-bold text-xl text-brand-cream mt-1 mb-2">${title}</h3>
+                <p class="text-xs text-brand-oat/60 leading-relaxed mb-4">${desc}</p>
                 <div class="space-y-1.5 pt-2 border-t border-black/30">
-                  <span class="text-[11px] font-bold uppercase tracking-wider text-brand-mossLight block mb-1">Includes:</span>
-                  ${tour.included.map(inc => `
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-brand-mossLight block mb-1">${includesHeader}</span>
+                  ${incList.map(inc => `
                     <div class="flex items-center gap-2 text-xs text-brand-oat/65">
                       <i data-lucide="check" class="w-3.5 h-3.5 text-brand-mossLight flex-shrink-0"></i>
                       <span>${inc}</span>
@@ -700,23 +712,31 @@
             </div>
             <div class="px-4 pb-4">
               <button onclick="selectTourForBooking('${tour.id}')" class="w-full btn-primary py-3 rounded-sm text-xs font-semibold text-center block shadow-md">
-                Select This Experience
+                ${selectText}
               </button>
             </div>
           </div>
-        `).join('');
+        `;
+        }).join('');
       }
 
       if (select) {
-        select.innerHTML = FARM_VISITS.map(tour => `
+        const currentVal = select.value;
+        select.innerHTML = FARM_VISITS.map(tour => {
+          const title = (typeof window.getLocalized === 'function') ? window.getLocalized(tour, 'title') : tour.title;
+          const priceFmt = (typeof window.formatPrice === 'function') ? window.formatPrice(tour.pricePerPerson, tour) : `INR ${tour.pricePerPerson.toLocaleString('en-IN')}`;
+          const perPerson = (typeof window.t === 'function') ? window.t('visit_per_person') : 'person';
+          return `
           <option value="${tour.id}">
-            ${tour.title} (INR ${tour.pricePerPerson.toLocaleString('en-IN')}/person)
+            ${title} (${priceFmt}/${perPerson})
           </option>
-        `).join('');
+        `;
+        }).join('');
+        if (currentVal) select.value = currentVal;
       }
 
       const dateInput = document.getElementById('book-date');
-      if (dateInput) {
+      if (dateInput && !dateInput.value) {
         const today = new Date();
         const nextSat = new Date();
         nextSat.setDate(today.getDate() + ((6 - today.getDay() + 7) % 7 || 7));
@@ -727,6 +747,8 @@
       updateBookingPricing();
       if (window.lucide) lucide.createIcons();
     }
+
+    window.renderVisitDynamicGrids = renderExperiences;
 
     function selectTourForBooking(tourId) {
       const select = document.getElementById('book-experience');
@@ -751,9 +773,18 @@
 
       const tour = FARM_VISITS.find(t => t.id === select.value) || FARM_VISITS[0];
       const total = tour.pricePerPerson * guestCount;
-      totalEl.textContent = `INR ${total.toLocaleString('en-IN')}`;
+      const tourTotalEUR = (tour.pricePerPersonEUR || (tour.pricePerPerson / 90)) * guestCount;
+      totalEl.textContent = (typeof window.formatPrice === 'function') 
+        ? window.formatPrice(total, tourTotalEUR) 
+        : `INR ${total.toLocaleString('en-IN')}`;
       if (breakdownEl) {
-        breakdownEl.textContent = `(INR ${tour.pricePerPerson.toLocaleString('en-IN')} × ${guestCount} Guest${guestCount > 1 ? 's' : ''})`;
+        const guestWord = guestCount > 1 
+          ? (window.currentLang === 'de' ? 'Gäste' : 'Guests') 
+          : (window.currentLang === 'de' ? 'Gast' : 'Guest');
+        const pricePerPersonFmt = (typeof window.formatPrice === 'function')
+          ? window.formatPrice(tour.pricePerPerson, tour)
+          : `INR ${tour.pricePerPerson.toLocaleString('en-IN')}`;
+        breakdownEl.textContent = `(${pricePerPersonFmt} × ${guestCount} ${guestWord})`;
       }
     }
 

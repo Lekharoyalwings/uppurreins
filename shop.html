@@ -1028,13 +1028,14 @@
     const categoryParam = urlParams.get('category');
     if (categoryParam) activeCategory = categoryParam;
 
+    window.renderCategoryPills = renderCategoryPills;
     function renderCategoryPills() {
       const container = document.getElementById('category-pills');
       if (!container) return;
       container.innerHTML = CATEGORIES.map(cat => `
         <button onclick="filterCategory('${cat.id}')" class="px-4 py-2 rounded-sm text-xs font-medium whitespace-nowrap transition flex items-center gap-1.5 ${activeCategory === cat.id ? 'bg-brand-forest text-brand-cream shadow-md' : 'bg-brand-barnwood/60 text-brand-oat/70 border border-white/10 hover:bg-brand-barnwood'}">
           <i data-lucide="${cat.icon}" class="w-3.5 h-3.5"></i>
-          <span>${cat.name}</span>
+          <span>${(typeof window.getLocalized === 'function') ? window.getLocalized(cat, 'name') : cat.name}</span>
         </button>
       `).join('');
       if (window.lucide) lucide.createIcons();
@@ -1053,6 +1054,7 @@
       renderProducts();
     }
 
+    window.renderProducts = renderProducts;
     function renderProducts() {
       const grid = document.getElementById('shop-products-grid');
       const emptyState = document.getElementById('shop-empty');
@@ -1107,7 +1109,7 @@
                 </div>
               ` : ''}
               <div class="stall-body">
-                <h3 class="font-serif font-bold text-brand-cream text-lg hover:text-brand-mossLight cursor-pointer transition line-clamp-1" onclick="openProductModal('${product.id}')">${product.name}</h3>
+                <h3 class="font-serif font-bold text-brand-cream text-lg hover:text-brand-mossLight cursor-pointer transition line-clamp-1" onclick="openProductModal('${product.id}')">${(typeof window.getLocalized === 'function') ? window.getLocalized(product, 'name') : product.name}</h3>
                 <p class="text-xs text-brand-oat/60 mt-1 line-clamp-2">${product.description}</p>
                 <div class="mt-2.5">
                   <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-brand-gold bg-brand-gold/10 px-2 py-0.5 rounded-sm border border-brand-gold/25">
@@ -1119,8 +1121,8 @@
             <div class="px-4 pb-4">
               <div class="pt-3 border-t border-black/30 flex items-center justify-between">
                 <div>
-                  <span class="text-[11px] text-brand-oat/40 block">${product.unit}</span>
-                  <span class="font-bold text-brand-gold text-base">INR ${product.price.toLocaleString('en-IN')}</span>
+                  <span class="text-[11px] text-brand-oat/40 block">${(typeof window.getLocalized === 'function') ? window.getLocalized(product, 'unit') : product.unit}</span>
+                  <span class="font-bold text-brand-gold text-base">${(typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`}</span>
                 </div>
                 <div class="flex items-center gap-1.5">
                   <button onclick="openProductModal('${product.id}')" class="p-2 rounded-sm bg-white/8 hover:bg-white/15 text-brand-cream transition" title="Quick Details">
