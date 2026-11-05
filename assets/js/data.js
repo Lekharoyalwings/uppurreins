@@ -807,6 +807,12 @@ window.formatPrice = function(inrAmount, productOrEur) {
 
 // Master dictionary of phrases for instant client-side DOM translation
 window.SITE_PHRASES_DE = {
+  // Brand & Company Names (Permanently Locked Across All Languages)
+  "UP Purreins": "UP Purreins",
+  "Up Purreins": "UP Purreins",
+  "Purreins Frequency": "Purreins Frequency",
+  "Purreins": "Purreins",
+
   // Navigation & Core Buttons
   "Home": "Startseite",
   "Farm Store": "Hofladen",
@@ -979,6 +985,28 @@ window.t = function(key) {
 };
 
 // ── Google Translate & DOM Translation Integration ───────────
+// ── Universal Brand & Company Name Protection ─────────────────
+function protectBrandDOM() {
+  // Add notranslate and translate="no" to all logo links, brand wrappers, and footers
+  document.querySelectorAll('.header-logo-link, #book-visit-btn, footer').forEach(el => {
+    el.classList.add('notranslate');
+    el.setAttribute('translate', 'no');
+  });
+
+  // Ensure any element with brand text has translate="no"
+  document.querySelectorAll('h1, h2, h3, h4, p, span, a').forEach(el => {
+    if (el.children.length === 0) {
+      const txt = el.textContent;
+      if (txt.includes('UP Purreins') || txt.includes('Purreins Frequency') || txt.includes('Up Purreins')) {
+        el.classList.add('notranslate');
+        el.setAttribute('translate', 'no');
+      }
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', protectBrandDOM);
+
 function initGoogleTranslateSystem() {
   if (document.getElementById('google_translate_element')) return;
 
@@ -1091,7 +1119,13 @@ function walkAndTranslateDOM(lang) {
         if (tag === 'script' || tag === 'style' || tag === 'code' || tag === 'noscript') {
           return NodeFilter.FILTER_REJECT;
         }
-        if (node.parentNode.closest('#side-lang-currency-switcher') || node.parentNode.closest('#book-visit-btn')) {
+        if (node.parentNode.closest('#side-lang-currency-switcher') || 
+            node.parentNode.closest('#book-visit-btn') || 
+            node.parentNode.closest('.notranslate') || 
+            node.parentNode.closest('[translate="no"]') ||
+            node.parentNode.classList.contains('notranslate')) {
+          return NodeFilter.FILTER_REJECT;
+        }
           return NodeFilter.FILTER_REJECT;
         }
         return NodeFilter.FILTER_ACCEPT;
@@ -1116,6 +1150,15 @@ function walkAndTranslateDOM(lang) {
           currentVal = currentVal.split(enText).join(deText);
         }
       }
+            // Strictly protect Brand & Company Names forever
+      currentVal = currentVal
+        .replace(/Auf Purreins/gi, 'UP Purreins')
+        .replace(/Oben Purreins/gi, 'UP Purreins')
+        .replace(/Up Purreins/g, 'UP Purreins')
+        .replace(/Purreins-Frequenz/gi, 'Purreins Frequency')
+        .replace(/Purreins Frequenz/gi, 'Purreins Frequency')
+        .replace(/Purreinsfrequenz/gi, 'Purreins Frequency');
+
       if (currentVal !== node.nodeValue) {
         node.nodeValue = currentVal;
       }
