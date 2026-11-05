@@ -1272,7 +1272,7 @@ window.I18N_DICTIONARY = {
   en: {
     nav_home: "Home",
     nav_shop: "Farm Store",
-    nav_visit: "Experiences & Visits",
+    nav_visit: "Look",
     nav_journal: "Journal",
     nav_about: "About",
     nav_wholesale: "Wholesale",
@@ -1304,7 +1304,7 @@ window.I18N_DICTIONARY = {
   de: {
     nav_home: "Startseite",
     nav_shop: "Hofladen",
-    nav_visit: "Hoferlebnisse",
+    nav_visit: "Look",
     nav_journal: "Magazin",
     nav_about: "Über uns",
     nav_wholesale: "Großhandel",
@@ -1537,11 +1537,10 @@ window.updateSiteLanguageUI = function() {
   // 2. Perform DOM phrase translation
   walkAndTranslateDOM(lang);
 
-  // 3. Update navigation links text
+  // 3. Update navigation links text (strictly skipping the header Look button)
   const navMap = [
     { href: 'index.html', key: 'nav_home' },
     { href: 'shop.html', key: 'nav_shop' },
-    { href: 'visit.html', key: 'nav_visit' },
     { href: 'blog.html', key: 'nav_journal' },
     { href: 'about.html', key: 'nav_about' },
     { href: 'wholesale.html', key: 'nav_wholesale' },
@@ -1549,17 +1548,32 @@ window.updateSiteLanguageUI = function() {
   ];
   navMap.forEach(item => {
     document.querySelectorAll(`a[href="${item.href}"]`).forEach(el => {
+      if (el.id === 'book-visit-btn' || el.closest('#book-visit-btn') || el.closest('#book-visit-nav-zone')) {
+        return;
+      }
       if (!el.querySelector('img') && !el.classList.contains('header-logo-link') && el.textContent.trim().length > 0) {
         el.textContent = window.t(item.key);
       }
     });
   });
 
-  // 4. The Look button in header always stays "Look" in both English and German
+  // 4. The Look button in header ALWAYS stays "Look" in both English and German with SVG intact
   const bookVisitBtn = document.getElementById('book-visit-btn');
   if (bookVisitBtn) {
     const span = bookVisitBtn.querySelector('span');
-    if (span) span.textContent = 'Look';
+    if (span) {
+      span.textContent = 'Look';
+    } else {
+      bookVisitBtn.innerHTML = `
+        <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2v20" stroke="#8A9E6E" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M4 4.5h12l4 3.5-4 3.5H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z" fill="#4A5E3A" stroke="#8A9E6E" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M6 7.2h8M7.5 9.2h5" stroke="#8A9E6E" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M9 22h6" stroke="#8A9E6E" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="text-[#e2c9a5]">Look</span>
+      `;
+    }
   }
 
   // 5. Re-render Cart Drawer if cart exists
