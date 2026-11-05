@@ -1277,7 +1277,7 @@ window.I18N_DICTIONARY = {
     nav_about: "About",
     nav_wholesale: "Wholesale",
     nav_contact: "Contact",
-    nav_book_visit: "Book Visit",
+    nav_book_visit: "Look",
     cart_title: "Your Harvest Basket",
     cart_subtotal: "Subtotal",
     cart_free_delivery: "Free Delivery",
@@ -1309,7 +1309,7 @@ window.I18N_DICTIONARY = {
     nav_about: "Über uns",
     nav_wholesale: "Großhandel",
     nav_contact: "Kontakt",
-    nav_book_visit: "Besuch buchen",
+    nav_book_visit: "Look",
     cart_title: "Ihr Erntekorb",
     cart_subtotal: "Zwischensumme",
     cart_free_delivery: "Kostenlose Lieferung",
@@ -1453,7 +1453,7 @@ function walkAndTranslateDOM(lang) {
         if (tag === 'script' || tag === 'style' || tag === 'code' || tag === 'noscript') {
           return NodeFilter.FILTER_REJECT;
         }
-        if (node.parentNode.closest('#side-lang-currency-switcher')) {
+        if (node.parentNode.closest('#side-lang-currency-switcher') || node.parentNode.closest('#book-visit-btn')) {
           return NodeFilter.FILTER_REJECT;
         }
         return NodeFilter.FILTER_ACCEPT;
@@ -1555,11 +1555,11 @@ window.updateSiteLanguageUI = function() {
     });
   });
 
-  // 4. Update Book Visit button in header
+  // 4. The Look button in header always stays "Look" in both English and German
   const bookVisitBtn = document.getElementById('book-visit-btn');
   if (bookVisitBtn) {
     const span = bookVisitBtn.querySelector('span');
-    if (span) span.textContent = window.t('nav_book_visit');
+    if (span) span.textContent = 'Look';
   }
 
   // 5. Re-render Cart Drawer if cart exists
