@@ -409,7 +409,16 @@
       color: #C8995A !important;
       font-weight: 700 !important;
     }
-  </style>
+  
+    /* Clean Horizontal Sideway Sliding Rails */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none !important;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
+</style>
 </head>
 <body class="bg-red-soil antialiased flex flex-col min-h-screen">
 
@@ -476,320 +485,239 @@
     </nav>
   </div>
 
-  <!-- Page Banner -->
-  <div class="bg-warm-gradient pt-28 sm:pt-32 lg:pt-36 pb-12 border-b border-black/40 translate-x-[3%]" style="transform: translateX(3%);">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-mossLight mb-2 block">Direct From Living Earth</span>
-      <h1 class="font-serif text-4xl sm:text-5xl font-bold text-brand-cream mb-4">The Organic Farm Store</h1>
-      <p class="text-brand-oat/75 text-sm sm:text-base leading-relaxed">
-        Pure, chemical-free, and ethically harvested goods. Filter by category or search our artisanal offerings below.
+    <!-- Page Banner -->
+  <div class="bg-gradient-to-b from-black via-black/90 to-soil-dark pt-32 sm:pt-36 lg:pt-40 pb-10 border-b border-white/10 translate-x-[3%]" style="transform: translateX(3%);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+      <span class="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-brand-gold block" id="store-banner-tag">
+        Direct From Living Earth • Chemical-Free Permaculture
+      </span>
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-cream tracking-tight" id="store-banner-title">
+        The Organic Farm Store
+      </h1>
+      <p class="text-brand-oat/75 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed" id="store-banner-desc">
+        Handcrafted heirloom quilts, sculptural curd soaps, pasture-roaming duck eggs, living greens, and sun-cured herbs.
       </p>
+
+      <!-- Category Quick Anchor Navigation Chips (Excluding combos completely) -->
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-2">
+        <a href="#section-quilts" class="px-4 py-2 rounded-full text-xs font-semibold bg-brand-gold/15 hover:bg-brand-gold hover:text-brand-dark text-brand-gold border border-brand-gold/40 transition flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="scissors" class="w-3.5 h-3.5"></i>
+          <span id="pill-quilts">01. Quilts &amp; Throws</span>
+        </a>
+        <a href="#section-soaps" class="px-4 py-2 rounded-full text-xs font-medium bg-white/5 hover:bg-white/15 text-brand-oat hover:text-brand-cream border border-white/15 transition flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span id="pill-soaps">02. Curd Soaps</span>
+        </a>
+        <a href="#section-eggs" class="px-4 py-2 rounded-full text-xs font-medium bg-white/5 hover:bg-white/15 text-brand-oat hover:text-brand-cream border border-white/15 transition flex items-center gap-1.5">
+          <i data-lucide="egg" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span id="pill-eggs">03. Pasture Duck Eggs</span>
+        </a>
+        <a href="#section-produce" class="px-4 py-2 rounded-full text-xs font-medium bg-white/5 hover:bg-white/15 text-brand-oat hover:text-brand-cream border border-white/15 transition flex items-center gap-1.5">
+          <i data-lucide="sprout" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span id="pill-produce">04. Living Microgreens</span>
+        </a>
+        <a href="#section-herbs" class="px-4 py-2 rounded-full text-xs font-medium bg-white/5 hover:bg-white/15 text-brand-oat hover:text-brand-cream border border-white/15 transition flex items-center gap-1.5">
+          <i data-lucide="leaf" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span id="pill-herbs">05. Sun-Cured Herbs</span>
+        </a>
+      </div>
     </div>
   </div>
 
   <!-- Shop Main Content -->
   <main class="flex-1 bg-soil-dark translate-x-[3%]" style="transform: translateX(3%);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
 
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- FARMSTEAD LOOKBOOK (TOP OF FARM STORE)          -->
-      <!-- ═══════════════════════════════════════════════ -->
-      <section id="farmstead-lookbook" class="mb-16">
-        <div class="stable-bar rounded-sm">
-          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-            <div>
-              <span class="stable-bar-label">The Farmstead Lookbook • Chapter 01</span>
-              <h2 class="stable-bar-title text-3xl sm:text-4xl">Heirloom Solid Pastel Quilts &amp; Printed Throws</h2>
-              <p class="stable-bar-sub mt-1">
-                Every quilt is 100% solid pastel brushed cotton filled with Tamizhnad Ilavam Panju (unadorned solid pastel). Every reversible throw blanket is solid pastel on one side and printed with that shade's signature motif on the other.
-              </p>
-            </div>
-            <!-- Lookbook Collection Tabs (Quilts active; Soaps ready for next drop) -->
-            <div class="flex flex-wrap items-center gap-2 self-start lg:self-end">
-              <button type="button" onclick="switchLookbookTab('quilts')" id="lb-tab-quilts" class="px-3.5 py-2 rounded-sm text-xs font-semibold bg-brand-gold text-brand-dark shadow-md transition flex items-center gap-1.5">
-                <i data-lucide="scissors" class="w-3.5 h-3.5"></i>
-                <span>01. Quilts &amp; Throws (6 Pastels)</span>
-              </button>
-              <button type="button" onclick="switchLookbookTab('soaps')" id="lb-tab-soaps" class="px-3.5 py-2 rounded-sm text-xs font-medium bg-brand-barnwood/60 text-brand-oat/75 border border-white/15 hover:bg-brand-barnwood transition flex items-center gap-1.5">
-                <i data-lucide="droplets" class="w-3.5 h-3.5"></i>
-                <span>02. 3D Bubble Cube Soaps (8 Pure Blends)</span>
-              </button>
-            </div>
-          </div>
+      <!-- Pre-Order Seasonal Harvest Notice (Sleek minimalist bar) -->
+      <div class="p-4 rounded-xl bg-brand-forest/20 border border-brand-forest/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-brand-mossLight animate-pulse flex-shrink-0"></span>
+          <p class="text-xs text-brand-oat/90 leading-relaxed" id="store-preorder-strip">
+            <strong>Small-Batch Season:</strong> All farmstead offerings are handcrafted in limited monthly runs. Pre-order now to reserve your allocation.
+          </p>
         </div>
-
-        <!-- QUILTS & THROWS LOOKBOOK PANEL -->
-        <div id="lookbook-panel-quilts" class="space-y-6">
-          <!-- Featured Interactive Lookbook Stage -->
-          <div class="stall-card overflow-hidden border border-brand-gold/30">
-            <div class="stall-header flex flex-wrap items-center justify-between gap-2">
-              <div class="flex items-center gap-2">
-                <span class="stall-label text-brand-gold" id="lb-active-code">Colorway 01 / 06</span>
-                <span class="text-xs text-brand-oat/60">•</span>
-                <span class="text-xs font-semibold text-brand-cream" id="lb-active-subtitle">Pastel Butter Yellow &amp; Five-Pointed Stars</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <button type="button" onclick="stepLookbook(-1)" class="px-2.5 py-1 rounded-sm bg-black/50 hover:bg-brand-forest text-brand-cream text-xs border border-white/15 transition flex items-center gap-1" title="Previous Colorway">
-                  <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
-                  <span>Prev</span>
-                </button>
-                <button type="button" onclick="stepLookbook(1)" class="px-2.5 py-1 rounded-sm bg-black/50 hover:bg-brand-forest text-brand-cream text-xs border border-white/15 transition flex items-center gap-1" title="Next Colorway">
-                  <span>Next</span>
-                  <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="grid lg:grid-cols-12 gap-0">
-              <!-- Left: Large Editorial Lookbook Photo -->
-              <div class="lg:col-span-7 relative bg-black/60 min-h-[300px] sm:min-h-[400px] overflow-hidden">
-                <img id="lb-active-img" src="assets/images/lookbook-yellow-stars.jpg?v=1" alt="Pastel Butter Yellow Solid Quilt and Star Printed Throw Blanket" class="w-full h-full object-cover transition-opacity duration-300">
-                <div class="absolute bottom-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
-                  <span id="lb-active-pill" class="px-3 py-1 rounded-sm text-xs font-semibold bg-black/80 text-brand-cream border border-white/15 backdrop-blur-sm">
-                    Solid Pastel Butter Yellow Quilt + Star-Printed Reversible Throw
-                  </span>
-                  <span class="px-2.5 py-1 rounded-sm text-[11px] font-medium bg-brand-forest/90 text-brand-cream border border-brand-mossLight/40">
-                    GOTS &amp; OEKO-TEX Certified Fabric
-                  </span>
-                </div>
-              </div>
-
-              <!-- Right: Colorway Swatch Selector & Construction Details -->
-              <div class="lg:col-span-5 p-6 sm:p-7 flex flex-col justify-between bg-brand-dark/70 space-y-6">
-                <div class="space-y-4">
-                  <div class="flex items-center gap-2.5">
-                    <span id="lb-active-swatch-dot" class="w-5 h-5 rounded-full border border-white/30 shadow-inner flex-shrink-0" style="background-color: #F4E098;"></span>
-                    <h3 id="lb-active-title" class="font-serif font-bold text-2xl sm:text-3xl text-brand-cream">Pastel Butter Yellow</h3>
-                  </div>
-
-                  <p id="lb-active-desc" class="text-xs sm:text-sm text-brand-oat/80 leading-relaxed">
-                    Warm, soothing butter-yellow organically dyed brushed cotton. The plump 3-channel heirloom quilt is 100% solid pastel butter yellow on both sides, while the matching reversible throw blanket is solid pastel butter yellow on one side and crisp unbleached white printed with delicate pastel yellow five-pointed stars on the other.
-                  </p>
-
-                  <!-- BIG PROMINENT PUPPY CALLOUT BANNER -->
-                  <div class="p-3.5 rounded-sm bg-brand-gold/15 border border-brand-gold/40 flex items-start gap-3 my-2">
-                    <div class="w-8 h-8 rounded-sm bg-brand-gold/25 text-brand-gold flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <i data-lucide="heart" class="w-4 h-4"></i>
-                    </div>
-                    <div>
-                      <span class="text-[11px] font-mono uppercase tracking-widest text-brand-gold font-bold block">Crafted for Children &amp; Beloved Puppies</span>
-                      <p class="text-sm font-serif font-bold text-brand-cream">
-                        The 40" × 60" Quilt &amp; Throw Size is Made for Kids, Lap Comfort &amp; Puppies
-                      </p>
-                      <p class="text-[11px] text-brand-oat/75 leading-relaxed mt-0.5">
-                        100% pure organic cotton filled with Tamizhnad Ilavam Panju silk cotton. Breathable, chemical-free comfort for kids and peaceful, loving bedding for your puppies.
-                      </p>
-                    </div>
-                  </div>
-
-                  <!-- Two-Piece Construction Breakdown -->
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                    <div class="p-3 rounded-sm bg-black/35 border border-white/10">
-                      <span class="text-[10px] font-mono uppercase tracking-wider text-brand-gold block">The Heirloom Quilt</span>
-                      <p class="text-xs font-semibold text-brand-cream mt-0.5" id="lb-active-quilt-spec">100% Solid Pastel Butter Yellow</p>
-                      <p class="text-[11px] text-brand-oat/60 mt-0.5">3-channel Ilavam Panju filling • 40"×60" (Kids &amp; Puppies) &amp; 60"×90" (Adult)</p>
-                    </div>
-                    <div class="p-3 rounded-sm bg-black/35 border border-white/10">
-                      <span class="text-[10px] font-mono uppercase tracking-wider text-brand-mossLight block">The Reversible Throw</span>
-                      <p class="text-xs font-semibold text-brand-cream mt-0.5" id="lb-active-throw-spec">Five-Pointed Stars Print + Solid Side</p>
-                      <p class="text-[11px] text-brand-oat/60 mt-0.5">Printed white one side, solid reverse • 40"×60" (Kids &amp; Puppies) &amp; 60"×90" (Adult)</p>
-                    </div>
-                  </div>
-
-                  <!-- Interactive 6 Pastel Swatch Buttons -->
-                  <div class="pt-2">
-                    <span class="text-[11px] font-mono uppercase tracking-wider text-brand-oat/60 block mb-2.5">Select Pastel Colorway &amp; Signature Print (All 6):</span>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="lb-swatch-buttons">
-                      <!-- Injected via JS -->
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Quick Shop Actions -->
-                <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
-                  <div class="flex flex-wrap items-center gap-2">
-                    <button type="button" onclick="openProductModal('quilt-heirloom-individual')" class="px-3.5 py-2 rounded-sm bg-brand-forest hover:bg-brand-sage text-brand-cream text-xs font-semibold transition flex items-center gap-1.5 shadow-md">
-                      <i data-lucide="Layers" class="w-3.5 h-3.5"></i>
-                      <span>Shop Solid Quilt</span>
-                    </button>
-                    <button type="button" onclick="openProductModal('quilt-throw-adult')" class="px-3.5 py-2 rounded-sm bg-brand-barnwood hover:bg-brand-earth text-brand-cream text-xs font-semibold border border-white/15 transition flex items-center gap-1.5">
-                      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                      <span>Shop Printed Throw</span>
-                    </button>
-                  </div>
-                  <button type="button" onclick="filterCategory('quilts'); document.getElementById('shop-products-grid').scrollIntoView({behavior: 'smooth'});" class="text-xs text-brand-gold hover:underline font-medium flex items-center gap-1">
-                    <span>Filter Quilts Below</span>
-                    <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- All 6 Pastel Colorways & Distinct Prints Gallery Grid -->
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="lookbook-6-cards-grid">
-            <!-- Injected via JS so every colorway card is visible at a glance -->
-          </div>
-        </div>
-
-        <!-- CURD SOAPS LOOKBOOK PANEL (3D Bubble Cube Form & Pure Alchemy) -->
-        <div id="lookbook-panel-soaps" class="hidden space-y-6">
-          <div class="stall-card p-6 sm:p-8 border border-brand-gold/30">
-            <div class="grid lg:grid-cols-12 gap-8 items-center">
-              <div class="lg:col-span-5 rounded-sm overflow-hidden border border-white/10 aspect-[4/3] bg-black/60 shadow-xl group">
-                <img src="assets/images/bubble-cube-curd.jpg?v=2" alt="Cold-Processed Farmstead Curd Soaps in Sculptural 3D Bubble Cube Form" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-              </div>
-              <div class="lg:col-span-7 space-y-4">
-                <div class="flex items-center gap-2">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs font-semibold">
-                    <i data-lucide="droplets" class="w-3.5 h-3.5"></i>
-                    <span>Chapter 02 • Sculptural 3D Bubble Cube Curd Soaps</span>
-                  </span>
-                  <span class="px-2.5 py-1 rounded-sm text-[11px] font-medium bg-brand-forest/90 text-brand-cream border border-brand-mossLight/40">
-                    3×3 Spheres All Around • Tactile Massage Bar
-                  </span>
-                </div>
-                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-brand-cream">The 7 Sculptural 3D Bubble Cubes</h3>
-                <p class="text-xs sm:text-sm text-brand-oat/80 leading-relaxed">
-                  Every soap is hand-poured into our signature <strong>sculptural 3D bubble cube mold</strong> — featuring rounded spheres all around that double as an acupressure body massage bar during your bath. Crafted simply with <strong>fresh cold-pressed coconut oil</strong>, <strong>living farmstead fresh organic curd</strong>, and pure whole botanicals, without fillers or synthetic fragrances.
-                </p>
-                <div class="p-3.5 rounded-sm bg-black/35 border border-white/10 space-y-1.5">
-                  <span class="text-[10px] font-mono uppercase tracking-wider text-brand-gold block">Pure Living Earth Formulation:</span>
-                  <p class="text-xs text-brand-cream leading-relaxed">
-                    Fresh Cold-Pressed Coconut Oil + Farmstead Organic Curd (Lactic Acid &amp; Natural Lipids) + Whole Botanicals. Aged 6 full weeks for an ultra-dense, skin-softening lather.
-                  </p>
-                </div>
-                <div class="flex flex-wrap gap-2 pt-1">
-                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Curd • Milky Ivory</span>
-                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Banana • Leaf Green &amp; Yellow</span>
-                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Bamboo • Pale Yellow-Green</span>
-                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Moringa • Textured Green</span>
-                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Dry Grass • Green-Tinted Meadow</span>
-                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Turmeric • Warm Golden Yellow</span>
-                  <span class="px-2.5 py-1 rounded-sm bg-black/40 border border-white/10 text-xs text-brand-cream">Coffee • Deep Espresso Brown</span>
-                </div>
-                <div class="pt-2 flex flex-wrap items-center gap-3">
-                  <button type="button" onclick="filterCategory('soaps'); document.getElementById('shop-products-grid').scrollIntoView({behavior: 'smooth'});" class="px-4 py-2.5 rounded-sm bg-brand-forest hover:bg-brand-sage text-brand-cream text-xs font-semibold transition inline-flex items-center gap-1.5 shadow-md">
-                    <span>Explore All 7 Bubble Cubes Below</span>
-                    <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
-                  </button>
-                  <button type="button" onclick="openProductModal('soap-curd')" class="px-3.5 py-2.5 rounded-sm bg-brand-barnwood hover:bg-brand-earth text-brand-cream text-xs font-semibold border border-white/15 transition inline-flex items-center gap-1.5">
-                    <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                    <span>Quick View Curd Cube</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Dual Editorial Showcase: Tactile Ergonomics & Botanical Spectrum -->
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div class="stall-card overflow-hidden">
-              <div class="stall-header">
-                <span class="stall-label">Tactile 3D Ergonomics</span>
-                <span class="text-[10px] font-mono text-brand-gold uppercase tracking-wider">3×3 Grid Cubes</span>
-              </div>
-              <div class="aspect-[16/10] bg-black/50 overflow-hidden">
-                <img src="assets/images/bubble-cube-curd.jpg?v=2" alt="Curd Soap 3D Bubble Cube" class="w-full h-full object-cover">
-              </div>
-              <div class="stall-body space-y-1.5">
-                <h4 class="font-serif font-bold text-brand-cream text-base">Effortless Grip &amp; Acupressure Massage</h4>
-                <p class="text-xs text-brand-oat/70 leading-relaxed">
-                  The spherical 3×3 bubbles on every side fit comfortably in the palm of your hand, preventing slippage while rolling smoothly across the skin to relieve muscular tension during lathering.
-                </p>
-              </div>
-            </div>
-
-            <div class="stall-card overflow-hidden">
-              <div class="stall-header">
-                <span class="stall-label">7 Botanical Blends</span>
-                <span class="text-[10px] font-mono text-brand-mossLight uppercase tracking-wider">Pure Cold-Process</span>
-              </div>
-              <div class="aspect-[16/10] bg-black/50 overflow-hidden">
-                <img src="assets/images/bubble-cube-soaps-collection.jpg?v=1" alt="Full spectrum of 3D Bubble Cube curd soaps on rustic wood plank" class="w-full h-full object-cover">
-              </div>
-              <div class="stall-body space-y-1.5">
-                <h4 class="font-serif font-bold text-brand-cream text-base">Cold-Processed &amp; Naturally Cured</h4>
-                <p class="text-xs text-brand-oat/70 leading-relaxed">
-                  From creamy milky-ivory Curd to leafy Banana, pale Bamboo, textured Moringa, meadow Dry Grass, warm golden Turmeric, and deep espresso Coffee — every bar shares our signature sculptural 3D bubble cube geometry.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Stable Bar Section Header -->
-      <div class="stable-bar rounded-sm">
-        <span class="stable-bar-label">Artisanal Catalog</span>
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-          <h2 class="stable-bar-title text-3xl sm:text-4xl">Earth Harvests &amp; Handcrafted Goods</h2>
-          <p class="stable-bar-sub">100% pure, natural, and organically grown at Purreins Frequency farmstead.</p>
-        </div>
-      </div>
-
-      <!-- Pre-Order Seasonal Harvest Notice -->
-      <div class="mb-8 p-4 sm:p-5 rounded-sm bg-brand-forest/20 border border-brand-forest/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div class="flex items-start gap-3.5">
-          <div class="w-10 h-10 rounded-sm bg-brand-forest/30 text-brand-mossLight flex items-center justify-center flex-shrink-0 border border-brand-forest/50 mt-0.5">
-            <i data-lucide="sparkles" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h4 class="font-serif font-bold text-brand-gold text-base">Small-Batch Season Underway — Pre-Orders Open</h4>
-            <p class="text-xs text-brand-oat/80 leading-relaxed mt-0.5">
-              All our farmstead offerings (curd cold-process soaps, pasture duck eggs, whole herbs, and quilts) are currently being handcrafted and naturally cured. <strong>Available starting next month.</strong> Pre-order now to reserve your batch.
-            </p>
-          </div>
-        </div>
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs font-semibold whitespace-nowrap self-start sm:self-center">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs font-semibold whitespace-nowrap self-start sm:self-center">
           <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-          <span>Ships Next Month</span>
+          <span id="badge-ships-month">Ships Next Month</span>
         </span>
       </div>
 
-      <!-- Filter & Search Toolbar -->
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-10 pb-6 border-b border-white/10">
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- SECTION 1: QUILTS & THROWS (BIG DEDICATED LUXURY)   -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <section id="section-quilts" class="scroll-mt-28 space-y-6">
+        <!-- Luxury Showcase Banner for Quilts & Throws -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-black via-[#16120b] to-black border border-brand-gold/30 shadow-2xl relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div class="max-w-3xl space-y-2">
+              <span class="text-xs font-mono uppercase tracking-[0.25em] text-brand-gold font-bold block" id="sec-tag-quilts">
+                01 • HEIRLOOM TEXTILES
+              </span>
+              <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-cream" id="sec-title-quilts">
+                Heirloom Solid Pastel Quilts &amp; Printed Throws
+              </h2>
+              <p class="text-xs sm:text-sm text-brand-oat/80 leading-relaxed pt-1" id="sec-desc-quilts">
+                Filled with 100% natural Tamizhnad Ilavam Panju (silk cotton) and encased in ultra-soft, brushed organically dyed solid pastel cotton fabric. Our quilts are 100% unadorned solid pastel; our matching reversible throws feature that shade's signature motif on crisp unbleached white.
+              </p>
+              <div class="flex flex-wrap items-center gap-2 pt-2">
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-medium bg-brand-forest/60 text-brand-cream border border-brand-mossLight/30">
+                  100% Tamizhnad Ilavam Panju
+                </span>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-medium bg-brand-gold/20 text-brand-gold border border-brand-gold/30">
+                  GOTS &amp; OEKO-TEX Certified Fabric
+                </span>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/10 text-brand-cream border border-white/15">
+                  6 Soothing Pastel Shades
+                </span>
+              </div>
+            </div>
+            <!-- Sliding Chevrons -->
+            <div class="flex items-center gap-2.5 self-start lg:self-end flex-shrink-0">
+              <span class="text-xs font-mono text-brand-oat/50 uppercase tracking-wider hidden sm:inline mr-1">Slide:</span>
+              <button onclick="slideCarousel('quilts', -1)" aria-label="Previous Quilt" class="w-11 h-11 rounded-full bg-black/60 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/20 hover:border-brand-gold transition flex items-center justify-center shadow-lg active:scale-95">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+              </button>
+              <button onclick="slideCarousel('quilts', 1)" aria-label="Next Quilt" class="w-11 h-11 rounded-full bg-black/60 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/20 hover:border-brand-gold transition flex items-center justify-center shadow-lg active:scale-95">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Category Pills (Clean flex-wrap, will never get covered or truncated) -->
-        <div class="flex flex-wrap items-center gap-2 max-w-full" id="category-pills">
+        <!-- Sideway Sliding Horizontal Rail for Quilts & Throws -->
+        <div id="carousel-quilts" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           <!-- Injected via JS -->
         </div>
+      </section>
 
-        <!-- Search & Sort Controls (Compact & neat) -->
-        <div class="flex items-center gap-2 flex-shrink-0 self-start lg:self-auto">
-          <div class="relative w-36 sm:w-44">
-            <i data-lucide="search" class="w-3.5 h-3.5 text-brand-oat/40 absolute left-3 top-1/2 -translate-y-1/2"></i>
-            <input type="text" id="shop-search" placeholder="Search..."
-              class="w-full pl-8 pr-3 py-2 rounded-sm border border-white/15 bg-brand-dark/50 text-brand-cream placeholder:text-brand-oat/40 text-xs focus:outline-none focus:border-brand-mossLight">
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- SECTION 2: CURD SOAPS ALONE (SCULPTURAL 3D CUBES)   -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <section id="section-soaps" class="scroll-mt-28 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1" id="sec-tag-soaps">
+              02 • COLD-PROCESS ALCHEMY
+            </span>
+            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-brand-cream" id="sec-title-soaps">
+              Sculptural 3D Bubble Cube Soaps
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-oat/70 max-w-2xl mt-1 leading-relaxed" id="sec-desc-soaps">
+              Cold-processed solely with fresh cold-pressed coconut oil, farmstead curd, and botanical extracts. 3×3 rounded spheres provide an acupressure massage while lathering.
+            </p>
           </div>
-          <select id="shop-sort" class="py-2 px-3 rounded-sm border border-white/15 bg-brand-dark/50 text-brand-cream text-xs focus:outline-none focus:border-brand-mossLight cursor-pointer">
-            <option value="featured">Featured First</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="name">Alphabetical</option>
-          </select>
+          <div class="flex items-center gap-2 self-start sm:self-end flex-shrink-0">
+            <button onclick="slideCarousel('soaps', -1)" aria-label="Previous Soap" class="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/15 hover:border-brand-gold transition flex items-center justify-center shadow-md active:scale-95">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <button onclick="slideCarousel('soaps', 1)" aria-label="Next Soap" class="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/15 hover:border-brand-gold transition flex items-center justify-center shadow-md active:scale-95">
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- Products Grid -->
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="shop-products-grid">
-        <!-- Injected via JS -->
-      </div>
-
-      <!-- Empty State -->
-      <div id="shop-empty" class="text-center py-20 hidden">
-        <div class="w-16 h-16 rounded-sm bg-brand-barnwood/40 text-brand-oat/40 flex items-center justify-center mx-auto mb-4">
-          <i data-lucide="search-x" class="w-8 h-8"></i>
+        <div id="carousel-soaps" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <!-- Injected via JS -->
         </div>
-        <h3 class="font-serif text-xl font-bold text-brand-cream mb-2">No offerings matched your query</h3>
-        <p class="text-brand-oat/60 text-sm max-w-sm mx-auto mb-6">Try selecting a different category or clearing your search term.</p>
-        <button onclick="resetFilters()" class="btn-primary px-6 py-2.5 rounded-sm text-xs font-semibold">
-          View All Offerings
-        </button>
-      </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- SECTION 3: PASTURE DUCK EGGS ALONE                  -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <section id="section-eggs" class="scroll-mt-28 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1" id="sec-tag-eggs">
+              03 • FRESH PASTURE HARVEST
+            </span>
+            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-brand-cream" id="sec-title-eggs">
+              Pasture-Roaming Duck Eggs
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-oat/70 max-w-2xl mt-1 leading-relaxed" id="sec-desc-eggs">
+              Collected fresh daily from heritage Pekin ducks foraging wetland meadows. Rich golden-orange yolks cradled securely in soft meadow straw.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 self-start sm:self-end flex-shrink-0">
+            <button onclick="slideCarousel('eggs', -1)" aria-label="Previous Eggs" class="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/15 hover:border-brand-gold transition flex items-center justify-center shadow-md active:scale-95">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <button onclick="slideCarousel('eggs', 1)" aria-label="Next Eggs" class="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/15 hover:border-brand-gold transition flex items-center justify-center shadow-md active:scale-95">
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="carousel-eggs" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <!-- Injected via JS -->
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- SECTION 4: LIVING MICROGREENS & MUSHROOMS           -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <section id="section-produce" class="scroll-mt-28 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1" id="sec-tag-produce">
+              04 • LIVING EARTH
+            </span>
+            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-brand-cream" id="sec-title-produce">
+              Living Microgreens &amp; Gourmet Mushrooms
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-oat/70 max-w-2xl mt-1 leading-relaxed" id="sec-desc-produce">
+              Living microgreens rooted in terracotta earthen clay pots, and fresh oyster mushrooms fruiting in biodegradable fiber buckets. Harvest fresh on your counter.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 self-start sm:self-end flex-shrink-0">
+            <button onclick="slideCarousel('produce', -1)" aria-label="Previous Produce" class="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/15 hover:border-brand-gold transition flex items-center justify-center shadow-md active:scale-95">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <button onclick="slideCarousel('produce', 1)" aria-label="Next Produce" class="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/15 hover:border-brand-gold transition flex items-center justify-center shadow-md active:scale-95">
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="carousel-produce" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <!-- Injected via JS -->
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- SECTION 5: SUN-CURED LEAVES & HERBS                 -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <section id="section-herbs" class="scroll-mt-28 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1" id="sec-tag-herbs">
+              05 • APOTHECARY &amp; TEA
+            </span>
+            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-brand-cream" id="sec-title-herbs">
+              Sun-Cured Sacred Leaves &amp; Whole Herbs
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-oat/70 max-w-2xl mt-1 leading-relaxed" id="sec-desc-herbs">
+              Pure, whole-stem herbs shade- and sun-cured to lock in beneficial aromatic oils. Packed in sealed 100g white organic aroma packets.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 self-start sm:self-end flex-shrink-0">
+            <button onclick="slideCarousel('herbs', -1)" aria-label="Previous Herbs" class="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/15 hover:border-brand-gold transition flex items-center justify-center shadow-md active:scale-95">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <button onclick="slideCarousel('herbs', 1)" aria-label="Next Herbs" class="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-dark text-brand-cream border border-white/15 hover:border-brand-gold transition flex items-center justify-center shadow-md active:scale-95">
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="carousel-herbs" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <!-- Injected via JS -->
+        </div>
+      </section>
 
     </div>
   </main>
+
 
   <!-- Footer -->
   <footer class="bg-barnwood-dark border-t border-black/60 py-12 mt-auto translate-x-[3%]" style="transform: translateX(3%);">
@@ -798,357 +726,245 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="assets/js/data.js?v=20261024_v1_blog11"></script>
+    <!-- Scripts -->
+  <script src="assets/js/data.js?v=20261105_v2"></script>
   <script src="assets/js/cart.js"></script>
-  <script src="assets/js/main.js?v=20261023_v2_cleanest"></script>
+  <script src="assets/js/main.js?v=20261105_v2"></script>
   <script>
-    const QUILT_LOOKBOOK = [
+    // Pure 5 Individual Product Categories (NO COMBOS / NO HAMPERS)
+    const STORE_SECTIONS = [
       {
-        index: 0,
-        code: "Colorway 01 / 06",
-        name: "Pastel Butter Yellow",
-        shortLabel: "Butter Yellow • Stars",
-        motif: "Five-Pointed Stars",
-        swatchHex: "#F4E098",
-        image: "assets/images/lookbook-yellow-stars.jpg?v=1",
-        quiltSpec: "100% Solid Pastel Butter Yellow",
-        throwSpec: "Yellow Stars on White + Solid Reverse",
-        pillText: "Solid Pastel Butter Yellow Quilt + Star-Printed Reversible Throw",
-        description: "Warm, soothing butter-yellow organically dyed brushed cotton. The plump 3-channel heirloom quilt (filled with Tamizhnad Ilavam Panju) is 100% solid pastel butter yellow on both sides, while the matching reversible throw blanket is solid pastel butter yellow on one side and crisp unbleached white printed with delicate pastel yellow five-pointed stars on the other."
+        id: "quilts",
+        tag: "01 • HEIRLOOM TEXTILES",
+        tag_de: "01 • BIO-TEXTILIEN",
+        title: "Heirloom Solid Pastel Quilts & Reversible Throws",
+        title_de: "Handgefertigte Steppdecken & Wendbare Bio-Plaids",
+        desc: "Filled with 100% natural Tamizhnad Ilavam Panju (silk cotton) and encased in ultra-soft, brushed organically dyed solid pastel cotton fabric. Our quilts are 100% unadorned solid pastel; our matching reversible throws feature that shade's signature motif on crisp unbleached white.",
+        desc_de: "Gefüllt mit 100% natürlicher Tamizhnad Ilavam Panju (pflanzliche Seidenbaumwolle) & GOTS-zertifizierter Bio-Baumwolle. Erhältlich in 6 Pastelltönen.",
+        productIds: ["quilt-heirloom-individual", "quilt-heirloom-kids", "quilt-throw-adult", "quilt-throw-kids"]
       },
       {
-        index: 1,
-        code: "Colorway 02 / 06",
-        name: "Pastel Peach Apricot",
-        shortLabel: "Peach • Suns",
-        motif: "Radiant Suns",
-        swatchHex: "#F4C6A8",
-        image: "assets/images/lookbook-peach-suns.jpg?v=pure_neat_20261022",
-        quiltSpec: "100% Solid Pastel Peach Apricot",
-        throwSpec: "Peach Suns on White + Solid Reverse",
-        pillText: "Solid Pastel Peach Quilt + Sun-Printed Reversible Throw",
-        description: "Soft, sun-warmed pastel peach-apricot brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel peach on both sides (unadorned solid pastel), paired with our reversible throw blanket featuring solid pastel peach on one side and white printed with geometric pastel peach sun motifs on the other."
+        id: "soaps",
+        tag: "02 • COLD-PROCESS ALCHEMY",
+        tag_de: "02 • KALTGESIEDETE SEIFEN",
+        title: "Sculptural 3D Bubble Cube Soaps",
+        title_de: "Skulpturale 3D-Bubble-Cube Quarkseifen",
+        desc: "Cold-processed solely with fresh cold-pressed coconut oil, farmstead curd, and botanical extracts. 3×3 rounded spheres provide an acupressure massage while lathering.",
+        desc_de: "Gesiedet aus reinem kaltgepresstem Kokosöl, frischem Hof-Bio-Quark und ganzen Pflanzenextrakten. 3×3 taktile Massage-Bubbles auf allen Seiten.",
+        productIds: ["soap-curd", "soap-banana", "soap-bamboo", "soap-moringa", "soap-dry-grass", "soap-turmeric", "soap-coffee"]
       },
       {
-        index: 2,
-        code: "Colorway 03 / 06",
-        name: "Pastel Mint Sage Green",
-        shortLabel: "Mint Green • Trees",
-        motif: "Minimalist Trees",
-        swatchHex: "#C5E0C2",
-        image: "assets/images/lookbook-mint-trees.jpg?v=pure_neat_20261022",
-        quiltSpec: "100% Solid Pastel Mint Green",
-        throwSpec: "Mint Trees on White + Solid Reverse",
-        pillText: "Solid Pastel Mint Green Quilt + Tree-Printed Reversible Throw",
-        description: "Refreshing, botanical pastel mint-sage green brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel mint green on both sides, paired with our reversible throw blanket featuring solid pastel mint green on one side and white printed with delicate pastel green canopy trees on the other."
+        id: "eggs",
+        tag: "03 • FRESH PASTURE HARVEST",
+        tag_de: "03 • WEIDE-FRISCHE",
+        title: "Pasture-Roaming Duck Eggs",
+        title_de: "Tagesfrische Weide-Enteneier",
+        desc: "Collected fresh daily from heritage Pekin ducks foraging wetland meadows. Rich golden-orange yolks cradled securely in soft meadow straw.",
+        desc_de: "Morgens frisch von freilaufenden Enten eingesammelt. Tiefgoldenes Eigelb, geschützt im weichen Naturstrohbett.",
+        productIds: ["eggs-pasture-duck-6", "eggs-pasture-duck-24"]
       },
       {
-        index: 3,
-        code: "Colorway 04 / 06",
-        name: "Pastel Lavender Lilac",
-        shortLabel: "Lavender • Clouds",
-        motif: "Dreamy Clouds",
-        swatchHex: "#D8CCE4",
-        image: "assets/images/lookbook-lavender-clouds.jpg?v=1",
-        quiltSpec: "100% Solid Pastel Lavender",
-        throwSpec: "Lavender Clouds on White + Solid Reverse",
-        pillText: "Solid Pastel Lavender Quilt + Cloud-Printed Reversible Throw",
-        description: "Calm, dusky pastel lavender-lilac brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel lavender on both sides, paired with our reversible throw blanket featuring solid pastel lavender on one side and white printed with soft pastel lavender clouds on the other."
+        id: "produce",
+        tag: "04 • LIVING EARTH",
+        tag_de: "04 • LEBENDIGE ERNTE",
+        title: "Living Microgreens & Gourmet Mushrooms",
+        title_de: "Lebendige Microgreens & Hof-Pilze",
+        desc: "Living microgreens rooted in terracotta earthen clay pots, and fresh oyster mushrooms fruiting in biodegradable fiber buckets. Harvest fresh on your counter.",
+        desc_de: "Frische Keimlinge in handgefertigten Tonschalen und Austernpilze im biologisch abbaubaren Eimer.",
+        productIds: ["produce-living-microgreens", "produce-farmstead-mushrooms"]
       },
       {
-        index: 4,
-        code: "Colorway 05 / 06",
-        name: "Pastel Misty Blue-Grey",
-        shortLabel: "Misty Blue • Moons",
-        motif: "Crescent Moons",
-        swatchHex: "#C6D2DC",
-        image: "assets/images/lookbook-bluegrey-moons.jpg?v=1",
-        quiltSpec: "100% Solid Pastel Misty Blue-Grey",
-        throwSpec: "Blue-Grey Crescent Moons + Solid Reverse",
-        pillText: "Solid Pastel Misty Blue-Grey Quilt + Moon-Printed Reversible Throw",
-        description: "Serene twilight pastel misty blue-grey brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel blue-grey on both sides, paired with our reversible throw blanket featuring solid pastel blue-grey on one side and white printed with gentle crescent moons on the other."
-      },
-      {
-        index: 5,
-        code: "Colorway 06 / 06",
-        name: "Pastel Blush Pink",
-        shortLabel: "Blush Pink • Swirls",
-        motif: "Gentle Swirls",
-        swatchHex: "#F0C4CE",
-        image: "assets/images/lookbook-pink-swirls.jpg?v=1",
-        quiltSpec: "100% Solid Pastel Blush Pink",
-        throwSpec: "Pink Swirls on White + Solid Reverse",
-        pillText: "Solid Pastel Blush Pink Quilt + Swirl-Printed Reversible Throw",
-        description: "Tender petal-soft pastel blush pink brushed organic cotton. The plump 3-channel Ilavam Panju quilt is 100% solid pastel blush pink on both sides, paired with our reversible throw blanket featuring solid pastel blush pink on one side and white printed with delicate pastel pink spiral swirls on the other."
+        id: "herbs",
+        tag: "05 • APOTHECARY & TEA",
+        tag_de: "05 • KRÄUTER-APOTHEKE",
+        title: "Sun-Cured Sacred Leaves & Whole Herbs",
+        title_de: "Sonnengetrocknete Kräuter & Teeblätter",
+        desc: "Pure, whole-stem herbs shade- and sun-cured to lock in beneficial aromatic oils. Packed in sealed 100g white organic aroma packets.",
+        desc_de: "Schonend getrocknete ganze Blätter im versiegelten weißen 100g Bio-Aromabeutel zur Bewahrung der ätherischen Öle.",
+        productIds: ["herb-sacred-tulsi", "herb-moringa-leaves"]
       }
     ];
 
-    // Randomize initial Lookbook view on page load so visitors experience a fresh pastel shade every time
-    let activeLookbookIndex = Math.floor(Math.random() * QUILT_LOOKBOOK.length);
+    window.slideCarousel = function(sectionId, direction) {
+      const container = document.getElementById('carousel-' + sectionId);
+      if (!container) return;
+      const card = container.querySelector('.stall-card');
+      const cardWidth = card ? card.offsetWidth : 330;
+      container.scrollBy({ left: direction * (cardWidth + 24) * 1.5, behavior: 'smooth' });
+    };
 
-    // Randomize & balance catalog quilt colors on load to ensure an eclectic mix across all stalls
-    function randomizeQuiltCatalogColors() {
-      if (typeof PASTEL_COLORWAYS === 'undefined' || !PASTEL_COLORWAYS.length) return;
-      const quiltProducts = PRODUCTS.filter(p => p.colorways && p.colorways.length > 0);
-      if (quiltProducts.length === 0) return;
-      
-      // Shuffle colorways so all quilt/throw cards start on distinct pastel colors
-      const shuffled = [...PASTEL_COLORWAYS].sort(() => Math.random() - 0.5);
-      quiltProducts.forEach((product, idx) => {
-        const cw = shuffled[idx % shuffled.length];
-        product.image = `${cw.image}?v=1`;
-        const isThrow = product.id.includes('throw');
-        product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
-        product.activeColorwayId = cw.id;
-      });
-    }
-
-    function swapProductCardColor(productId, colorwayId) {
+    window.swapProductCardColor = function(productId, colorwayId) {
       const product = PRODUCTS.find(p => p.id === productId);
       if (!product || !product.colorways) return;
       const cw = product.colorways.find(c => c.id === colorwayId);
       if (!cw) return;
-      product.image = `${cw.image}?v=1`;
+
+      const isDe = (window.currentLang === 'de');
       const isThrow = product.id.includes('throw');
-      product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
+      const cwName = (isDe && cw.name_de) ? cw.name_de : cw.name;
+      const cwMotif = (isDe && cw.motif_de) ? cw.motif_de : cw.motif;
+
+      product.image = cw.image + '?v=1';
+      product.badge = isThrow ? (cw.name + ' • ' + cw.motif + ' Print') : (cw.name + ' • Solid Quilt');
+      if (isDe) {
+        product.badge_de = isThrow ? (cwName + ' • ' + cwMotif + '-Druck') : (cwName + ' • Steppdecke');
+      }
       product.activeColorwayId = cw.id;
 
-      const imgEl = document.getElementById(`card-img-${productId}`);
-      const badgeEl = document.getElementById(`card-badge-${productId}`);
+      const imgEl = document.getElementById('card-img-' + productId);
+      const badgeEl = document.getElementById('card-badge-' + productId);
       if (imgEl) {
-        imgEl.style.opacity = '0.5';
+        imgEl.style.opacity = '0.35';
         setTimeout(() => {
           imgEl.src = product.image;
           imgEl.style.opacity = '1';
         }, 120);
       }
-      if (badgeEl) badgeEl.textContent = product.badge;
-    }
-
-    function renderLookbook() {
-      const item = QUILT_LOOKBOOK[activeLookbookIndex];
-      const imgEl = document.getElementById('lb-active-img');
-      if (imgEl) {
-        imgEl.src = item.image;
-        imgEl.alt = item.pillText;
+      if (badgeEl) {
+        badgeEl.textContent = (isDe && product.badge_de) ? product.badge_de : product.badge;
       }
-      const codeEl = document.getElementById('lb-active-code');
-      if (codeEl) codeEl.textContent = item.code;
-      const subEl = document.getElementById('lb-active-subtitle');
-      if (subEl) subEl.textContent = `${item.name} & ${item.motif}`;
-      const pillEl = document.getElementById('lb-active-pill');
-      if (pillEl) pillEl.textContent = item.pillText;
-      const dotEl = document.getElementById('lb-active-swatch-dot');
-      if (dotEl) dotEl.style.backgroundColor = item.swatchHex;
-      const titleEl = document.getElementById('lb-active-title');
-      if (titleEl) titleEl.textContent = item.name;
-      const descEl = document.getElementById('lb-active-desc');
-      if (descEl) descEl.textContent = item.description;
-      const qSpecEl = document.getElementById('lb-active-quilt-spec');
-      if (qSpecEl) qSpecEl.textContent = item.quiltSpec;
-      const tSpecEl = document.getElementById('lb-active-throw-spec');
-      if (tSpecEl) tSpecEl.textContent = item.throwSpec;
+    };
 
-      const swatchContainer = document.getElementById('lb-swatch-buttons');
-      if (swatchContainer) {
-        swatchContainer.innerHTML = QUILT_LOOKBOOK.map((c, idx) => `
-          <button type="button" onclick="selectLookbookItem(${idx})" class="px-2.5 py-2 rounded-sm text-left text-[11px] font-medium transition flex items-center gap-2 border ${idx === activeLookbookIndex ? 'bg-brand-forest/40 border-brand-gold text-brand-cream shadow-sm' : 'bg-black/35 border-white/10 text-brand-oat/70 hover:bg-black/55 hover:text-brand-cream'}">
-            <span class="w-3.5 h-3.5 rounded-full flex-shrink-0 border border-black/40" style="background-color: ${c.swatchHex};"></span>
-            <span class="truncate">${c.shortLabel}</span>
-          </button>
-        `).join('');
-      }
+    function createProductCardHTML(product) {
+      const isDe = (window.currentLang === 'de');
+      const name = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'name') : product.name;
+      const unit = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'unit') : product.unit;
+      const desc = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'description') : product.description;
+      const badge = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'badge') : product.badge;
+      const priceFormatted = (typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : ('INR ' + product.price.toLocaleString('en-IN'));
+      const preOrderText = isDe ? 'Vorbestellen' : 'Pre-Order';
+      const preOrderBadge = isDe ? 'Vorbestellung • Nächsten Monat' : 'Pre-Order • Ships Next Month';
+      const quickViewTitle = isDe ? 'Vorschau' : 'Quick View';
 
-      const cardsGrid = document.getElementById('lookbook-6-cards-grid');
-      if (cardsGrid) {
-        cardsGrid.innerHTML = QUILT_LOOKBOOK.map((c, idx) => `
-          <div onclick="selectLookbookItem(${idx}); document.getElementById('farmstead-lookbook').scrollIntoView({behavior: 'smooth'});" class="stall-card card-hover cursor-pointer transition ${idx === activeLookbookIndex ? 'ring-1 ring-brand-gold' : ''}">
-            <div class="stall-header flex items-center justify-between">
-              <span class="stall-label flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 rounded-full inline-block border border-black/40" style="background-color: ${c.swatchHex};"></span>
-                <span>0${idx + 1}. ${c.name}</span>
-              </span>
-              <span class="text-[10px] font-mono uppercase tracking-wider text-brand-gold">${c.motif} Print</span>
+      const isQuiltOrThrow = product.id.includes('quilt');
+      const cardWidth = isQuiltOrThrow ? 'w-[310px] sm:w-[350px] md:w-[380px]' : 'w-[280px] sm:w-[320px] md:w-[340px]';
+      const imgHeight = isQuiltOrThrow ? 'h-64 sm:h-72' : 'h-56 sm:h-64';
+
+      let colorwayHTML = '';
+      if (product.colorways) {
+        const swatches = product.colorways.map(cw => {
+          const cwTitle = isDe && cw.name_de ? cw.name_de : cw.name;
+          return `<button type="button" onclick="swapProductCardColor('${product.id}', '${cw.id}'); event.stopPropagation();" title="${cwTitle}" class="w-4 h-4 rounded-full border border-black/60 hover:scale-125 transition transform focus:outline-none focus:ring-1 focus:ring-brand-gold shadow-sm" style="background-color: ${cw.hex};"></button>`;
+        }).join('');
+
+        colorwayHTML = `
+          <div class="px-4 py-2.5 bg-black/40 border-b border-white/5 flex items-center justify-between" onclick="event.stopPropagation();">
+            <span class="text-[10px] font-mono text-brand-gold uppercase tracking-wider">${isDe ? '6 Pastelltöne:' : '6 Pastels:'}</span>
+            <div class="flex items-center gap-1.5">
+              ${swatches}
             </div>
-            <div class="relative img-zoom-wrapper aspect-[4/3] bg-black/50 overflow-hidden">
-              <img src="${c.image}" alt="${c.pillText}" class="w-full h-full object-cover">
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-0.5 rounded-sm text-[10px] font-semibold bg-black/80 text-brand-cream border border-white/15">
-                Solid Quilt + ${c.motif} Throw
+          </div>
+        `;
+      }
+
+      return `
+        <div class="stall-card card-hover flex flex-col justify-between ${cardWidth} flex-shrink-0 snap-start bg-[#0e0e0e]/95 border border-white/10 hover:border-brand-gold/40 rounded-2xl overflow-hidden transition-all duration-300 shadow-xl group" id="stall-card-${product.id}">
+          <div>
+            <div class="relative img-zoom-wrapper ${imgHeight} cursor-pointer bg-black/60 overflow-hidden" onclick="openProductModal('${product.id}')">
+              <img id="card-img-${product.id}" src="${product.image}" alt="${name}" class="w-full h-full object-cover transition-opacity duration-300 group-hover:scale-105 transition-transform duration-500">
+              <span id="card-badge-${product.id}" class="absolute top-3 left-3 text-[11px] px-3 py-1 rounded-full font-medium backdrop-blur-md ${product.badgeType === 'organic' ? 'bg-[#4A5E3A]/90 text-[#F2EAD8] border border-[#6B7C55]/40' : 'bg-brand-gold/25 text-brand-gold border border-brand-gold/40'}">
+                ${badge}
               </span>
             </div>
-            <div class="stall-body space-y-2">
-              <div class="flex items-center justify-between gap-2">
-                <h4 class="font-serif font-bold text-base text-brand-cream">${c.name}</h4>
-                <span class="text-[10px] px-2 py-0.5 rounded-sm bg-brand-forest/30 text-brand-mossLight border border-brand-forest/40 font-medium">Solid &amp; Printed Pair</span>
+            ${colorwayHTML}
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-1.5 text-[10px] text-brand-gold font-mono uppercase tracking-wider mb-1.5">
+                <i data-lucide="clock" class="w-3 h-3"></i>
+                <span>${preOrderBadge}</span>
               </div>
-              <p class="text-[11px] text-brand-oat/70 leading-relaxed">
-                <strong class="text-brand-cream">Quilt:</strong> ${c.quiltSpec} (No Print)<br>
-                <strong class="text-brand-cream">Throw:</strong> ${c.throwSpec}
+              <h3 class="font-serif font-bold text-brand-cream text-lg hover:text-brand-gold cursor-pointer transition line-clamp-1" onclick="openProductModal('${product.id}')" title="${name}">
+                ${name}
+              </h3>
+              <p class="text-xs text-brand-oat/70 mt-1 line-clamp-2 leading-relaxed">
+                ${desc}
               </p>
             </div>
           </div>
-        `).join('');
-      }
 
-      if (window.lucide) lucide.createIcons();
-    }
-
-    function selectLookbookItem(idx) {
-      activeLookbookIndex = idx;
-      renderLookbook();
-    }
-
-    function stepLookbook(dir) {
-      activeLookbookIndex = (activeLookbookIndex + dir + QUILT_LOOKBOOK.length) % QUILT_LOOKBOOK.length;
-      renderLookbook();
-    }
-
-    function switchLookbookTab(tab) {
-      const qPanel = document.getElementById('lookbook-panel-quilts');
-      const sPanel = document.getElementById('lookbook-panel-soaps');
-      const qBtn = document.getElementById('lb-tab-quilts');
-      const sBtn = document.getElementById('lb-tab-soaps');
-      if (tab === 'soaps') {
-        qPanel.classList.add('hidden');
-        sPanel.classList.remove('hidden');
-        sBtn.className = 'px-3.5 py-2 rounded-sm text-xs font-semibold bg-brand-gold text-brand-dark shadow-md transition flex items-center gap-1.5';
-        qBtn.className = 'px-3.5 py-2 rounded-sm text-xs font-medium bg-brand-barnwood/60 text-brand-oat/75 border border-white/15 hover:bg-brand-barnwood transition flex items-center gap-1.5';
-      } else {
-        sPanel.classList.add('hidden');
-        qPanel.classList.remove('hidden');
-        qBtn.className = 'px-3.5 py-2 rounded-sm text-xs font-semibold bg-brand-gold text-brand-dark shadow-md transition flex items-center gap-1.5';
-        sBtn.className = 'px-3.5 py-2 rounded-sm text-xs font-medium bg-brand-barnwood/60 text-brand-oat/75 border border-white/15 hover:bg-brand-barnwood transition flex items-center gap-1.5';
-      }
-    }
-
-    let activeCategory = 'all';
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryParam = urlParams.get('category');
-    if (categoryParam) activeCategory = categoryParam;
-
-    window.renderCategoryPills = renderCategoryPills;
-    function renderCategoryPills() {
-      const container = document.getElementById('category-pills');
-      if (!container) return;
-      container.innerHTML = CATEGORIES.map(cat => `
-        <button onclick="filterCategory('${cat.id}')" class="px-4 py-2 rounded-sm text-xs font-medium whitespace-nowrap transition flex items-center gap-1.5 ${activeCategory === cat.id ? 'bg-brand-forest text-brand-cream shadow-md' : 'bg-brand-barnwood/60 text-brand-oat/70 border border-white/10 hover:bg-brand-barnwood'}">
-          <i data-lucide="${cat.icon}" class="w-3.5 h-3.5"></i>
-          <span>${(typeof window.getLocalized === 'function') ? window.getLocalized(cat, 'name') : cat.name}</span>
-        </button>
-      `).join('');
-      if (window.lucide) lucide.createIcons();
-    }
-
-    function filterCategory(catId) {
-      activeCategory = catId;
-      renderCategoryPills();
-      renderProducts();
-    }
-
-    function resetFilters() {
-      activeCategory = 'all';
-      document.getElementById('shop-search').value = '';
-      renderCategoryPills();
-      renderProducts();
-    }
-
-    window.renderProducts = renderProducts;
-    function renderProducts() {
-      const grid = document.getElementById('shop-products-grid');
-      const emptyState = document.getElementById('shop-empty');
-      const searchQuery = document.getElementById('shop-search').value.toLowerCase().trim();
-      const sortValue = document.getElementById('shop-sort').value;
-
-      let filtered = PRODUCTS.filter(p => {
-        const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
-        const matchesSearch = p.name.toLowerCase().includes(searchQuery) ||
-                              p.description.toLowerCase().includes(searchQuery) ||
-                              p.category.toLowerCase().includes(searchQuery);
-        return matchesCategory && matchesSearch;
-      });
-
-      if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
-      else if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
-      else if (sortValue === 'name') filtered.sort((a, b) => a.name.localeCompare(b.name));
-      else filtered.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
-
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        emptyState.classList.remove('hidden');
-      } else {
-        emptyState.classList.add('hidden');
-        grid.innerHTML = filtered.map(product => `
-          <div class="stall-card card-hover flex flex-col justify-between" id="stall-card-${product.id}">
-            <div>
-              <div class="stall-header flex items-center justify-between">
-                <span class="stall-label">${product.category === 'bundles' ? 'Farmstead Hamper' : product.category.replace('-', ' ')}</span>
-                ${product.colorways ? `<span class="text-[10px] font-mono uppercase tracking-wider text-brand-gold">6 Pastel Shades</span>` : ''}
+          <div class="p-4 sm:p-5 pt-0">
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-brand-oat/50 block truncate max-w-[150px]">${unit}</span>
+                <span class="font-bold text-brand-gold text-base">${priceFormatted}</span>
               </div>
-              <div class="relative img-zoom-wrapper h-52 cursor-pointer" onclick="openProductModal('${product.id}')">
-                <img id="card-img-${product.id}" src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-opacity duration-300">
-                <span id="card-badge-${product.id}" class="absolute top-3 left-3 text-[11px] px-2.5 py-0.5 rounded-sm font-medium ${product.badgeType === 'organic' ? 'badge-organic' : product.badgeType === 'fresh' ? 'badge-fresh' : 'badge-featured'}">
-                  ${product.badge}
-                </span>
-              </div>
-              ${product.colorways ? `
-                <!-- Interactive Pastel Colorway Swatches (Click to swap card color instantly) -->
-                <div class="px-3.5 py-2 bg-black/25 border-b border-white/5 flex items-center justify-between" onclick="event.stopPropagation();">
-                  <span class="text-[10px] font-mono text-brand-oat/60 uppercase tracking-wider">Mix &amp; Match:</span>
-                  <div class="flex items-center gap-1.5">
-                    ${product.colorways.map(cw => `
-                      <button type="button" 
-                        onclick="swapProductCardColor('${product.id}', '${cw.id}'); event.stopPropagation();" 
-                        title="${cw.name} (${product.id.includes('throw') ? cw.motif + ' Print' : 'Solid Quilt'})" 
-                        class="w-4 h-4 rounded-full border border-black/50 hover:scale-125 transition transform focus:outline-none focus:ring-1 focus:ring-brand-gold shadow-sm" 
-                        style="background-color: ${cw.hex};">
-                      </button>
-                    `).join('')}
-                  </div>
-                </div>
-              ` : ''}
-              <div class="stall-body">
-                <h3 class="font-serif font-bold text-brand-cream text-lg hover:text-brand-mossLight cursor-pointer transition line-clamp-1" onclick="openProductModal('${product.id}')">${(typeof window.getLocalized === 'function') ? window.getLocalized(product, 'name') : product.name}</h3>
-                <p class="text-xs text-brand-oat/60 mt-1 line-clamp-2">${product.description}</p>
-                <div class="mt-2.5">
-                  <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-brand-gold bg-brand-gold/10 px-2 py-0.5 rounded-sm border border-brand-gold/25">
-                    <i data-lucide="clock" class="w-3 h-3"></i> Pre-Order • Ships Next Month
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="px-4 pb-4">
-              <div class="pt-3 border-t border-black/30 flex items-center justify-between">
-                <div>
-                  <span class="text-[11px] text-brand-oat/40 block">${(typeof window.getLocalized === 'function') ? window.getLocalized(product, 'unit') : product.unit}</span>
-                  <span class="font-bold text-brand-gold text-base">${(typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`}</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <button onclick="openProductModal('${product.id}')" class="p-2 rounded-sm bg-white/8 hover:bg-white/15 text-brand-cream transition" title="Quick Details">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
-                  </button>
-                  <button onclick="window.cart.addItem('${product.id}')" class="px-3 py-2 rounded-sm bg-brand-forest hover:bg-brand-sage text-brand-cream transition flex items-center gap-1.5 text-xs font-semibold shadow-md" title="Pre-Order Now">
-                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-                    <span>Pre-Order</span>
-                  </button>
-                </div>
+              <div class="flex items-center gap-2">
+                <button onclick="openProductModal('${product.id}')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-brand-cream border border-white/10 transition" title="${quickViewTitle}">
+                  <i data-lucide="eye" class="w-4 h-4"></i>
+                </button>
+                <button onclick="window.cart.addItem('${product.id}')" class="px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-sage text-brand-cream transition flex items-center gap-1.5 text-xs font-semibold shadow-md" title="${preOrderText}">
+                  <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                  <span>${preOrderText}</span>
+                </button>
               </div>
             </div>
           </div>
-        `).join('');
-      }
-
-      if (window.lucide) lucide.createIcons();
+        </div>
+      `;
     }
 
+    window.renderProducts = function() {
+      const isDe = (window.currentLang === 'de');
+
+      // Update banner translations
+      const bTag = document.getElementById('store-banner-tag');
+      const bTitle = document.getElementById('store-banner-title');
+      const bDesc = document.getElementById('store-banner-desc');
+      const bStrip = document.getElementById('store-preorder-strip');
+      const bShips = document.getElementById('badge-ships-month');
+      if (bTag) bTag.textContent = isDe ? 'DIREKT VOM LEBENDIGEN BODEN • CHEMIEFREIE PERMAKULTUR' : 'DIRECT FROM LIVING EARTH • CHEMICAL-FREE PERMACULTURE';
+      if (bTitle) bTitle.textContent = isDe ? 'Der Bio-Hofladen' : 'The Organic Farm Store';
+      if (bDesc) bDesc.textContent = isDe ? 'Handgefertigte Steppdecken, skulpturale Quarkseifen, Weide-Enteneier, lebendige Microgreens und Kräuter.' : 'Handcrafted heirloom quilts, sculptural curd soaps, pasture-roaming duck eggs, living greens, and sun-cured herbs.';
+      if (bStrip) bStrip.innerHTML = isDe ? '<strong>Kleinserie:</strong> Alle Hofgüter werden in begrenzten monatlichen Chargen handgefertigt. Jetzt vorbestellen.' : '<strong>Small-Batch Season:</strong> All farmstead offerings are handcrafted in limited monthly runs. Pre-order now to reserve your allocation.';
+      if (bShips) bShips.textContent = isDe ? 'Versand nächsten Monat' : 'Ships Next Month';
+
+      // Update quick jump pills
+      const pillQuilts = document.getElementById('pill-quilts');
+      const pillSoaps = document.getElementById('pill-soaps');
+      const pillEggs = document.getElementById('pill-eggs');
+      const pillProduce = document.getElementById('pill-produce');
+      const pillHerbs = document.getElementById('pill-herbs');
+      if (pillQuilts) pillQuilts.textContent = isDe ? '01. Steppdecken & Plaids' : '01. Quilts & Throws';
+      if (pillSoaps) pillSoaps.textContent = isDe ? '02. Quarkseifen' : '02. Curd Soaps';
+      if (pillEggs) pillEggs.textContent = isDe ? '03. Weide-Enteneier' : '03. Pasture Duck Eggs';
+      if (pillProduce) pillProduce.textContent = isDe ? '04. Microgreens & Pilze' : '04. Living Microgreens';
+      if (pillHerbs) pillHerbs.textContent = isDe ? '05. Sonnengetrocknete Kräuter' : '05. Sun-Cured Herbs';
+
+      // Populate each section carousel
+      STORE_SECTIONS.forEach(sec => {
+        const carouselEl = document.getElementById('carousel-' + sec.id);
+        const tagEl = document.getElementById('sec-tag-' + sec.id);
+        const titleEl = document.getElementById('sec-title-' + sec.id);
+        const descEl = document.getElementById('sec-desc-' + sec.id);
+
+        if (tagEl) tagEl.textContent = (isDe && sec.tag_de) ? sec.tag_de : sec.tag;
+        if (titleEl) titleEl.textContent = (isDe && sec.title_de) ? sec.title_de : sec.title;
+        if (descEl) descEl.textContent = (isDe && sec.desc_de) ? sec.desc_de : sec.desc;
+
+        if (carouselEl) {
+          const secProducts = sec.productIds
+            .map(pid => PRODUCTS.find(p => p.id === pid))
+            .filter(Boolean);
+
+          carouselEl.innerHTML = secProducts.map(p => createProductCardHTML(p)).join('');
+        }
+      });
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
-      randomizeQuiltCatalogColors();
-      renderLookbook();
-      renderCategoryPills();
+      // Randomize initial quilt active colors for pleasant assortment
+      const quilts = PRODUCTS.filter(p => p.category === 'quilts' && p.colorways);
+      quilts.forEach(q => {
+        if (!q.activeColorwayId) {
+          const randCw = q.colorways[Math.floor(Math.random() * q.colorways.length)];
+          q.activeColorwayId = randCw.id;
+          q.image = randCw.image + '?v=1';
+        }
+      });
       renderProducts();
-      document.getElementById('shop-search').addEventListener('input', renderProducts);
-      document.getElementById('shop-sort').addEventListener('change', renderProducts);
     });
   </script>
 

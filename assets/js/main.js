@@ -110,7 +110,7 @@ function openProductModal(productId) {
     const modalHTML = `
       <div id="product-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity">
         <div class="bg-[#0e0e0e] border border-white/15 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative p-6 md:p-8 transform scale-95 transition-transform" id="product-modal-card">
-          <button onclick="closeProductModal()" class="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-[#e2c9a5] transition">
+          <button onclick="closeProductModal()" class="absolute top-4 left-4 sm:top-5 sm:left-5 z-30 p-2.5 rounded-full bg-black/80 hover:bg-black text-[#e2c9a5] border border-white/20 transition shadow-xl backdrop-blur-md flex items-center justify-center group" title="Close" aria-label="Close modal">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
           <div id="product-modal-body"></div>
