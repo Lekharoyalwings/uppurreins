@@ -32,7 +32,6 @@ const BRAND_CONFIG = {
 
 const CATEGORIES = [
   { id: "all", name: "All Offerings", name_de: "Alle Angebote", icon: "sparkles" },
-  { id: "produce", name: "Microgreens & Mushrooms", name_de: "Microgreens & Hofpilze", icon: "sprout" },
   { id: "bundles", name: "Farmstead Hampers", name_de: "Hof-Präsentkörbe", icon: "gift" },
   { id: "soaps", name: "Curd Soaps", name_de: "Quarkseifen", icon: "droplets" },
   { id: "duck-eggs", name: "Pasture Duck Eggs", name_de: "Weide-Enteneier", icon: "egg" },
@@ -40,307 +39,233 @@ const CATEGORIES = [
   { id: "herbs", name: "Herbal Leaves", name_de: "Kräuterblätter", icon: "leaf" }
 ];
 
-// Master 6 Pastel Colorways Palette & Signature Nature Prints
-const PASTEL_COLORWAYS = [
-  { id: "lavender", name: "Pastel Lavender", name_de: "Pastell-Lavendel", motif: "Dreamy Clouds", motif_de: "Traumwolken", hex: "#D8CCE4", image: "assets/images/lookbook-lavender-clouds.jpg" },
-  { id: "bluegrey", name: "Pastel Misty Blue-Grey", name_de: "Pastell-Nebelblau-Grau", motif: "Crescent Moons", motif_de: "Mondsicheln", hex: "#C6D2DC", image: "assets/images/lookbook-bluegrey-moons.jpg" },
-  { id: "pink",     name: "Pastel Blush Pink", name_de: "Pastell-Zartrosa", motif: "Gentle Swirls", motif_de: "Sanfte Strudel", hex: "#F0C4CE", image: "assets/images/lookbook-pink-swirls.jpg" },
-  { id: "mint",     name: "Pastel Mint Green", name_de: "Pastell-Minzgrün", motif: "Minimalist Trees", motif_de: "Minimalistische Bäume", hex: "#C5E0C2", image: "assets/images/lookbook-mint-trees.jpg" },
-  { id: "peach",    name: "Pastel Peach", name_de: "Pastell-Pfirsich", motif: "Radiant Suns", motif_de: "Strahlende Sonnen", hex: "#F4C6A8", image: "assets/images/lookbook-peach-suns.jpg" },
-  { id: "yellow",   name: "Pastel Butter Yellow", name_de: "Pastell-Buttergelb", motif: "Five-Pointed Stars", motif_de: "Fünfzackige Sterne", hex: "#F4E098", image: "assets/images/lookbook-yellow-stars.jpg" }
-];
-
 const PRODUCTS = [
   // CURATED FARMSTEAD HAMPERS (Each with unique image)
   {
     id: "bundle-farmstead-harvest",
-    description_de: "Unser exklusiver Hof-Präsentkorb: Frische Weide-Enteneier im Strohbett, zwei kaltgesiedete Quarkseifen in naturbelassenem Papier mit schlichter Sortenbezeichnung, verpackt mit Samen-gesprenkeltem Baumwollfaden, sonnengetrocknetes Tulsi- und Moringakraut im weißen Bio-Beutel und ein traditioneller Tontopf mit frischem Hof-Quark.",
-    unit_de: "Handgefertigter Präsentkorb mit Eiern, Quarkseifen & Kräutern",
-    badge_de: "Hof-Präsentkorb",
-    ingredients_de: "6 Weide-Enteneier im Strohbett + 2 Hof-Quarkseifen + Sonnengetrocknetes Tulsi & Moringa im weißen Beutel + Tontopf mit Hof-Quark.",
     name: "The Farmstead Harvest Hamper",
     name_de: "Der Hof-Ernte-Präsentkorb",
     category: "bundles",
     price: 4500,
     priceEUR: 50.00,
     unit: "Artisanal Gift Hamper with Eggs, Curd Soaps & Leaves",
+    unit_de: "Handgefertigter Präsentkorb mit Eiern, Quarkseifen & Kräutern",
     badge: "Signature Hamper",
+    badge_de: "Hof-Präsentkorb",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 47,
-    image: "assets/images/hero-basket.jpg?v=4",
-    description: "Our signature farmstead gift hamper: fresh pasture duck eggs, two cold-process curd soaps, sun-cured tulsi and moringa leaves, and an earthen pot of fresh setting curd.",
+    image: "assets/images/hero-basket.jpg",
+    description: "Our signature artisanal gift hamper: fresh pasture-roaming duck eggs nestled in golden straw, two cold-process curd soaps wrapped in plain unbranded organic paper stating only the flavor, tied with textured off-white cotton thread with natural seed flecks, alongside sun-cured sacred tulsi and moringa leaves in organic white pouches, and an earthen pot of fresh setting curd.",
+    description_de: "Unser exklusiver Hof-Präsentkorb: Frische Weide-Enteneier im Strohbett, zwei kaltgesiedete Quarkseifen in naturbelassenem Papier mit schlichter Sortenbezeichnung, verpackt mit Samen-gesprenkeltem Baumwollfaden, sonnengetrocknetes Tulsi- und Moringakraut im weißen Bio-Beutel und ein traditioneller Tontopf mit frischem Hof-Quark.",
     ingredients: "6 Pasture Duck Eggs in Straw + 2 Farmstead Curd Soaps + Sun-Cured Sacred Tulsi & Moringa White Packets + Earthen Setting Curd Pot.",
-    benefits: ["100% natural, biodegradable materials", "Soothes the senses with natural earthy textures", "Direct farm-to-table presentation completely plastic-free"],
+    ingredients_de: "6 Weide-Enteneier im Strohbett + 2 Hof-Quarkseifen + Sonnengetrocknetes Tulsi & Moringa im weißen Beutel + Tontopf mit Hof-Quark.",
+    benefits: ["100% natural, biodegradable materials", "Soothes the senses with natural earthy textures", "Direct farm-to-table presentation with zero plastic"],
+    benefits_de: ["100% natürliche, biologisch abbaubare Materialien", "Natürliche erdige Texturen für die Sinne", "Plastikfreie, direkte Hof-zu-Tisch Präsentation"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
   {
     id: "bundle-heirloom-quilt-hamper",
-    description_de: "Das vollendete Wohn- und Wellness-Set: Eine handgefertigte Einzelbett-Steppdecke (60\" × 90\") gefüllt mit natürlicher Ilavam Panju (Seidenbaumwolle), GOTS & OEKO-TEX zertifiziert, biologisch gefärbt, gebunden mit rustikalem Baumwollgarn, zusammen mit zwei echten Quarkseifen und sonnengetrockneten Hofkräutern in einer rustikalen Holzkiste.",
-    unit_de: "Exklusives Hof-Sammlerset mit Steppdecke",
-    badge_de: "Kunsthandwerk",
-    ingredients_de: "Einzelbett (60\" × 90\") Ilavam Panju Steppdecke + 2 Kaltprozess-Quarkseifen + Sonnengetrocknete Kräuterblätter + Rustikale Holzkiste.",
     name: "The Artisanal Quilt Roll & Curd Soap Hamper",
     name_de: "Hof-Präsentkorb mit Steppdecke & Quarkseifen",
     category: "bundles",
-    price: 5800,
-    priceEUR: 64.00,
-    unit: "Collector Living Quilt & Soap Hamper",
+    price: 7200,
+    priceEUR: 80.00,
+    unit: "Master Collector Living Hamper",
+    unit_de: "Exklusives Hof-Sammlerset mit Steppdecke",
     badge: "Artisan Heirloom",
+    badge_de: "Kunsthandwerk",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 22,
-    image: "assets/images/quilt-hamper.jpg?v=clean_5",
-    description: "The complete farmstead set: an individual quilt (60\" × 90\") filled with Tamizhnad Ilavam Panju silk cotton, two cold-process curd soaps, and sun-cured herbal leaves in non-plastic packs.",
-    ingredients: "Individual (60\" × 90\") Tamizhnad Ilavam Panju Quilt Roll + 2 Cold-Process Curd Soaps + Sun-Cured Herbal Leaves in Non-Plastic Packs.",
-    benefits: ["Natural Ilavam Panju (silk cotton harvested from Tamizhnad) filling encased in GOTS & OEKO-TEX certified cotton fabric", "100% eco-friendly labels & packaging — strictly NO PLASTIC", "Handcrafted durability built to last generations"],
+    image: "assets/images/quilt-hamper.jpg",
+    description: "The complete artisanal home upgrade: an individual artisanal quilt roll (55\" × 90\") filled with natural Ilavam Panju (silk cotton), crafted from GOTS-certified and OEKO-TEX certified organically dyed cotton, paired with two cold-process curd soaps wrapped in plain unbranded organic paper and sun-cured herbal leaves in a rustic wooden gift crate.",
+    description_de: "Das vollendete Wohn- und Wellness-Set: Eine handgefertigte Einzelbett-Steppdecke (55\" × 90\") gefüllt mit natürlicher Ilavam Panju (Seidenbaumwolle), GOTS & OEKO-TEX zertifiziert, biologisch gefärbt, gebunden mit rustikalem Baumwollgarn, zusammen mit zwei echten Quarkseifen und sonnengetrockneten Hofkräutern in einer rustikalen Holzkiste.",
+    ingredients: "Individual (55\" × 90\") Ilavam Panju Quilt Roll + 2 Cold-Process Curd Soaps + Sun-Cured Herbal Leaves in White Pouches + Rustic Wooden Crate.",
+    ingredients_de: "Einzelbett (55\" × 90\") Ilavam Panju Steppdecke + 2 Kaltprozess-Quarkseifen + Sonnengetrocknete Kräuterblätter + Rustikale Holzkiste.",
+    benefits: ["Natural Ilavam Panju (silk cotton) filling with GOTS & OEKO-TEX certified cotton", "Hypoallergenic, breathable, and organically dyed", "Handcrafted durability built to last generations"],
+    benefits_de: ["Reine Ilavam Panju Füllung (Seidenbaumwolle) mit GOTS & OEKO-TEX zertifizierter Baumwolle", "Hypoallergen, atmungsaktiv und schonend bio-gefärbt", "Handgefertigte Langlebigkeit für Generationen"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: false
   },
   {
     id: "bundle-nest-crate",
-    description_de: "Ein liebevoll arrangiertes Nest aus goldenem Naturstroh mit 6 tagesfrischen Weide-Enteneiern und zwei handgesiedeten Quarkseifen, gebunden mit ungebleichtem Baumwollgarn.",
-    unit_de: "Frische Enteneier & Kaltprozess-Seifenset",
-    badge_de: "Frisch vom Hof",
-    ingredients_de: "6 Weide-Enteneier im Strohbett + 2 Kaltprozess-Quarkseifen im ungebleichten Naturpapier.",
     name: "The Pasture Duck Egg & Curd Soap Nest",
-    name_de: "Weide-Enteneier & Quarkseifen-Nest",
+    name_de: "Enteneier- & Quarkseifen-Nest",
     category: "bundles",
     price: 950,
     priceEUR: 10.50,
-    unit: "Straw Nest with 12 Eggs & Curd Soap",
+    unit: "Wooden Tray with 12 Eggs & Curd Soap",
+    unit_de: "Holzschale mit 12 Eiern & Quarkseife",
     badge: "Daily Ritual",
+    badge_de: "Tägliches Ritual",
     badgeType: "featured",
     rating: 4.9,
     reviewsCount: 34,
-    image: "assets/images/egg-soap-nest.jpg?v=curd_only_5",
-    description: "A fresh morning pairing: 12 pasture duck eggs, an artisanal curd soap bar, and sun-cured sacred tulsi leaves.",
-    ingredients: "12 Pasture Duck Eggs + 1 Farmstead Curd Soap Bar + Sun-Cured Sacred Tulsi in Golden Straw Nest.",
-    benefits: ["Rich in natural nutrients and skin-loving lipids", "Free of chemical pesticides or artificial additives", "Packaged in eco-friendly compostable straw bedding"],
+    image: "assets/images/egg-soap-nest.jpg",
+    description: "A calming morning pairing: 12 fresh pasture-roaming duck eggs nestled in golden meadow straw, alongside an artisanal curd soap bar wrapped in simple organic paper and tied with textured cotton thread with natural flecks, with sun-cured sacred tulsi leaves in an organic white packet.",
+    description_de: "Ein besinnliches Morgenritual: 12 frische Weide-Enteneier im weichen Wiesenstrohbett, dazu eine handgesiedete Hof-Quarkseife im schlichten Bio-Papier mit naturbelassenem Baumwollfaden und sonnengetrocknetes Heiliges Tulsikraut im weißen Frischebeutel.",
+    ingredients: "12 Pasture Duck Eggs + 1 Farmstead Curd Soap Bar + Sun-Cured Sacred Tulsi in Clean Straw Bed.",
+    ingredients_de: "12 Weide-Enteneier + 1 Hof-Quarkseife + Sonnengetrocknetes Heiliges Tulsi im Strohbett.",
+    benefits: ["Rich in natural nutrients and skin-loving lipids", "Zero chemical pesticides or artificial additives", "Packaged in eco-friendly compostable straw bedding"],
+    benefits_de: ["Reich an wertvollen Omega-3-Fettsäuren und Nährstoffen", "Frei von chemischen Pestiziden oder künstlichen Zusätzen", "Kompostierbare Wiesenstroh-Verpackung"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
 
-  // CURD SOAPS (Sculptural 3D Bubble Cubes • 3x3 rounded spheres all around, wrapped in plain unbranded organic paper stating ONLY the botanical name with NO word 'Soap', tied with seed-flecked cotton thread)
+  // CURD SOAPS (Wrapped in plain unbranded organic paper with only flavor name, tied with seed-flecked cotton thread)
   {
     id: "soap-curd",
-    description_de: "Reine, kaltgerührte Quarkseife mit unserer charakteristischen skulpturalen 3D-Bubble-Cube-Form. Gesiedet aus reinem kaltgepresstem Kokosöl, frischem hofeigenem Bio-Quark und sonst nichts. Sanfter, rückfettender Schaum mit natürlicher Milchsäure für empfindliche Haut.",
-    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
-    badge_de: "Echte Hof-Quarkseife",
-    ingredients_de: "Reines kaltgepresstes Kokosöl + Frischer Bio-Quark + Quellwasser + Verseifungslauge (vollständig verseift).",
-    name: "Curd",
-    name_de: "Quarkseife Pure",
+    name: "Curd Soap",
+    name_de: "Echte Hof-Quarkseife",
     category: "soaps",
     price: 440,
     priceEUR: 4.90,
-    unit: "120g 3D Bubble Cube",
-    badge: "Creamy Milky Ivory",
+    unit: "120g Artisan Bar",
+    unit_de: "120g Handgesiedetes Seifenstück",
+    badge: "Signature Curd",
+    badge_de: "Signature-Quark",
     badgeType: "featured",
     rating: 4.9,
     reviewsCount: 38,
-    image: "assets/images/bubble-cube-curd.jpg?v=1",
-    description: "Sculptural 3D bubble cube soap cold-processed solely with fresh cold-pressed coconut oil and farmstead fresh curd. Creamy ivory tone with rounded bubble spheres that double as a gentle acupressure massage bar. Aged 6 weeks for a rich, skin-softening lather.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd.",
-    benefits: ["3D bubble spheres provide a gentle, relaxing skin massage", "Natural lactic acid from living curd softens and clarifies", "Gentle everyday lather for sensitive skin"],
+    image: "assets/images/artisan-soaps.jpg",
+    description: "Cold-processed soap crafted with fresh farmstead curd and pure skin-nourishing botanical oils. Wrapped in plain unbranded organic paper stating only the flavor name, tied with textured off-white cotton thread with natural seed flecks. Aged 6 weeks for a dense, ultra-gentle, skin-softening lather.",
+    description_de: "Kaltgesiedete Naturseife mit frischem Hof-Quark und hautschonenden Pflanzenölen. Eingeschlagen in unbedrucktem Bio-Papier mit Sortenaufdruck, gebunden mit baumwollenem Faden mit natürlichen Samensprenkeln. 6 Wochen gereift für einen cremigen, hautberuhigenden Schaum.",
+    ingredients: "Saponified Extra Virgin Olive Oil, Farmstead Organic Curd, Cold-Pressed Coconut Oil, Raw Shea Butter, Castor Seed Oil.",
+    ingredients_de: "Verseiftes natives Olivenöl extra, frischer Bio-Hofquark, kaltgepresstes Kokosöl, reine Sheabutter, Rizinusöl.",
+    benefits: ["Natural lactic acid from living farm curd gently softens and clarifies", "Deeply hydrating and restorative for delicate, sensitive skin", "Tied with textured cotton thread, zero company logos on packaging"],
+    benefits_de: ["Natürliche Milchsäure aus frischem Hofquark glättet und beruhigt sanft", "Tiefenwirksam feuchtigkeitsspendend für empfindliche Haut", "Gebunden mit Baumwollschnur, frei von Werbelogos auf der Verpackung"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
   {
-    id: "soap-banana",
-    description_de: "Kaltgesiedete 3D-Bubble-Cube-Seife, angereichert mit nährstoffreichem, sonnengetrocknetem Bananenblatt-Auszug und frischem Bio-Quark. Sanft peelend und feuchtigkeitsspendend.",
-    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
-    badge_de: "Bananenblatt-Extrakt",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Wilder Bananenblatt-Extrakt.",
-    name: "Banana",
-    name_de: "Bananenseife",
+    id: "soap-banana-bamboo",
+    name: "Banana & Bamboo Soap",
+    name_de: "Bananen- & Bambusseife",
     category: "soaps",
     price: 440,
     priceEUR: 4.90,
-    unit: "120g 3D Bubble Cube",
-    badge: "Lush Leaf Green & Warm Yellow",
+    unit: "120g Artisan Bar",
+    unit_de: "120g Handgesiedetes Seifenstück",
+    badge: "Silica Rich",
+    badge_de: "Kieselsäurereich",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 42,
-    image: "assets/images/bubble-cube-banana.jpg?v=1",
-    description: "Cold-process 3D bubble cube soap made with fresh cold-pressed coconut oil, fresh farm curd, and fresh banana leaves. Leafy green tone with rounded spheres for an invigorating massage lather.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Fresh Farm-Harvested Banana Leaves.",
-    benefits: ["Natural plant enzymes from fresh banana leaves clarify the skin", "Tactile 3D bubble contours gently stimulate circulation", "Refreshing, nourishing daily body cleanse"],
-    inStock: true,
-    isFeatured: true,
-    wholesaleAvailable: true
-  },
-  {
-    id: "soap-bamboo",
-    description_de: "Skulpturale 3D-Bubble-Cube-Seife mit mineralstoffreicher Bambus-Kieselsäure und cremiger Bio-Quarkbasis. Reinigt porentief und beruhigt beanspruchte Haut.",
-    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
-    badge_de: "Bambus-Kieselsäure",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Natürlicher Bambussprossen-Auszug.",
-    name: "Bamboo",
-    name_de: "Bambusseife",
-    category: "soaps",
-    price: 440,
-    priceEUR: 4.90,
-    unit: "120g 3D Bubble Cube",
-    badge: "Pale Yellow-Green",
-    badgeType: "featured",
-    rating: 4.9,
-    reviewsCount: 36,
-    image: "assets/images/bubble-cube-bamboo.jpg?v=1",
-    description: "Cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil, fresh farm curd, and organic bamboo silica. Soft pale yellowish-green hue with rounded spheres for a gentle massage cleanse.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Organic Farm Bamboo Silica.",
-    benefits: ["Natural bamboo silica strengthens and smooths skin texture", "3D rounded spheres provide a relaxing bath massage", "Mineral-rich and gentle on sensitive skin"],
+    image: "assets/images/artisan-soaps.jpg",
+    description: "Botanical cold-process bar crafted with real farmstead banana purée and organic bamboo extract rich in bio-silica. Wrapped in plain organic paper showing only the flavor name, tied with textured off-white cotton thread.",
+    description_de: "Botanische Kaltprozess-Seife mit erntefrischem Bananenpüree und natürlichem Bambusextrakt reich an wertvoller Bio-Kieselsäure. Eingeschlagen in schlichtem Bio-Papier mit naturbelassenem Baumwollgarn.",
+    ingredients: "Fresh Farmstead Ripe Banana Purée, Organic Bamboo Extract, Saponified Olive Oil, Virgin Coconut Oil, Raw Cocoa Butter.",
+    ingredients_de: "Frisches reifes Hof-Bananenpüree, Bio-Bambusextrakt, verseiftes Olivenöl, natives Kokosöl, reine Kakaobutter.",
+    benefits: ["Natural potassium and fruit moisture promote smooth skin elasticity", "Bamboo silica strengthens skin barrier and softens texture", "Aged 6 weeks with zero artificial fragrances, colors, or synthetics"],
+    benefits_de: ["Natürliches Kalium und Fruchtfeuchtigkeit fördern die Hautelastizität", "Bambus-Kieselsäure stärkt die Hautbarriere und verfeinert das Hautbild", "6 Wochen gereift, 100% frei von synthetischen Düften und Farbstoffen"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
   {
     id: "soap-moringa",
-    description_de: "Kaltprozess-Seife mit sonnengetrocknetem Bio-Moringablattpulver und Quark. Reich an Antioxidantien, Vitaminen und Mineralien für ein strahlendes Hautbild.",
-    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
-    badge_de: "Grünes Moringablatt",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Bio-Moringablattpulver.",
-    name: "Moringa",
+    name: "Moringa Soap",
     name_de: "Moringaseife",
     category: "soaps",
     price: 440,
     priceEUR: 4.90,
-    unit: "120g 3D Bubble Cube",
-    badge: "Textured Herbal Green",
+    unit: "120g Artisan Bar",
+    unit_de: "120g Handgesiedetes Seifenstück",
+    badge: "Nutrient Dense",
+    badge_de: "Nährstoffreich",
     badgeType: "organic",
     rating: 4.9,
     reviewsCount: 29,
-    image: "assets/images/bubble-cube-moringa.jpg?v=1",
-    description: "Nutrient-packed cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil, fresh farm curd, and moringa leaves from our farmstead trees. Herbal green tone with natural moringa speckles.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Organic Farm-Harvested Moringa Leaves.",
-    benefits: ["Dense with natural vitamins and antioxidants", "3D bubble contours provide an invigorating massage", "Nourishes and revitalizes tired skin"],
+    image: "assets/images/artisan-soaps.jpg",
+    description: "Nutrient-packed cold-process soap infused with freshly ground organic moringa leaf powder and cold-pressed moringa seed oil from our farmstead trees. Wrapped in plain organic paper with only the flavor name, tied with textured cotton thread.",
+    description_de: "Nährstoffreiche Kaltprozess-Seife mit feinst vermahlenen Bio-Moringablättern und kaltgepresstem Moringasamenöl von unseren Hofbäumen. Verpackt in reinem Papier, gebunden mit strukturierter Baumwollschnur.",
+    ingredients: "Organic Farm-Harvested Moringa Leaf (Moringa oleifera), Cold-Pressed Moringa Seed Oil, Saponified Extra Virgin Olive Oil, Virgin Coconut Oil, Shea Butter.",
+    ingredients_de: "Bio-Moringablätter (Moringa oleifera), kaltgepresstes Moringasamenöl, verseiftes natives Olivenöl extra, Kokosöl, Sheabutter.",
+    benefits: ["Abundant in vitamins A, C, and E for deep cellular nourishment", "Potent antioxidants purify environmental stressors naturally", "Zero palm oil, chemical preservatives, or synthetic additives"],
+    benefits_de: ["Reich an Vitamin A, C und E für intensive Tiefenpflege", "Kraftvolle Antioxidantien schützen die Haut vor Umwelteinflüssen", "Frei von Palmöl, Konservierungsstoffen und synthetischen Tensiden"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
   {
     id: "soap-dry-grass",
-    description_de: "Handgerührte Seife mit dem Duft sonnengetrockneter Wiesenkräuter und wildem Heu, verfeinert mit Bio-Quark für milde, erdende Körperpflege.",
-    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
-    badge_de: "Wiesenkräuter & Heu",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Wilder Wiesenheuextrakt.",
-    name: "Dry Grass",
-    name_de: "Trockengras-Seife",
+    name: "Dry Grass Soap",
+    name_de: "Wiesengrasseife",
     category: "soaps",
     price: 410,
     priceEUR: 4.60,
-    unit: "120g 3D Bubble Cube",
-    badge: "Green-Tinted Meadow",
+    unit: "120g Artisan Bar",
+    unit_de: "120g Handgesiedetes Seifenstück",
+    badge: "Earthy Botanical",
+    badge_de: "Erdig & Botanisch",
     badgeType: "organic",
     rating: 4.8,
     reviewsCount: 24,
-    image: "assets/images/bubble-cube-dry-grass.jpg?v=1",
-    description: "Grounding cold-process 3D bubble cube soap made with fresh cold-pressed coconut oil, fresh farm curd, and sun-cured native meadow grass. Earthy green-tinted beige tone with fine wild grass fibers.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Solar-Cured Native Dry Grass.",
-    benefits: ["Fine natural grass fibers gently buff and smooth the skin", "Tactile bubble spheres soothe and relax during bath", "Earthy, calming botanical cleanse"],
+    image: "assets/images/artisan-soaps.jpg",
+    description: "Grounding, therapeutic cold-process soap infused with aromatic solar-cured meadow dry grass and wholesome botanical oils. Offers gentle textural exfoliation and an authentic earthy farmstead aroma. Wrapped in plain organic paper tied with textured seed-flecked cotton thread.",
+    description_de: "Erdende, wohltuende Naturseife veredelt mit sonnengetrocknetem aromatischem Wiesengras und nährenden Pflanzenölen. Bietet ein sanftes natürliches Peeling und einen authentischen, erdigen Duft nach sonnigem Heu.",
+    ingredients: "Solar-Cured Aromatic Native Dry Grass, Saponified Olive Oil, Virgin Coconut Oil, Farmstead Curd, Raw Shea Butter.",
+    ingredients_de: "Sonnengetrocknetes aromatisches Wiesengras, verseiftes Olivenöl, Kokosöl, frischer Hof-Quark, reine Sheabutter.",
+    benefits: ["Fine natural dry grass fibers provide gentle, non-abrasive skin polishing", "Grounding earthy notes from pure sun-dried meadow botanicals", "Creamy, moisturizing lather cured naturally for 6 weeks"],
+    benefits_de: ["Feine Wiesengrasfasern sorgen für ein sanftes, nicht-abrasives Hautpeeling", "Erdender, warmer Naturduft aus der sonnigen Wiesenvegetation", "Cremiger, rückfettender Schaum mit 6 Wochen traditioneller Reifung"],
     inStock: true,
     isFeatured: false,
     wholesaleAvailable: true
   },
-  {
-    id: "soap-turmeric",
-    description_de: "Warme goldgelbe 3D-Bubble-Cube-Seife mit handgemahlenem wildem Bio-Kurkuma und cremiger Quarkbasis für sanfte Klärung und natürlichen Teint.",
-    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
-    badge_de: "Wilder Gelbwurz",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Handgemahlener Bio-Kurkuma.",
-    name: "Turmeric",
-    name_de: "Kurkumaseife",
-    category: "soaps",
-    price: 440,
-    priceEUR: 4.90,
-    unit: "120g 3D Bubble Cube",
-    badge: "Warm Earthy Yellow",
-    badgeType: "featured",
-    rating: 5.0,
-    reviewsCount: 31,
-    image: "assets/images/bubble-cube-turmeric.jpg?v=1",
-    description: "Brightening cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil, fresh farm curd, and whole native turmeric. Warm golden ochre hue with rounded spheres for an invigorating cleanse.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Organically Grown Native Turmeric.",
-    benefits: ["Native turmeric curcumin helps brighten and even skin tone", "3D bubble contours stimulate circulation while lathering", "Warm, clarifying lather for radiant skin"],
-    inStock: true,
-    isFeatured: true,
-    wholesaleAvailable: true
-  },
-  {
-    id: "soap-coffee",
-    description_de: "Tiefbraune Kaltprozess-Seife mit frisch geröstetem Arabica-Kaffee und Bio-Quark. Belebt die Mikrozirkulation und peelt sanft bei der Morgenwäsche.",
-    unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
-    badge_de: "Espresso Peeling",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Gerösteter Hochland-Kaffeesatz.",
-    name: "Coffee",
-    name_de: "Kaffeeseife",
-    category: "soaps",
-    price: 440,
-    priceEUR: 4.90,
-    unit: "120g 3D Bubble Cube",
-    badge: "Deep Espresso Brown",
-    badgeType: "organic",
-    rating: 4.9,
-    reviewsCount: 27,
-    image: "assets/images/bubble-cube-coffee.jpg?v=1",
-    description: "Exfoliating cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil, fresh farm curd, and freshly ground Arabica coffee. Deep espresso brown shade with roasted coffee grounds for a buffing massage.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Freshly Ground Arabica Coffee.",
-    benefits: ["Fine coffee grounds gently exfoliate and tone skin", "3D bubble spheres double as an acupressure body massage bar", "Energizing and refreshing shower experience"],
-    inStock: true,
-    isFeatured: false,
-    wholesaleAvailable: true
-  },
-
 
   // PASTURE DUCK EGGS
   {
     id: "eggs-pasture-duck-6",
-    description_de: "6 tagesfrische Eier unserer freilaufenden Enten. Reich an Omega-3-Fettsäuren, mit tief orangem Eigelb und fester Konsistenz, ideal für feine Backwaren und Genießerfrühstück.",
-    unit_de: "6 Eier im Strohkarton",
-    badge_de: "Freilandhaltung",
-    ingredients_de: "100% frische Eier von freilaufenden Weide-Enten in Naturstroh gebettet.",
     name: "Pasture-Roaming Duck Eggs (Half Dozen • 6 Eggs)",
-    name_de: "Weide-Enteneier (Halbes Dutzend • 6 Eier)",
+    name_de: "Freiland-Enteneier von der Weide (6 Stück)",
     category: "duck-eggs",
     price: 220,
     priceEUR: 2.50,
     unit: "6 Jumbo Eggs in Golden Meadow Straw",
+    unit_de: "6 Jumbo-Eier im Wiesenstrohbett",
     badge: "Pasture Roaming",
+    badge_de: "Freilandhaltung",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 38,
     image: "assets/images/duck-eggs.jpg",
     description: "Half dozen (6 jumbo eggs) rich, creamy duck eggs from heritage white Pekin ducks roaming freely along organic permaculture wetland banks. Nestled safely in clean natural golden straw.",
+    description_de: "Ein halbes Dutzend (6 XL-Eier) cremige, nährstoffreiche Enteneier von weißen Pekin-Enten aus artgerechter Freilandhaltung an natürlichen Teichufern. Sicher gebettet in sauberem, duftendem Wiesenstroh.",
     ingredients: "6 Free-Range Pasture-Raised Organic Duck Eggs in Straw.",
+    ingredients_de: "6 frische Enteneier aus Freiland-Weidehaltung im Strohbett.",
     benefits: ["Double the Omega-3 fatty acids and vitamin D of chicken eggs", "Rich golden yolks high in choline for brain health", "Incredible richness for baking and wholesome cooking"],
+    benefits_de: ["Doppelt so viele Omega-3-Fettsäuren und Vitamin D wie Hühnereier", "Dunkelgelbe Dotter reich an Cholin für Vitalität", "Unvergleichliche Cremigkeit für Backwaren und die feine Küche"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
   {
     id: "eggs-pasture-duck-24",
-    description_de: "24 tagesfrische Weide-Enteneier in einer stabilen Holzkiste auf weichem Naturstroh. Direkt vom morgendlichen Einsammeln verpackt.",
-    unit_de: "24 Eier in Hofstiege",
-    badge_de: "Vorratskiste",
-    ingredients_de: "24 frische Weide-Enteneier auf reinem Naturstroh.",
-    name: "Pasture-Roaming Duck Eggs — Farmstead Pack (24 Eggs / 2 Dozen)",
-    name_de: "Weide-Enteneier — Hofpackung (24 Eier / 2 Dutzend)",
+    name: "Pasture-Roaming Duck Eggs — Farmstead Crate (24 Eggs / 2 Dozen)",
+    name_de: "Freiland-Enteneier — Hofkiste (24 Stück)",
     category: "duck-eggs",
     price: 950,
     priceEUR: 10.50,
-    unit: "24 Jumbo Eggs in Natural Meadow Straw",
-    badge: "Family Pack",
+    unit: "24 Jumbo Eggs in Handcrafted Wooden Straw Crate",
+    unit_de: "24 Jumbo-Eier in der Holzkiste mit Strohbett",
+    badge: "Farm Crate",
+    badge_de: "Hofkiste",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 19,
     image: "assets/images/duck-eggs.jpg",
-    description: "Two full dozen (24 jumbo eggs) fresh pasture-roaming duck eggs nestled securely in clean golden meadow straw. Specially curated for families, healthy kitchens, and gourmet baking.",
-    ingredients: "24 Free-Range Pasture-Raised Organic Duck Eggs + Natural Golden Straw Bedding.",
-    benefits: ["Direct farm harvest with maximum freshness and richness", "High in natural vitamins A, B12, and healthy fatty acids", "Eco-friendly compostable straw cushioning"],
+    description: "Two full dozen (24 jumbo eggs) fresh pasture-roaming duck eggs nestled securely in clean golden meadow straw inside a rustic wooden crate. Specially curated for families, healthy kitchens, and gourmet baking.",
+    description_de: "Zwei volle Dutzend (24 XL-Eier) frische Weide-Enteneier im Wiesenstrohbett in einer handgefertigten Holzkiste. Ideal für gesundheitsbewusste Familien, Backliebhaber und anspruchsvolle Küchen.",
+    ingredients: "24 Free-Range Pasture-Raised Organic Duck Eggs + Handcrafted Wooden Crate + Natural Golden Straw Bedding.",
+    ingredients_de: "24 frische Weide-Enteneier + Handgefertigte Holzkiste + Wiesenstrohbett.",
+    benefits: ["Direct farm harvest with maximum freshness and richness", "High in natural vitamins A, B12, and healthy fatty acids", "Eco-friendly compostable straw cushioning in reusable crate"],
+    benefits_de: ["Erntefrisch direkt vom Hof für pure Frische und Nährstoffdichte", "Reich an natürlichem Vitamin A, B12 und gesunden Fettsäuren", "Nachhaltige Strohpolsterung in wiederverwendbarer Holzkiste"],
     inStock: true,
     isFeatured: false,
     wholesaleAvailable: true
@@ -349,100 +274,100 @@ const PRODUCTS = [
   // ARTISANAL QUILT ROLLS & ORGANIC COTTON LINEN (4 Distinct Products)
   {
     id: "quilt-heirloom-kids",
-    description_de: "Handgefertigte, einfarbige Pastell-Kindersteppdecke (40\" × 60\"), gefüllt mit 100% natürlicher Ilavam Panju (reine Seidenbaumwolle aus Tamizhnad) und eingefasst in samtweichem, angerautem Bio-Baumwollstoff (erhältlich in allen 6 sanften Pastelltönen: Pastell-Lavendel, Pastell-Nebelblau-Grau, Pastell-Zartrosa, Pastell-Minzgrün, Pastell-Pfirsich und Pastell-Buttergelb). Der Stoff ist GOTS- und OEKO-TEX Standard 100-zertifiziert, atmungsaktiv, antiallergen und wunderbar leicht. Inklusive handgefertigter Baumwoll-Tragetasche.",
-    unit_de: "40\" × 60\" Einfarbige Pastell-Kinderdecke • Tamizhnad Ilavam Panju",
-    badge_de: "Für Kinder & Welpen",
-    ingredients_de: "100% natürliche Ilavam Panju (Seidenbaumwolle aus Tamizhnad) + Handgefertigt aus 100% einfarbigem GOTS- & OEKO-TEX-zertifiziertem Bio-Baumwollstoff, biologisch gefärbt.",
-    name: "Heirloom Artisanal Quilt — Kids (40\" × 60\")",
-    name_de: "Handgefertigte Steppdecke — Kinder (40\" × 60\")",
+    name: "Heirloom Artisanal Quilt — Kids (40\" × 50\")",
+    name_de: "Handgefertigte Steppdecke — Kinder (40\" × 50\")",
     category: "quilts",
     price: 5099,
     priceEUR: 56.90,
-    unit: "40\" × 60\" Solid Pastel Kids Quilt • Tamizhnad Ilavam Panju",
-    badge: "For Kids & Puppies",
+    unit: "40\" × 50\" Kids Quilt Roll • Ilavam Panju",
+    unit_de: "40\" × 50\" Kinderdecke • Ilavam Panju Seidenbaumwolle",
+    badge: "Ilavam Panju Filled",
+    badge_de: "Ilavam Panju Füllung",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 16,
-    image: "assets/images/lookbook-lavender-clouds.jpg?v=1",
-    colorways: PASTEL_COLORWAYS,
-    description: "Handcrafted solid pastel kids quilt filled with 100% natural Ilavam Panju (pure silk cotton harvested from Tamizhnad) and encased in ultra-soft, brushed organically dyed solid pastel cotton fabric (available in all 6 pastel shades: Pastel Lavender, Pastel Misty Blue-Grey, Pastel Blush Pink, Pastel Mint Green, Pastel Peach, and Pastel Butter Yellow — our quilts are 100% solid pastel, completely unprinted). While the handcrafted quilt itself is not separately certified, the organic cotton fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Includes a handcrafted cotton tote bag.",
-    ingredients: "Natural Ilavam Panju (Silk Cotton harvested from Tamizhnad) Filling + Handcrafted from 100% Solid Pastel GOTS & OEKO-TEX Certified Organic Cotton Fabric, organically dyed.",
-    benefits: ["100% solid pastel brushed cotton with pure Tamizhnad Ilavam Panju (silk cotton) filling", "Crafted from GOTS & OEKO-TEX certified fabric", "Available in all 6 soothing pastel shades • Kids size (40\" × 60\")"],
+    image: "assets/images/quilt-roll.jpg",
+    description: "Handcrafted kids quilt roll filled with 100% natural Ilavam Panju (pure kapok / silk cotton) and encased in unbleached organic cotton. Certified GOTS and OEKO-TEX Standard 100, organically dyed with non-toxic botanical pigments. Naturally hypoallergenic and cool in summer, warm in winter. Rolled and tied with raw cotton twine.",
+    description_de: "Handgesteppte Kinder-Bettdecke, gefüllt mit 100% naturbelassenem Ilavam Panju (reine Kapok-/Seidenbaumwolle) und bezogen mit ungebleichter Bio-Baumwolle. GOTS & OEKO-TEX Standard 100 zertifiziert, biologisch mit Pflanzenfarben gefärbt. Von Natur aus hypoallergen, temperaturausgleichend und wolkenweich.",
+    ingredients: "Natural Ilavam Panju (Silk Cotton) Filling + 100% GOTS & OEKO-TEX Certified Organic Cotton, organically dyed.",
+    ingredients_de: "100% reine Ilavam Panju (Seidenbaumwolle) Füllung + GOTS & OEKO-TEX zertifizierte Bio-Baumwolle, pflanzlich gefärbt.",
+    benefits: ["100% pure Ilavam Panju (silk cotton) filling — natural, chemical-free & buoyant", "GOTS & OEKO-TEX certified (zero synthetics, zero microplastics)", "Perfect size for toddlers and children (40\" × 50\")"],
+    benefits_de: ["100% naturbelassene Ilavam Panju Seidenbaumwolle — chemiefrei & flaumweich", "GOTS & OEKO-TEX zertifiziert (keine Kunstfasern, kein Mikroplastik)", "Ideale Größe für Kinder und Kleinkinder (40\" × 50\" / ca. 102 × 127 cm)"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: false
   },
   {
     id: "quilt-heirloom-individual",
-    description_de: "Handgefertigte, einfarbige Pastell-Steppdecke für Einzelbetten (60\" × 90\"), gefüllt mit 100% natürlicher Ilavam Panju (reine Seidenbaumwolle, geerntet in Tamizhnad) und eingefasst in samtweichem, angerautem und biologisch gefärbtem Bio-Baumwollstoff (erhältlich in allen 6 Pastelltönen: Pastell-Nebelblau-Grau, Pastell-Lavendel, Pastell-Zartrosa, Pastell-Minzgrün, Pastell-Pfirsich und Pastell-Buttergelb — unsere Steppdecken sind 100% einfarbig pastellfarben, völlig unbedruckt). Während die handgefertigte Decke selbst kein separates Siegel trägt, ist der verwendete Bio-Baumwollstoff GOTS- und OEKO-TEX Standard 100-zertifiziert. Veredelt mit 100% umweltfreundlichen, plastikfreien Etiketten und inklusive handgefertigter Baumwoll-Tragetasche.",
-    unit_de: "60\" × 90\" Einfarbige Pastell-Einzelbettdecke • Tamizhnad Ilavam Panju",
-    badge_de: "Pastell-Nebelblau • Steppdecke",
-    ingredients_de: "100% natürliche Ilavam Panju (Seidenbaumwolle aus Tamizhnad) + Handgefertigt aus 100% einfarbigem GOTS- & OEKO-TEX-zertifiziertem Bio-Baumwollstoff, biologisch gefärbt.",
-    name: "Heirloom Artisanal Quilt — Individual (60\" × 90\")",
-    name_de: "Handgefertigte Steppdecke — Einzelbett (60\" × 90\")",
+    name: "Heirloom Artisanal Quilt — Individual (55\" × 90\")",
+    name_de: "Handgefertigte Steppdecke — Einzelbett (55\" × 90\")",
     category: "quilts",
     price: 7099,
     priceEUR: 78.90,
-    unit: "60\" × 90\" Solid Pastel Individual Quilt • Tamizhnad Ilavam Panju",
-    badge: "Pastel Misty Blue • Solid Quilt",
+    unit: "55\" × 90\" Individual Quilt Roll • Ilavam Panju",
+    unit_de: "55\" × 90\" Einzelbettdecke • Ilavam Panju Seidenbaumwolle",
+    badge: "Ilavam Panju Filled",
+    badge_de: "Ilavam Panju Füllung",
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 21,
-    image: "assets/images/lookbook-bluegrey-moons.jpg?v=1",
-    colorways: PASTEL_COLORWAYS,
-    description: "Master solid pastel individual quilt (60\" × 90\") filled with 100% natural Ilavam Panju (silk cotton harvested from Tamizhnad) and encased in ultra-soft, brushed organically dyed solid pastel cotton fabric (available in all 6 pastel shades: Pastel Misty Blue-Grey, Pastel Lavender, Pastel Blush Pink, Pastel Mint Green, Pastel Peach, and Pastel Butter Yellow — our quilts are 100% solid pastel, completely unprinted). While the handcrafted quilt itself is not separately certified, the organic cotton fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with 100% eco-friendly plastic-free labels and a handcrafted tote carry bag.",
-    ingredients: "Natural Ilavam Panju (Silk Cotton harvested from Tamizhnad) Filling + Handcrafted from 100% Solid Pastel GOTS & OEKO-TEX Certified Organic Cotton Fabric, organically dyed.",
-    benefits: ["100% solid pastel brushed cotton with pure Tamizhnad Ilavam Panju filling for cloud-like comfort", "Crafted from GOTS & OEKO-TEX certified fabric", "Available in all 6 soothing pastel shades • Individual size (60\" × 90\")"],
+    image: "assets/images/quilt-roll.jpg",
+    description: "Master individual quilt roll (55\" × 90\") filled with 100% natural Ilavam Panju (silk cotton) and wrapped in unbleached, organically dyed cotton. Certified GOTS and OEKO-TEX Standard 100, providing breathable, thermal-regulating weight for deep, restorative sleep. Rolled and tied with raw cotton twine.",
+    description_de: "Meisterhaft handgesteppte Steppdecke (55\" × 90\") gefüllt mit 100% reinem Ilavam Panju (natürliche Seidenbaumwolle) und umhüllt von biologisch gefärbter Baumwolle. GOTS & OEKO-TEX Standard 100 zertifiziert für einen tiefen, chemiefreien und erholsamen Schlaf. Aufgerollt und gebunden mit ungebleichtem Baumwollband.",
+    ingredients: "Natural Ilavam Panju (Silk Cotton) Filling + 100% GOTS & OEKO-TEX Certified Organic Cotton, organically dyed.",
+    ingredients_de: "100% reine Ilavam Panju (Seidenbaumwolle) Füllung + GOTS & OEKO-TEX zertifizierte Bio-Baumwolle, pflanzlich gefärbt.",
+    benefits: ["100% pure Ilavam Panju (silk cotton) filling for natural buoyancy and thermal comfort", "GOTS & OEKO-TEX certified with zero toxic chemical treatments", "Generous individual single-bed dimensions (55\" × 90\")"],
+    benefits_de: ["100% reine Ilavam Panju Seidenbaumwolle für optimale Thermoregulation", "GOTS & OEKO-TEX zertifiziert, absolut frei von Schadstoffen und Bleichmitteln", "Großzügige Einzelbettmaße (55\" × 90\" / ca. 140 × 229 cm)"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: false
   },
   {
     id: "quilt-throw-kids",
-    description_de: "Federleichte, samtweiche wendbare Bio-Kinderkuscheldecke (40\" × 60\"): Angeraute einfarbige Pastell-Bio-Baumwolle auf der einen Seite und naturbelassenes Rohweiß mit feinen Naturmotiven auf der anderen Seite. Hergestellt aus GOTS- und OEKO-TEX-zertifiziertem Bio-Baumwollgarn. Inklusive Baumwoll-Tragetasche.",
-    unit_de: "40\" × 60\" Kinder-Plaid • Wendbar: Pastell & Naturdruck",
-    badge_de: "Pastell-Zartrosa • Strudel-Druck",
-    ingredients_de: "Handgefertigt aus 100% GOTS- & OEKO-TEX-zertifiziertem Bio-Baumwollgewebe (eine Seite Pastell, eine Seite Naturprint), biologisch gefärbt.",
-    name: "Organically Dyed Throw Blanket — Kids (40\" × 60\")",
-    name_de: "Bio-Kuscheldecke — Kinder (40\" × 60\")",
+    name: "Organically Dyed Throw Blanket — Kids (40\" × 50\")",
+    name_de: "Bio-Kuscheldecke — Kinder (40\" × 50\")",
     category: "quilts",
     price: 3399,
     priceEUR: 37.90,
-    unit: "40\" × 60\" Kids Throw • Solid Pastel One Side, Printed Other Side",
-    badge: "Pastel Blush Pink • Swirls Print",
+    unit: "40\" × 50\" Kids Throw Blanket Roll",
+    unit_de: "40\" × 50\" Kinder-Kuscheldecken-Rolle",
+    badge: "GOTS & OEKO-TEX",
+    badge_de: "GOTS & OEKO-TEX",
     badgeType: "organic",
     rating: 4.8,
     reviewsCount: 14,
-    image: "assets/images/lookbook-pink-swirls.jpg?v=1",
-    colorways: PASTEL_COLORWAYS,
-    description: "Lightweight, ultra-soft reversible kids throw blanket handcrafted from organic cotton thread yarns: solid pastel brushed cotton on one side and white with delicate pastel nature prints on the other side (Pastel Blush Pink with Swirls, Pastel Mint Green with Trees, Pastel Lavender with Clouds, Pastel Misty Blue-Grey with Crescent Moons, Pastel Peach with Suns, and Pastel Butter Yellow with Stars). While the finished throw itself is not separately certified, the organic fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Includes a handcrafted cotton tote bag.",
-    ingredients: "Handcrafted from 100% GOTS-Certified & OEKO-TEX Certified Organic Cotton Fabric (Solid Pastel One Side & Printed Other Side), organically dyed.",
-    benefits: ["Reversible: solid pastel brushed cotton on one side, delicate pastel print on the other side", "Made from GOTS & OEKO-TEX certified fabric", "Available in all 6 distinct pastel colorways • Kids size (40\" × 60\")"],
+    image: "assets/images/quilt-roll.jpg",
+    description: "Lightweight, cozy kids throw blanket woven from premium organic cotton and pure linen, organically dyed in earthy botanical tones. Certified GOTS and OEKO-TEX Standard 100 with zero synthetic dyes or chemicals. Neatly rolled and tied with rustic twine.",
+    description_de: "Leichte, atmungsaktive Kuscheldecke für Kinder aus feiner Bio-Baumwolle und Leinen, mit natürlichen Pflanzenfarben biologisch gefärbt. GOTS & OEKO-TEX Standard 100 zertifiziert, absolut frei von synthetischen Farbstoffen oder reizenden Chemikalien.",
+    ingredients: "100% GOTS-Certified & OEKO-TEX Certified Organic Cotton & Pure Linen, organically dyed.",
+    ingredients_de: "100% GOTS & OEKO-TEX zertifizierte Bio-Baumwolle & reines Leinen, pflanzlich gefärbt.",
+    benefits: ["Organically dyed, skin-soothing & hypoallergenic for young skin", "GOTS & OEKO-TEX certified with zero synthetic mordants or chemicals", "Lightweight, breathable comfort for naps, car rides, and stroller strolls"],
+    benefits_de: ["Pflanzlich gefärbt, samtweich und hypoallergen für empfindliche Kinderhaut", "GOTS & OEKO-TEX zertifiziert ohne chemische Fixiermittel", "Leicht, kuschelig und atmungsaktiv für Mittagsschlaf und unterwegs"],
     inStock: true,
     isFeatured: false,
     wholesaleAvailable: true
   },
   {
     id: "quilt-throw-adult",
-    description_de: "Großzügige wendbare Kuscheldecke für Erwachsene (60\" × 90\") aus reiner Bio-Baumwolle: Samtig angerautes einfarbiges Pastell auf der einen Seite und dezente Naturmuster auf ungebleichtem Weiß auf der anderen Seite (Minzgrün mit Bäumen, Nebelblau mit Mondsicheln, Lavendel mit Wolken, Rosa mit Strudeln, Pfirsich mit Sonnen, Buttergelb mit Sternen). Hergestellt aus GOTS- und OEKO-TEX-zertifiziertem Stoff mit plastikfreien Etiketten. Inklusive Baumwoll-Tragetasche.",
-    unit_de: "60\" × 90\" Plaid • Wendbar: Pastell & Naturdruck",
-    badge_de: "Pastell-Minzgrün • Baummuster",
-    ingredients_de: "Handgefertigt aus 100% GOTS- & OEKO-TEX-zertifiziertem Bio-Baumwollgewebe (eine Seite Pastell, eine Seite Naturprint), biologisch gefärbt.",
-    name: "Organically Dyed Throw Blanket — Adult (60\" × 90\")",
-    name_de: "Bio-Kuscheldecke — Erwachsene (60\" × 90\")",
+    name: "Organically Dyed Throw Blanket — Adult (55\" × 80\")",
+    name_de: "Bio-Kuscheldecke — Erwachsene (55\" × 80\")",
     category: "quilts",
     price: 4499,
     priceEUR: 49.90,
-    unit: "60\" × 90\" Adult Throw • Solid Pastel One Side, Printed Other Side",
-    badge: "Pastel Mint Green • Trees Print",
+    unit: "55\" × 80\" Adult Throw Blanket Roll",
+    unit_de: "55\" × 80\" Kuscheldecken-Rolle für Erwachsene",
+    badge: "GOTS & OEKO-TEX",
+    badge_de: "GOTS & OEKO-TEX",
     badgeType: "organic",
     rating: 4.9,
     reviewsCount: 18,
-    image: "assets/images/lookbook-mint-trees.jpg?v=1",
-    colorways: PASTEL_COLORWAYS,
-    description: "Generous reversible adult throw blanket (60\" × 90\") handcrafted from organic cotton thread yarns: solid pastel brushed cotton on one side and white with delicate pastel nature prints on the other side (Pastel Mint Green with Trees, Pastel Misty Blue-Grey with Crescent Moons, Pastel Lavender with Clouds, Pastel Blush Pink with Swirls, Pastel Peach with Suns, and Pastel Butter Yellow with Stars). While the finished throw itself is not separately certified, the organic fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Includes a handcrafted cotton tote bag.",
-    ingredients: "Handcrafted from 100% GOTS-Certified & OEKO-TEX Certified Organic Cotton Fabric (Solid Pastel One Side & Printed Other Side), organically dyed.",
-    benefits: ["Reversible: solid pastel brushed cotton on one side, delicate pastel print on the other side", "Made from GOTS & OEKO-TEX certified fabric with 100% eco-friendly plastic-free labels", "Available in all 6 distinct pastel colorways • Adult size (60\" × 90\")"],
+    image: "assets/images/quilt-roll.jpg",
+    description: "Generous adult lap throw blanket roll woven from premium organic cotton and linen, organically dyed in rich earthy hues. Certified GOTS and OEKO-TEX Standard 100 for pure, non-toxic living. Neatly rolled and tied with rustic twine.",
+    description_de: "Großzügige Wohndecke aus erstklassiger Bio-Baumwolle und Leinen, schonend biologisch in erdigen Naturtönen gefärbt. GOTS & OEKO-TEX Standard 100 zertifiziert für ein gesundes, schadstofffreies Wohngefühl. Eingerollt und gebunden mit Kordel.",
+    ingredients: "100% GOTS-Certified & OEKO-TEX Certified Organic Cotton & Pure Linen, organically dyed.",
+    ingredients_de: "100% GOTS & OEKO-TEX zertifizierte Bio-Baumwolle & reines Leinen, biologisch gefärbt.",
+    benefits: ["Organically dyed with gentle botanical pigments", "GOTS & OEKO-TEX certified (hypoallergenic, zero chemical flame retardants)", "Versatile, breathable comfort for all living spaces and seasons"],
+    benefits_de: ["Sanft pflanzlich gefärbt mit natürlichen Erdpigmenten", "GOTS & OEKO-TEX zertifiziert (hypoallergen, frei von Flammschutzmitteln)", "Vielseitig und behaglich für jede Jahreszeit"],
     inStock: true,
     isFeatured: false,
     wholesaleAvailable: true
@@ -451,98 +376,50 @@ const PRODUCTS = [
   // HERBAL LEAVES (Organic White Packets, 100g)
   {
     id: "herb-sacred-tulsi",
-    description_de: "Ganze, schonend an der Morgensonne getrocknete Blätter des Heiligen Basilikums (Krishna & Rama Tulsi) aus eigenem Permakulturanbau. Verpackt im versiegelten weißen Bio-Papierbeutel zur Bewahrung der ätherischen Öle. Ideal für klärenden Kräutertee und Ayurveda-Aufgüsse.",
-    unit_de: "100g Bio-Aromabeutel (Weiß)",
-    badge_de: "Heiliges Hofkraut",
-    ingredients_de: "100% reine, sonnengetrocknete Bio-Tulsiblätter im weißen Aromabeutel.",
     name: "Sun-Cured Sacred Tulsi Leaves (100g)",
-    name_de: "Sonnengetrocknete Heilige Tulsi-Blätter (100g)",
+    name_de: "Sonnengereiftes Heiliges Tulsikraut (100g)",
     category: "herbs",
     price: 280,
     priceEUR: 3.10,
-    unit: "100g Non-Plastic Pack",
-    badge: "Non-Plastic Pack",
+    unit: "100g Organic White Packet",
+    unit_de: "100g Weißer Bio-Frischebeutel",
+    badge: "Organic White Packet",
+    badge_de: "Bio-Frischebeutel",
     badgeType: "organic",
     rating: 4.9,
     reviewsCount: 19,
-    image: "assets/images/sacred-tulsi-leaves.jpg",
-    description: "Adaptogenic sacred holy basil (Tulsi) grown in mineral-rich living soil, shade-dried to preserve natural aromatic volatile oils, therapeutic properties, and whole leaf integrity. Packed in non-plastic packs.",
-    ingredients: "100% Pure Organic Krishna & Rama Tulsi Leaves (Ocimum sanctum).",
-    benefits: ["Calms the nervous system and supports natural stress resilience", "Rich in natural antioxidants, eugenol, and essential phytochemicals", "Packed in non-plastic packs to protect whole leaf vitality"],
+    image: "assets/images/tulsi-jar.jpg",
+    description: "Adaptogenic sacred holy basil (Tulsi) grown in mineral-rich living soil, shade-dried to preserve natural volatile oils and whole leaf integrity. Packaged in a 100g clean white organic packet (not brown Kraft or jar) to seal in therapeutic freshness.",
+    description_de: "Adaptogenes Heiliges Basilikum (Tulsi) aus mineralreichem lebendigem Boden, schonend im Schatten getrocknet zum Erhalt aller ätherischen Öle und Blattstrukturen. Frischeversiegelt im weißen 100g Bio-Standbeutel (kein braunes Papier, kein Glas) für puren Aromaschutz.",
+    ingredients: "100% Pure Organic Krishna & Rama Tulsi Leaves (Ocimum sanctum) in 100g White Packet.",
+    ingredients_de: "100% reines Bio Krishna- & Rama-Tulsikraut (Ocimum sanctum) im 100g Beutel.",
+    benefits: ["Calms the nervous system and supports natural stress resilience", "Rich in natural antioxidants, eugenol, and essential phytochemicals", "Packed in 100g clean white organic pouches for maximum purity"],
+    benefits_de: ["Beruhigt das Nervensystem und stärkt die innere Ausgeglichenheit", "Reich an natürlichen Antioxidantien, Eugenol und sekundären Pflanzenstoffen", "Verpackt im licht- und aromadichten weißen 100g Bio-Beutel"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
   },
   {
     id: "herb-moringa-leaves",
-    description_de: "Sonnengereifte Moringablätter von unseren hofeigenen Bäumen, handverlesen und bei niedriger Temperatur sonnengetrocknet. Vollgepackt mit pflanzlichem Eisen, Kalzium und Antioxidantien. Im weißen Bio-Beutel aromaversiegelt.",
-    unit_de: "100g Bio-Aromabeutel (Weiß)",
-    badge_de: "Vitalstoff-Superfood",
-    ingredients_de: "100% reine Bio-Moringablätter im versiegelten weißen Papierbeutel.",
     name: "Sun-Dried Organic Moringa Leaves (100g)",
-    name_de: "Sonnengetrocknete Bio-Moringablätter (100g)",
+    name_de: "Sonnengestrocknete Bio-Moringablätter (100g)",
     category: "herbs",
     price: 320,
     priceEUR: 3.50,
-    unit: "100g Non-Plastic Pack",
-    badge: "Non-Plastic Pack",
+    unit: "100g Organic White Packet",
+    unit_de: "100g Weißer Bio-Frischebeutel",
+    badge: "Organic White Packet",
+    badge_de: "Bio-Frischebeutel",
     badgeType: "fresh",
     rating: 4.9,
     reviewsCount: 26,
     image: "assets/images/rosemary-sage-stems.jpg",
-    description: "Sun-dried whole organic moringa leaves harvested fresh from our farmstead trees, retaining natural plant protein, bioavailable iron, active chlorophyll, and nutritional vitality. Packed in non-plastic packs.",
-    ingredients: "100% Organically Grown Whole Moringa Leaves (Moringa oleifera).",
-    benefits: ["Dense with essential vitamins, bio-available iron, and amino acids", "Gentle sun-drying preserves active chlorophyll and plant vitality", "Packed in non-plastic packs for everyday wellness"],
-    inStock: true,
-    isFeatured: true,
-    wholesaleAvailable: true
-  },
-
-  // LIVING HARVEST: MICROGREENS (Earthen Pots) & MUSHROOMS (Biodegradable Buckets)
-  {
-    id: "produce-living-microgreens",
-    description_de: "Frische, lebende Microgreens (Radieschen, Sonnenblume, Senf), die direkt in einem handgefertigten Tontopf auf lebendigem Kompostboden wachsen. Ernten Sie täglich frisch in Ihrer Küche.",
-    unit_de: "1 lebendiger Tontopf mit Bio-Keimlingen",
-    badge_de: "Lebendiges Grün",
-    ingredients_de: "Lebendige Bio-Keimlinge in traditioneller unglasierter Tonschale auf lebendigem Hofboden.",
-    name: "Living Microgreens in Earthen Pots",
-    name_de: "Lebende Microgreens im Tontopf",
-    category: "produce",
-    price: 240,
-    priceEUR: 2.70,
-    unit: "Living Terracotta Pot",
-    badge: "Earthen Pot • No Plastic",
-    badgeType: "organic",
-    rating: 4.9,
-    reviewsCount: 34,
-    image: "assets/images/microgreens-earthen-pots.jpg",
-    description: "Vibrant living microgreens grown directly in handcrafted terracotta earthen clay pots without plastic trays. Snip fresh at your table at peak nutritional vitality.",
-    ingredients: "100% Organically sprouted living microgreens in porous terracotta clay pot.",
-    benefits: ["Grown in mineral living soil inside reusable clay pots", "Delivered alive for maximum freshness and active enzymes", "Completely plastic-free from root to harvest"],
-    inStock: true,
-    isFeatured: true,
-    wholesaleAvailable: true
-  },
-  {
-    id: "produce-farmstead-mushrooms",
-    description_de: "Auf dem Hof kultivierte Austernpilze, die in biologisch abbaubaren Pflanzenfasereimern auf unserem hofeigenen Stroh wachsen. Täglich besprühen und erntefrische Gourmet-Pilze direkt in Ihrer Küche ernten.",
-    badge_de: "Lebendige Ernte",
-    unit_de: "1 Eimer mit lebendiger Pilzkultur",
-    ingredients_de: "Austernpilzkultur auf hofeigenem Bio-Entenweizenstroh im Pflanzenfasereimer.",
-    name: "Farmstead Mushrooms in Biodegradable Buckets",
-    name_de: "Hof-Pilze im biologisch abbaubaren Eimer",
-    category: "produce",
-    price: 360,
-    priceEUR: 4.00,
-    unit: "Fruiting Bio Bucket",
-    badge: "Biodegradable Bucket • No Bags",
-    badgeType: "fresh",
-    rating: 5.0,
-    reviewsCount: 28,
-    image: "assets/images/mushrooms-biodegradable-buckets.jpg",
-    description: "Plump gourmet farmstead mushrooms fruiting naturally out of biodegradable plant-fiber buckets instead of plastic grow bags. Clean, chemical-free, and rich in natural umami.",
-    ingredients: "100% Organically cultivated oyster mushrooms in biodegradable plant-fiber bucket.",
-    benefits: ["Grown in biodegradable plant-fiber buckets, never in plastic bags", "Dense with natural protein, beta-glucans, and minerals", "Harvested fresh at prime culinary tenderness"],
+    description: "Sun-dried whole organic moringa leaves harvested fresh from our farmstead trees. Packed in a 100g clean white organic packet, locking in natural plant protein, iron, and vitality without exposure to moisture or light.",
+    description_de: "Sonnengestrocknete ganze Moringablätter, von Hand geerntet von unseren Hofbäumen. Verpackt im lichtdichten weißen 100g Bio-Frischebeutel, vollgepackt mit pflanzlichem Protein, bioverfügbarem Eisen und Chlorophyll.",
+    ingredients: "100% Organically Grown Whole Moringa Leaves (Moringa oleifera) in 100g White Packet.",
+    ingredients_de: "100% sonnengetrocknete Bio-Moringablätter (Moringa oleifera) im 100g Beutel.",
+    benefits: ["Dense with essential vitamins, bio-available iron, and amino acids", "Gentle sun-drying preserves active chlorophyll and plant vitality", "Packaged in 100g clean white organic packets for everyday wellness"],
+    benefits_de: ["Konzentriert an essenziellen Vitaminen, Eisen und pflanzlichen Proteinen", "Schonende Trocknung bewahrt wertvolles Chlorophyll und Enzyme", "Praktischer weißer Frischebeutel für tägliche Tees und gesunde Ernährung"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
@@ -559,7 +436,7 @@ const FARM_VISITS = [
     duration_de: "1–2 Stunden Besuch",
     pricePerPerson: 450,
     pricePerPersonEUR: 5.00,
-    image: "assets/images/hero-basket.jpg?v=4",
+    image: "assets/images/hero-basket.jpg",
     badge: "Farm Walk",
     badge_de: "Hofrundgang",
     days: "Open Every Day",
@@ -649,292 +526,12 @@ const FARM_VISITS = [
   }
 ];
 
-const ALL_BLOG_DISPATCHES = [
-  {
-    id: "blog-11-productivity-pace",
-    title: "How much productivity is productive?",
-    category: "Farmstead Lore & Rhythm",
-    date: "Oct 23, 2026",
-    publishAt: "2026-10-23T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog11_productivity_pace.jpg",
-    url: "journal-11-how-much-productivity-is-productive.html",
-    excerpt: "Whatever you do needs consistency, but too much consistency is toxic and backfires into destruction. At Purreins Frequency, we prioritize health, quality, and products—strictly in that order.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Whatever you do and aim for it to be productive needs consistency—but too much consistency is actually toxic and can backfire on productivity, making it more of a force than a want.</p>
-      <p class="mb-4">So how productive should you be to make it effective productivity?</p>
-      <p class="mb-4">Let’s say, we at Purreins Frequency need to water all the farm plants once a day, every day. So what happens when we fall sick? We have another one of us doing it on our behalf, and other work—such as shipment, delivery, or manufacturing—is pushed to the next day.</p>
-      <p class="mb-4">We are honest about this, because in reality forced consistency doesn’t actually lead to productivity, but rather destruction—causing damage to health and hence multiple departments henceforth.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>At Purreins Frequency, we prioritise health, quality, and products—strictly in that order. Whichever serves the immediate need is provided. At the end of the day, we want to provide our users with the best quality products at the expected time range.</span></div>
-      </div>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“One message for the day we’d like to put out there is that misalignment in body, plant, or quality can only be aligned with extra time and not instantly, because we strictly forbid the use of chemicals and antibiotics.”</p>
-      </div>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Honest farming, living soil, and handcrafted rhythms.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Visit Farm Store</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "EffectiveProductivity", "ToxicConsistency", "HealthFirst", "NaturalAlignment", "ExtraTimeOverShortcuts", "ChemicalFreeFarm"]
-  },
-  {
-    id: "blog-10-banana-leaf-soap",
-    title: "Why do we make banana soaps from leaf not the fruit?",
-    category: "Artisan Craft & Science",
-    date: "Oct 22, 2026",
-    publishAt: "2026-10-22T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog10_banana_leaf_soap.jpg",
-    url: "journal-10-why-do-we-make-banana-soaps-from-leaf-not-the-fruit.html",
-    excerpt: "Yes, our banana soaps are made from freshly harvested banana leaves from our farm. With natural antimicrobial detox properties, green-tea-level anti-inflammatory compounds, and natural UV shielding, they heal from the root.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yes, our banana soaps are made from the banana leaves, freshly harvested from our farm. It focuses on cleansing and evening skin texture.</p>
-      <p class="mb-4">The banana leaf is known for its antimicrobial properties, acting as a natural detox on your skin. It also has the same anti-inflammatory presence found in green tea—this strips away any acne or redness from the surface, and regular use can cure it from the root too. One other cool factor is that banana leaves are natural shielders, protecting your skin from intense sun exposure and artificial UV indoor light exposure.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>If initial usage causes burning or irritation on skin, please give a break of a few days before using it again. As the antimicrobial effect starts working, it may cause burning on some sensitive skin types—this just means that the soap is doing good on you and is healing something from underneath.</span></div>
-      </div>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">We take full responsibility in saying this: “Nothing in nature is allergic—especially nothing that is edible is ever allergic—until you have antibiotics inside that are killing your good bacterias inside and confusing your body on the natural digestive process,” hence our soaps are safe naturally.</p>
-      </div>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Detox, shield, and heal from the root with our farm-harvested soaps.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Visit Farm Store &amp; Explore Soaps</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "BananaLeafSoap", "NaturalUVShield", "AntimicrobialDetox", "NothingInNatureIsAllergic", "RootHealing"]
-  },
-  {
-    id: "blog-09-swaddle-is-addictive",
-    title: "Swaddle is addictive.",
-    category: "Conscious Parenting & Rhythm",
-    date: "Oct 21, 2026",
-    publishAt: "2026-10-21T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog9_swaddle_quilt.jpg?v=4",
-    url: "journal-09-swaddle-is-addictive.html",
-    excerpt: "Swaddling helps babies sleep, they say—but only till they mature into their bodies. Once they show the first signs of rolling over, keeping them swaddled stops them from exploring their limbs and syncing with nature.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Swaddle your baby and that helps them relax and sleep better; they say.</p>
-      <p class="mb-4">Well, yes—swaddling your baby helps them sleep better and probably relax too, <strong class="text-[#E2C9A5] font-medium">but only till they mature.</strong> Babies mature? Yes, babies mature into their bodies and try learning to use their body parts, move around, and even try talking. So to facilitate these movements, you stop swaddling your baby when they show the first signs of rolling over onto their tummy.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Disclaimer: If you keep them swaddled and simulating the feeling of still being in the womb, it prevents them from trying to move anything at all.</span></div>
-      </div>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“Does that mean you should completely stop swaddling your baby, even when rocking them to sleep? YES, because babies haven't yet synced with the circadian rhythm of nature—they will try to explore their body anytime they're awake. This can be early in the morning, middle of the day, or even middle of the night.”</p>
-      </div>
-      <p class="mb-4">Your role as a parent is to give them the feeling of being secure and safe, and the space to grow up into a fully developed little human to big human.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">You can cover them gently with a <span class="text-[#D6AB66]">throw blanket or even a quilt</span>, while keeping the temperature just right—this will help them relax and rock them to sleep naturally.</p>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Wrap them in breathable, hand-stitched organic cotton quilts &amp; throws.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Explore Heirloom Quilt Rolls</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "ConsciousParenting", "CircadianRhythm", "LetBabiesMove", "HeirloomQuilts", "NaturalGrowth"]
-  },
-  {
-    id: "blog-08-curd-is-dairy",
-    title: "Curd is dairy too, right?",
-    category: "Nutrition & Intuition",
-    date: "Oct 20, 2026",
-    publishAt: "2026-10-20T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog8_curd_is_dairy.jpg",
-    url: "journal-08-curd-is-dairy-too-right.html",
-    excerpt: "Remember I told you we are all Lactose intolerant? Curd, unlike other dairy products, is fermented—literally killing away the sugar and giving you pure, gut-friendly acid that turns your body into a self-curing powerhouse.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Remember I told you we are all Lactose intolerant? How is curd any different and why we should take it regularly?</p>
-      <p class="mb-4">Curd, unlike other dairy products, is fermented (an anaerobic metabolic process where micro-organisms like yeast and bacteria break down carbohydrates such as glucose into acids, gases, or alcohol to produce cellular energy). This literally kills away the sugar and gives you pure, gut-friendly acid that stimulates faster and cleaner digestion.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“Taking curd everyday feeds your good gut bacteria and multiplies into many, many more good gut bacterias that keep regular watch on your system, and get you capable to fight any misalignment immediately and provide for instant cure. So your body becomes a self-curing powerhouse without the need of antibiotics, meds, long rest.”</p>
-      </div>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Keep eyes out for curds with preservatives—that's not what we are talking about here, that's just bad, very bad bacteria.</span></div>
-      </div>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">Make your own curd for your inner self and <span class="text-[#D6AB66]">use our curd soap for your outer self ^-^</span></p>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Nourish your outer self with our cold-process farmstead curd soaps.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Explore Curd Soaps in Farm Store</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "CurdIsDifferent", "FermentedGutHealth", "SelfCuringPowerhouse", "CurdSoap", "InnerAndOuterSelf"]
-  },
-  {
-    id: "blog-07-lactose-intolerant",
-    title: "We are all naturally Lactose intolerant?",
-    category: "Nutrition & Intuition",
-    date: "Oct 19, 2026",
-    publishAt: "2026-10-19T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog7_lactose_intolerant.jpg",
-    url: "journal-07-we-are-all-naturally-lactose-intolerant.html",
-    excerpt: "Yep, we are all naturally lactose intolerant. But this fact hides behind the chemicals in commercial pasteurization. Stopping dairy early gives your body time to make space for good bacteria.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yep, we are all naturally lactose intolerant. But this fact hides behind the many chemicals added to the commercial pasteurization process that makes digestion more suitable for the short term. Continued intake of this eventually trains your body to digest it as normal food over time.</p>
-      <p class="mb-4">The true effect of dairy products flares up either when you are too sensitive to it as a baby, or when you give it a long break and come back to it. First one, is as good as very good reflex and high presence of good bacteria. The second one, is where your body heals and clears away the bad bacteria and the natural effect shows.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“So does that mean you should stop taking in dairy and never have it again? Not quite, but yeah, because it is not doing anything but stocking up a set of illnesses that will show when your body gets old and doesn't have the young strength to keep producing new good bacteria.”</p>
-      </div>
-      <p class="mb-4">Stopping it early will give your body time to clear it out and make space for new good bacteria that will stay healthy and multiply through your old age and more.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">Well, you still need some kind of “milk” to take in your Matcha and Tea and Coffee, yes, and you have various options to choose from: Coconut milk. Cashew milk. Almond milk. Rice milk. Groundnut milk. La la la.</p>
-    `,
-    tags: ["PurreinsFrequency", "LactoseIntolerance", "DairyTruth", "PlantMilks", "GutBacteria", "RealNutrition"]
-  },
-  {
-    id: "blog-06-soaps-made-of",
-    title: "What are soaps made of?",
-    category: "Artisan Craft & Science",
-    date: "Oct 18, 2026",
-    publishAt: "2026-10-18T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog6_soap_ingredients.jpg",
-    url: "journal-06-what-are-soaps-made-of.html",
-    excerpt: "At Purreins Frequency, we use all farm produced ingredients with one “chemical agent” called Sodium Hydroxide NaOH, the breakdown of Sea Salt using electricity. Simple and heavy is the way to squishy skin.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">At Purreins Frequency, we use all farm-produced ingredients with one “chemical agent” called Sodium Hydroxide (NaOH), which is the breakdown of Sea Salt using electricity. This in real language is not a chemical—it's a byproduct of nature.</p>
-      <p class="mb-4">So our soaps are, oh so gently, blessed by Sea Breeze, and we add to that our freshly sourced products from cows and soil. We wouldn't claim to be 100% natural, because the process of turning Sea Salt into NaOH crystals is not natural, BUT we will claim and stand by being the brand that makes use of this byproduct crystal in the most ORGANIC WAY possible.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“We obviously cannot disclose the exact components for trademark reasons, but we assure you that when you use our soaps, the rich mixture of cleansing and nourishing will make your skin feel healthy and hungry for more ^_^”</p>
-      </div>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] mb-6">Simple and heavy is the way to squishy skin.</p>
-      <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Click here to experience luxurious showering with our organic soaps.</p>
-        <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Visit Farm Store</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    `,
-    tags: ["PurreinsFrequency", "WhatAreSoapsMadeOf", "SeaBreezeSoap", "ColdProcessTruth", "SodiumHydroxide", "SquishySkin", "FarmsteadStore"]
-  },
-  {
-    id: "blog-05-ai-speed",
-    title: "How fast should your AI agent be?",
-    category: "Technology & Mindset",
-    date: "Oct 17, 2026",
-    publishAt: "2026-10-17T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog5_ai_agent_speed.jpg",
-    url: "journal-05-how-fast-should-your-ai-agent-be.html",
-    excerpt: "AI is not a person, but hey it is kind of a person, right? Be nice to AI, give it time, let it cook. We eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is not a person, but hey it is kind of a person, right?</p>
-      <p class="mb-4">Let’s be realistic about our expectation from AI just because it's AI. It is a tool that is here to make our lives easier, but not jetfast, we don't even need that.</p>
-      <p class="mb-4">One, it's going to crash the damn agent for loading it with so much task within an unrealistic timeframe. Think about it: asking your Mac to run 5 YouTube videos in the background, while asking it to export 6 keys as PDFs, while asking it to install 7 softwares, while asking it to update the existing 8 apps, while trying to ask it to also edit your photos. Your computer is going to heat up so much, you could start cooking on it.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“THAT is exact, rather more happens when you ask your AI agents to do all these tasks together and be insanely fast at it. It's burning tokens, data, and internet at an insane rate that's not even comparable, qualifying for a big downtime. For days. Yes.”</p>
-      </div>
-      <p class="mb-4 font-serif text-xl sm:text-2xl text-[#E2C9A5] italic">Be nice to AI, give it time, let it cook.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">We here at Purreins Frequency, eat heavy breakfast, heavy lunch and heavy dinner everyday, but we eat 3 times, not all at once.</p>
-    `,
-    tags: ["PurreinsFrequency", "AINotJetFast", "LetItCook", "AgentMindset", "HeavyBreakfast", "RhythmOverSpeed"]
-  },
-  {
-    id: "blog-04-sustainable-ai",
-    title: "Sustainable AI?",
-    category: "Technology & Ecology",
-    date: "Oct 16, 2026",
-    publishAt: "2026-10-16T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog4_sustainable_ai.jpg",
-    url: "journal-04-sustainable-ai.html",
-    excerpt: "In the world of AI skyrocketing every second and sustainability figuring out a way to conclude itself, AI by itself can be or already is sustainable. When AI does technical things for me, I can give my human hours to the farm.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">Yes, you read that right. In the world of AI skyrocketing every second and sustainability figuring out a way to conclude itself, AI by itself can be or already is sustainable.</p>
-      <p class="mb-4">Being a farmer, I say this because when AI does technical things for me on the computers, on the machines, and on my phones, I can give my human time and working hours into the farm harvesting, nurturing my seeds, and meditating with the sun.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“AI is actually making our life sustainable in a way that the human race has not yet fully understood its capabilities. If you tap into the mechanics of AI and configure it to work for you, then you can work on yourself and spiritually take yourself to a level where the world actually feels like bliss.”</p>
-      </div>
-      <p class="mb-4">You can start by giving more time to learning what AI is and what your everyday is, and connecting the two to each other so the automatics are done by the AI, and the thinking, creativity, and manufacturing are done by you.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Automatics, technical maintenance, and data routing belong to algorithms.</span></div>
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Soil tending, craftsmanship, sensory feeling, and presence belong to humans.</span></div>
-      </div>
-      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">This might seem like a techie dev statement, but <strong class="text-[#D6AB66] font-semibold">AI is the essential ground for sustainability.</strong></p>
-    `,
-    tags: ["PurreinsFrequency", "SustainableAI", "FarmsteadTech", "NatureAndCode", "ConsciousAutomation", "HumanHours"]
-  },
-  {
-    id: "blog-03-rushing",
-    title: "What’re we all rushing towards?",
-    category: "Slow Living & Philosophy",
-    date: "Oct 15, 2026",
-    publishAt: "2026-10-15T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog3_rushing.jpg",
-    url: "journal-03-what-are-we-all-rushing-towards.html",
-    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
-      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
-      </div>
-      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
-      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
-        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
-      </div>
-      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
-    `,
-    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
-  },
-  {
-    id: "blog-02-hard-way",
-    title: "Why’re we doing everything the hard way?",
-    category: "Farmstead Lore",
-    date: "Oct 14, 2026",
-    publishAt: "2026-10-14T04:40:00+05:30",
-    readTime: "3 min read",
-    author: "Purreins Frequency",
-    image: "assets/images/blog2_hard_way.jpg",
-    url: "journal-02-why-are-we-doing-everything-the-hard-way.html",
-    excerpt: "In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a convenience-free life? Convenience and speed isn’t the way towards getting healthy.",
-    content: `
-      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a holistic, convenience-free life?</p>
-      <p class="mb-4">Well, turns out, that convenience and speed isn’t the way towards getting healthy.</p>
-      <p class="mb-4">All our plants, all our ducks, all our soaps are made Organically, as in made By Nature, not by intimidating the process of nature. The time needed to do that is the time we use to focus on our human instincts and soul purpose of being on planet earth.</p>
-      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60 space-y-1.5">
-        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic">Sounds spiritual?</p>
-        <p class="text-xs sm:text-sm text-[#CBB89D]/80 leading-relaxed">Not quite, not everything that is about Nature and holistic living, has to do with spirituality, most has to do with just existing and being in sync with the elements.</p>
-      </div>
-      <div class="space-y-2.5 bg-[#4E693B]/10 border border-[#8EB264]/20 p-5 rounded-sm my-6 text-xs sm:text-sm">
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Waking up with sun, falling asleep with the sun, using the rain, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the EXERCISE.</strong></p></div>
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Tilling the soil, harvesting produce, making food, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the GYM.</strong></p></div>
-        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Keeping it healthy, watching it grow, multiplying it, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the TASK.</strong></p></div>
-      </div>
-      <p class="mb-4">Get through all this, in the day, and the time you have remaining, is what you will need to start being spiritual.</p>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
-    `,
-    tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
-  },
+const BLOG_POSTS = [
   {
     id: "blog-01-eating-healthy",
     title: "Is eating healthy, healthy?",
     category: "Nutrition & Intuition",
     date: "Oct 13, 2026",
-    publishAt: "2026-10-13T04:40:00+05:30",
     readTime: "4 min read",
     author: "Purreins Frequency",
     image: "assets/images/blog1_eating_healthy.jpg",
@@ -963,14 +560,62 @@ const ALL_BLOG_DISPATCHES = [
   }
 ];
 
-// Fully autonomous client-side schedule: unlocks strictly at 4:40 AM IST on each post's date, sorted newest first
-const _now = new Date();
-const BLOG_POSTS = ALL_BLOG_DISPATCHES
-  .filter(post => !post.publishAt || new Date(post.publishAt) <= _now)
-  .sort((a, b) => new Date(b.publishAt || b.date) - new Date(a.publishAt || a.date));
-
-const STAGED_BLOG_POSTS = ALL_BLOG_DISPATCHES
-  .filter(post => post.publishAt && new Date(post.publishAt) > _now);
+// Staged Dispatches — Strictly ONE dispatch per day cadence
+const STAGED_BLOG_POSTS = [
+  {
+    id: "blog-02-hard-way",
+    title: "Why’re we doing everything the hard way?",
+    category: "Farmstead Lore",
+    date: "Oct 14, 2026",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog2_hard_way.jpg",
+    url: "journal-02-why-are-we-doing-everything-the-hard-way.html",
+    excerpt: "In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a convenience-free life? Convenience and speed isn’t the way towards getting healthy.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">In the world of AI and ultrafast moving times, why is Purreins Frequency going into the forests and living a holistic, convenience-free life?</p>
+      <p class="mb-4">Well, turns out, that convenience and speed isn’t the way towards getting healthy.</p>
+      <p class="mb-4">All our plants, all our ducks, all our soaps are made Organically, as in made By Nature, not by intimidating the process of nature. The time needed to do that is the time we use to focus on our human instincts and soul purpose of being on planet earth.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60 space-y-1.5">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic">Sounds spiritual?</p>
+        <p class="text-xs sm:text-sm text-[#CBB89D]/80 leading-relaxed">Not quite, not everything that is about Nature and holistic living, has to do with spirituality, most has to do with just existing and being in sync with the elements.</p>
+      </div>
+      <div class="space-y-2.5 bg-[#4E693B]/10 border border-[#8EB264]/20 p-5 rounded-sm my-6 text-xs sm:text-sm">
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Waking up with sun, falling asleep with the sun, using the rain, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the EXERCISE.</strong></p></div>
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Tilling the soil, harvesting produce, making food, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the GYM.</strong></p></div>
+        <div class="flex items-start gap-2.5"><span class="text-[#8EB264] font-mono">✦</span><p>Keeping it healthy, watching it grow, multiplying it, <strong class="text-[#D6AB66] font-semibold uppercase tracking-wide">IS the TASK.</strong></p></div>
+      </div>
+      <p class="mb-4">Get through all this, in the day, and the time you have remaining, is what you will need to start being spiritual.</p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15">It’s not the hard way, it’s the only way.</p>
+    `,
+    tags: ["PurreinsFrequency", "ConvenienceFree", "NatureIsTheGym", "ForestLiving", "OrganicallyMade", "FarmsteadRhythm"]
+  },
+  {
+    id: "blog-03-rushing",
+    title: "What’re we all rushing towards?",
+    category: "Slow Living & Philosophy",
+    date: "Oct 15, 2026",
+    readTime: "3 min read",
+    author: "Purreins Frequency",
+    image: "assets/images/blog3_rushing.jpg",
+    url: "journal-03-what-are-we-all-rushing-towards.html",
+    excerpt: "AI is good - Assistance is good - Speed is good. But none of that can equal nature, the process of nature, the sequence of nature. The only way to get healthy, is to slow down.",
+    content: `
+      <p class="text-base sm:text-lg text-[#E2C9A5] font-normal leading-relaxed mb-4">AI is good - Assistance is good - Speed is good.</p>
+      <p class="mb-4">But none of that can equal nature, the process of nature, the sequence of nature.</p>
+      <div class="py-3 my-6 pl-5 border-l-2 border-[#D6AB66]/60">
+        <p class="font-serif text-xl sm:text-2xl text-[#D6AB66] italic leading-relaxed">“The only way to get healthy, is to slow down. Not shut down, just slow down, take a moment, question yourself, run through your goals, prioritise them, realise them, balance them, with your self existence.”</p>
+      </div>
+      <p class="mb-4">Yes, achieving is important, but you need to be there to achieve it. You are as much important as the goals you have. And the way to do is the be alive, be healthy, be active.</p>
+      <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm space-y-2.5 font-mono text-xs sm:text-sm tracking-wide">
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>There is a race, one that we made for ourselves, nothing that nature made against us, except the food chain (which some of us aren’t even aware of).</span></div>
+        <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>To be part of the human race, you need to be aligned with the nature’s race at the least.</span></div>
+      </div>
+      <p class="font-serif text-lg sm:text-xl text-[#E2C9A5] pt-4 mt-4 border-t border-[#E2C9A5]/15">There’s no time, you might say, yes, there is no time, for yourself, you are giving away all your time to the race and others in the race. <strong class="text-[#D6AB66] font-semibold">The rushing will stop when you get this context.</strong></p>
+    `,
+    tags: ["PurreinsFrequency", "SlowDown", "SequenceOfNature", "StopTheRush", "MindfulPace", "HumanExistence"]
+  }
+];
 
 const FAQS = [
   {
@@ -978,8 +623,8 @@ const FAQS = [
     a: "You can add any items to your online cart and click 'Complete Order via WhatsApp' or 'Submit Order by Email'. This sends your exact order directly to our farm packing team without any middleman fees, and we confirm payment in INR & dispatch immediately!"
   },
   {
-    q: "Are your soaps 100% free of synthetic fragrances and other oils?",
-    a: "Yes! Every single bar of UP Purreins soap is cold-processed using only fresh cold-pressed coconut oil, farmstead fresh organic curd, and the pure farm-harvested flavor in the soap's name itself. No virgin olive oil, no castor oil, no shea butter, no artificial dyes, and completely free of synthetics."
+    q: "Are your soaps 100% free of synthetic fragrances and palm oil?",
+    a: "Yes! Every single bar of UP Purreins soap is cold-processed using pure natural olive, coconut, shea, and sweet almond oils. We scent exclusively with pure steam-distilled essential oils and color with wild clays and plant extracts. Zero artificial dyes, zero palm oil, zero phthalates."
   },
   {
     q: "Can we order custom farmstead gift hampers?",
@@ -993,24 +638,17 @@ const FAQS = [
 
 const WHOLESALE_TIERS = [
   {
-    category: "Living Microgreens & Mushrooms",
-    minOrder: "15 Pots / Bio Buckets (Weekly standing order)",
-    discount: "Direct restaurant & cafe wholesale rates",
-    packaging: "Earthen clay pots & biodegradable fiber buckets",
-    leadTime: "Harvested fresh on delivery morning"
-  },
-  {
     category: "Handcrafted Curd Soaps",
     minOrder: "30 Bars (Assorted varieties: Curd, Banana & Bamboo, Moringa, Dry Grass)",
     discount: "35% - 45% off retail",
-    packaging: "Plastic-free paper band",
+    packaging: "Plain unbranded organic Kraft paper noting only soap flavor, tied with textured seed-flecked cotton thread",
     leadTime: "3-5 business days"
   },
   {
     category: "Artisanal Quilt Rolls",
     minOrder: "10 Rolls / Throws",
     discount: "Trade & boutique wholesale rates",
-    packaging: "Cotton tote bag & care card",
+    packaging: "GOTS & OEKO-TEX certified, organically dyed, rolled with raw cotton twine & care cards",
     leadTime: "Handcrafted to order"
   },
   {
@@ -1024,7 +662,7 @@ const WHOLESALE_TIERS = [
     category: "Sun-Cured Herbal Leaves",
     minOrder: "20 Packs (Moringa Leaves & Sacred Tulsi)",
     discount: "Apothecary & cafe wholesale rates",
-    packaging: "Non-plastic packs / hand-tied organic bundles",
+    packaging: "Aroma-sealed jars / hand-tied organic bundles",
     leadTime: "3-5 business days"
   }
 ];
@@ -1304,12 +942,12 @@ window.I18N_DICTIONARY = {
   de: {
     nav_home: "Startseite",
     nav_shop: "Hofladen",
-    nav_visit: "Look",
+    nav_visit: "Schau",
     nav_journal: "Magazin",
     nav_about: "Über uns",
     nav_wholesale: "Großhandel",
     nav_contact: "Kontakt",
-    nav_book_visit: "Look",
+    nav_book_visit: "Schau",
     cart_title: "Ihr Erntekorb",
     cart_subtotal: "Zwischensumme",
     cart_free_delivery: "Kostenlose Lieferung",
@@ -1505,13 +1143,19 @@ function walkAndTranslateDOM(lang) {
 
 window.setSiteLanguage = function(lang) {
   if (lang !== 'en' && lang !== 'de') lang = 'en';
+  const prevLang = window.currentLang;
   window.currentLang = lang;
   try {
     localStorage.setItem('uppurreins_lang', lang);
   } catch (e) {}
 
-  window.updateSiteLanguageUI();
   applyGoogleTranslateTrigger(lang);
+  window.updateSiteLanguageUI();
+
+  // Instant seamless reload so all translations, prices, and scripts apply immediately
+  if (prevLang !== lang) {
+    window.location.reload();
+  }
 };
 
 window.toggleSiteLanguage = function() {
@@ -1557,12 +1201,14 @@ window.updateSiteLanguageUI = function() {
     });
   });
 
-  // 4. The Look button in header ALWAYS stays "Look" in both English and German with SVG intact
+  // 4. The Look button in header: "Look" in English, "Schau" in German with SVG intact
   const bookVisitBtn = document.getElementById('book-visit-btn');
   if (bookVisitBtn) {
+    const isDe = (window.currentLang === 'de');
+    const lookText = isDe ? 'Schau' : 'Look';
     const span = bookVisitBtn.querySelector('span');
     if (span) {
-      span.textContent = 'Look';
+      span.textContent = lookText;
     } else {
       bookVisitBtn.innerHTML = `
         <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1571,7 +1217,7 @@ window.updateSiteLanguageUI = function() {
           <path d="M6 7.2h8M7.5 9.2h5" stroke="#8A9E6E" stroke-width="1.2" stroke-linecap="round"/>
           <path d="M9 22h6" stroke="#8A9E6E" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <span class="text-[#e2c9a5]">Look</span>
+        <span class="text-[#e2c9a5]">${lookText}</span>
       `;
     }
   }
