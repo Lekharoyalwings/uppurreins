@@ -89,7 +89,7 @@
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="assets/css/custom.css?v=20261005_clean_v10">
+  <link rel="stylesheet" href="assets/css/custom.css?v=20261106_flag_v1">
   <style>
     /* Header & Navigation — Transparent Center, Soft Localized Fades Under Logo & Buttons */
     header {
@@ -487,7 +487,115 @@
       color: #C8995A !important;
       font-weight: 700 !important;
     }
-  </style>
+  
+    #header-lang-zone {
+      position: relative;
+      isolation: isolate;
+      pointer-events: auto;
+      z-index: 55;
+      display: inline-flex;
+      align-items: center;
+    }
+    #header-lang-btn {
+      position: relative;
+      isolation: isolate;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #4A5E3A;
+      color: #e2c9a5;
+      padding: 6.5px 10px;
+      border-radius: 2px;
+      border: 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.2s ease, transform 0.15s ease;
+      cursor: pointer;
+      line-height: 1;
+    }
+    #header-lang-btn:hover {
+      background-color: #6B7C55;
+    }
+    #header-lang-btn::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + 16px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, 
+        #000000 0%, 
+        #000000 45%, 
+        rgba(0, 0, 0, 0.6) 75%, 
+        rgba(0, 0, 0, 0) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    @media (max-width: 639px) {
+      #header-lang-btn::after {
+        width: calc(100% + 14px);
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+      }
+    }
+    .header-lang-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      z-index: 65;
+    }
+    .header-lang-option {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6.5px 10px;
+      background-color: #4A5E3A;
+      border-radius: 2px;
+      border: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.8);
+      cursor: pointer;
+      position: relative;
+      isolation: isolate;
+      white-space: nowrap;
+      line-height: 1;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  background-color 0.2s ease;
+    }
+    .header-lang-option:hover {
+      background-color: #6B7C55;
+    }
+    .header-lang-option::after {
+      content: "" !important;
+      position: absolute !important;
+      inset: -6px -12px !important;
+      border-radius: 9999px !important;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, 
+        #000000 0%, 
+        #000000 45%, 
+        rgba(0, 0, 0, 0.72) 72%, 
+        rgba(0, 0, 0, 0) 100%) !important;
+      pointer-events: none !important;
+      z-index: -1 !important;
+    }
+    #header-lang-zone:hover .header-lang-option,
+    #header-lang-zone.lang-open .header-lang-option {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
+    }
+</style>
 </head>
 <body class="bg-black antialiased flex flex-col min-h-screen">
 
@@ -513,6 +621,19 @@
           </svg>
           <span class="text-[#e2c9a5]">Look</span>
         </a>
+
+        <!-- Language Flag Switcher (Only active flag shown, other flag falls down like Look button) -->
+        <div id="header-lang-zone" class="relative inline-flex items-center group notranslate" translate="no">
+          <button type="button" id="header-lang-btn" class="inline-flex items-center justify-center bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-2.5 py-2 rounded-sm text-xs shadow-md transition border-0 cursor-pointer select-none" title="Language: English (₹ INR)" aria-label="Language Switcher">
+            <span class="text-[17px] leading-none select-none">🇬🇧</span>
+          </button>
+          <div id="header-lang-dropdown" class="header-lang-dropdown">
+            <button type="button" class="header-lang-option" onclick="window.setSiteLanguage('de')" title="Auf Deutsch wechseln (€ EUR)" aria-label="Auf Deutsch wechseln (€ EUR)">
+              <span class="text-[17px] leading-none select-none">🇩🇪</span>
+            </button>
+          </div>
+        </div>
+
 
 
         <!-- Mobile/Tablet Menu Button (No border line) -->
@@ -1064,7 +1185,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/data.js?v=20261106_lang_v1"></script>
+  <script src="assets/js/data.js?v=20261106_flag_v1"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js?v=20261023_v2_cleanest"></script>
   <script>
@@ -1134,7 +1255,7 @@
 
       // ── Blog Posts ─────────────────────────────────
       const blogGrid = document.getElementById('home-blog-grid');
-      if (blogGrid) {
+      if (blogGrid && typeof BLOG_POSTS !== 'undefined' && Array.isArray(BLOG_POSTS) && BLOG_POSTS.length > 0) {
         if (BLOG_POSTS.length === 1) {
           blogGrid.className = "grid md:grid-cols-1 max-w-xl mx-auto";
         } else if (BLOG_POSTS.length === 2) {

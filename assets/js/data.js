@@ -1206,17 +1206,9 @@ window.toggleSiteLanguage = function() {
 window.updateSiteLanguageUI = function() {
   const lang = window.currentLang;
   
-  // 1. Update side switcher active styles
-  const btnEn = document.getElementById('side-lang-btn-en');
-  const btnDe = document.getElementById('side-lang-btn-de');
-  if (btnEn && btnDe) {
-    if (lang === 'en') {
-      btnEn.className = "w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5 bg-[#4A5E3A] text-[#F2EAD8] shadow-md border border-[#8EB264]/40";
-      btnDe.className = "w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5 text-[#E8DCC8]/60 hover:text-[#F2EAD8] hover:bg-white/5";
-    } else {
-      btnDe.className = "w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5 bg-[#4A5E3A] text-[#F2EAD8] shadow-md border border-[#8EB264]/40";
-      btnEn.className = "w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5 text-[#E8DCC8]/60 hover:text-[#F2EAD8] hover:bg-white/5";
-    }
+  // 1. Update header flag switcher (Only active flag shown, other flag falls down)
+  if (typeof renderHeaderLangSwitcher === 'function') {
+    renderHeaderLangSwitcher();
   }
 
   // 2. Perform DOM phrase translation
@@ -1303,37 +1295,95 @@ window.updateSiteLanguageUI = function() {
   window.dispatchEvent(new CustomEvent('siteLanguageChanged', { detail: { lang } }));
 };
 
-function injectSideLangSwitcher() {
-  if (document.getElementById('side-lang-currency-switcher')) {
-    window.updateSiteLanguageUI();
-    return;
+// ── Header Flag Language Switcher (Only active flag shown, remaining falls down) ─
+function renderHeaderLangSwitcher() {
+  const currentLang = window.currentLang || 'en';
+  const isDe = (currentLang === 'de');
+
+  // Remove any legacy side switcher if present
+  const oldSide = document.getElementById('side-lang-currency-switcher');
+  if (oldSide) oldSide.remove();
+
+  // Active flag on button
+  const currentFlag = isDe ? '🇩🇪' : '🇬🇧';
+  const currentTitle = isDe ? 'Sprache: Deutsch (EUR €)' : 'Language: English (INR ₹)';
+
+  // Falling option flag
+  const targetLang = isDe ? 'en' : 'de';
+  const targetFlag = isDe ? '🇬🇧' : '🇩🇪';
+  const targetTitle = isDe ? 'Switch to English (INR ₹)' : 'Auf Deutsch wechseln (EUR €)';
+
+  const btn = document.getElementById('header-lang-btn');
+  if (btn) {
+    btn.setAttribute('title', currentTitle);
+    btn.setAttribute('aria-label', currentTitle);
+    btn.innerHTML = `<span class="text-[17px] leading-none select-none">${currentFlag}</span>`;
   }
-  const container = document.createElement('div');
-  container.id = 'side-lang-currency-switcher';
-  container.className = 'fixed right-0 top-1/2 -translate-y-1/2 z-[999] flex flex-col items-center gap-1.5 p-1.5 bg-[#141A13]/95 border-l-2 border-y-2 border-[#C8995A]/50 rounded-l-2xl shadow-2xl backdrop-blur-md select-none transition-all';
-  container.setAttribute('aria-label', 'Language and Currency Switcher');
 
-  container.innerHTML = `
-    <button type="button" id="side-lang-btn-en" onclick="window.setSiteLanguage('en')" class="w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5" title="Switch to English (INR ₹)">
-      <span class="text-xs">🇬🇧</span>
-      <span class="leading-none text-[11px]">EN</span>
-      <span class="text-[9px] font-mono text-[#C8995A] font-semibold">₹ INR</span>
-    </button>
-    <div class="w-5 h-[1px] bg-[#C8995A]/30"></div>
-    <button type="button" id="side-lang-btn-de" onclick="window.setSiteLanguage('de')" class="w-full py-1.5 px-2 rounded-lg text-[11px] font-bold tracking-wider transition-all flex flex-col items-center gap-0.5" title="Auf Deutsch wechseln (EUR €) • Website komplett auf Deutsch übersetzen">
-      <span class="text-xs">🇩🇪</span>
-      <span class="leading-none text-[11px]">DE</span>
-      <span class="text-[9px] font-mono text-[#C8995A] font-semibold">€ EUR</span>
-    </button>
-  `;
+  const dropdown = document.getElementById('header-lang-dropdown');
+  if (dropdown) {
+    dropdown.innerHTML = `
+      <button type="button" class="header-lang-option" onclick="window.setSiteLanguage('${targetLang}')" title="${targetTitle}" aria-label="${targetTitle}">
+        <span class="text-[17px] leading-none select-none">${targetFlag}</span>
+      </button>
+    `;
+  }
+}
 
-  document.body.appendChild(container);
+function injectHeaderLangSwitcher() {
+  // Remove any legacy side switcher
+  const oldSide = document.getElementById('side-lang-currency-switcher');
+  if (oldSide) oldSide.remove();
+
+  let zone = document.getElementById('header-lang-zone');
+  if (!zone) {
+    const navZone = document.getElementById('book-visit-nav-zone');
+    const bookBtn = document.getElementById('book-visit-btn');
+    if (navZone) {
+      zone = document.createElement('div');
+      zone.id = 'header-lang-zone';
+      zone.className = 'relative inline-flex items-center group notranslate';
+      zone.setAttribute('translate', 'no');
+      zone.innerHTML = `
+        <button type="button" id="header-lang-btn" class="inline-flex items-center justify-center bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-2.5 py-2 rounded-sm text-xs shadow-md transition border-0 cursor-pointer select-none" title="Language / Sprache" aria-label="Language Switcher">
+          <span class="text-[17px] leading-none select-none">🇬🇧</span>
+        </button>
+        <div id="header-lang-dropdown" class="header-lang-dropdown"></div>
+      `;
+      if (bookBtn && bookBtn.nextSibling) {
+        navZone.insertBefore(zone, bookBtn.nextSibling);
+      } else {
+        navZone.appendChild(zone);
+      }
+    }
+  }
+
+  // Toggle on click/tap for mobile/touch
+  const btn = document.getElementById('header-lang-btn');
+  if (btn && !btn.__hasClickAttached) {
+    btn.__hasClickAttached = true;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const z = document.getElementById('header-lang-zone');
+      if (z) z.classList.toggle('lang-open');
+    });
+  }
+
+  renderHeaderLangSwitcher();
   initGoogleTranslateSystem();
   window.updateSiteLanguageUI();
 }
 
+// Close falling flag dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const z = document.getElementById('header-lang-zone');
+  if (z && !z.contains(e.target)) {
+    z.classList.remove('lang-open');
+  }
+});
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', injectSideLangSwitcher);
+  document.addEventListener('DOMContentLoaded', injectHeaderLangSwitcher);
 } else {
-  injectSideLangSwitcher();
+  injectHeaderLangSwitcher();
 }
