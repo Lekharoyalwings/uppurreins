@@ -1123,9 +1123,7 @@ function walkAndTranslateDOM(lang) {
             node.parentNode.closest('#book-visit-btn') || 
             node.parentNode.closest('.notranslate') || 
             node.parentNode.closest('[translate="no"]') ||
-            node.parentNode.classList.contains('notranslate')) {
-          return NodeFilter.FILTER_REJECT;
-        }
+            (node.parentNode.classList && node.parentNode.classList.contains('notranslate'))) {
           return NodeFilter.FILTER_REJECT;
         }
         return NodeFilter.FILTER_ACCEPT;
