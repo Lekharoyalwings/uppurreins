@@ -502,10 +502,26 @@
     }
   }
 
+  function initDalmatians() {
+    // Strictly enforce: Dalmatian puppies appear ONLY on the About Us page
+    const path = window.location.pathname.toLowerCase();
+    const isAboutPage = path.endsWith('about.html') || 
+                        path.endsWith('about') || 
+                        path.endsWith('/about/') ||
+                        document.title.toLowerCase().includes('about') ||
+                        document.title.toLowerCase().includes('our story') ||
+                        (document.body && document.body.classList.contains('page-about')) ||
+                        document.getElementById('sanctuary-slide-3') !== null;
+    if (!isAboutPage && !window.forceDalmatians) {
+      return;
+    }
+    new DalmatianGuardians();
+  }
+
   // Auto-init on page load
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => new DalmatianGuardians());
+    document.addEventListener('DOMContentLoaded', initDalmatians);
   } else {
-    new DalmatianGuardians();
+    initDalmatians();
   }
 })();
