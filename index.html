@@ -828,31 +828,6 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════ -->
-  <!-- FEATURED FARM FAVORITES                         -->
-  <!-- ═══════════════════════════════════════════════ -->
-  <section class="py-16 sm:py-20 bg-black">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <!-- Section Header -->
-      <div class="stable-bar rounded-sm">
-        <span class="stable-bar-label">Handcrafted &amp; Freshly Harvested</span>
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-          <h2 class="stable-bar-title text-3xl sm:text-4xl">Featured Farm Favorites</h2>
-          <a href="shop.html" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-mossLight hover:text-brand-leaf transition relative z-10">
-            <span>View Full Catalog</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Single Line Across All Offerings -->
-      <div class="flex lg:grid lg:grid-cols-5 gap-4 sm:gap-5 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 no-scrollbar snap-x snap-mandatory" id="featured-products-grid">
-        <!-- Injected via JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════ -->
   <!-- CHAPTER 01: HEIRLOOM TEXTILES (QUILTS & THROWS) -->
   <!-- ═══════════════════════════════════════════════ -->
   <section class="py-20 bg-black relative overflow-hidden border-t border-white/10">
@@ -1419,53 +1394,6 @@
   <script src="assets/js/main.js?v=20261023_v2_cleanest"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-
-      // ── Featured Products (One Line Only: One Quilt, One Soap, and One of Each Chapter) ──
-      const featuredGrid = document.getElementById('featured-products-grid');
-      const FEATURED_IDS = [
-        'quilt-heirloom-individual',
-        'soap-curd',
-        'eggs-pasture-duck-6',
-        'herb-sacred-tulsi',
-        'produce-living-microgreens'
-      ];
-      const featured = FEATURED_IDS.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
-
-      if (featuredGrid) {
-        featuredGrid.innerHTML = featured.map(product => `
-          <div class="stall-card card-hover flex flex-col justify-between flex-shrink-0 w-[240px] sm:w-[260px] lg:w-auto snap-start">
-            <div>
-              <div class="stall-header">
-                <span class="stall-label">${product.category.replace('-', ' ')}</span>
-              </div>
-              <div class="relative img-zoom-wrapper h-44 cursor-pointer" onclick="openProductModal('${product.id}')">
-                <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
-                <span class="absolute top-3 left-3 text-[11px] px-2.5 py-0.5 rounded-sm font-medium ${product.badgeType === 'organic' ? 'badge-organic' : 'badge-featured'}">
-                  ${product.badge}
-                </span>
-              </div>
-              <div class="stall-body">
-                <h3 class="font-serif font-bold text-brand-cream text-base hover:text-brand-mossLight cursor-pointer transition mt-1 line-clamp-1" onclick="openProductModal('${product.id}')" title="${product.name}">${product.name}</h3>
-                <p class="text-xs text-brand-oat/60 mt-1 line-clamp-2">${product.description}</p>
-              </div>
-            </div>
-            <div class="p-4 pt-0">
-              <div class="pt-3 border-t border-white/10 flex items-center justify-between">
-                <div>
-                  <span class="text-[11px] text-brand-oat/40 block truncate max-w-[110px]">${product.unit}</span>
-                  <span class="font-bold text-brand-gold text-sm sm:text-base">${(typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`}</span>
-                </div>
-                <button onclick="window.cart.addItem('${product.id}')" class="p-2 rounded-sm bg-brand-forest/30 hover:bg-brand-forest text-brand-cream transition" title="Add to Basket">
-                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        `).join('');
-        if (window.lucide && typeof window.lucide.createIcons === 'function') {
-          window.lucide.createIcons();
-        }
-      }
 
       // ── Farm Tours ─────────────────────────────────
       const toursGrid = document.getElementById('home-tours-grid');
