@@ -1179,3 +1179,17 @@ button[title="Shopping Basket"]::after {
   transform: translateY(0) !important;
   pointer-events: auto !important;
 }
+
+
+/* ════════════════════════════════════════════════════
+   HORSESHOE FREQUENCY MOTION CANVAS
+   ════════════════════════════════════════════════════ */
+#horseshoe-frequency-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 45;
+}
