@@ -161,9 +161,13 @@ function openProductModal(productId) {
         <img id="modal-product-img" src="${product.image}" alt="${name}" class="w-full h-72 sm:h-84 object-cover transition-opacity duration-300" />
       </div>
       <div>
-        <div class="flex items-center gap-2 mb-2">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
           <span id="modal-product-badge" class="text-xs px-2.5 py-0.5 rounded-full font-medium ${product.badgeType === 'organic' ? 'bg-brand-forest/40 text-brand-mossLight border border-brand-mossLight/30' : 'bg-brand-gold/20 text-brand-gold border border-brand-gold/30'}">
             ${badge}
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-[11px] font-mono font-semibold">
+            <i data-lucide="map-pin" class="w-3 h-3 text-brand-gold"></i>
+            <span>${isDe ? 'Wurzeln aus Südindien' : 'Roots from Southern India'}</span>
           </span>
           <span class="text-xs text-[#cbb89d]/70">• ${unit}</span>
         </div>
@@ -199,8 +203,17 @@ function openProductModal(productId) {
         <p class="text-[#cbb89d] text-sm leading-relaxed mb-4">${desc}</p>
         
         <div class="bg-white/5 p-4 rounded-xl mb-4 border border-white/10">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-2">${pureIngHeader}</h4>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-gold">${pureIngHeader}</h4>
+            <span class="inline-flex items-center gap-1 text-[11px] font-mono text-brand-gold font-medium">
+              <i data-lucide="map-pin" class="w-3 h-3"></i> ${isDe ? 'Wurzeln aus Südindien' : 'Roots from Southern India'}
+            </span>
+          </div>
           <p class="text-xs text-[#e2c9a5]/90 leading-relaxed">${ingredients}</p>
+          <div class="mt-2.5 pt-2 border-t border-white/10 flex items-center gap-1.5 text-[11px] text-brand-oat/75 font-mono">
+            <span class="text-brand-gold">✦</span>
+            <span>${isDe ? 'Traditionelle Herkunft: Wurzeln aus Südindien' : 'Heritage & Provenance: Roots from Southern India'}</span>
+          </div>
         </div>
 
         <div class="mb-5 p-3 rounded-lg bg-brand-gold/10 border border-brand-gold/25 flex items-center gap-2.5 text-xs text-brand-gold">

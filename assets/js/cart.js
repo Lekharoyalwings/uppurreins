@@ -7,7 +7,7 @@ class CartManager {
     this.customer = this.loadCustomer();
     this.pincode = this.loadPincode();
     this.shippingStatus = this.loadShippingStatus();
-    this.freeDeliveryThreshold = 1500;
+    this.freeDeliveryThreshold = 15000;
     this.initUI();
   }
 
@@ -439,7 +439,7 @@ class CartManager {
         freeDeliveryBanner.innerHTML = `
           <div class="bg-brand-forest/30 border border-brand-mossLight/30 px-3 py-2 rounded-sm text-xs text-[#e2c9a5] flex items-center gap-2">
             <i data-lucide="sparkles" class="w-4 h-4 text-brand-gold flex-shrink-0"></i>
-            <span><strong>${isDe ? 'Qualifiziert!' : 'Qualified!'}</strong> ${isDe ? 'Kostenlose Hoflieferung freigeschaltet.' : 'Free Farmstead Delivery unlocked across Tamil Nadu & Kerala.'}</span>
+            <span><strong>${isDe ? 'Qualifiziert!' : 'Qualified!'}</strong> ${isDe ? 'Kostenlose Hoflieferung freigeschaltet.' : 'Free Farmstead Delivery unlocked for orders above INR 15,000.'}</span>
           </div>
         `;
       } else {
@@ -447,7 +447,7 @@ class CartManager {
         const remainingFormatted = (typeof window.formatPrice === 'function')
           ? window.formatPrice(remainingVal, remainingVal / 90)
           : `INR ${remainingVal.toLocaleString('en-IN')}`;
-        const thresholdText = isDe ? 'Ab 15 € Bestellwert' : 'Threshold INR 1,500';
+        const thresholdText = isDe ? 'Ab 165 € Bestellwert' : 'Threshold INR 15,000';
         const addMoreText = isDe ? `Noch <strong class="text-brand-gold">${remainingFormatted}</strong> für kostenlose Lieferung` : `Add <strong class="text-brand-gold">${remainingFormatted}</strong> more for Free Delivery`;
         freeDeliveryBanner.innerHTML = `
           <div class="bg-white/5 border border-white/10 px-3 py-2 rounded-sm text-xs text-[#cbb89d] flex items-center justify-between gap-2">
@@ -576,7 +576,7 @@ class CartManager {
     } else if (subtotal >= this.freeDeliveryThreshold) {
       message += isDe 
         ? `*Versand (${this.pincode || 'Inklusive'}):* KOSTENLOS\n` 
-        : `*Shipping Charges (${this.pincode || 'Free'}):* FREE (Order > INR 1,500)\n`;
+        : `*Shipping Charges (${this.pincode || 'Free'}):* FREE (Order > INR 15,000)\n`;
     }
     message += isDe ? `*Gesamtbetrag:* ${window.formatPrice(finalTotal, finalTotalEUR)}\n` : `*Total Order Value:* INR ${finalTotal.toLocaleString('en-IN')}\n`;
     message += `----------------------------------------\n`;
@@ -616,7 +616,7 @@ class CartManager {
     if (shippingFee > 0) {
       body += `Shipping Charges (${this.pincode || 'PIN'}): INR ${shippingFee.toLocaleString('en-IN')}\n`;
     } else if (subtotal >= this.freeDeliveryThreshold) {
-      body += `Shipping Charges (${this.pincode || 'Free'}): FREE (Order > INR 1,500)\n`;
+      body += `Shipping Charges (${this.pincode || 'Free'}): FREE (Order > INR 15,000)\n`;
     }
     body += `Total Order Value: INR ${finalTotal.toLocaleString('en-IN')}\n\n`;
     body += `Customer Details:\n`;

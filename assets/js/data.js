@@ -53,6 +53,8 @@ const PRODUCTS = [
   // CURD SOAPS (Sculptural 3D Bubble Cubes • 3x3 rounded spheres all around, wrapped in plain unbranded organic paper stating ONLY the botanical name with NO word 'Soap', tied with seed-flecked cotton thread)
   {
     id: "soap-curd",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Reine, kaltgerührte Quarkseife mit unserer charakteristischen skulpturalen 3D-Bubble-Cube-Form. Gesiedet aus reinem kaltgepresstem Kokosöl, frischem hofeigenem Bio-Quark und sonst nichts. Sanfter, rückfettender Schaum mit natürlicher Milchsäure für empfindliche Haut.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Echte Hof-Quarkseife",
@@ -77,6 +79,8 @@ const PRODUCTS = [
   },
   {
     id: "soap-banana",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Kaltgesiedete 3D-Bubble-Cube-Seife, angereichert mit nährstoffreichem, sonnengetrocknetem Bananenblatt-Auszug und frischem Bio-Quark. Sanft peelend und feuchtigkeitsspendend.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Bananenblatt-Extrakt",
@@ -101,6 +105,8 @@ const PRODUCTS = [
   },
   {
     id: "soap-bamboo",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Skulpturale 3D-Bubble-Cube-Seife mit mineralstoffreicher Bambus-Kieselsäure und cremiger Bio-Quarkbasis. Reinigt porentief und beruhigt beanspruchte Haut.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Bambus-Kieselsäure",
@@ -125,6 +131,8 @@ const PRODUCTS = [
   },
   {
     id: "soap-moringa",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Kaltprozess-Seife mit sonnengetrocknetem Bio-Moringablattpulver und Quark. Reich an Antioxidantien, Vitaminen und Mineralien für ein strahlendes Hautbild.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Grünes Moringablatt",
@@ -149,6 +157,8 @@ const PRODUCTS = [
   },
   {
     id: "soap-dry-grass",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Handgerührte Seife mit dem Duft sonnengetrockneter Wiesenkräuter und wildem Heu, verfeinert mit Bio-Quark für milde, erdende Körperpflege.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Wiesenkräuter & Heu",
@@ -173,6 +183,8 @@ const PRODUCTS = [
   },
   {
     id: "soap-turmeric",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Warme goldgelbe 3D-Bubble-Cube-Seife mit handgemahlenem wildem Bio-Kurkuma und cremiger Quarkbasis für sanfte Klärung und natürlichen Teint.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Wilder Gelbwurz",
@@ -197,6 +209,8 @@ const PRODUCTS = [
   },
   {
     id: "soap-coffee",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Tiefbraune Kaltprozess-Seife mit frisch geröstetem Arabica-Kaffee und Bio-Quark. Belebt die Mikrozirkulation und peelt sanft bei der Morgenwäsche.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Espresso Peeling",
@@ -224,6 +238,8 @@ const PRODUCTS = [
   // PASTURE DUCK EGGS
   {
     id: "eggs-pasture-duck-6",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "6 tagesfrische Eier unserer freilaufenden Enten. Reich an Omega-3-Fettsäuren, mit tief orangem Eigelb und fester Konsistenz, ideal für feine Backwaren und Genießerfrühstück.",
     unit_de: "6 Eier im Strohkarton",
     badge_de: "Freilandhaltung",
@@ -248,6 +264,8 @@ const PRODUCTS = [
   },
   {
     id: "eggs-pasture-duck-24",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "24 tagesfrische Weide-Enteneier in einer stabilen Holzkiste auf weichem Naturstroh. Direkt vom morgendlichen Einsammeln verpackt.",
     unit_de: "24 Eier in Hofstiege",
     badge_de: "Vorratskiste",
@@ -274,6 +292,8 @@ const PRODUCTS = [
   // ARTISANAL QUILT ROLLS & ORGANIC COTTON LINEN (4 Distinct Products)
   {
     id: "quilt-heirloom-kids",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Handgefertigte, einfarbige Pastell-Wolkensteppdecke (102 × 127 cm), gefüllt mit 400g 100% natürlicher Ilavam Panju (reine Seidenbaumwolle aus Tamizhnad) und eingefasst in samtweichem Köpergewebe (Twill Weave) aus natürlich gefärbten Bio-Baumwollgarnen (erhältlich in allen 6 sanften Pastelltönen: Pastell-Lavendel, Pastell-Nebelblau-Grau, Pastell-Zartrosa, Pastell-Minzgrün, Pastell-Pfirsich und Pastell-Buttergelb). Der Stoff ist GOTS- und OEKO-TEX Standard 100-zertifiziert, atmungsaktiv, antiallergen und wunderbar leicht. Inklusive handgefertigter Baumwoll-Tragetasche.",
     unit_de: "102 × 127 cm (40″ × 50″) • 400g Tamizhnad Seidenbaumwolle • Einfarbig Pastell",
     badge_de: "400g Seidenbaumwolle • Petite Wolke",
@@ -302,6 +322,8 @@ const PRODUCTS = [
   },
   {
     id: "quilt-heirloom-individual",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Handgefertigte, einfarbige Pastell-Wolkensteppdecke (127 × 178 cm), gefüllt mit 700g 100% natürlicher Ilavam Panju (reine Seidenbaumwolle, geerntet in Tamizhnad) und eingefasst in samtweichem Köpergewebe (Twill Weave) aus natürlich gefärbten Bio-Baumwollgarnen (erhältlich in allen 6 Pastelltönen: Pastell-Nebelblau-Grau, Pastell-Lavendel, Pastell-Zartrosa, Pastell-Minzgrün, Pastell-Pfirsich und Pastell-Buttergelb — unsere Steppdecken sind 100% einfarbig pastellfarben, völlig unbedruckt). Während die handgefertigte Decke selbst kein separates Siegel trägt, ist der verwendete Bio-Baumwollstoff GOTS- und OEKO-TEX Standard 100-zertifiziert. Veredelt mit 100% umweltfreundlichen, plastikfreien Etiketten und inklusive handgefertigter Baumwoll-Tragetasche.",
     unit_de: "127 × 178 cm (50″ × 70″) • 700g Tamizhnad Seidenbaumwolle • Einfarbig Pastell",
     badge_de: "700g Seidenbaumwolle • Grand Wolke",
@@ -330,6 +352,8 @@ const PRODUCTS = [
   },
   {
     id: "quilt-throw-kids",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Federleichte, samtweiche wendbare Bio-Kuscheldecke (102 × 127 cm) im feinen Köpergewebe (Twill Weave) aus natürlich gefärbten Bio-Baumwollgarnen: Angeraute einfarbige Pastell-Bio-Baumwolle auf der einen Seite und naturbelassenes Reinweiß mit feinen Naturmotiven auf der anderen Seite. Hergestellt aus GOTS- und OEKO-TEX-zertifiziertem Bio-Baumwollstoff. Inklusive Baumwoll-Tragetasche.",
     unit_de: "102 × 127 cm (40″ × 50″) • Petite Plaid • Wendbar: Pastell & Naturdruck",
     badge_de: "Pastell-Zartrosa • Strudel-Druck",
@@ -353,11 +377,13 @@ const PRODUCTS = [
     ingredients: "Handcrafted with Twill Weave using Naturally Dyed Organic Cotton Yarns, 100% GOTS & OEKO-TEX Certified Organic Cotton Fabric (Solid Pastel One Side & Printed Other Side).",
     benefits: ["Twill weave with organic cotton yarns, naturally dyed", "Reversible: solid pastel brushed cotton on one side, delicate nature print on the other", "Crafted from GOTS & OEKO-TEX Standard 100 certified fabric", "Available in all 6 distinct pastel colorways • Petite size (102 × 127 cm)"],
     inStock: true,
-    isFeatured: false,
+    isFeatured: true,
     wholesaleAvailable: true
   },
   {
     id: "quilt-throw-adult",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Großzügige wendbare Kuscheldecke (127 × 178 cm) im feinen Köpergewebe (Twill Weave) aus natürlich gefärbten Bio-Baumwollgarnen: Samtig angerautes einfarbiges Pastell auf der einen Seite und dezente Naturmuster auf ungebleichtem Reinweiß auf der anderen Seite (Minzgrün mit Bäumen, Nebelblau mit Mondsicheln, Lavendel mit Wolken, Rosa mit Strudeln, Pfirsich mit Sonnen, Buttergelb mit Sternen). Hergestellt aus GOTS- und OEKO-TEX-zertifiziertem Stoff mit plastikfreien Etiketten. Inklusive Baumwoll-Tragetasche.",
     unit_de: "127 × 178 cm (50″ × 70″) • Grand Plaid • Wendbar: Pastell & Naturdruck",
     badge_de: "Pastell-Minzgrün • Baummuster",
@@ -381,13 +407,15 @@ const PRODUCTS = [
     ingredients: "Handcrafted with Twill Weave using Naturally Dyed Organic Cotton Yarns, 100% GOTS & OEKO-TEX Certified Organic Cotton Fabric (Solid Pastel One Side & Printed Other Side).",
     benefits: ["Twill weave with organic cotton yarns, naturally dyed", "Reversible: solid pastel brushed cotton on one side, delicate nature print on the other", "Crafted from GOTS & OEKO-TEX Standard 100 certified fabric with 100% eco-friendly plastic-free labels", "Available in all 6 distinct pastel colorways • Grand size (127 × 178 cm)"],
     inStock: true,
-    isFeatured: false,
+    isFeatured: true,
     wholesaleAvailable: true
   },
 
   // HERBAL LEAVES (Organic White Packets, 100g)
   {
     id: "herb-sacred-tulsi",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Ganze, schonend an der Morgensonne getrocknete Blätter des Heiligen Basilikums (Krishna & Rama Tulsi) aus eigenem Permakulturanbau. Verpackt im versiegelten weißen Bio-Papierbeutel zur Bewahrung der ätherischen Öle. Ideal für klärenden Kräutertee und Ayurveda-Aufgüsse.",
     unit_de: "100g Bio-Aromabeutel (Weiß)",
     badge_de: "Heiliges Hofkraut",
@@ -412,6 +440,8 @@ const PRODUCTS = [
   },
   {
     id: "herb-moringa-leaves",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Sonnengereifte Moringablätter von unseren hofeigenen Bäumen, handverlesen und bei niedriger Temperatur sonnengetrocknet. Vollgepackt mit pflanzlichem Eisen, Kalzium und Antioxidantien. Im weißen Bio-Beutel aromaversiegelt.",
     unit_de: "100g Bio-Aromabeutel (Weiß)",
     badge_de: "Vitalstoff-Superfood",
@@ -438,6 +468,8 @@ const PRODUCTS = [
   // LIVING HARVEST: MICROGREENS (Earthen Pots) & MUSHROOMS (Biodegradable Buckets)
   {
     id: "produce-living-microgreens",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Frische, lebende Microgreens (Radieschen, Sonnenblume, Senf), die direkt in einem handgefertigten Tontopf auf lebendigem Kompostboden wachsen. Ernten Sie täglich frisch in Ihrer Küche.",
     unit_de: "1 lebendiger Tontopf mit Bio-Keimlingen",
     badge_de: "Lebendiges Grün",
@@ -462,6 +494,8 @@ const PRODUCTS = [
   },
   {
     id: "produce-farmstead-mushrooms",
+    origin: "Roots from Southern India",
+    origin_de: "Wurzeln aus Südindien",
     description_de: "Auf dem Hof kultivierte Austernpilze, die in biologisch abbaubaren Pflanzenfasereimern auf unserem hofeigenen Stroh wachsen. Täglich besprühen und erntefrische Gourmet-Pilze direkt in Ihrer Küche ernten.",
     badge_de: "Lebendige Ernte",
     unit_de: "1 Eimer mit lebendiger Pilzkultur",
