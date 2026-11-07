@@ -845,7 +845,7 @@
         </div>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" id="featured-products-grid">
+      <div class="flex lg:grid lg:grid-cols-5 gap-4 sm:gap-5 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 no-scrollbar snap-x snap-mandatory" id="featured-products-grid">
         <!-- Injected via JavaScript -->
       </div>
     </div>
@@ -1178,45 +1178,42 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-      // ── Featured Products (Curated: Primarily Quilts + Core Living Farm Chapters) ──
+      // ── Featured Products (One Line Only: One Quilt, One Soap, and One of Each Chapter) ──
       const featuredGrid = document.getElementById('featured-products-grid');
       const FEATURED_IDS = [
         'quilt-heirloom-individual',
-        'quilt-throw-adult',
-        'quilt-heirloom-kids',
-        'quilt-throw-kids',
         'soap-curd',
-        'soap-moringa',
         'eggs-pasture-duck-6',
-        'herb-sacred-tulsi'
+        'herb-sacred-tulsi',
+        'produce-living-microgreens'
       ];
       const featured = FEATURED_IDS.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
 
       if (featuredGrid) {
         featuredGrid.innerHTML = featured.map(product => `
-          <div class="stall-card card-hover flex flex-col justify-between">
+          <div class="stall-card card-hover flex flex-col justify-between flex-shrink-0 w-[240px] sm:w-[260px] lg:w-auto snap-start">
             <div>
               <div class="stall-header">
                 <span class="stall-label">${product.category.replace('-', ' ')}</span>
               </div>
-              <div class="relative img-zoom-wrapper h-48 cursor-pointer" onclick="openProductModal('${product.id}')">
+              <div class="relative img-zoom-wrapper h-44 cursor-pointer" onclick="openProductModal('${product.id}')">
                 <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
                 <span class="absolute top-3 left-3 text-[11px] px-2.5 py-0.5 rounded-sm font-medium ${product.badgeType === 'organic' ? 'badge-organic' : 'badge-featured'}">
                   ${product.badge}
                 </span>
               </div>
               <div class="stall-body">
-                <h3 class="font-serif font-bold text-brand-cream text-lg hover:text-brand-mossLight cursor-pointer transition mt-1 line-clamp-1" onclick="openProductModal('${product.id}')" title="${product.name}">${product.name}</h3>
+                <h3 class="font-serif font-bold text-brand-cream text-base hover:text-brand-mossLight cursor-pointer transition mt-1 line-clamp-1" onclick="openProductModal('${product.id}')" title="${product.name}">${product.name}</h3>
                 <p class="text-xs text-brand-oat/60 mt-1 line-clamp-2">${product.description}</p>
               </div>
             </div>
             <div class="p-4 pt-0">
               <div class="pt-3 border-t border-white/10 flex items-center justify-between">
                 <div>
-                  <span class="text-xs text-brand-oat/40 block">${product.unit}</span>
-                  <span class="font-bold text-brand-gold text-base">${(typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`}</span>
+                  <span class="text-[11px] text-brand-oat/40 block truncate max-w-[110px]">${product.unit}</span>
+                  <span class="font-bold text-brand-gold text-sm sm:text-base">${(typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`}</span>
                 </div>
-                <button onclick="window.cart.addItem('${product.id}')" class="p-2.5 rounded-sm bg-brand-forest/30 hover:bg-brand-forest text-brand-cream transition" title="Add to Basket">
+                <button onclick="window.cart.addItem('${product.id}')" class="p-2 rounded-sm bg-brand-forest/30 hover:bg-brand-forest text-brand-cream transition" title="Add to Basket">
                   <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                 </button>
               </div>
