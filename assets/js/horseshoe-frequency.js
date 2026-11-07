@@ -193,7 +193,7 @@
 
       // Hollow hole styling:
       // Crisp harvest-gold stroke with soft luminous frequency halo, hollow transparent center
-      this.ctx.strokeStyle = `rgba(200, 153, 90, ${alpha * 0.95})`; // #C8995A harvest gold
+      this.ctx.strokeStyle = `rgba(226, 201, 165, ${alpha * 0.95})`; // #e2c9a5 exact brand text color
       this.ctx.lineWidth = Math.max(1.1, 1.25 * this.dpr);
       this.ctx.shadowColor = `rgba(226, 201, 165, ${alpha * 0.55})`; // #e2c9a5 warm cream frequency glow
       this.ctx.shadowBlur = 4 * this.dpr;
