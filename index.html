@@ -751,12 +751,12 @@
       <div class="stable-bar rounded-sm">
         <span class="stable-bar-label">Our Natural Bounty</span>
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
-          <h2 class="stable-bar-title text-3xl sm:text-4xl">Six Stalls of Living Wellness</h2>
+          <h2 class="stable-bar-title text-3xl sm:text-4xl">Five Stalls of Living Wellness</h2>
           <p class="stable-bar-sub">From soil to skin — clean, sustainable, handcrafted.</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
 
         <!-- Stall 1: Curd Soaps -->
         <a href="shop.html?category=soaps" class="stall-card group text-center">
@@ -820,19 +820,6 @@
               <i data-lucide="sprout" class="w-7 h-7"></i>
             </div>
             <p class="text-xs text-brand-oat/65">Earthen pots &amp; bio buckets</p>
-          </div>
-        </a>
-
-        <!-- Stall 5: Hampers -->
-        <a href="shop.html?category=bundles" class="stall-card group text-center">
-          <div class="stall-header justify-center">
-            <span class="stall-label">Farmstead Hampers</span>
-          </div>
-          <div class="stall-body flex flex-col items-center pt-5 pb-4">
-            <div class="w-14 h-14 rounded-sm bg-brand-sage/20 text-brand-leaf flex items-center justify-center mb-3 group-hover:scale-110 transition">
-              <i data-lucide="gift" class="w-7 h-7"></i>
-            </div>
-            <p class="text-xs text-brand-oat/65">Curated living gift sets</p>
           </div>
         </a>
 
@@ -1142,7 +1129,7 @@
             <li><a href="shop.html?category=herbs"      class="hover:text-brand-cream transition">Moringa &amp; Sacred Tulsi</a></li>
             <li><a href="shop.html?category=duck-eggs"  class="hover:text-brand-cream transition">Pasture Duck Eggs</a></li>
             <li><a href="shop.html?category=quilts"     class="hover:text-brand-cream transition">Artisanal Quilt Rolls</a></li>
-            <li><a href="shop.html?category=bundles"    class="hover:text-brand-cream transition">Farmstead Hampers</a></li>
+            <li><a href="shop.html?category=produce" class="hover:text-brand-cream transition">Living Harvest &amp; Mushrooms</a></li>
           </ul>
         </div>
 
@@ -1199,7 +1186,7 @@
         featuredGrid.innerHTML = featured.map(product => `
           <div class="stall-card card-hover">
             <div class="stall-header">
-              <span class="stall-label">${product.category === 'bundles' ? 'Farmstead Hamper' : product.category.replace('-', ' ')}</span>
+              <span class="stall-label">${product.category.replace('-', ' ')}</span>
             </div>
             <div class="relative img-zoom-wrapper h-48 cursor-pointer" onclick="openProductModal('${product.id}')">
               <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">

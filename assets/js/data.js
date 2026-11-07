@@ -32,12 +32,11 @@ const BRAND_CONFIG = {
 
 const CATEGORIES = [
   { id: "all", name: "All Offerings", name_de: "Alle Angebote", icon: "sparkles" },
-  { id: "produce", name: "Microgreens & Mushrooms", name_de: "Microgreens & Hofpilze", icon: "sprout" },
-  { id: "bundles", name: "Farmstead Hampers", name_de: "Hof-Präsentkörbe", icon: "gift" },
+  { id: "quilts", name: "Artisanal Quilt Rolls", name_de: "Handgefertigte Steppdecken", icon: "scissors" },
   { id: "soaps", name: "Curd Soaps", name_de: "Quarkseifen", icon: "droplets" },
   { id: "duck-eggs", name: "Pasture Duck Eggs", name_de: "Weide-Enteneier", icon: "egg" },
-  { id: "quilts", name: "Artisanal Quilt Rolls", name_de: "Handgefertigte Steppdecken", icon: "scissors" },
-  { id: "herbs", name: "Herbal Leaves", name_de: "Kräuterblätter", icon: "leaf" }
+  { id: "herbs", name: "Herbal Leaves", name_de: "Kräuterblätter", icon: "leaf" },
+  { id: "produce", name: "Microgreens & Mushrooms", name_de: "Microgreens & Hofpilze", icon: "sprout" }
 ];
 
 // Master 6 Pastel Colorways Palette & Signature Nature Prints
@@ -51,80 +50,6 @@ const PASTEL_COLORWAYS = [
 ];
 
 const PRODUCTS = [
-  // CURATED FARMSTEAD HAMPERS (Each with unique image)
-  {
-    id: "bundle-farmstead-harvest",
-    description_de: "Unser exklusiver Hof-Präsentkorb: Frische Weide-Enteneier im Strohbett, zwei kaltgesiedete Quarkseifen in naturbelassenem Papier mit schlichter Sortenbezeichnung, verpackt mit Samen-gesprenkeltem Baumwollfaden, sonnengetrocknetes Tulsi- und Moringakraut im weißen Bio-Beutel und ein traditioneller Tontopf mit frischem Hof-Quark.",
-    unit_de: "Handgefertigter Präsentkorb mit Eiern, Quarkseifen & Kräutern",
-    badge_de: "Hof-Präsentkorb",
-    ingredients_de: "6 Weide-Enteneier im Strohbett + 2 Hof-Quarkseifen + Sonnengetrocknetes Tulsi & Moringa im weißen Beutel + Tontopf mit Hof-Quark.",
-    name: "The Farmstead Harvest Hamper",
-    name_de: "Der Hof-Ernte-Präsentkorb",
-    category: "bundles",
-    price: 4500,
-    priceEUR: 50.00,
-    unit: "Artisanal Gift Hamper with Eggs, Curd Soaps & Leaves",
-    badge: "Signature Hamper",
-    badgeType: "featured",
-    rating: 5.0,
-    reviewsCount: 47,
-    image: "assets/images/hero-basket.jpg?v=4",
-    description: "Our signature farmstead gift hamper: fresh pasture duck eggs, two cold-process curd soaps, sun-cured tulsi and moringa leaves, and an earthen pot of fresh setting curd.",
-    ingredients: "6 Pasture Duck Eggs in Straw + 2 Farmstead Curd Soaps + Sun-Cured Sacred Tulsi & Moringa White Packets + Earthen Setting Curd Pot.",
-    benefits: ["100% natural, biodegradable materials", "Soothes the senses with natural earthy textures", "Direct farm-to-table presentation completely plastic-free"],
-    inStock: true,
-    isFeatured: true,
-    wholesaleAvailable: true
-  },
-  {
-    id: "bundle-heirloom-quilt-hamper",
-    description_de: "Das vollendete Wohn- und Wellness-Set: Eine handgefertigte Einzelbett-Wolkensteppdecke (127 × 178 cm) gefüllt mit natürlicher Ilavam Panju (Seidenbaumwolle), GOTS & OEKO-TEX zertifiziert, biologisch gefärbt, gebunden mit rustikalem Baumwollgarn, zusammen mit zwei echten Quarkseifen und sonnengetrockneten Hofkräutern in einer rustikalen Holzkiste.",
-    unit_de: "Exklusives Hof-Sammlerset mit Steppdecke (127 × 178 cm)",
-    badge_de: "Kunsthandwerk",
-    ingredients_de: "Einzelbett (127 × 178 cm) Ilavam Panju Steppdecke + 2 Kaltprozess-Quarkseifen + Sonnengetrocknete Kräuterblätter + Rustikale Holzkiste.",
-    name: "The Artisanal Quilt Roll & Curd Soap Hamper",
-    name_de: "Hof-Präsentkorb mit Steppdecke & Quarkseifen",
-    category: "bundles",
-    price: 13900,
-    priceEUR: 299.00,
-    unit: "Collector Living Quilt (127 × 178 cm) & Soap Hamper",
-    badge: "Artisan Heirloom",
-    badgeType: "featured",
-    rating: 5.0,
-    reviewsCount: 22,
-    image: "assets/images/quilt-hamper.jpg?v=clean_5",
-    description: "The complete farmstead set: a grand cloud quilt (127 × 178 cm) filled with Tamizhnad Ilavam Panju silk cotton, two cold-process curd soaps, and sun-cured herbal leaves in non-plastic packs.",
-    ingredients: "Grand Cloud Quilt (127 × 178 cm) Tamizhnad Ilavam Panju Quilt Roll + 2 Cold-Process Curd Soaps + Sun-Cured Herbal Leaves in Non-Plastic Packs.",
-    benefits: ["Natural Ilavam Panju (silk cotton harvested from Tamizhnad) filling encased in GOTS & OEKO-TEX certified cotton fabric", "100% eco-friendly labels & packaging — strictly NO PLASTIC", "Handcrafted durability built to last generations"],
-    inStock: true,
-    isFeatured: true,
-    wholesaleAvailable: false
-  },
-  {
-    id: "bundle-nest-crate",
-    description_de: "Ein liebevoll arrangiertes Nest aus goldenem Naturstroh mit 6 tagesfrischen Weide-Enteneiern und zwei handgesiedeten Quarkseifen, gebunden mit ungebleichtem Baumwollgarn.",
-    unit_de: "Frische Enteneier & Kaltprozess-Seifenset",
-    badge_de: "Frisch vom Hof",
-    ingredients_de: "6 Weide-Enteneier im Strohbett + 2 Kaltprozess-Quarkseifen im ungebleichten Naturpapier.",
-    name: "The Pasture Duck Egg & Curd Soap Nest",
-    name_de: "Weide-Enteneier & Quarkseifen-Nest",
-    category: "bundles",
-    price: 950,
-    priceEUR: 10.50,
-    unit: "Straw Nest with 12 Eggs & Curd Soap",
-    badge: "Daily Ritual",
-    badgeType: "featured",
-    rating: 4.9,
-    reviewsCount: 34,
-    image: "assets/images/egg-soap-nest.jpg?v=curd_only_5",
-    description: "A fresh morning pairing: 12 pasture duck eggs, an artisanal curd soap bar, and sun-cured sacred tulsi leaves.",
-    ingredients: "12 Pasture Duck Eggs + 1 Farmstead Curd Soap Bar + Sun-Cured Sacred Tulsi in Golden Straw Nest.",
-    benefits: ["Rich in natural nutrients and skin-loving lipids", "Free of chemical pesticides or artificial additives", "Packaged in eco-friendly compostable straw bedding"],
-    inStock: true,
-    isFeatured: true,
-    wholesaleAvailable: true
-  },
-
   // CURD SOAPS (Sculptural 3D Bubble Cubes • 3x3 rounded spheres all around, wrapped in plain unbranded organic paper stating ONLY the botanical name with NO word 'Soap', tied with seed-flecked cotton thread)
   {
     id: "soap-curd",
@@ -994,8 +919,8 @@ const FAQS = [
     a: "Yes! Every single bar of UP Purreins soap is cold-processed using only fresh cold-pressed coconut oil, farmstead fresh organic curd, and the pure farm-harvested flavor in the soap's name itself. No virgin olive oil, no castor oil, no shea butter, no artificial dyes, and completely free of synthetics."
   },
   {
-    q: "Can we order custom farmstead gift hampers?",
-    a: "Yes! Our artisanal farmstead hampers can be customized with your choice of cold-process curd soaps, pasture duck eggs, sun-cured moringa and sacred tulsi leaves, and GOTS-certified organic quilt rolls for festive gifting, wedding favors, and corporate hampers."
+    q: "Can we place bespoke or corporate gifting orders for individual artisanal goods?",
+    a: "Yes! We curate individual bespoke gift selections of our pure cold-process curd soaps, pasture duck eggs, sun-cured botanical leaves, and GOTS-certified heirloom quilts in luxury plastic-free packaging for discerning individuals, weddings, and boutique hospitality."
   },
   {
     q: "How does Farm Visit booking work?",
@@ -1036,7 +961,7 @@ const WHOLESALE_TIERS = [
     category: "Sun-Cured Herbal Leaves",
     minOrder: "20 Packs (Moringa Leaves & Sacred Tulsi)",
     discount: "Apothecary & cafe wholesale rates",
-    packaging: "Non-plastic packs / hand-tied organic bundles",
+    packaging: "Non-plastic packs / hand-tied organic parcels",
     leadTime: "3-5 business days"
   }
 ];
@@ -1149,9 +1074,7 @@ window.getLocalized = function(obj, field) {
 window.getCategoryName = function(catId) {
   const cat = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.find(c => c.id === catId) : null;
   if (!cat) {
-    if (catId === 'bundles') {
-      return window.currentLang === 'de' ? 'Hof-Präsentkörbe' : 'Farmstead Hamper';
-    }
+    
     return catId ? catId.replace('-', ' ') : '';
   }
   return window.getLocalized(cat, 'name');
@@ -1279,7 +1202,6 @@ window.SITE_PHRASES_DE = {
   "All Offerings": "Alle Angebote",
   "Living Produce": "Lebendige Erzeugnisse",
   "Microgreens & Mushrooms": "Microgreens & Hofpilze",
-  "Farmstead Hampers": "Hof-Präsentkörbe",
   "Curd Soaps": "Quarkseifen",
   "Pasture Duck Eggs": "Weide-Enteneier",
   "Artisanal Quilt Rolls": "Handgefertigte Steppdecken",
