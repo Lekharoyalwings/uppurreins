@@ -479,25 +479,25 @@
         <div class="slider-box">
           <label>
             <span>Ripple Wave Height (Strength):</span>
-            <span id="val-strength" style="font-family: monospace; color: #C8995A;">0.025</span>
+            <span id="val-strength" style="font-family: monospace; color: #C8995A;">0.008</span>
           </label>
-          <input type="range" id="slider-strength" min="0.008" max="0.065" step="0.002" value="0.025" oninput="updateControls()">
+          <input type="range" id="slider-strength" min="0.008" max="0.065" step="0.002" value="0.008" oninput="updateControls()">
         </div>
 
         <div class="slider-box">
           <label>
             <span>Wave Speed (Synced to Logo):</span>
-            <span id="val-speed" style="font-family: monospace; color: #C8995A;">1.8 (Serene)</span>
+            <span id="val-speed" style="font-family: monospace; color: #C8995A;">0.65 (Slow Touch)</span>
           </label>
-          <input type="range" id="slider-speed" min="0.8" max="4.0" step="0.1" value="1.8" oninput="updateControls()">
+          <input type="range" id="slider-speed" min="0.8" max="4.0" step="0.1" value="0.65" oninput="updateControls()">
         </div>
 
         <div class="slider-box">
           <label>
             <span>Fluid Caustic Dispersion:</span>
-            <span id="val-dispersion" style="font-family: monospace; color: #C8995A;">0.004</span>
+            <span id="val-dispersion" style="font-family: monospace; color: #C8995A;">0.0005</span>
           </label>
-          <input type="range" id="slider-dispersion" min="0.0" max="0.012" step="0.001" value="0.004" oninput="updateControls()">
+          <input type="range" id="slider-dispersion" min="0.0" max="0.012" step="0.001" value="0.0005" oninput="updateControls()">
         </div>
       </div>
 
@@ -516,11 +516,12 @@
   <!-- 2. WebGL Interactive Liquid Image Ripple Shader Engine -->
   <script>
     // Global Liquid Controls
+        // Global Liquid Controls — Soft, Serene, Gentle Touch
     const FLUID_CONFIG = {
-      strength: 0.025,    // Wave ripple distortion strength
-      speed: 1.8,         // Wave speed matching the logo tempo
-      frequency: 24.0,    // Wave frequency ripples
-      dispersion: 0.004   // Subtle chromatic refraction
+      strength: 0.008,    // Delicate whisper-quiet displacement (no brutal warping)
+      speed: 0.65,        // Serene slow-motion tempo (matching calm breathing)
+      frequency: 8.0,     // 1-2 wide, gentle ripples (no tight busy rings)
+      dispersion: 0.0005  // Almost zero chromatic aberration (clean, pure image)
     };
 
     function updateControls() {
@@ -538,17 +539,20 @@
       if (event && event.currentTarget) event.currentTarget.classList.add('active');
 
       if (type === 'luxury') {
-        FLUID_CONFIG.strength = 0.025;
-        FLUID_CONFIG.speed = 1.8;
-        FLUID_CONFIG.dispersion = 0.004;
+        FLUID_CONFIG.strength = 0.008;
+        FLUID_CONFIG.speed = 0.65;
+        FLUID_CONFIG.frequency = 8.0;
+        FLUID_CONFIG.dispersion = 0.0005;
       } else if (type === 'subtle') {
-        FLUID_CONFIG.strength = 0.012;
-        FLUID_CONFIG.speed = 1.4;
-        FLUID_CONFIG.dispersion = 0.001;
+        FLUID_CONFIG.strength = 0.004;
+        FLUID_CONFIG.speed = 0.45;
+        FLUID_CONFIG.frequency = 6.0;
+        FLUID_CONFIG.dispersion = 0.0;
       } else if (type === 'viscous') {
-        FLUID_CONFIG.strength = 0.045;
-        FLUID_CONFIG.speed = 2.2;
-        FLUID_CONFIG.dispersion = 0.008;
+        FLUID_CONFIG.strength = 0.014;
+        FLUID_CONFIG.speed = 0.85;
+        FLUID_CONFIG.frequency = 10.0;
+        FLUID_CONFIG.dispersion = 0.001;
       }
 
       document.getElementById('slider-strength').value = FLUID_CONFIG.strength;
@@ -592,25 +596,21 @@
         // Distance from cursor
         float dist = distance(p, m);
 
-        // Fluid water ripple calculation:
-        // Harmonic concentric ripples decaying with distance and time
+        // Gentle, wide, calm water ripple (1-2 soft ripples, decaying gently)
         float wave = sin(dist * uFrequency - uTime * uSpeed);
-        float decay = exp(-dist * 4.2);
+        float decay = exp(-dist * 2.8);
         
-        // Secondary ambient water flow
-        float ambientWave = sin(uv.y * 12.0 + uTime * (uSpeed * 0.7)) * 0.003;
-        
-        // Total displacement vector
+        // Total displacement vector (gentle micro-touch)
         vec2 dir = normalize(p - m + 0.0001);
-        vec2 displacement = dir * wave * decay * uStrength * uHover + vec2(ambientWave * uHover);
+        vec2 displacement = dir * wave * decay * uStrength * uHover;
 
-        // Sample with subtle chromatic caustic dispersion
+        // Sample with crystal-clear precision
         float r = texture2D(uTexture, uv + displacement * (1.0 + uDispersion)).r;
         float g = texture2D(uTexture, uv + displacement).g;
         float b = texture2D(uTexture, uv + displacement * (1.0 - uDispersion)).b;
         
-        // Subtle water caustic highlight
-        float highlight = max(0.0, wave * decay * uHover) * 0.12;
+        // Subtle satin sheen highlight on ripple crest (no harsh glare)
+        float highlight = max(0.0, wave * decay * uHover) * 0.05;
 
         gl_FragColor = vec4(vec3(r, g, b) + vec3(highlight), 1.0);
       }
@@ -752,9 +752,9 @@
         if (!this.gl || !this.program) return;
 
         // Smooth hover transition
-        this.hover += (this.targetHover - this.hover) * 0.08;
-        this.mouse.x += (this.targetMouse.x - this.mouse.x) * 0.12;
-        this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.12;
+        this.hover += (this.targetHover - this.hover) * 0.04;
+        this.mouse.x += (this.targetMouse.x - this.mouse.x) * 0.06;
+        this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.06;
 
         const gl = this.gl;
         gl.useProgram(this.program);
