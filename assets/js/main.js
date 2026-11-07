@@ -140,12 +140,12 @@ function openProductModal(productId) {
   if (product.colorways) {
     if (isThrow) {
       specNote = isDe 
-        ? 'Wendbar: Angeraute einfarbige Pastell-Bio-Baumwolle auf der einen Seite, ungebleichtes Rohweiß mit feinem Naturmuster-Druck auf der anderen Seite.'
-        : 'Reversible: solid pastel on one side, crisp unbleached white with signature motif print on the other.';
+        ? 'Wendbar: Köpergewebe (Twill Weave) aus natürlich gefärbten Bio-Baumwollgarnen. Angeraute einfarbige Pastellseite und ungebleichtes Reinweiß mit feinem Naturmuster-Druck auf der Wendeseite.'
+        : 'Reversible: crafted with a refined twill weave using naturally dyed organic cotton yarns. Brushed solid pastel on one side, crisp unbleached white with signature motif print on the other.';
     } else {
       specNote = isDe
-        ? '100% einfarbig angeraute Bio-Baumwolle auf beiden Seiten (schlichtes Pastell), gefüllt mit 3 prallen Kammern aus Tamizhnad Ilavam Panju (Seidenbaumwolle).'
-        : '100% solid pastel brushed cotton on both sides (unadorned solid pastel), 3 plump channels filled with Tamizhnad Ilavam Panju.';
+        ? 'Köpergewebe (Twill Weave) aus natürlich gefärbten Bio-Baumwollgarnen, 100% einfarbig angeraut auf beiden Seiten, mit 3 prallen Kammern gefüllt mit Tamizhnad Ilavam Panju (Seidenbaumwolle).'
+        : 'Crafted with a refined twill weave using naturally dyed organic cotton yarns, 100% solid pastel brushed cotton on both sides, 3 plump channels filled with Tamizhnad Ilavam Panju.';
     }
   }
 
@@ -269,7 +269,7 @@ function selectModalColorway(productId, colorwayId) {
   }
   if (noteEl) {
     noteEl.textContent = isThrow
-      ? (isDe ? `Wendbar: Einfarbig ${cwName} auf einer Seite, ungebleichtes Rohweiß mit ${cwMotif}-Druck auf der anderen Seite.` : `Reversible: solid ${cw.name} on one side, crisp unbleached white with ${cw.motif} print on the other.`)
+      ? (isDe ? `Wendbar: Einfarbig ${cwName} auf einer Seite, ungebleichtes Reinweiß mit ${cwMotif}-Druck auf der anderen Seite.` : `Reversible: solid ${cw.name} on one side, crisp unbleached white with ${cw.motif} print on the other.`)
       : (isDe ? `100% einfarbig ${cwName} auf beiden Seiten (schlichtes Pastell), gefüllt mit Tamizhnad Ilavam Panju.` : `100% solid ${cw.name} on both sides (unadorned solid pastel), filled with Tamizhnad Ilavam Panju.`);
   }
 
