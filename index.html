@@ -1196,11 +1196,8 @@
         featuredGrid.innerHTML = featured.map(product => `
           <div class="stall-card card-hover flex flex-col justify-between">
             <div>
-              <div class="stall-header flex items-center justify-between">
+              <div class="stall-header">
                 <span class="stall-label">${product.category.replace('-', ' ')}</span>
-                <span class="text-[10.5px] font-mono text-brand-gold flex items-center gap-1 font-medium">
-                  <i data-lucide="map-pin" class="w-3 h-3 text-brand-gold"></i> Roots from Southern India
-                </span>
               </div>
               <div class="relative img-zoom-wrapper h-48 cursor-pointer" onclick="openProductModal('${product.id}')">
                 <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
@@ -1211,9 +1208,6 @@
               <div class="stall-body">
                 <h3 class="font-serif font-bold text-brand-cream text-lg hover:text-brand-mossLight cursor-pointer transition mt-1 line-clamp-1" onclick="openProductModal('${product.id}')" title="${product.name}">${product.name}</h3>
                 <p class="text-xs text-brand-oat/60 mt-1 line-clamp-2">${product.description}</p>
-                <div class="mt-2 text-[10.5px] font-mono text-brand-gold/80 flex items-center gap-1">
-                  <span>✦</span> Roots from Southern India
-                </div>
               </div>
             </div>
             <div class="p-4 pt-0">

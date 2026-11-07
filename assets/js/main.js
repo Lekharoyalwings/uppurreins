@@ -203,17 +203,8 @@ function openProductModal(productId) {
         <p class="text-[#cbb89d] text-sm leading-relaxed mb-4">${desc}</p>
         
         <div class="bg-white/5 p-4 rounded-xl mb-4 border border-white/10">
-          <div class="flex items-center justify-between mb-2">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-gold">${pureIngHeader}</h4>
-            <span class="inline-flex items-center gap-1 text-[11px] font-mono text-brand-gold font-medium">
-              <i data-lucide="map-pin" class="w-3 h-3"></i> ${isDe ? 'Wurzeln aus Südindien' : 'Roots from Southern India'}
-            </span>
-          </div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-2">${pureIngHeader}</h4>
           <p class="text-xs text-[#e2c9a5]/90 leading-relaxed">${ingredients}</p>
-          <div class="mt-2.5 pt-2 border-t border-white/10 flex items-center gap-1.5 text-[11px] text-brand-oat/75 font-mono">
-            <span class="text-brand-gold">✦</span>
-            <span>${isDe ? 'Traditionelle Herkunft: Wurzeln aus Südindien' : 'Heritage & Provenance: Roots from Southern India'}</span>
-          </div>
         </div>
 
         <div class="mb-5 p-3 rounded-lg bg-brand-gold/10 border border-brand-gold/25 flex items-center gap-2.5 text-xs text-brand-gold">
