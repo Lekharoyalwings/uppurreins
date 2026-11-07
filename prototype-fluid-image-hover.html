@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Purreins Frequency — Interactive Fluid Hover Prototype</title>
+  <title>Purreins Frequency — Localized Soap Touch Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -64,7 +64,7 @@
       object-fit: contain;
     }
 
-    /* Radial halo behind logo */
+    /* Soft halo behind logo */
     .header-logo-link::after {
       content: "";
       position: absolute;
@@ -87,7 +87,7 @@
     main {
       padding-top: 140px;
       padding-bottom: 90px;
-      max-width: 1240px;
+      max-width: 1280px;
       margin: 0 auto;
       padding-left: 24px;
       padding-right: 24px;
@@ -97,7 +97,7 @@
 
     .eyebrow {
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #C8995A;
       font-weight: 700;
@@ -107,7 +107,7 @@
 
     .hero-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(34px, 4.5vw, 52px);
+      font-size: clamp(34px, 4.5vw, 54px);
       font-weight: 700;
       line-height: 1.15;
       color: #e2c9a5;
@@ -116,10 +116,10 @@
 
     .hero-subtitle {
       font-size: 15px;
-      color: rgba(232, 220, 200, 0.75);
-      max-width: 720px;
+      color: rgba(232, 220, 200, 0.78);
+      max-width: 860px;
       line-height: 1.6;
-      margin-bottom: 32px;
+      margin-bottom: 30px;
     }
 
     /* Harmony Sync Badge */
@@ -151,59 +151,72 @@
       50% { transform: scale(1.4); opacity: 1; }
     }
 
-    /* Product Grid */
-    .grid {
+    /* Showcase Layout */
+    .showcase-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 28px;
       margin-bottom: 50px;
     }
 
-    /* Product Card */
-    .product-card {
+    @media (max-width: 1024px) {
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
       background: #111110;
-      border: 1px solid rgba(200, 153, 90, 0.2);
-      border-radius: 6px;
+      border: 1px solid rgba(200, 153, 90, 0.22);
+      border-radius: 10px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
       position: relative;
     }
 
-    .product-card:hover {
-      border-color: rgba(226, 201, 165, 0.55);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-    }
-
     .card-header {
-      padding: 14px 18px;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(200, 153, 90, 0.12);
-      background: rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(200, 153, 90, 0.15);
+      background: rgba(0, 0, 0, 0.5);
     }
 
     .card-label {
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 700;
       color: #C8995A;
     }
 
-    /* Interactive Liquid Image Stage */
+    .tag-badge {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8EB264;
+      background: rgba(74, 94, 58, 0.25);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(142, 178, 100, 0.3);
+    }
+
+    /* Fluid Stage */
     .fluid-stage {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3;
       overflow: hidden;
       background: #000;
       cursor: crosshair;
     }
 
-    /* Static backup image */
+    .stage-tall {
+      aspect-ratio: 3 / 4;
+    }
+
     .fluid-stage img {
       position: absolute;
       inset: 0;
@@ -211,69 +224,87 @@
       height: 100%;
       object-fit: cover;
       pointer-events: none;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
     }
 
-    /* Liquid WebGL Canvas */
     .fluid-stage canvas {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       display: block;
-      transition: opacity 0.4s ease;
     }
 
-    /* Card Details */
+    /* Overlay Guide Pill */
+    .touch-guide-pill {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.82);
+      border: 1px solid rgba(226, 201, 165, 0.35);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-size: 11px;
+      color: #e2c9a5;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      z-index: 10;
+    }
+
+    .touch-guide-pill.touching-soap {
+      background: rgba(40, 60, 32, 0.9);
+      border-color: #8EB264;
+      color: #d8ffb0;
+      box-shadow: 0 0 14px rgba(142, 178, 100, 0.5);
+    }
+
     .card-body {
-      padding: 18px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
-      flex: 1;
       justify-content: space-between;
+      flex: 1;
     }
 
     .card-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
       color: #F2EAD8;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .card-desc {
-      font-size: 12px;
-      color: rgba(232, 220, 200, 0.65);
-      line-height: 1.5;
+      font-size: 13px;
+      color: rgba(232, 220, 200, 0.7);
+      line-height: 1.55;
       margin-bottom: 16px;
     }
 
-    .card-footer {
+    /* Touch Zone Indicator Box */
+    .touch-legend {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(200, 153, 90, 0.15);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #e2c9a5;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      gap: 10px;
     }
 
-    .card-price {
-      font-family: monospace;
-      font-size: 13px;
-      font-weight: 700;
-      color: #e2c9a5;
+    .touch-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #C8995A;
+      flex-shrink: 0;
     }
 
-    .hover-badge {
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #8EB264;
-      background: rgba(74, 94, 58, 0.25);
-      padding: 3px 8px;
-      border-radius: 3px;
-    }
-
-    /* Interactive Liquid Customizer Bar */
+    /* Customizer Controls Bar */
     .customizer-bar {
       background: rgba(18, 18, 16, 0.95);
       border: 1px solid rgba(200, 153, 90, 0.3);
@@ -288,7 +319,7 @@
       font-size: 22px;
       color: #e2c9a5;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .customizer-desc {
@@ -301,7 +332,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      margin-bottom: 20px;
     }
 
     .slider-box label {
@@ -330,29 +360,6 @@
       cursor: pointer;
       box-shadow: 0 0 10px rgba(226, 201, 165, 0.8);
     }
-
-    .preset-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .chip-btn {
-      padding: 8px 14px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(200, 153, 90, 0.25);
-      border-radius: 6px;
-      color: #e2c9a5;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .chip-btn.active, .chip-btn:hover {
-      background: #4A5E3A;
-      border-color: #e2c9a5;
-      color: #F2EAD8;
-    }
   </style>
 </head>
 <body>
@@ -368,120 +375,114 @@
   <canvas id="horseshoe-frequency-canvas"></canvas>
 
   <main>
-    <span class="eyebrow">Interactive Fluid Hover Prototype</span>
-    <h1 class="hero-title">Harmonic Liquid Surface Simulation</h1>
+    <span class="eyebrow">Interactive Tactile Soap Touch Prototype</span>
+    <h1 class="hero-title">Localized Soap Liquid Stimulation</h1>
     <p class="hero-subtitle">
-      Hover your mouse over any image below to touch the liquid surface. Notice how the fluid ripples undulate across the image at the <strong>exact calm speed and breathing tempo</strong> of the frequency rings coming out of the top-left logo.
+      Only the soap feels liquid when touched. In composite photos with multiple products, hover over the quilt or eggs—they remain <strong>completely still and solid</strong>. Only when your cursor touches the <strong>curd soap bars</strong> does the surface ripple with a slow, calm touch.
     </p>
 
     <div class="sync-badge">
       <span class="sync-dot"></span>
-      <span>Harmonically Synced to Horseshoe Logo Speed: <strong>55 px/sec • Calm Fluid Wake</strong></span>
+      <span>Harmonically Synced to Horseshoe Logo Speed: <strong>Slow Touch • Zero Brutality</strong></span>
     </div>
 
-    <!-- Product Grid with Liquid Image Stages -->
-    <div class="grid">
-      
-      <!-- 1. Heirloom Quilt -->
-      <article class="product-card">
+    <!-- Showcase Grid -->
+    <div class="showcase-grid">
+
+      <!-- 1. Hero Composite Image (Quilt + Eggs + Curd Pot + Soap) -->
+      <article class="card">
         <div class="card-header">
-          <span class="card-label">Atelier Chapter 01</span>
-          <span class="hover-badge">Hover to Ripple</span>
+          <span class="card-label">Hero Composition</span>
+          <span class="tag-badge">Multi-Product Scene</span>
         </div>
-        <div class="fluid-stage" data-image="assets/images/quilt-roll.jpg">
-          <img src="assets/images/quilt-roll.jpg" alt="Heirloom Quilt Roll">
+        
+        <div class="fluid-stage stage-tall" id="stage-hero" data-image="assets/images/hero-vertical.jpg" data-mode="0">
+          <img src="assets/images/hero-vertical.jpg" alt="Hero Atelier Composition">
+          <div class="touch-guide-pill" id="guide-0">Hover over Curd Soap at bottom-right ➔</div>
         </div>
+
         <div class="card-body">
           <div>
-            <h3 class="card-title">Heirloom Ilavam Panju Quilt</h3>
-            <p class="card-desc">100% natural tree silk cotton, hand-quilted with pure organic cotton thread.</p>
+            <h3 class="card-title">All-Product Harvest</h3>
+            <p class="card-desc">
+              Hover over the cotton quilt (top) or duck eggs (center)—they remain 100% solid. Only touching the curd soap bars in the foreground triggers the gentle water ripple.
+            </p>
           </div>
-          <div class="card-footer">
-            <span class="card-price">₹ 7,099</span>
-            <span style="font-size: 11px; color: #C8995A;">Water Surface Ripple</span>
+          <div class="touch-legend">
+            <span class="touch-dot"></span>
+            <span><strong>Active Soap Zone:</strong> Lower-right foreground curd soap bars</span>
           </div>
         </div>
       </article>
 
-      <!-- 2. Sculptural Curd Soap -->
-      <article class="product-card">
+      <!-- 2. Egg & Soap Nest Pairing -->
+      <article class="card">
         <div class="card-header">
-          <span class="card-label">Atelier Chapter 02</span>
-          <span class="hover-badge">Hover to Ripple</span>
+          <span class="card-label">Daily Farmstead Ritual</span>
+          <span class="tag-badge">Eggs + Soap Pairing</span>
         </div>
-        <div class="fluid-stage" data-image="assets/images/artisan-soaps.jpg">
+        
+        <div class="fluid-stage stage-tall" id="stage-nest" data-image="assets/images/egg-soap-nest.jpg" data-mode="2">
+          <img src="assets/images/egg-soap-nest.jpg" alt="Duck Eggs & Curd Soap Nest">
+          <div class="touch-guide-pill" id="guide-2">Hover over the Soap Bar on left ➔</div>
+        </div>
+
+        <div class="card-body">
+          <div>
+            <h3 class="card-title">Golden Straw Nest</h3>
+            <p class="card-desc">
+              The 12 pasture duck eggs on the right remain completely still. Only touching the cold-process curd soap bar on the left creates the liquid stimulation.
+            </p>
+          </div>
+          <div class="touch-legend">
+            <span class="touch-dot"></span>
+            <span><strong>Active Soap Zone:</strong> Soap block resting on left (eggs stay solid)</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Pure Sculptural Curd Soap Card -->
+      <article class="card">
+        <div class="card-header">
+          <span class="card-label">Chapter 02 • Sculptural</span>
+          <span class="tag-badge">Pure Soap Card</span>
+        </div>
+        
+        <div class="fluid-stage stage-tall" id="stage-soap" data-image="assets/images/artisan-soaps.jpg" data-mode="1">
           <img src="assets/images/artisan-soaps.jpg" alt="Cold-Processed Curd Soaps">
+          <div class="touch-guide-pill" id="guide-1">Touch the soap cubes ➔</div>
         </div>
-        <div class="card-body">
-          <div>
-            <h3 class="card-title">Sculptural Curd Soap Cube</h3>
-            <p class="card-desc">Patiently cold-cured for 6 weeks, rich in natural lactic probiotics and grass-fed butterfat.</p>
-          </div>
-          <div class="card-footer">
-            <span class="card-price">₹ 340</span>
-            <span style="font-size: 11px; color: #C8995A;">Lactic Fluid Caustics</span>
-          </div>
-        </div>
-      </article>
 
-      <!-- 3. Pasture Duck Eggs -->
-      <article class="product-card">
-        <div class="card-header">
-          <span class="card-label">Atelier Chapter 03</span>
-          <span class="hover-badge">Hover to Ripple</span>
-        </div>
-        <div class="fluid-stage" data-image="assets/images/duck-eggs.jpg">
-          <img src="assets/images/duck-eggs.jpg" alt="Wetland Pasture Duck Eggs">
-        </div>
         <div class="card-body">
           <div>
-            <h3 class="card-title">Wetland Pasture Duck Eggs</h3>
-            <p class="card-desc">Rich amber yolks gathered fresh every dawn from ducks foraging in wetland reeds.</p>
+            <h3 class="card-title">Curd Soap Cubes</h3>
+            <p class="card-desc">
+              Patiently cold-cured for 6 weeks. Touching the soap cubes creates a gentle, tactile water wake, feeling like fresh lather on the skin.
+            </p>
           </div>
-          <div class="card-footer">
-            <span class="card-price">₹ 240 / 6-Pack</span>
-            <span style="font-size: 11px; color: #C8995A;">Pond Water Ripple</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- 4. Sun-Cured Herbal Leaves -->
-      <article class="product-card">
-        <div class="card-header">
-          <span class="card-label">Atelier Chapter 04</span>
-          <span class="hover-badge">Hover to Ripple</span>
-        </div>
-        <div class="fluid-stage" data-image="assets/images/tulsi-jar.jpg">
-          <img src="assets/images/tulsi-jar.jpg" alt="Sun-Cured Sacred Tulsi">
-        </div>
-        <div class="card-body">
-          <div>
-            <h3 class="card-title">Sun-Cured Sacred Tulsi</h3>
-            <p class="card-desc">Hand-harvested whole stems cured in clean sunlight, sealed in white aroma packets.</p>
-          </div>
-          <div class="card-footer">
-            <span class="card-price">₹ 180</span>
-            <span style="font-size: 11px; color: #C8995A;">Organic Harmonic Wake</span>
+          <div class="touch-legend">
+            <span class="touch-dot"></span>
+            <span><strong>Active Soap Zone:</strong> Soap blocks in center (background still)</span>
           </div>
         </div>
       </article>
 
     </div>
 
-    <!-- Live Customizer Controls -->
+    <!-- Live Customizer Bar -->
     <div class="customizer-bar">
-      <h4 class="customizer-title">Fluid Wave Parameters</h4>
+      <h4 class="customizer-title">Tactile Touch Parameters</h4>
       <p class="customizer-desc">
-        Tweak the ripple intensity and fluid depth in real time. Move your mouse across any image to see how it responds instantly.
+        The ripples are calibrated to a gentle, whisper-quiet micro-touch (0.008 strength) with 1–2 wide waves matching the logo tempo.
       </p>
 
       <div class="control-row">
         <div class="slider-box">
           <label>
-            <span>Ripple Wave Height (Strength):</span>
+            <span>Touch Ripple Strength (Gentle):</span>
             <span id="val-strength" style="font-family: monospace; color: #C8995A;">0.008</span>
           </label>
-          <input type="range" id="slider-strength" min="0.008" max="0.065" step="0.002" value="0.008" oninput="updateControls()">
+          <input type="range" id="slider-strength" min="0.003" max="0.022" step="0.001" value="0.008" oninput="updateControls()">
         </div>
 
         <div class="slider-box">
@@ -489,79 +490,41 @@
             <span>Wave Speed (Synced to Logo):</span>
             <span id="val-speed" style="font-family: monospace; color: #C8995A;">0.65 (Slow Touch)</span>
           </label>
-          <input type="range" id="slider-speed" min="0.8" max="4.0" step="0.1" value="0.65" oninput="updateControls()">
+          <input type="range" id="slider-speed" min="0.3" max="1.5" step="0.05" value="0.65" oninput="updateControls()">
         </div>
 
         <div class="slider-box">
           <label>
-            <span>Fluid Caustic Dispersion:</span>
-            <span id="val-dispersion" style="font-family: monospace; color: #C8995A;">0.0005</span>
+            <span>Ripple Frequency (Wide Wave):</span>
+            <span id="val-freq" style="font-family: monospace; color: #C8995A;">8.0 (Wide)</span>
           </label>
-          <input type="range" id="slider-dispersion" min="0.0" max="0.012" step="0.001" value="0.0005" oninput="updateControls()">
+          <input type="range" id="slider-freq" min="4.0" max="14.0" step="0.5" value="8.0" oninput="updateControls()">
         </div>
-      </div>
-
-      <div class="preset-chips">
-        <span style="font-size: 12px; color: rgba(232, 220, 200, 0.7); display: flex; align-items: center; margin-right: 6px;">Presets:</span>
-        <button type="button" class="chip-btn active" onclick="applyFluidPreset('luxury')">Calm Spring Water (Recommended)</button>
-        <button type="button" class="chip-btn" onclick="applyFluidPreset('subtle')">Subtle Silk Ripple</button>
-        <button type="button" class="chip-btn" onclick="applyFluidPreset('viscous')">Rich Curd Honey Flow</button>
       </div>
     </div>
   </main>
 
-  <!-- 1. The Real Horseshoe Frequency Engine (For perfect side-by-side tempo match) -->
+  <!-- 1. The Real Horseshoe Frequency Engine -->
   <script src="assets/js/horseshoe-frequency.js?v=20261107_v2_brand_color"></script>
 
-  <!-- 2. WebGL Interactive Liquid Image Ripple Shader Engine -->
+  <!-- 2. Localized Soap Touch Shader Engine -->
   <script>
-    // Global Liquid Controls
-        // Global Liquid Controls — Soft, Serene, Gentle Touch
-    const FLUID_CONFIG = {
-      strength: 0.008,    // Delicate whisper-quiet displacement (no brutal warping)
-      speed: 0.65,        // Serene slow-motion tempo (matching calm breathing)
-      frequency: 8.0,     // 1-2 wide, gentle ripples (no tight busy rings)
-      dispersion: 0.0005  // Almost zero chromatic aberration (clean, pure image)
+    const TOUCH_CONFIG = {
+      strength: 0.008,
+      speed: 0.65,
+      frequency: 8.0
     };
 
     function updateControls() {
-      FLUID_CONFIG.strength = parseFloat(document.getElementById('slider-strength').value);
-      FLUID_CONFIG.speed = parseFloat(document.getElementById('slider-speed').value);
-      FLUID_CONFIG.dispersion = parseFloat(document.getElementById('slider-dispersion').value);
+      TOUCH_CONFIG.strength = parseFloat(document.getElementById('slider-strength').value);
+      TOUCH_CONFIG.speed = parseFloat(document.getElementById('slider-speed').value);
+      TOUCH_CONFIG.frequency = parseFloat(document.getElementById('slider-freq').value);
 
-      document.getElementById('val-strength').textContent = FLUID_CONFIG.strength.toFixed(3);
-      document.getElementById('val-speed').textContent = FLUID_CONFIG.speed.toFixed(1) + (FLUID_CONFIG.speed < 2.0 ? ' (Serene)' : '');
-      document.getElementById('val-dispersion').textContent = FLUID_CONFIG.dispersion.toFixed(3);
+      document.getElementById('val-strength').textContent = TOUCH_CONFIG.strength.toFixed(3);
+      document.getElementById('val-speed').textContent = TOUCH_CONFIG.speed.toFixed(2) + ' (Slow Touch)';
+      document.getElementById('val-freq').textContent = TOUCH_CONFIG.frequency.toFixed(1) + (TOUCH_CONFIG.frequency <= 8.5 ? ' (Wide)' : '');
     }
 
-    function applyFluidPreset(type) {
-      document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
-      if (event && event.currentTarget) event.currentTarget.classList.add('active');
-
-      if (type === 'luxury') {
-        FLUID_CONFIG.strength = 0.008;
-        FLUID_CONFIG.speed = 0.65;
-        FLUID_CONFIG.frequency = 8.0;
-        FLUID_CONFIG.dispersion = 0.0005;
-      } else if (type === 'subtle') {
-        FLUID_CONFIG.strength = 0.004;
-        FLUID_CONFIG.speed = 0.45;
-        FLUID_CONFIG.frequency = 6.0;
-        FLUID_CONFIG.dispersion = 0.0;
-      } else if (type === 'viscous') {
-        FLUID_CONFIG.strength = 0.014;
-        FLUID_CONFIG.speed = 0.85;
-        FLUID_CONFIG.frequency = 10.0;
-        FLUID_CONFIG.dispersion = 0.001;
-      }
-
-      document.getElementById('slider-strength').value = FLUID_CONFIG.strength;
-      document.getElementById('slider-speed').value = FLUID_CONFIG.speed;
-      document.getElementById('slider-dispersion').value = FLUID_CONFIG.dispersion;
-      updateControls();
-    }
-
-    // WebGL Shader Sources
     const VERTEX_SHADER_SRC = `
       attribute vec2 aPosition;
       attribute vec2 aTexCoord;
@@ -572,6 +535,7 @@
       }
     `;
 
+    // Localized Soap Touch Fragment Shader
     const FRAGMENT_SHADER_SRC = `
       precision highp float;
       varying vec2 vUv;
@@ -582,53 +546,103 @@
       uniform float uStrength;
       uniform float uSpeed;
       uniform float uFrequency;
-      uniform float uDispersion;
       uniform vec2 uResolution;
+      uniform int uMode; // 0 = Hero Composite, 1 = Pure Soap, 2 = Egg & Soap Nest
+
+      // Calculate localized soap mask (1.0 strictly on soap, 0.0 elsewhere)
+      float getSoapMask(vec2 uv) {
+        if (uMode == 0) {
+          // Hero Composite: Soap bars are located in bottom-right foreground
+          // Center: (0.70, 0.82), bounds: x: 0.50..0.88, y: 0.70..0.94
+          vec2 soapCenter = vec2(0.70, 0.82);
+          vec2 soapRadius = vec2(0.20, 0.13);
+          vec2 d = abs(uv - soapCenter) / soapRadius;
+          float dist = length(d);
+          return 1.0 - smoothstep(0.70, 1.15, dist);
+        } else if (uMode == 1) {
+          // Pure Soap: Handcrafted curd soap blocks occupy center
+          vec2 soapCenter = vec2(0.50, 0.52);
+          vec2 soapRadius = vec2(0.36, 0.32);
+          vec2 d = abs(uv - soapCenter) / soapRadius;
+          float dist = length(d);
+          return 1.0 - smoothstep(0.75, 1.20, dist);
+        } else if (uMode == 2) {
+          // Egg & Soap Nest: Soap bar is resting on the left
+          // Center: (0.32, 0.54), bounds: x: 0.12..0.52, y: 0.34..0.74
+          vec2 soapCenter = vec2(0.32, 0.54);
+          vec2 soapRadius = vec2(0.20, 0.22);
+          vec2 d = abs(uv - soapCenter) / soapRadius;
+          float dist = length(d);
+          return 1.0 - smoothstep(0.70, 1.15, dist);
+        }
+        return 0.0;
+      }
 
       void main() {
         vec2 uv = vUv;
+
+        // Calculate mask: 1.0 on soap, 0.0 elsewhere
+        float soapMask = getSoapMask(uv);
         
-        // Correct aspect ratio for circular ripples
+        // Check if mouse cursor is within the soap area
+        float cursorOnSoap = getSoapMask(uMouse);
+
+        // Aspect ratio correction for natural circular ripples
         vec2 aspect = vec2(uResolution.x / uResolution.y, 1.0);
         vec2 m = uMouse * aspect;
         vec2 p = uv * aspect;
 
-        // Distance from cursor
         float dist = distance(p, m);
 
-        // Gentle, wide, calm water ripple (1-2 soft ripples, decaying gently)
+        // Calm, wide, breathing water ripple
         float wave = sin(dist * uFrequency - uTime * uSpeed);
         float decay = exp(-dist * 2.8);
         
-        // Total displacement vector (gentle micro-touch)
+        // Displacement vector strictly modulated by soapMask AND cursor proximity to soap!
         vec2 dir = normalize(p - m + 0.0001);
-        vec2 displacement = dir * wave * decay * uStrength * uHover;
-
-        // Sample with crystal-clear precision
-        float r = texture2D(uTexture, uv + displacement * (1.0 + uDispersion)).r;
-        float g = texture2D(uTexture, uv + displacement).g;
-        float b = texture2D(uTexture, uv + displacement * (1.0 - uDispersion)).b;
         
-        // Subtle satin sheen highlight on ripple crest (no harsh glare)
-        float highlight = max(0.0, wave * decay * uHover) * 0.05;
+        // If cursor is NOT on soap, ripple is completely disabled (solid & still)
+        float activeTouch = uHover * soapMask * smoothstep(0.05, 0.40, cursorOnSoap);
+        vec2 displacement = dir * wave * decay * uStrength * activeTouch;
 
-        gl_FragColor = vec4(vec3(r, g, b) + vec3(highlight), 1.0);
+        // Sample texture with zero distortion outside soap area
+        vec4 color = texture2D(uTexture, uv + displacement);
+        
+        // Gentle satin sheen on ripple crest strictly on the soap
+        float highlight = max(0.0, wave * decay * activeTouch) * 0.045;
+        color.rgb += vec3(highlight);
+
+        gl_FragColor = color;
       }
     `;
 
-    class FluidImageCanvas {
-      constructor(container, imgUrl) {
+    // JavaScript Soap Coordinate Check (for guide pill status)
+    function isMouseOnSoap(x, y, mode) {
+      let cx = 0.5, cy = 0.5, rx = 0.3, ry = 0.3;
+      if (mode === 0) {
+        cx = 0.70; cy = 0.82; rx = 0.20; ry = 0.13;
+      } else if (mode === 1) {
+        cx = 0.50; cy = 0.52; rx = 0.36; ry = 0.32;
+      } else if (mode === 2) {
+        cx = 0.32; cy = 0.54; rx = 0.20; ry = 0.22;
+      }
+      const dx = Math.abs(x - cx) / rx;
+      const dy = Math.abs(y - cy) / ry;
+      return Math.sqrt(dx * dx + dy * dy) <= 1.05;
+    }
+
+    class LocalizedSoapCanvas {
+      constructor(container, imgUrl, mode, guideEl) {
         this.container = container;
         this.imgUrl = imgUrl;
+        this.mode = mode; // 0 for hero, 1 for pure soap, 2 for egg nest
+        this.guideEl = guideEl;
 
         this.canvas = document.createElement('canvas');
         this.container.appendChild(this.canvas);
         this.gl = this.canvas.getContext('webgl');
 
-        if (!this.gl) {
-          console.warn('WebGL not supported');
-          return;
-        }
+        if (!this.gl) return;
 
         this.hover = 0.0;
         this.targetHover = 0.0;
@@ -643,7 +657,6 @@
       initGL() {
         const gl = this.gl;
 
-        // Compile shaders
         const vert = gl.createShader(gl.VERTEX_SHADER);
         gl.shaderSource(vert, VERTEX_SHADER_SRC);
         gl.compileShader(vert);
@@ -658,7 +671,6 @@
         gl.linkProgram(this.program);
         gl.useProgram(this.program);
 
-        // Quad vertices (clip-space -1..1 and UVs 0..1)
         const vertices = new Float32Array([
           -1, -1,  0, 1,
            1, -1,  1, 1,
@@ -680,15 +692,14 @@
         gl.enableVertexAttribArray(aTexCoord);
         gl.vertexAttribPointer(aTexCoord, 2, gl.FLOAT, false, 16, 8);
 
-        // Get uniform locations
         this.uMouse = gl.getUniformLocation(this.program, 'uMouse');
         this.uTime = gl.getUniformLocation(this.program, 'uTime');
         this.uHover = gl.getUniformLocation(this.program, 'uHover');
         this.uStrength = gl.getUniformLocation(this.program, 'uStrength');
         this.uSpeed = gl.getUniformLocation(this.program, 'uSpeed');
         this.uFrequency = gl.getUniformLocation(this.program, 'uFrequency');
-        this.uDispersion = gl.getUniformLocation(this.program, 'uDispersion');
         this.uResolution = gl.getUniformLocation(this.program, 'uResolution');
+        this.uMode = gl.getUniformLocation(this.program, 'uMode');
 
         this.resize();
       }
@@ -719,7 +730,6 @@
           gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
           gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
-          // Hide static img once WebGL is ready
           const staticImg = this.container.querySelector('img');
           if (staticImg) staticImg.style.opacity = '0';
         };
@@ -737,6 +747,12 @@
 
         this.container.addEventListener('mouseleave', () => {
           this.targetHover = 0.0;
+          if (this.guideEl) {
+            this.guideEl.classList.remove('touching-soap');
+            if (this.mode === 0) this.guideEl.textContent = 'Hover over Curd Soap at bottom-right ➔';
+            else if (this.mode === 1) this.guideEl.textContent = 'Touch the soap cubes ➔';
+            else if (this.mode === 2) this.guideEl.textContent = 'Hover over Soap Bar on left ➔';
+          }
         });
 
         window.addEventListener('resize', () => this.resize(), { passive: true });
@@ -746,15 +762,32 @@
         const rect = this.container.getBoundingClientRect();
         this.targetMouse.x = (e.clientX - rect.left) / rect.width;
         this.targetMouse.y = (e.clientY - rect.top) / rect.height;
+
+        // Interactive status indicator in guide pill
+        if (this.guideEl) {
+          const onSoap = isMouseOnSoap(this.targetMouse.x, this.targetMouse.y, this.mode);
+          if (onSoap) {
+            this.guideEl.classList.add('touching-soap');
+            this.guideEl.textContent = '✨ Touching Curd Soap — Soft Liquid Touch Active';
+          } else {
+            this.guideEl.classList.remove('touching-soap');
+            if (this.mode === 0) {
+              this.guideEl.textContent = '🌿 Over Quilt/Eggs — 100% Solid & Still';
+            } else if (this.mode === 2) {
+              this.guideEl.textContent = '🌿 Over Duck Eggs — 100% Solid & Still';
+            } else {
+              this.guideEl.textContent = '🌿 Outside Soap — Completely Solid';
+            }
+          }
+        }
       }
 
       render(time) {
         if (!this.gl || !this.program) return;
 
-        // Smooth hover transition
-        this.hover += (this.targetHover - this.hover) * 0.04;
-        this.mouse.x += (this.targetMouse.x - this.mouse.x) * 0.06;
-        this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.06;
+        this.hover += (this.targetHover - this.hover) * 0.05;
+        this.mouse.x += (this.targetMouse.x - this.mouse.x) * 0.08;
+        this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.08;
 
         const gl = this.gl;
         gl.useProgram(this.program);
@@ -762,11 +795,11 @@
         gl.uniform2f(this.uMouse, this.mouse.x, this.mouse.y);
         gl.uniform1f(this.uTime, time);
         gl.uniform1f(this.uHover, this.hover);
-        gl.uniform1f(this.uStrength, FLUID_CONFIG.strength);
-        gl.uniform1f(this.uSpeed, FLUID_CONFIG.speed);
-        gl.uniform1f(this.uFrequency, FLUID_CONFIG.frequency);
-        gl.uniform1f(this.uDispersion, FLUID_CONFIG.dispersion);
+        gl.uniform1f(this.uStrength, TOUCH_CONFIG.strength);
+        gl.uniform1f(this.uSpeed, TOUCH_CONFIG.speed);
+        gl.uniform1f(this.uFrequency, TOUCH_CONFIG.frequency);
         gl.uniform2f(this.uResolution, this.width, this.height);
+        gl.uniform1i(this.uMode, this.mode);
 
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, this.texture);
@@ -775,24 +808,34 @@
       }
     }
 
-    // Initialize all fluid stages on page
-    const fluidInstances = [];
+    // Initialize instances
+    const instances = [];
     window.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.fluid-stage').forEach(el => {
-        const url = el.getAttribute('data-image');
-        if (url) {
-          fluidInstances.push(new FluidImageCanvas(el, url));
-        }
-      });
-
-      // Master render loop
-      let startTime = performance.now();
-      function masterLoop() {
-        const elapsed = (performance.now() - startTime) / 1000;
-        fluidInstances.forEach(inst => inst.render(elapsed));
-        requestAnimationFrame(masterLoop);
+      const heroEl = document.getElementById('stage-hero');
+      const guideHero = document.getElementById('guide-0');
+      if (heroEl) {
+        instances.push(new LocalizedSoapCanvas(heroEl, 'assets/images/hero-vertical.jpg', 0, guideHero));
       }
-      requestAnimationFrame(masterLoop);
+
+      const nestEl = document.getElementById('stage-nest');
+      const guideNest = document.getElementById('guide-2');
+      if (nestEl) {
+        instances.push(new LocalizedSoapCanvas(nestEl, 'assets/images/egg-soap-nest.jpg', 2, guideNest));
+      }
+
+      const soapEl = document.getElementById('stage-soap');
+      const guideSoap = document.getElementById('guide-1');
+      if (soapEl) {
+        instances.push(new LocalizedSoapCanvas(soapEl, 'assets/images/artisan-soaps.jpg', 1, guideSoap));
+      }
+
+      let startTime = performance.now();
+      function loop() {
+        const elapsed = (performance.now() - startTime) / 1000;
+        instances.forEach(inst => inst.render(elapsed));
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
     });
   </script>
 </body>
