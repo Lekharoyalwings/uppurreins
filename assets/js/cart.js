@@ -5,8 +5,123 @@ class CartManager {
     this.items = this.loadCart();
     this.coupon = this.loadCoupon();
     this.customer = this.loadCustomer();
+    this.pincode = this.loadPincode();
+    this.shippingStatus = this.loadShippingStatus();
     this.freeDeliveryThreshold = 1500;
     this.initUI();
+  }
+
+  loadPincode() {
+    try {
+      return localStorage.getItem('purreins_pincode') || (this.customer && this.customer.pincode) || '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  savePincode(pin) {
+    try {
+      this.pincode = pin;
+      localStorage.setItem('purreins_pincode', pin);
+      if (this.customer) {
+        this.customer.pincode = pin;
+        this.saveCustomer({ pincode: pin });
+      }
+    } catch (e) {}
+  }
+
+  loadShippingStatus() {
+    try {
+      const saved = localStorage.getItem('purreins_shipping');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  saveShippingStatus(status) {
+    try {
+      this.shippingStatus = status;
+      localStorage.setItem('purreins_shipping', JSON.stringify(status));
+    } catch (e) {}
+  }
+
+  checkShipping(pinInput) {
+    const pin = (pinInput !== undefined ? pinInput : (this.pincode || '')).toString().trim();
+    if (!pin) {
+      this.showToast('Please enter a delivery pincode');
+      return;
+    }
+
+    this.savePincode(pin);
+    const subtotal = this.getSubtotal();
+    const isDe = window.currentLang === 'de';
+
+    let fee = 0;
+    let feeEUR = 0;
+    let isFree = false;
+    let message = '';
+    let region = '';
+
+    if (subtotal >= this.freeDeliveryThreshold) {
+      isFree = true;
+      fee = 0;
+      feeEUR = 0;
+      message = isDe 
+        ? `🎉 Qualifiziert für kostenlose Hoflieferung an PLZ ${pin}!` 
+        : `🎉 Eligible for Free Farmstead Delivery to Pincode ${pin}!`;
+      region = isDe ? 'Kostenlose Lieferung' : 'Free Farmstead Delivery';
+    } else {
+      const cleanPin = pin.replace(/\D/g, '');
+      if (cleanPin.length === 6) {
+        const firstDigit = cleanPin.charAt(0);
+        if (firstDigit === '6') {
+          fee = 70;
+          feeEUR = 1.0;
+          message = isDe 
+            ? `Südindien Express-Hofversand (TN & KL): 70 ₹ (~1 €) • 24–48 Std.` 
+            : `Tamil Nadu & Kerala Regional Farm Dispatch: INR 70 • 24–48 hrs`;
+          region = 'Tamil Nadu & Kerala Regional';
+        } else {
+          fee = 120;
+          feeEUR = 1.5;
+          message = isDe 
+            ? `Standard-Paketversand Indien: 120 ₹ (~1,50 €) • 3–5 Tage` 
+            : `All-India Tracked Courier: INR 120 • 3–5 business days`;
+          region = 'All-India Tracked';
+        }
+      } else {
+        fee = 600;
+        feeEUR = 15;
+        message = isDe 
+          ? `EU-Standardversand mit Sendungsverfolgung: 15 € • 7–10 Tage` 
+          : `International / EU Tracked Air Courier: €15 (INR 600) • 7–10 days`;
+        region = 'International / EU Dispatch';
+      }
+    }
+
+    const status = { checked: true, pincode: pin, fee: fee, feeEUR: feeEUR, isFree: isFree, message: message, region: region };
+    this.saveShippingStatus(status);
+    this.showToast(isFree ? (isDe ? 'Kostenlose Lieferung!' : 'Free Delivery!') : (isDe ? `Versand berechnet: ${fee} ₹` : `Shipping calculated: INR ${fee}`));
+    this.renderDrawer();
+  }
+
+  getShippingFee() {
+    const subtotal = this.getSubtotal();
+    if (subtotal >= this.freeDeliveryThreshold) return 0;
+    if (this.shippingStatus && typeof this.shippingStatus.fee === 'number') {
+      return this.shippingStatus.fee;
+    }
+    return 0;
+  }
+
+  getShippingFeeEUR() {
+    const subtotal = this.getSubtotal();
+    if (subtotal >= this.freeDeliveryThreshold) return 0;
+    if (this.shippingStatus && typeof this.shippingStatus.feeEUR === 'number') {
+      return this.shippingStatus.feeEUR;
+    }
+    return 0;
   }
 
   loadCart() {
@@ -133,7 +248,8 @@ class CartManager {
   getFinalTotal() {
     const subtotal = this.getSubtotal();
     const discount = this.getDiscountAmount();
-    return Math.max(0, subtotal - discount);
+    const shipping = this.getShippingFee();
+    return Math.max(0, subtotal - discount) + shipping;
   }
 
   getSubtotalEUR() {
@@ -146,10 +262,9 @@ class CartManager {
 
   getFinalTotalEUR() {
     const subtotalEUR = this.getSubtotalEUR();
-    if (this.coupon && this.coupon.toUpperCase() === 'HARVEST10') {
-      return subtotalEUR * 0.90;
-    }
-    return subtotalEUR;
+    const discount = this.coupon && this.coupon.toUpperCase() === 'HARVEST10' ? subtotalEUR * 0.10 : 0;
+    const shippingEUR = this.getShippingFeeEUR();
+    return Math.max(0, subtotalEUR - discount) + shippingEUR;
   }
 
   applyCouponCode(code) {
@@ -242,7 +357,11 @@ class CartManager {
     const phone = document.getElementById('cart-cust-phone')?.value || '';
     const address = document.getElementById('cart-cust-address')?.value || '';
     const notes = document.getElementById('cart-cust-notes')?.value || '';
-    this.saveCustomer({ name, phone, address, notes });
+    const pinVal = document.getElementById('cart-pincode-input')?.value || this.pincode || '';
+    this.saveCustomer({ name, phone, address, notes, pincode: pinVal });
+    if (pinVal && pinVal !== this.pincode) {
+      this.savePincode(pinVal);
+    }
   }
 
   renderDrawer() {
@@ -298,9 +417,24 @@ class CartManager {
         : `INR ${finalTotal.toLocaleString('en-IN')}`;
     }
 
+    // Shipping & Pincode Status
+    const shippingRow = document.getElementById('cart-shipping-row');
+    const shippingAmountEl = document.getElementById('cart-shipping-amount');
+    const shippingPinTag = document.getElementById('cart-shipping-pincode-tag');
+    const pinInput = document.getElementById('cart-pincode-input');
+    const pinResultMsg = document.getElementById('cart-shipping-result-msg');
+    const pinBadge = document.getElementById('cart-pincode-status-badge');
+
+    if (pinInput && this.pincode) {
+      pinInput.value = this.pincode;
+    }
+
+    const shippingFee = this.getShippingFee();
+    const shippingFeeEUR = this.getShippingFeeEUR();
+    const isDe = window.currentLang === 'de';
+
     // Free delivery progress
     if (freeDeliveryBanner) {
-      const isDe = window.currentLang === 'de';
       if (subtotal >= this.freeDeliveryThreshold) {
         freeDeliveryBanner.innerHTML = `
           <div class="bg-brand-forest/30 border border-brand-mossLight/30 px-3 py-2 rounded-sm text-xs text-[#e2c9a5] flex items-center gap-2">
@@ -321,6 +455,50 @@ class CartManager {
             <span class="text-[10px] text-brand-mossLight font-semibold uppercase tracking-wider">${thresholdText}</span>
           </div>
         `;
+      }
+    }
+
+    if (this.shippingStatus && this.shippingStatus.checked) {
+      if (pinResultMsg) {
+        pinResultMsg.classList.remove('hidden');
+        pinResultMsg.innerHTML = `<span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-mossLight"></i> ${this.shippingStatus.message}</span>`;
+      }
+      if (pinBadge) {
+        pinBadge.textContent = this.shippingStatus.region || (this.shippingStatus.isFree ? (isDe ? 'Kostenlos' : 'Free') : `+₹${shippingFee}`);
+      }
+      if (shippingPinTag) {
+        shippingPinTag.textContent = `(${this.pincode})`;
+      }
+      if (shippingAmountEl) {
+        if (this.shippingStatus.isFree || shippingFee === 0) {
+          shippingAmountEl.innerHTML = `<span class="text-brand-mossLight font-bold uppercase tracking-wider text-xs">${isDe ? 'Kostenlos' : 'FREE'}</span>`;
+        } else {
+          shippingAmountEl.textContent = (typeof window.formatPrice === 'function')
+            ? window.formatPrice(shippingFee, shippingFeeEUR)
+            : `INR ${shippingFee.toLocaleString('en-IN')}`;
+        }
+      }
+    } else {
+      if (subtotal >= this.freeDeliveryThreshold) {
+        if (shippingAmountEl) {
+          shippingAmountEl.innerHTML = `<span class="text-brand-mossLight font-bold uppercase tracking-wider text-xs">${isDe ? 'Kostenlos' : 'FREE'}</span>`;
+        }
+        if (pinBadge) {
+          pinBadge.textContent = isDe ? 'Kostenlose Lieferung' : 'Free Delivery';
+        }
+      } else {
+        if (shippingAmountEl) {
+          shippingAmountEl.innerHTML = `<span class="text-xs text-[#cbb89d]/60 italic font-normal">${isDe ? 'PLZ oben prüfen' : 'Enter pincode above'}</span>`;
+        }
+        if (pinResultMsg) {
+          pinResultMsg.classList.add('hidden');
+        }
+        if (pinBadge) {
+          pinBadge.textContent = '';
+        }
+      }
+      if (shippingPinTag) {
+        shippingPinTag.textContent = this.pincode ? `(${this.pincode})` : '';
       }
     }
 
@@ -389,11 +567,23 @@ class CartManager {
     if (discount > 0) {
       message += isDe ? `*Rabatt (${this.coupon}):* -${window.formatPrice(discount, discountEUR)}\n` : `*Discount (${this.coupon}):* -INR ${discount.toLocaleString('en-IN')}\n`;
     }
+    const shippingFee = this.getShippingFee();
+    const shippingFeeEUR = this.getShippingFeeEUR();
+    if (shippingFee > 0) {
+      message += isDe 
+        ? `*Versand (${this.pincode || 'PLZ'}):* ${window.formatPrice(shippingFee, shippingFeeEUR)}\n` 
+        : `*Shipping Charges (${this.pincode || 'PIN'}):* INR ${shippingFee.toLocaleString('en-IN')}\n`;
+    } else if (subtotal >= this.freeDeliveryThreshold) {
+      message += isDe 
+        ? `*Versand (${this.pincode || 'Inklusive'}):* KOSTENLOS\n` 
+        : `*Shipping Charges (${this.pincode || 'Free'}):* FREE (Order > INR 1,500)\n`;
+    }
     message += isDe ? `*Gesamtbetrag:* ${window.formatPrice(finalTotal, finalTotalEUR)}\n` : `*Total Order Value:* INR ${finalTotal.toLocaleString('en-IN')}\n`;
     message += `----------------------------------------\n`;
     message += isDe ? `📦 *Liefer- & Kontaktdaten:*\n` : `📦 *Delivery & Customer Details:*\n`;
     message += `• *Name:* ${cust.name || (isDe ? 'Nicht angegeben' : 'Not specified')}\n`;
     message += `• *Telefon / WhatsApp:* ${cust.phone || (isDe ? 'Nicht angegeben' : 'Not specified')}\n`;
+    message += `• *Liefer-PLZ / Pincode:* ${this.pincode || 'N/A'}\n`;
     message += `• *Lieferadresse:* ${cust.address || (isDe ? 'Hofabholung / Nach Rücksprache' : 'Standard Farmstead Collection / To Confirm')}\n`;
     message += isDe 
       ? `\nHallo! Ich möchte diese Vorbestellung in ${currencyLabel} bei ${BRAND_CONFIG.companyName} bestätigen. Bitte teilen Sie mir die Banküberweisungsdetails mit. Vielen Dank!`
@@ -422,10 +612,17 @@ class CartManager {
     if (discount > 0) {
       body += `Discount (${this.coupon}): -INR ${discount.toLocaleString('en-IN')}\n`;
     }
+    const shippingFee = this.getShippingFee();
+    if (shippingFee > 0) {
+      body += `Shipping Charges (${this.pincode || 'PIN'}): INR ${shippingFee.toLocaleString('en-IN')}\n`;
+    } else if (subtotal >= this.freeDeliveryThreshold) {
+      body += `Shipping Charges (${this.pincode || 'Free'}): FREE (Order > INR 1,500)\n`;
+    }
     body += `Total Order Value: INR ${finalTotal.toLocaleString('en-IN')}\n\n`;
     body += `Customer Details:\n`;
     body += `Name: ${cust.name || 'N/A'}\n`;
     body += `Phone: ${cust.phone || 'N/A'}\n`;
+    body += `Pincode: ${this.pincode || 'N/A'}\n`;
     body += `Address: ${cust.address || 'N/A'}\n`;
     if (cust.notes) body += `Notes: ${cust.notes}\n`;
     body += `\nPlease confirm availability and dispatch schedule. Thank you!`;
@@ -602,6 +799,7 @@ class CartManager {
     message += `*Total Amount:* INR ${finalTotal.toLocaleString('en-IN')}\n`;
     message += `*Customer Name:* ${cust.name || 'N/A'}\n`;
     message += `*Contact Phone:* ${cust.phone || 'N/A'}\n`;
+    message += `*Delivery Pincode:* ${this.pincode || 'N/A'}\n`;
     message += `*Delivery Address:* ${cust.address || 'Standard Farmstead Collection'}\n`;
     if (cust.notes) message += `*Notes:* ${cust.notes}\n`;
     message += `----------------------------------------\n`;
@@ -659,6 +857,27 @@ class CartManager {
 
           <!-- Cart Items Container -->
           <div class="flex-1 overflow-y-auto p-4 sm:p-5" id="cart-items-container">
+            <!-- Pincode Shipping Checker Box -->
+            <div id="cart-pincode-checker-box" class="p-3.5 bg-black/70 border border-brand-gold/30 rounded-sm mb-3 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-semibold text-[#e2c9a5] uppercase tracking-wider flex items-center gap-1.5">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+                  <span>Delivery Pincode &amp; Shipping</span>
+                </span>
+                <span id="cart-pincode-status-badge" class="text-[10px] text-brand-mossLight font-bold uppercase tracking-wider"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <input type="text" id="cart-pincode-input" maxlength="10" placeholder="Enter Pincode (e.g. 642111)" 
+                  class="flex-1 px-3 py-1.5 bg-black/90 border border-white/20 rounded-sm text-xs text-[#e2c9a5] placeholder-[#cbb89d]/40 focus:outline-none focus:border-brand-gold transition" 
+                  onkeydown="if(event.key==='Enter'){window.cart.checkShipping(this.value);}" />
+                <button type="button" onclick="window.cart.checkShipping(document.getElementById('cart-pincode-input').value)" 
+                  class="px-3.5 py-1.5 bg-brand-gold hover:bg-[#c49b55] text-black rounded-sm text-xs font-bold transition shadow-sm">
+                  Check
+                </button>
+              </div>
+              <div id="cart-shipping-result-msg" class="text-[11px] text-[#cbb89d] bg-white/5 p-2 rounded-sm border border-white/10 hidden"></div>
+            </div>
+
             <div id="cart-empty-state" class="py-16 text-center">
               <div class="w-16 h-16 mx-auto mb-4 bg-brand-forest/20 text-brand-mossLight rounded-full flex items-center justify-center border border-brand-forest/40">
                 <i data-lucide="sprout" class="w-8 h-8"></i>
@@ -699,6 +918,13 @@ class CartManager {
               <div id="cart-discount-row" class="flex items-center justify-between text-brand-mossLight hidden">
                 <span>Promotional Savings</span>
                 <span id="cart-discount-amount" class="font-semibold">-INR 0</span>
+              </div>
+              <div id="cart-shipping-row" class="flex items-center justify-between text-[#cbb89d]">
+                <span class="flex items-center gap-1.5">
+                  <span>Shipping Charges</span>
+                  <span id="cart-shipping-pincode-tag" class="text-[10px] text-brand-gold font-mono"></span>
+                </span>
+                <span id="cart-shipping-amount" class="font-semibold text-[#e2c9a5]">Check Pincode Above</span>
               </div>
               <div class="flex items-center justify-between text-sm pt-2 border-t border-white/10">
                 <span class="text-[#e2c9a5] font-semibold">Total</span>
