@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purreins Frequency — Breathing Rhythm Motion Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #000000;
+      color: #F2EAD8;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fixed Canvas for radiating hollow holes */
+    #horseshoe-frequency-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 45;
+    }
+
+    /* Header with Horseshoe Logo */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .header-logo-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+      z-index: 10;
+    }
+
+    .header-logo-link img {
+      height: 110px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Subtle soft radial halo behind logo */
+    .header-logo-link::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + 24px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, 
+        #000000 0%, 
+        #000000 45%, 
+        rgba(0, 0, 0, 0.6) 75%, 
+        rgba(0, 0, 0, 0) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Main Container */
+    main {
+      padding-top: 150px;
+      padding-bottom: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #e2c9a5;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      color: #C8995A;
+      font-size: clamp(22px, 3.5vw, 32px);
+      margin-bottom: 24px;
+    }
+
+    /* Breathing Status Indicator Pill */
+    .breath-indicator-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 22px;
+      background: rgba(20, 26, 19, 0.85);
+      border: 1px solid rgba(226, 201, 165, 0.35);
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      margin-bottom: 36px;
+      backdrop-filter: blur(10px);
+    }
+
+    .breath-orb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #e2c9a5;
+      box-shadow: 0 0 14px #e2c9a5;
+      transition: transform 0.1s linear, opacity 0.1s linear;
+    }
+
+    .breath-text {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #e2c9a5;
+    }
+
+    .breath-bpm {
+      font-family: monospace;
+      font-size: 12px;
+      color: #C8995A;
+      padding-left: 8px;
+      border-left: 1px solid rgba(200, 153, 90, 0.3);
+    }
+
+    /* Control Panel Box */
+    .control-panel {
+      background: rgba(18, 18, 16, 0.9);
+      border: 1px solid rgba(200, 153, 90, 0.25);
+      border-radius: 12px;
+      padding: 28px;
+      max-width: 780px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+      margin-top: 10px;
+    }
+
+    .control-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #e2c9a5;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .control-desc {
+      font-size: 13px;
+      color: rgba(232, 220, 200, 0.7);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* Preset Button Group */
+    .preset-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #C8995A;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .preset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .preset-btn {
+      background: rgba(30, 36, 28, 0.7);
+      border: 1px solid rgba(200, 153, 90, 0.2);
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: #e2c9a5;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .preset-btn:hover {
+      background: rgba(74, 94, 58, 0.3);
+      border-color: #e2c9a5;
+    }
+
+    .preset-btn.active {
+      background: rgba(74, 94, 58, 0.55);
+      border-color: #e2c9a5;
+      box-shadow: 0 0 16px rgba(226, 201, 165, 0.25);
+    }
+
+    .preset-btn-title {
+      font-size: 13px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+      color: #F2EAD8;
+    }
+
+    .preset-btn-desc {
+      font-size: 11px;
+      color: rgba(232, 220, 200, 0.65);
+      line-height: 1.35;
+    }
+
+    /* Velocity Curve Selection */
+    .curve-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .curve-btn {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(200, 153, 90, 0.2);
+      border-radius: 6px;
+      color: #e2c9a5;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .curve-btn.active {
+      background: #4A5E3A;
+      border-color: #e2c9a5;
+      color: #F2EAD8;
+      font-weight: 600;
+    }
+
+    /* Sliders */
+    .slider-row {
+      margin-bottom: 18px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: rgba(232, 220, 200, 0.8);
+    }
+
+    .slider-val {
+      font-family: monospace;
+      color: #C8995A;
+      font-weight: 600;
+    }
+
+    input[type=range] {
+      width: 100%;
+      height: 5px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #e2c9a5;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(226, 201, 165, 0.8);
+    }
+
+    /* Live diagnostics */
+    .diagnostics {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(200, 153, 90, 0.15);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(232, 220, 200, 0.5);
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Header with Brand Logo -->
+  <header>
+    <a href="#" class="header-logo-link">
+      <img src="assets/images/logo.png" alt="Purreins Frequency" id="header-logo-img">
+    </a>
+  </header>
+
+  <!-- Canvas for radiating hollow holes -->
+  <canvas id="horseshoe-frequency-canvas"></canvas>
+
+  <main>
+    <h1 class="hero-title">Purreins Frequency,</h1>
+    <h2 class="hero-subtitle">waves of raw &amp; real resources.</h2>
+
+    <!-- Live Breathing Cadence Pill -->
+    <div class="breath-indicator-pill">
+      <div class="breath-orb" id="breath-orb"></div>
+      <span class="breath-text" id="breath-phase-text">Breathe In...</span>
+      <span class="breath-bpm" id="breath-bpm-text">11 Breaths / Min</span>
+    </div>
+
+    <!-- Interactive Prototype Tuner -->
+    <div class="control-panel">
+      <div class="control-header">
+        <span>Breathing Frequency &amp; Deceleration Tuner</span>
+        <span style="font-size: 13px; color: #C8995A; font-family: monospace;">Prototype V2</span>
+      </div>
+      <p class="control-desc">
+        Watch the 10 hollow holes emerge from the horseshoe's 10 nail holes in the top-left logo. Select a breathing cadence preset below or fine-tune the deceleration curve.
+      </p>
+
+      <!-- Presets -->
+      <span class="preset-label">Breathing Cadence Presets</span>
+      <div class="preset-grid">
+        <button type="button" class="preset-btn" onclick="applyPreset('calm')">
+          <span class="preset-btn-title">1. Natural Calm Breath</span>
+          <span class="preset-btn-desc">4.5s cycle • 13 breaths/min. Gentle, natural resting human breath rhythm.</span>
+        </button>
+
+        <button type="button" class="preset-btn active" onclick="applyPreset('deep')">
+          <span class="preset-btn-title">2. Deep Relaxed Breath (Recommended)</span>
+          <span class="preset-btn-desc">5.5s cycle • 11 breaths/min. Serene, luxurious tempo with graceful deceleration.</span>
+        </button>
+
+        <button type="button" class="preset-btn" onclick="applyPreset('meditative')">
+          <span class="preset-btn-title">3. Meditative Zen Breath</span>
+          <span class="preset-btn-desc">6.8s cycle • 9 breaths/min. Ultra-slow, sacred frequency with extended dissipation.</span>
+        </button>
+      </div>
+
+      <!-- Deceleration Curves -->
+      <span class="preset-label">Motion Deceleration Profile</span>
+      <div class="curve-grid">
+        <button type="button" class="curve-btn active" id="curve-easeout" onclick="setCurve('easeOut')">
+          Exhale Deceleration (Ease-Out)
+        </button>
+        <button type="button" class="curve-btn" id="curve-smooth" onclick="setCurve('smooth')">
+          Pranayama Wave (Ease-In-Out)
+        </button>
+        <button type="button" class="curve-btn" id="curve-linear" onclick="setCurve('linear')">
+          Linear (Previous Baseline)
+        </button>
+      </div>
+
+      <!-- Sliders -->
+      <div class="slider-row">
+        <div class="slider-header">
+          <span>Breath Cycle Duration (seconds per wave):</span>
+          <span class="slider-val" id="val-duration">5.5 s</span>
+        </div>
+        <input type="range" id="slider-duration" min="3.0" max="8.0" step="0.1" value="5.5" oninput="updateSliders()">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-header">
+          <span>Outward Travel Distance (inches):</span>
+          <span class="slider-val" id="val-distance">3.0 in (288 px)</span>
+        </div>
+        <input type="range" id="slider-distance" min="2.0" max="4.0" step="0.1" value="3.0" oninput="updateSliders()">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-header">
+          <span>Hollow Hole Stroke Weight:</span>
+          <span class="slider-val" id="val-weight">1.3 px</span>
+        </div>
+        <input type="range" id="slider-weight" min="0.8" max="2.2" step="0.1" value="1.3" oninput="updateSliders()">
+      </div>
+
+      <!-- Live Diagnostics -->
+      <div class="diagnostics">
+        <span id="diag-waves">Active Waves: 0</span>
+        <span id="diag-dist">Current Front: 0 px</span>
+        <span>Color: #e2c9a5 (Brand Text)</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Exact normalized coordinates of the 10 horseshoe nail holes in logo.png
+    const HOLE_DEFINITIONS = [
+      { id: 'L1', normX: 0.3133, normY: 0.1399, ux: -0.576, uy: -0.817, angle: -125.2 },
+      { id: 'L2', normX: 0.2222, normY: 0.3265, ux: -0.910, uy: -0.415, angle: -155.5 },
+      { id: 'L3', normX: 0.2133, normY: 0.5306, ux: -0.996, uy:  0.091, angle:  174.8 },
+      { id: 'L4', normX: 0.2489, normY: 0.7172, ux: -0.834, uy:  0.551, angle:  146.5 },
+      { id: 'L5', normX: 0.3444, normY: 0.8630, ux: -0.496, uy:  0.868, angle:  119.7 },
+      { id: 'R1', normX: 0.6867, normY: 0.1399, ux:  0.558, uy: -0.830, angle:  -56.1 },
+      { id: 'R2', normX: 0.7867, normY: 0.3324, ux:  0.915, uy: -0.403, angle:  -23.8 },
+      { id: 'R3', normX: 0.7978, normY: 0.5306, ux:  0.996, uy:  0.091, angle:    5.2 },
+      { id: 'R4', normX: 0.7578, normY: 0.7143, ux:  0.835, uy:  0.550, angle:   33.3 },
+      { id: 'R5', normX: 0.6556, normY: 0.8630, ux:  0.475, uy:  0.880, angle:   61.6 }
+    ];
+
+    // Engine State
+    const CONFIG = {
+      breathDuration: 5.5, // seconds per breath cycle
+      maxDistanceInches: 3.0,
+      strokeWeight: 1.3,
+      curve: 'easeOut', // 'easeOut', 'smooth', 'linear'
+      twoInchesPx: 192,
+      maxDistancePx: 288
+    };
+
+    let logoImg = null;
+    let canvas = null;
+    let ctx = null;
+    let dpr = window.devicePixelRatio || 1;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    let waves = [];
+    let lastSpawnTime = -100;
+    let lastTimestamp = 0;
+
+    function initEngine() {
+      logoImg = document.getElementById('header-logo-img');
+      canvas = document.getElementById('horseshoe-frequency-canvas');
+      ctx = canvas.getContext('2d');
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      requestAnimationFrame(loop);
+    }
+
+    function resizeCanvas() {
+      dpr = window.devicePixelRatio || 1;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+    }
+
+    function spawnBreathWave(timeSec) {
+      if (!logoImg) return;
+      const rect = logoImg.getBoundingClientRect();
+      if (rect.width <= 0) return;
+
+      const holeW = Math.max(3.2, Math.min(5.5, rect.width * 0.026));
+      const holeH = Math.max(3.8, Math.min(6.5, rect.height * 0.035));
+      const cornerRadius = Math.max(1.0, holeW * 0.35);
+
+      const holes = HOLE_DEFINITIONS.map(def => ({
+        normX: def.normX,
+        normY: def.normY,
+        ux: def.ux,
+        uy: def.uy,
+        angle: def.angle,
+        holeW: holeW,
+        holeH: holeH,
+        cornerRadius: cornerRadius
+      }));
+
+      waves.push({
+        birthTime: timeSec,
+        duration: CONFIG.breathDuration,
+        maxDist: CONFIG.maxDistancePx,
+        holes: holes
+      });
+
+      lastSpawnTime = timeSec;
+    }
+
+    // Easing formulas for breath dynamics
+    function getNormalizedProgress(rawProgress, curveType) {
+      const p = Math.min(1, Math.max(0, rawProgress));
+      if (curveType === 'easeOut') {
+        // Exhale breath deceleration: fluid initial release, smoothly slowing down as it reaches 2-3 inches
+        return 1 - Math.pow(1 - p, 2.4);
+      } else if (curveType === 'smooth') {
+        // Pranayama bell curve: smooth acceleration and deceleration
+        return (1 - Math.cos(p * Math.PI)) / 2;
+      } else {
+        // Linear baseline
+        return p;
+      }
+    }
+
+    function drawRoundedHollowHole(x, y, w, h, radius, angleDeg, alpha) {
+      if (alpha <= 0.005) return;
+
+      ctx.save();
+      ctx.translate(x * dpr, y * dpr);
+
+      // Rotate along tangent to the horseshoe curve
+      const tangentRad = (angleDeg + 90) * Math.PI / 180;
+      ctx.rotate(tangentRad);
+
+      const scaledW = w * dpr;
+      const scaledH = h * dpr;
+      const scaledR = radius * dpr;
+
+      ctx.beginPath();
+      if (typeof ctx.roundRect === 'function') {
+        ctx.roundRect(-scaledW / 2, -scaledH / 2, scaledW, scaledH, scaledR);
+      } else {
+        ctx.rect(-scaledW / 2, -scaledH / 2, scaledW, scaledH);
+      }
+
+      // Exact brand text color: #e2c9a5 (RGB: 226, 201, 165)
+      ctx.strokeStyle = `rgba(226, 201, 165, ${alpha * 0.95})`;
+      ctx.lineWidth = CONFIG.strokeWeight * dpr;
+      ctx.shadowColor = `rgba(226, 201, 165, ${alpha * 0.45})`;
+      ctx.shadowBlur = 3.5 * dpr;
+
+      // Pure stroke, NO fill (100% hollow hole)
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function loop(timestamp) {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const timeSec = timestamp / 1000;
+      lastTimestamp = timestamp;
+
+      // Spawn wave precisely at breathing interval
+      if (timeSec - lastSpawnTime >= CONFIG.breathDuration) {
+        spawnBreathWave(timeSec);
+      }
+
+      // Update breathing pill visualizer
+      const breathPhase = (timeSec - lastSpawnTime) / CONFIG.breathDuration;
+      const breathOrb = document.getElementById('breath-orb');
+      const breathText = document.getElementById('breath-phase-text');
+      if (breathOrb && breathText) {
+        // Smooth sine wave expansion for visual orb
+        const pulse = Math.sin(breathPhase * Math.PI);
+        breathOrb.style.transform = `scale(${1 + pulse * 0.5})`;
+        breathOrb.style.opacity = `${0.6 + pulse * 0.4}`;
+        if (breathPhase < 0.5) {
+          breathText.textContent = "Breathing Out (Emanating Waves)...";
+        } else {
+          breathText.textContent = "Gathering Next Breath Cycle...";
+        }
+      }
+
+      // Clear Canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const rect = logoImg ? logoImg.getBoundingClientRect() : null;
+
+      // Animate Waves
+      let frontDist = 0;
+      for (let i = waves.length - 1; i >= 0; i--) {
+        const wave = waves[i];
+        const rawT = (timeSec - wave.birthTime) / wave.duration;
+
+        if (rawT >= 1.0) {
+          waves.splice(i, 1);
+          continue;
+        }
+
+        // Apply chosen deceleration curve
+        const easedProgress = getNormalizedProgress(rawT, CONFIG.curve);
+        const distance = easedProgress * wave.maxDist;
+        if (distance > frontDist) frontDist = distance;
+
+        // Opacity logic matching user's exact specification:
+        // - First 2 inches (~192px): maintains clear visibility, slowing further out
+        // - Across the 3rd inch (~192px to 288px): fades smoothly away to 0
+        let alpha = 0.92;
+        if (distance < 16) {
+          alpha = (distance / 16) * 0.92;
+        } else if (distance <= CONFIG.twoInchesPx) {
+          // In the first 2 inches: steady, clear, slow speed
+          alpha = 0.92 - (distance / CONFIG.twoInchesPx) * 0.05;
+        } else {
+          // In the 3rd inch: fade away completely
+          const fadeProgress = (distance - CONFIG.twoInchesPx) / (wave.maxDist - CONFIG.twoInchesPx);
+          alpha = 0.87 * (1 - Math.min(1, Math.max(0, fadeProgress)));
+        }
+
+        // Draw each of the 10 hollow holes
+        for (let j = 0; j < wave.holes.length; j++) {
+          const hole = wave.holes[j];
+          let originX = rect ? rect.left + rect.width * hole.normX : 100;
+          let originY = rect ? rect.top + rect.height * hole.normY : 60;
+
+          const posX = originX + hole.ux * distance;
+          const posY = originY + hole.uy * distance;
+
+          drawRoundedHollowHole(
+            posX,
+            posY,
+            hole.holeW,
+            hole.holeH,
+            hole.cornerRadius,
+            hole.angle,
+            alpha
+          );
+        }
+      }
+
+      // Update Diagnostics
+      const diagWaves = document.getElementById('diag-waves');
+      const diagDist = document.getElementById('diag-dist');
+      if (diagWaves) diagWaves.textContent = `Active Waves: ${waves.length}`;
+      if (diagDist) diagDist.textContent = `Current Front: ${Math.round(frontDist)} px / ${Math.round(CONFIG.maxDistancePx)} px`;
+
+      requestAnimationFrame(loop);
+    }
+
+    // UI Interactive Controls
+    function applyPreset(preset) {
+      document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+      const clicked = event ? event.currentTarget : null;
+      if (clicked) clicked.classList.add('active');
+
+      if (preset === 'calm') {
+        CONFIG.breathDuration = 4.5;
+        CONFIG.curve = 'easeOut';
+      } else if (preset === 'deep') {
+        CONFIG.breathDuration = 5.5;
+        CONFIG.curve = 'easeOut';
+      } else if (preset === 'meditative') {
+        CONFIG.breathDuration = 6.8;
+        CONFIG.curve = 'easeOut';
+      }
+
+      document.getElementById('slider-duration').value = CONFIG.breathDuration;
+      setCurve('easeOut');
+      updateSliders();
+    }
+
+    function setCurve(curveName) {
+      CONFIG.curve = curveName;
+      document.querySelectorAll('.curve-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById('curve-' + curveName);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function updateSliders() {
+      CONFIG.breathDuration = parseFloat(document.getElementById('slider-duration').value);
+      CONFIG.maxDistanceInches = parseFloat(document.getElementById('slider-distance').value);
+      CONFIG.strokeWeight = parseFloat(document.getElementById('slider-weight').value);
+
+      CONFIG.maxDistancePx = Math.round(CONFIG.maxDistanceInches * 96);
+      CONFIG.twoInchesPx = Math.round((CONFIG.maxDistanceInches * (2.0 / 3.0)) * 96);
+
+      document.getElementById('val-duration').textContent = CONFIG.breathDuration.toFixed(1) + ' s';
+      document.getElementById('val-distance').textContent = `${CONFIG.maxDistanceInches.toFixed(1)} in (${CONFIG.maxDistancePx} px)`;
+      document.getElementById('val-weight').textContent = CONFIG.strokeWeight.toFixed(1) + ' px';
+
+      // Calculate breaths per minute
+      const bpm = Math.round(60 / CONFIG.breathDuration);
+      document.getElementById('breath-bpm-text').textContent = `${bpm} Breaths / Min`;
+    }
+
+    window.addEventListener('DOMContentLoaded', initEngine);
+  </script>
+</body>
+</html>
