@@ -518,7 +518,7 @@
       <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
 
         <!-- Look Button with Green Wooden Signboard Symbol (No border line) -->
-        <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition border-0">
+        <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-xl text-xs font-semibold tracking-wider uppercase shadow-md transition border-0">
           <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2v20" stroke="#8A9E6E" stroke-width="2.2" stroke-linecap="round"/>
             <path d="M4 4.5h12l4 3.5-4 3.5H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z" fill="#4A5E3A" stroke="#8A9E6E" stroke-width="1.5" stroke-linejoin="round"/>
@@ -530,7 +530,7 @@
 
         <!-- Language Flag Switcher (Only active flag shown, other flag falls down like Look button) -->
         <div id="header-lang-zone" class="relative inline-flex items-center group notranslate" translate="no">
-          <button type="button" id="header-lang-btn" class="inline-flex items-center justify-center bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-2.5 py-2 rounded-sm text-xs shadow-md transition border-0 cursor-pointer select-none" title="Language: English (₹ INR)" aria-label="Language Switcher">
+          <button type="button" id="header-lang-btn" class="inline-flex items-center justify-center bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-2.5 py-2 rounded-xl text-xs shadow-md transition border-0 cursor-pointer select-none" title="Language: English (₹ INR)" aria-label="Language Switcher">
             <span class="text-[17px] leading-none select-none">🇬🇧</span>
           </button>
           <div id="header-lang-dropdown" class="header-lang-dropdown">
@@ -542,7 +542,7 @@
 
 
         <!-- Mobile/Tablet Menu Button (No border line) -->
-        <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-sm bg-black/40 hover:bg-black/60 text-[#e2c9a5] transition border-0">
+        <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-xl bg-black/40 hover:bg-black/60 text-[#e2c9a5] transition border-0">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -593,10 +593,11 @@
         
         <!-- Contact Details -->
         <div class="lg:col-span-5 space-y-5">
-          <div class="stable-bar rounded-sm">
-            <span class="stable-bar-label">Get in Touch</span>
-            <h3 class="stable-bar-title text-2xl">Farm Sanctuary Office</h3>
-            <p class="stable-bar-sub">Messages sent via WhatsApp receive immediate attention during morning field hours.</p>
+          <!-- Clean Rounded Section Header (No Tile Slats) -->
+          <div class="rounded-2xl p-6 bg-[#0a0a0a] border border-white/10 mb-6">
+            <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-brand-mossLight font-bold block mb-2">GET IN TOUCH</span>
+            <h3 class="font-serif text-2xl font-bold text-brand-cream">Farm Sanctuary Office</h3>
+            <p class="text-xs text-brand-oat/75 font-light mt-1">Messages sent via WhatsApp receive immediate attention during morning field hours.</p>
           </div>
 
           <div class="space-y-4">
@@ -605,7 +606,7 @@
                 <span class="stall-label">Farm Location</span>
               </div>
               <div class="stall-body flex items-start gap-4">
-                <div class="w-10 h-10 rounded-sm bg-brand-forest/25 border border-brand-forest/40 text-brand-mossLight flex items-center justify-center flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-brand-forest/25 border border-brand-forest/40 text-brand-mossLight flex items-center justify-center flex-shrink-0">
                   <i data-lucide="map-pin" class="w-5 h-5"></i>
                 </div>
                 <div class="text-xs">
@@ -619,7 +620,7 @@
                 <span class="stall-label">Visiting &amp; Store Hours</span>
               </div>
               <div class="stall-body flex items-start gap-4">
-                <div class="w-10 h-10 rounded-sm bg-brand-gold/20 border border-brand-gold/30 text-brand-gold flex items-center justify-center flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-brand-gold/20 border border-brand-gold/30 text-brand-gold flex items-center justify-center flex-shrink-0">
                   <i data-lucide="clock" class="w-5 h-5"></i>
                 </div>
                 <div class="text-xs">
@@ -633,7 +634,7 @@
                 <span class="stall-label">Direct Farm WhatsApp</span>
               </div>
               <div class="stall-body flex items-start gap-4">
-                <div class="w-10 h-10 rounded-sm bg-brand-forest/25 border border-brand-forest/40 text-brand-mossLight flex items-center justify-center flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-brand-forest/25 border border-brand-forest/40 text-brand-mossLight flex items-center justify-center flex-shrink-0">
                   <i data-lucide="message-circle" class="w-5 h-5"></i>
                 </div>
                 <div class="text-xs">
@@ -648,7 +649,7 @@
                 <span class="stall-label">Official Farmstead Email</span>
               </div>
               <div class="stall-body flex items-start gap-4">
-                <div class="w-10 h-10 rounded-sm bg-white/10 border border-white/20 text-brand-cream flex items-center justify-center flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/20 text-brand-cream flex items-center justify-center flex-shrink-0">
                   <i data-lucide="mail" class="w-5 h-5"></i>
                 </div>
                 <div class="text-xs">
@@ -670,39 +671,39 @@
               <div class="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-xs font-bold text-brand-oat/80 mb-1">Your Name *</label>
-                  <input type="text" id="ct-name" required placeholder="Full name" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
+                  <input type="text" id="ct-name" required placeholder="Full name" class="w-full px-4 py-2.5 rounded-xl border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
                 </div>
                 <div>
                   <label class="block text-xs font-bold text-brand-oat/80 mb-1">Email Address *</label>
-                  <input type="email" id="ct-email" required placeholder="name@example.com" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
+                  <input type="email" id="ct-email" required placeholder="name@example.com" class="w-full px-4 py-2.5 rounded-xl border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
                 </div>
               </div>
 
               <div>
                 <label class="block text-xs font-bold text-brand-oat/80 mb-1">Subject</label>
-                <input type="text" id="ct-subject" placeholder="e.g. Soap curing, duck eggs availability" class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
+                <input type="text" id="ct-subject" placeholder="e.g. Soap curing, duck eggs availability" class="w-full px-4 py-2.5 rounded-xl border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight">
               </div>
 
               <div>
                 <label class="block text-xs font-bold text-brand-oat/80 mb-1">Message *</label>
-                <textarea id="ct-message" rows="4" required placeholder="Write your message here..." class="w-full px-4 py-2.5 rounded-sm border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight"></textarea>
+                <textarea id="ct-message" rows="4" required placeholder="Write your message here..." class="w-full px-4 py-2.5 rounded-xl border border-white/15 text-xs bg-brand-dark/50 text-brand-cream focus:outline-none focus:border-brand-mossLight"></textarea>
               </div>
 
-              <button type="submit" class="w-full btn-primary py-3.5 px-6 rounded-sm font-medium text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg">
+              <button type="submit" class="w-full btn-primary py-3.5 px-6 rounded-xl font-medium text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg">
                 <i data-lucide="send" class="w-4 h-4"></i>
                 <span>Send Message</span>
               </button>
             </form>
 
-            <div id="ct-success" class="absolute inset-0 bg-barnwood-dark rounded-sm p-8 flex flex-col items-center justify-center text-center hidden">
-              <div class="w-16 h-16 rounded-sm bg-brand-forest/30 text-brand-mossLight flex items-center justify-center mb-4 border border-brand-forest/40">
+            <div id="ct-success" class="absolute inset-0 bg-barnwood-dark rounded-xl p-8 flex flex-col items-center justify-center text-center hidden">
+              <div class="w-16 h-16 rounded-xl bg-brand-forest/30 text-brand-mossLight flex items-center justify-center mb-4 border border-brand-forest/40">
                 <i data-lucide="check-circle" class="w-8 h-8"></i>
               </div>
               <h4 class="font-serif text-2xl font-bold text-brand-cream mb-2">Message Sent!</h4>
               <p class="text-brand-oat/70 text-xs max-w-sm mb-6">
                 Thank you for reaching out to Purreins Frequency. We will get back to you shortly!
               </p>
-              <button onclick="document.getElementById('ct-success').classList.add('hidden')" class="btn-secondary px-6 py-2 rounded-sm text-xs font-semibold">
+              <button onclick="document.getElementById('ct-success').classList.add('hidden')" class="btn-secondary px-6 py-2 rounded-xl text-xs font-semibold">
                 Send Another Note
               </button>
             </div>
@@ -713,9 +714,10 @@
 
       <!-- FAQs Accordion -->
       <div class="max-w-3xl mx-auto">
-        <div class="stable-bar rounded-sm text-center">
-          <span class="stable-bar-label">Got Questions?</span>
-          <h3 class="stable-bar-title text-3xl">Frequently Asked Questions</h3>
+        <!-- Clean Rounded Section Header (No Tile Slats) -->
+        <div class="rounded-2xl p-6 sm:p-8 bg-[#0a0a0a] border border-white/10 mb-6 text-center">
+          <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-brand-mossLight font-bold block mb-2">GOT QUESTIONS?</span>
+          <h3 class="font-serif text-3xl font-bold text-brand-cream">Frequently Asked Questions</h3>
         </div>
 
         <div class="space-y-4" id="faqs-accordion">
@@ -733,9 +735,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/data.js?v=20261106_v2_all_blogs_restored"></script>
+  <script src="assets/js/data.js"></script>
   <script src="assets/js/cart.js"></script>
-  <script src="assets/js/main.js?v=20261023_v2_cleanest"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     function renderFAQs() {
       const container = document.getElementById('faqs-accordion');

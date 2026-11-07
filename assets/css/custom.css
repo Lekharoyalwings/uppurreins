@@ -123,23 +123,23 @@ body {
 
 
 /* ════════════════════════════════════════════════════
-   STALL CARD (FULLY BLACK, NO BREAKING BORDERS)
+   STALL CARD (UNIFIED ROUNDED RECTANGLE BOXES)
    ════════════════════════════════════════════════════ */
 .stall-card {
-  border-radius: 4px;
+  border-radius: 18px !important;
   overflow: hidden;
-  border: none !important;
-  box-shadow: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.85);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  background-color: #000000;
+  background-color: #0c0c0c;
   display: flex;
   flex-direction: column;
 }
 
 .stall-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.95);
-  border-color: transparent !important;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.95);
+  border-color: rgba(245, 199, 84, 0.35) !important;
 }
 
 /* Black header bar on cards */
@@ -198,8 +198,8 @@ body {
 
 
 /* ════════════════════════════════════════════════════
-   STABLE BAR (SECTION HEADER BARS)
-   100% vertically straight wood grain, no diagonal tilt
+   STABLE BAR (SECTION HEADER BARS - ROUNDED RECTANGLE)
+   Allowed strictly on 5 Pillars & Wholesale B2B
    ════════════════════════════════════════════════════ */
 .stable-bar {
   background-color: #080808;
@@ -208,13 +208,13 @@ body {
     transparent 0px, transparent 20px,
     rgba(255,255,255,0.018) 20px, rgba(255,255,255,0.018) 22px
   );
-  padding: 20px 26px 20px;
+  padding: 24px 28px;
   position: relative;
   overflow: hidden;
   margin-bottom: 32px;
-  border-radius: 4px;
-  border: none !important;
-  box-shadow: none !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
 }
 
 .stable-bar::before {
@@ -415,6 +415,7 @@ header .text-brand-mossLight {
 .btn-primary {
   background-color: var(--color-moss);
   color: var(--color-straw);
+  border-radius: 12px;
   transition: all 0.3s ease;
 }
 .btn-primary:hover {
@@ -426,6 +427,7 @@ header .text-brand-mossLight {
 .btn-clay {
   background-color: var(--color-clay);
   color: var(--color-straw);
+  border-radius: 12px;
   transition: all 0.3s ease;
 }
 .btn-clay:hover {
@@ -437,12 +439,24 @@ header .text-brand-mossLight {
   background-color: transparent;
   color: var(--color-straw);
   border: 1.5px solid rgba(245, 199, 84, 0.45);
+  border-radius: 12px;
   transition: all 0.3s ease;
 }
 .btn-secondary:hover {
   background-color: rgba(245, 199, 84, 0.15);
   color: #F5C754;
   border-color: #F5C754;
+}
+
+/* Form inputs & interactive controls: rounded rectangle edges site-wide */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  border-radius: 12px !important;
 }
 
 

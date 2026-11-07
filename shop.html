@@ -543,7 +543,7 @@
       <div id="book-visit-nav-zone" class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
 
         <!-- Look Button with Green Wooden Signboard Symbol (No border line) -->
-        <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase shadow-md transition border-0">
+        <a href="visit.html" id="book-visit-btn" class="hidden sm:inline-flex items-center gap-2 bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-4 py-2 rounded-lg text-xs font-semibold tracking-wider uppercase shadow-md transition border-0">
           <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2v20" stroke="#8A9E6E" stroke-width="2.2" stroke-linecap="round"/>
             <path d="M4 4.5h12l4 3.5-4 3.5H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z" fill="#4A5E3A" stroke="#8A9E6E" stroke-width="1.5" stroke-linejoin="round"/>
@@ -555,7 +555,7 @@
 
         <!-- Language Flag Switcher (Only active flag shown, other flag falls down like Look button) -->
         <div id="header-lang-zone" class="relative inline-flex items-center group notranslate" translate="no">
-          <button type="button" id="header-lang-btn" class="inline-flex items-center justify-center bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-2.5 py-2 rounded-sm text-xs shadow-md transition border-0 cursor-pointer select-none" title="Language: English (₹ INR)" aria-label="Language Switcher">
+          <button type="button" id="header-lang-btn" class="inline-flex items-center justify-center bg-brand-forest hover:bg-brand-sage text-[#e2c9a5] px-2.5 py-2 rounded-lg text-xs shadow-md transition border-0 cursor-pointer select-none" title="Language: English (₹ INR)" aria-label="Language Switcher">
             <span class="text-[17px] leading-none select-none">🇬🇧</span>
           </button>
           <div id="header-lang-dropdown" class="header-lang-dropdown">
@@ -567,13 +567,13 @@
 
 
         <!-- Cart Button (No border line) -->
-        <button id="header-cart-btn" onclick="window.cart.openDrawer()" class="header-cart-btn relative p-2.5 rounded-sm bg-black/40 hover:bg-brand-forest/30 text-[#e2c9a5] transition border-0" title="Shopping Basket">
+        <button id="header-cart-btn" onclick="window.cart.openDrawer()" class="header-cart-btn relative p-2.5 rounded-lg bg-black/40 hover:bg-brand-forest/30 text-[#e2c9a5] transition border-0" title="Shopping Basket">
           <i data-lucide="shopping-bag" class="w-5 h-5"></i>
           <span class="cart-count-badge absolute -top-1 -right-1 w-5 h-5 bg-brand-forest text-[#e2c9a5] text-[10px] font-bold rounded-full items-center justify-center hidden">0</span>
         </button>
 
         <!-- Mobile/Tablet Menu Button (No border line) -->
-        <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-sm bg-black/40 hover:bg-black/60 text-[#e2c9a5] transition border-0">
+        <button id="mobile-menu-btn" class="xl:hidden p-2.5 rounded-lg bg-black/40 hover:bg-black/60 text-[#e2c9a5] transition border-0">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -961,6 +961,35 @@
         <!-- Horizontal Rail -->
         <div id="carousel-herbs" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           <!-- Injected via JS -->
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- WHOLESALE CALLOUT BANNER (COMMERCIAL ORDERS)    -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <section class="py-12 border-t border-white/10" id="section-wholesale-callout">
+        <div class="stable-bar rounded-2xl p-8 sm:p-10 border border-white/10 shadow-2xl">
+          <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+
+            <div class="space-y-3 text-center lg:text-left max-w-2xl">
+              <span class="text-[10px] font-mono uppercase tracking-[0.25em] text-brand-gold font-bold block">COMMERCIAL &amp; HOSPITALITY SUPPLY</span>
+              <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">Supplying Cafes, Restaurants &amp; Eco-Stores</h2>
+              <p class="text-brand-oat/80 text-sm sm:text-base font-light">
+                Need regular pasture duck eggs, heirloom quilt rolls, custom handcrafted soap batches, or fresh whole herbs? We offer wholesale tier pricing and custom packaging.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 justify-center">
+              <a href="wholesale.html" class="bg-brand-forest hover:bg-brand-sage text-brand-cream px-7 py-3.5 rounded-xl font-medium text-sm transition shadow-xl flex items-center gap-2">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                <span>Submit Wholesale Query</span>
+              </a>
+              <a href="https://wa.me/917204271822?text=Hello%20Purreins%20Frequency!%20I%20am%20interested%20in%20wholesale%20bulk%20orders." target="_blank" class="bg-black/80 hover:bg-black text-brand-cream border border-white/20 px-6 py-3.5 rounded-xl font-medium text-sm transition shadow flex items-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4 text-brand-mossLight"></i>
+                <span>Direct WhatsApp Query</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
