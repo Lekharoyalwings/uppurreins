@@ -12,6 +12,7 @@ const BRAND_CONFIG = {
   whatsappNumber: "917204271822",
   email: "look@uppurreins.com",
   wholesaleEmail: "look@uppurreins.com",
+  dachEmail: "dach@uppurreins.com",
   address: "347/A Royalwings Nilayam, Kallapara, Sadak road, Kizhakkambalam, Oorakadu, Kunnathunad, Ernakulam 683562",
   hours: "Every Day: 07:00 – 17:00",
   bankDetails: {
@@ -1236,6 +1237,10 @@ window.SITE_PHRASES_DE = {
   "All Offerings": "Alle Angebote",
   "Living Produce": "Lebendige Erzeugnisse",
   "Microgreens & Mushrooms": "Microgreens & Hofpilze",
+  "Germany & Austria (DACH)": "Deutschland & Österreich (DACH)",
+  "Regional inquiries for Germany & Austria": "Regionale Anfragen für Deutschland & Österreich",
+  "European Stockists & Retailers": "Europäische Händler & Verkaufsstellen",
+  "Send Regional Inquiry →": "Regionale Anfrage senden →",
   "Curd Soaps": "Quarkseifen",
   "Pasture Duck Eggs": "Weide-Enteneier",
   "Artisanal Quilt Rolls": "Handgefertigte Steppdecken",
