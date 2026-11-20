@@ -1,11 +1,11 @@
 // UP Purreins & Purreins Frequency - Central Data Store
-// Curated pure-living catalog: Curd Soaps, Pasture Duck Eggs, GOTS Quilt Rolls & Organic Moringa/Tulsi Leaves
+// Curated pure-living catalog: Coconut Milk Soaps, Pasture Duck Eggs, GOTS Quilt Rolls & Organic Moringa/Tulsi Leaves
 
 const BRAND_CONFIG = {
   brandName: "UP Purreins",
   companyName: "Purreins Frequency",
   tagline: "Purreins Frequency, waves of raw & real resources.",
-  description: "Handcrafted curd soaps, pasture duck eggs in straw, GOTS & OEKO-TEX certified artisanal quilt rolls, and sun-cured moringa and sacred tulsi leaves.",
+  description: "Handcrafted coconut milk soaps, pasture duck eggs in straw, GOTS & OEKO-TEX certified artisanal quilt rolls, and sun-cured moringa and sacred tulsi leaves.",
   currency: "INR",
   currencySymbol: "INR ",
   phone: "+91 72042 71822",
@@ -34,7 +34,7 @@ const BRAND_CONFIG = {
 const CATEGORIES = [
   { id: "all", name: "All Offerings", name_de: "Alle Angebote", icon: "sparkles" },
   { id: "quilts", name: "Artisanal Quilt Rolls", name_de: "Handgefertigte Steppdecken", icon: "scissors" },
-  { id: "soaps", name: "Curd Soaps", name_de: "Quarkseifen", icon: "droplets" },
+  { id: "soaps", name: "Coconut Soaps", name_de: "Kokosseifen", icon: "droplets" },
   { id: "duck-eggs", name: "Pasture Duck Eggs", name_de: "Weide-Enteneier", icon: "egg" },
   { id: "herbs", name: "Herbal Leaves", name_de: "Kräuterblätter", icon: "leaf" },
   { id: "produce", name: "Microgreens & Mushrooms", name_de: "Microgreens & Hofpilze", icon: "sprout" }
@@ -51,29 +51,29 @@ const PASTEL_COLORWAYS = [
 ];
 
 const PRODUCTS = [
-  // CURD SOAPS (Sculptural 3D Bubble Cubes • 3x3 rounded spheres all around, wrapped in plain unbranded organic paper stating ONLY the botanical name with NO word 'Soap', tied with seed-flecked cotton thread)
+  // COCONUT MILK SOAPS (Sculptural 3D Bubble Cubes • 3x3 rounded spheres all around, wrapped in plain unbranded organic paper stating ONLY the botanical name with NO word 'Soap', tied with seed-flecked cotton thread)
   {
     id: "soap-curd",
     origin: "Roots from Southern India",
     origin_de: "Wurzeln aus Südindien",
-    description_de: "Reine, kaltgerührte Quarkseife mit unserer charakteristischen skulpturalen 3D-Bubble-Cube-Form. Gesiedet aus reinem kaltgepresstem Kokosöl, frischem hofeigenem Bio-Quark und sonst nichts. Sanfter, rückfettender Schaum mit natürlicher Milchsäure für empfindliche Haut.",
+    description_de: "Reine, kaltgerührte Kokosseife mit unserer charakteristischen skulpturalen 3D-Bubble-Cube-Form. Gesiedet aus reinem kaltgepresstem Kokosöl als Basis und frischer hofeigener Kokosmilch. Sanfter, rückfettender Schaum mit Laurinsäure für empfindliche Haut.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
-    badge_de: "Echte Hof-Quarkseife",
-    ingredients_de: "Reines kaltgepresstes Kokosöl + Frischer Bio-Quark + Quellwasser + Verseifungslauge (vollständig verseift).",
-    name: "Curd",
-    name_de: "Quarkseife Pure",
+    badge_de: "Echte Hof-Kokosseife",
+    ingredients_de: "Reines kaltgepresstes Kokosöl (Basis) + Frische Hof-Kokosmilch + Quellwasser + Verseifungslauge (vollständig verseift).",
+    name: "Coconut",
+    name_de: "Kokosseife Pure",
     category: "soaps",
     price: 440,
     priceEUR: 4.90,
     unit: "120g 3D Bubble Cube",
-    badge: "Creamy Milky Ivory",
+    badge: "Creamy Ivory",
     badgeType: "featured",
     rating: 4.9,
     reviewsCount: 38,
     image: "assets/images/bubble-cube-curd.jpg?v=1",
-    description: "Sculptural 3D bubble cube soap cold-processed solely with fresh cold-pressed coconut oil and farmstead fresh curd. Creamy ivory tone with rounded bubble spheres that double as a gentle acupressure massage bar. Aged 6 weeks for a rich, skin-softening lather.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd.",
-    benefits: ["3D bubble spheres provide a gentle, relaxing skin massage", "Natural lactic acid from living curd softens and clarifies", "Gentle everyday lather for sensitive skin"],
+    description: "Sculptural 3D bubble cube soap cold-processed solely with fresh cold-pressed coconut oil as the nourishing base and fresh farm-pressed coconut milk. Creamy ivory tone with rounded bubble spheres that double as a gentle acupressure massage bar. Aged 6 weeks for a rich, skin-softening lather.",
+    ingredients: "Fresh Cold-Pressed Coconut Oil (Base), Fresh Farm-Pressed Coconut Milk.",
+    benefits: ["3D bubble spheres provide a gentle, relaxing skin massage", "Rich lauric acid and plant lipids from fresh coconut milk deeply nourish and soften", "Gentle everyday lather for sensitive skin"],
     inStock: true,
     isFeatured: true,
     wholesaleAvailable: true
@@ -82,10 +82,10 @@ const PRODUCTS = [
     id: "soap-banana",
     origin: "Roots from Southern India",
     origin_de: "Wurzeln aus Südindien",
-    description_de: "Kaltgesiedete 3D-Bubble-Cube-Seife, angereichert mit nährstoffreichem, sonnengetrocknetem Bananenblatt-Auszug und frischem Bio-Quark. Sanft peelend und feuchtigkeitsspendend.",
+    description_de: "Kaltgesiedete 3D-Bubble-Cube-Seife, hergestellt auf Basis von reinem kaltgepresstem Kokosöl, frischer Hof-Kokosmilch und sonnengetrocknetem Bananenblatt-Auszug. Sanft peelend und feuchtigkeitsspendend.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Bananenblatt-Extrakt",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Wilder Bananenblatt-Extrakt.",
+    ingredients_de: "Kaltgepresstes Kokosöl (Basis) + Frische Hof-Kokosmilch + Wilder Bananenblatt-Extrakt.",
     name: "Banana",
     name_de: "Bananenseife",
     category: "soaps",
@@ -97,8 +97,8 @@ const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 42,
     image: "assets/images/bubble-cube-banana.jpg?v=1",
-    description: "Cold-process 3D bubble cube soap made with fresh cold-pressed coconut oil, fresh farm curd, and fresh banana leaves. Leafy green tone with rounded spheres for an invigorating massage lather.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Fresh Farm-Harvested Banana Leaves.",
+    description: "Cold-process 3D bubble cube soap made with fresh cold-pressed coconut oil base, fresh farm-pressed coconut milk, and fresh banana leaves. Leafy green tone with rounded spheres for an invigorating massage lather.",
+    ingredients: "Fresh Cold-Pressed Coconut Oil (Base), Fresh Farm-Pressed Coconut Milk, Fresh Farm-Harvested Banana Leaves.",
     benefits: ["Natural plant enzymes from fresh banana leaves clarify the skin", "Tactile 3D bubble contours gently stimulate circulation", "Refreshing, nourishing daily body cleanse"],
     inStock: true,
     isFeatured: true,
@@ -108,10 +108,10 @@ const PRODUCTS = [
     id: "soap-bamboo",
     origin: "Roots from Southern India",
     origin_de: "Wurzeln aus Südindien",
-    description_de: "Skulpturale 3D-Bubble-Cube-Seife mit mineralstoffreicher Bambus-Kieselsäure und cremiger Bio-Quarkbasis. Reinigt porentief und beruhigt beanspruchte Haut.",
+    description_de: "Skulpturale 3D-Bubble-Cube-Seife mit mineralstoffreicher Bambus-Kieselsäure auf Basis von kaltgepresstem Kokosöl und frischer Hof-Kokosmilch. Reinigt porentief und beruhigt beanspruchte Haut.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Bambus-Kieselsäure",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Natürlicher Bambussprossen-Auszug.",
+    ingredients_de: "Kaltgepresstes Kokosöl (Basis) + Frische Hof-Kokosmilch + Natürlicher Bambussprossen-Auszug.",
     name: "Bamboo",
     name_de: "Bambusseife",
     category: "soaps",
@@ -123,8 +123,8 @@ const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 36,
     image: "assets/images/bubble-cube-bamboo.jpg?v=1",
-    description: "Cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil, fresh farm curd, and organic bamboo silica. Soft pale yellowish-green hue with rounded spheres for a gentle massage cleanse.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Organic Farm Bamboo Silica.",
+    description: "Cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil base, fresh farm-pressed coconut milk, and organic bamboo silica. Soft pale yellowish-green hue with rounded spheres for a gentle massage cleanse.",
+    ingredients: "Fresh Cold-Pressed Coconut Oil (Base), Fresh Farm-Pressed Coconut Milk, Organic Farm Bamboo Silica.",
     benefits: ["Natural bamboo silica strengthens and smooths skin texture", "3D rounded spheres provide a relaxing bath massage", "Mineral-rich and gentle on sensitive skin"],
     inStock: true,
     isFeatured: true,
@@ -134,10 +134,10 @@ const PRODUCTS = [
     id: "soap-moringa",
     origin: "Roots from Southern India",
     origin_de: "Wurzeln aus Südindien",
-    description_de: "Kaltprozess-Seife mit sonnengetrocknetem Bio-Moringablattpulver und Quark. Reich an Antioxidantien, Vitaminen und Mineralien für ein strahlendes Hautbild.",
+    description_de: "Kaltprozess-Seife auf Basis von kaltgepresstem Kokosöl und frischer Hof-Kokosmilch mit sonnengetrocknetem Bio-Moringablattpulver. Reich an Antioxidantien, Vitaminen und Mineralien für ein strahlendes Hautbild.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Grünes Moringablatt",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Bio-Moringablattpulver.",
+    ingredients_de: "Kaltgepresstes Kokosöl (Basis) + Frische Hof-Kokosmilch + Bio-Moringablattpulver.",
     name: "Moringa",
     name_de: "Moringaseife",
     category: "soaps",
@@ -149,8 +149,8 @@ const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 29,
     image: "assets/images/bubble-cube-moringa.jpg?v=1",
-    description: "Nutrient-packed cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil, fresh farm curd, and moringa leaves from our farmstead trees. Herbal green tone with natural moringa speckles.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Organic Farm-Harvested Moringa Leaves.",
+    description: "Nutrient-packed cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil base, fresh farm-pressed coconut milk, and moringa leaves from our farmstead trees. Herbal green tone with natural moringa speckles.",
+    ingredients: "Fresh Cold-Pressed Coconut Oil (Base), Fresh Farm-Pressed Coconut Milk, Organic Farm-Harvested Moringa Leaves.",
     benefits: ["Dense with natural vitamins and antioxidants", "3D bubble contours provide an invigorating massage", "Nourishes and revitalizes tired skin"],
     inStock: true,
     isFeatured: true,
@@ -160,10 +160,10 @@ const PRODUCTS = [
     id: "soap-dry-grass",
     origin: "Roots from Southern India",
     origin_de: "Wurzeln aus Südindien",
-    description_de: "Handgerührte Seife mit dem Duft sonnengetrockneter Wiesenkräuter und wildem Heu, verfeinert mit Bio-Quark für milde, erdende Körperpflege.",
+    description_de: "Handgerührte Seife auf Basis von kaltgepresstem Kokosöl und Hof-Kokosmilch mit dem Duft sonnengetrockneter Wiesenkräuter und wildem Heu für milde, erdende Körperpflege.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Wiesenkräuter & Heu",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Wilder Wiesenheuextrakt.",
+    ingredients_de: "Kaltgepresstes Kokosöl (Basis) + Frische Hof-Kokosmilch + Wilder Wiesenheuextrakt.",
     name: "Dry Grass",
     name_de: "Trockengras-Seife",
     category: "soaps",
@@ -175,8 +175,8 @@ const PRODUCTS = [
     rating: 4.8,
     reviewsCount: 24,
     image: "assets/images/bubble-cube-dry-grass.jpg?v=1",
-    description: "Grounding cold-process 3D bubble cube soap made with fresh cold-pressed coconut oil, fresh farm curd, and sun-cured native meadow grass. Earthy green-tinted beige tone with fine wild grass fibers.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Solar-Cured Native Dry Grass.",
+    description: "Grounding cold-process 3D bubble cube soap made with fresh cold-pressed coconut oil base, fresh farm-pressed coconut milk, and sun-cured native meadow grass. Earthy green-tinted beige tone with fine wild grass fibers.",
+    ingredients: "Fresh Cold-Pressed Coconut Oil (Base), Fresh Farm-Pressed Coconut Milk, Solar-Cured Native Dry Grass.",
     benefits: ["Fine natural grass fibers gently buff and smooth the skin", "Tactile bubble spheres soothe and relax during bath", "Earthy, calming botanical cleanse"],
     inStock: true,
     isFeatured: false,
@@ -186,10 +186,10 @@ const PRODUCTS = [
     id: "soap-turmeric",
     origin: "Roots from Southern India",
     origin_de: "Wurzeln aus Südindien",
-    description_de: "Warme goldgelbe 3D-Bubble-Cube-Seife mit handgemahlenem wildem Bio-Kurkuma und cremiger Quarkbasis für sanfte Klärung und natürlichen Teint.",
+    description_de: "Warme goldgelbe 3D-Bubble-Cube-Seife mit handgemahlenem wildem Bio-Kurkuma auf Basis von kaltgepresstem Kokosöl und frischer Kokosmilch für sanfte Klärung und natürlichen Teint.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Wilder Gelbwurz",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Handgemahlener Bio-Kurkuma.",
+    ingredients_de: "Kaltgepresstes Kokosöl (Basis) + Frische Hof-Kokosmilch + Handgemahlener Bio-Kurkuma.",
     name: "Turmeric",
     name_de: "Kurkumaseife",
     category: "soaps",
@@ -201,8 +201,8 @@ const PRODUCTS = [
     rating: 5.0,
     reviewsCount: 31,
     image: "assets/images/bubble-cube-turmeric.jpg?v=1",
-    description: "Brightening cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil, fresh farm curd, and whole native turmeric. Warm golden ochre hue with rounded spheres for an invigorating cleanse.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Organically Grown Native Turmeric.",
+    description: "Brightening cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil base, fresh farm-pressed coconut milk, and whole native turmeric. Warm golden ochre hue with rounded spheres for an invigorating cleanse.",
+    ingredients: "Fresh Cold-Pressed Coconut Oil (Base), Fresh Farm-Pressed Coconut Milk, Organically Grown Native Turmeric.",
     benefits: ["Native turmeric curcumin helps brighten and even skin tone", "3D bubble contours stimulate circulation while lathering", "Warm, clarifying lather for radiant skin"],
     inStock: true,
     isFeatured: true,
@@ -212,10 +212,10 @@ const PRODUCTS = [
     id: "soap-coffee",
     origin: "Roots from Southern India",
     origin_de: "Wurzeln aus Südindien",
-    description_de: "Tiefbraune Kaltprozess-Seife mit frisch geröstetem Arabica-Kaffee und Bio-Quark. Belebt die Mikrozirkulation und peelt sanft bei der Morgenwäsche.",
+    description_de: "Tiefbraune Kaltprozess-Seife auf Basis von kaltgepresstem Kokosöl und Bio-Kokosmilch mit frisch geröstetem Arabica-Kaffee. Belebt die Mikrozirkulation und peelt sanft bei der Morgenwäsche.",
     unit_de: "1 Stück (100g) • 3D-Bubble-Cube",
     badge_de: "Espresso Peeling",
-    ingredients_de: "Kaltgepresstes Kokosöl + Frischer Bio-Quark + Gerösteter Hochland-Kaffeesatz.",
+    ingredients_de: "Kaltgepresstes Kokosöl (Basis) + Frische Hof-Kokosmilch + Gerösteter Hochland-Kaffeesatz.",
     name: "Coffee",
     name_de: "Kaffeeseife",
     category: "soaps",
@@ -227,8 +227,8 @@ const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 27,
     image: "assets/images/bubble-cube-coffee.jpg?v=1",
-    description: "Exfoliating cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil, fresh farm curd, and freshly ground Arabica coffee. Deep espresso brown shade with roasted coffee grounds for a buffing massage.",
-    ingredients: "Fresh Cold-Pressed Coconut Oil, Farmstead Fresh Organic Curd, Freshly Ground Arabica Coffee.",
+    description: "Exfoliating cold-process 3D bubble cube soap crafted with fresh cold-pressed coconut oil base, fresh farm-pressed coconut milk, and freshly ground Arabica coffee. Deep espresso brown shade with roasted coffee grounds for a buffing massage.",
+    ingredients: "Fresh Cold-Pressed Coconut Oil (Base), Fresh Farm-Pressed Coconut Milk, Freshly Ground Arabica Coffee.",
     benefits: ["Fine coffee grounds gently exfoliate and tone skin", "3D bubble spheres double as an acupressure body massage bar", "Energizing and refreshing shower experience"],
     inStock: true,
     isFeatured: false,
@@ -602,11 +602,11 @@ const FARM_VISITS = [
     days_de: "Täglich geöffnet",
     timing: "07:00 – 17:00",
     timing_de: "07:00 – 17:00",
-    description: "A hands-on 1–2 hour artisanal soapmaking session. Formulate and pour your own custom cold-process curd soap bar using pure plant oils, farm herbs, and natural earth clays.",
+    description: "A hands-on 1–2 hour artisanal soapmaking session. Formulate and pour your own custom cold-process coconut milk soap bar using pure cold-pressed coconut oil, fresh coconut milk, farm herbs, and natural earth clays.",
     description_de: "Ein praktischer 1–2-stündiger Seifensiederkurs. Kreieren und gießen Sie Ihr eigenes kaltgerührtes Stück Quarkseife aus reinen Pflanzenölen, Hofkräutern und Naturtonerden.",
     included: [
       "1–2 hours guided hands-on soapmaking session",
-      "Formulate your own custom cold-process curd soap bar",
+      "Formulate your own custom cold-process coconut milk soap bar",
       "Pure plant oils, wild botanical stems, and molds provided",
       "Take your newly crafted soap bar home with curing guide"
     ],
@@ -736,11 +736,11 @@ const ALL_BLOG_DISPATCHES = [
       <div class="my-6 p-5 bg-[#4E693B]/10 border border-[#8EB264]/20 rounded-sm font-mono text-xs sm:text-sm tracking-wide">
         <div class="flex items-start gap-2.5 text-[#E2C9A5]"><span class="text-[#D6AB66] font-bold">✦</span><span>Keep eyes out for curds with preservatives—that's not what we are talking about here, that's just bad, very bad bacteria.</span></div>
       </div>
-      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">Make your own curd for your inner self and <span class="text-[#D6AB66]">use our curd soap for your outer self ^-^</span></p>
+      <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] font-bold pt-4 mt-4 border-t border-[#E2C9A5]/15 mb-6">Make your own curd for your inner self and <span class="text-[#D6AB66]">use our coconut soap for your outer self ^-^</span></p>
       <div class="my-6 p-6 bg-[#4E693B]/20 border border-[#8EB264]/30 rounded-sm text-center">
-        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Nourish your outer self with our cold-process farmstead curd soaps.</p>
+        <p class="font-serif text-xl sm:text-2xl text-[#E2C9A5] italic mb-3">Nourish your outer self with our cold-process farmstead coconut milk soaps.</p>
         <a href="shop.html" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4E693B] hover:bg-[#688450] text-[#E2C9A5] text-xs uppercase tracking-widest font-semibold rounded-sm transition">
-          <span>Explore Curd Soaps in Farm Store</span>
+          <span>Explore Coconut Soaps in Farm Store</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
@@ -951,11 +951,11 @@ const FAQS = [
   },
   {
     q: "Are your soaps 100% free of synthetic fragrances and other oils?",
-    a: "Yes! Every single bar of UP Purreins soap is cold-processed using only fresh cold-pressed coconut oil, farmstead fresh organic curd, and the pure farm-harvested flavor in the soap's name itself. No virgin olive oil, no castor oil, no shea butter, no artificial dyes, and completely free of synthetics."
+    a: "Yes! Every single bar of UP Purreins soap is cold-processed using only fresh cold-pressed coconut oil as the nourishing base, fresh farm-pressed coconut milk, and the pure farm-harvested flavor in the soap's name itself. No fillers, no castor oil, no shea butter, no artificial dyes, and completely free of synthetics."
   },
   {
     q: "Can we place bespoke or corporate gifting orders for individual artisanal goods?",
-    a: "Yes! We curate individual bespoke gift selections of our pure cold-process curd soaps, pasture duck eggs, sun-cured botanical leaves, and GOTS-certified heirloom quilts in luxury plastic-free packaging for discerning individuals, weddings, and boutique hospitality."
+    a: "Yes! We curate individual bespoke gift selections of our pure cold-process coconut milk soaps, pasture duck eggs, sun-cured botanical leaves, and GOTS-certified heirloom quilts in luxury plastic-free packaging for discerning individuals, weddings, and boutique hospitality."
   },
   {
     q: "How does Farm Visit booking work?",
@@ -972,8 +972,8 @@ const WHOLESALE_TIERS = [
     leadTime: "Harvested fresh on delivery morning"
   },
   {
-    category: "Handcrafted Curd Soaps",
-    minOrder: "30 Bars (Assorted varieties: Curd, Banana & Bamboo, Moringa, Dry Grass)",
+    category: "Handcrafted Coconut Milk Soaps",
+    minOrder: "30 Bars (Assorted varieties: Coconut, Banana & Bamboo, Moringa, Dry Grass)",
     discount: "35% - 45% off retail",
     packaging: "Plastic-free paper band",
     leadTime: "3-5 business days"
@@ -1008,7 +1008,7 @@ const MARKET_EVENTS = [
     city: "Kochi",
     venue: "The Grounds, Chakola Mill, Kalamassery",
     timing: "Seasonal Weekend Edition (11:00 AM – 10:00 PM)",
-    focus: "Curd Soaps, GOTS Quilt Rolls, Farm Leaves",
+    focus: "Coconut Milk Soaps, GOTS Quilt Rolls, Farm Leaves",
     highlight: "Kerala's premier youth & conscious lifestyle flea market",
     status: "Upcoming Edition"
   },
@@ -1018,7 +1018,7 @@ const MARKET_EVENTS = [
     city: "Kochi",
     venue: "Govt LP School Grounds, Kakkanad",
     timing: "Every Sunday Morning (8:00 AM – 11:00 AM)",
-    focus: "Pasture Duck Eggs, Curd Soaps, Sun-Cured Leaves",
+    focus: "Pasture Duck Eggs, Coconut Milk Soaps, Sun-Cured Leaves",
     highlight: "Direct farm-to-table community for health-conscious families",
     status: "Recurring Weekly"
   },
@@ -1241,7 +1241,9 @@ window.SITE_PHRASES_DE = {
   "Regional inquiries for Germany & Austria": "Regionale Anfragen für Deutschland & Österreich",
   "European Stockists & Retailers": "Europäische Händler & Verkaufsstellen",
   "Send Regional Inquiry →": "Regionale Anfrage senden →",
-  "Curd Soaps": "Quarkseifen",
+  "Curd Soaps": "Kokosseifen",
+  "Coconut Soaps": "Kokosseifen",
+  "Coconut Milk Soaps": "Kokosmilchseifen",
   "Pasture Duck Eggs": "Weide-Enteneier",
   "Artisanal Quilt Rolls": "Handgefertigte Steppdecken",
   "Herbal Leaves": "Kräuterblätter"
