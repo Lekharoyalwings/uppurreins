@@ -2,41 +2,6 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.uppurreins.com"
-        }
-      ],
-      "destination": "https://uppurreins.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "purreinsfrequency.com"
-        }
-      ],
-      "destination": "https://uppurreins.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.purreinsfrequency.com"
-        }
-      ],
-      "destination": "https://uppurreins.com/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/assets/(.*)",
