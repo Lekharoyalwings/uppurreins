@@ -70,7 +70,7 @@ const PRODUCTS = [
     badgeType: "featured",
     rating: 4.9,
     reviewsCount: 38,
-    image: "assets/images/bubble-cube-curd.jpg?v=1",
+    image: "assets/images/bubble-cube-curd.jpg?v=20261126_no_curd_v2",
     description: "Sculptural 3D bubble cube soap cold-processed solely with fresh cold-pressed coconut oil as the nourishing base and fresh farm-pressed coconut milk. Creamy ivory tone with rounded bubble spheres that double as a gentle acupressure massage bar. Aged 6 weeks for a rich, skin-softening lather.",
     ingredients: "Fresh Cold-Pressed Coconut Oil (Base), Fresh Farm-Pressed Coconut Milk.",
     benefits: ["3D bubble spheres provide a gentle, relaxing skin massage", "Rich lauric acid and plant lipids from fresh coconut milk deeply nourish and soften", "Gentle everyday lather for sensitive skin"],
