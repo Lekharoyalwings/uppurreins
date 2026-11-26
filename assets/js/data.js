@@ -531,7 +531,7 @@ const FARM_VISITS = [
     duration_de: "1–2 Stunden Besuch",
     pricePerPerson: 450,
     pricePerPersonEUR: 5.00,
-    image: "assets/images/hero-basket.jpg?v=4",
+    image: "assets/images/microgreens-earthen-pots.jpg?v=20261126_no_curd",
     badge: "Farm Walk",
     badge_de: "Hofrundgang",
     days: "Open Every Day",
@@ -595,7 +595,7 @@ const FARM_VISITS = [
     duration_de: "1–2 Stunden",
     pricePerPerson: 950,
     pricePerPersonEUR: 10.50,
-    image: "assets/images/artisan-soaps.jpg",
+    image: "assets/images/artisan-soaps.jpg?v=20261126_no_curd_v2",
     badge: "Artisan Craft",
     badge_de: "Handwerkskunst",
     days: "Open Every Day",
@@ -603,7 +603,7 @@ const FARM_VISITS = [
     timing: "07:00 – 17:00",
     timing_de: "07:00 – 17:00",
     description: "A hands-on 1–2 hour artisanal soapmaking session. Formulate and pour your own custom cold-process coconut milk soap bar using pure cold-pressed coconut oil, fresh coconut milk, farm herbs, and natural earth clays.",
-    description_de: "Ein praktischer 1–2-stündiger Seifensiederkurs. Kreieren und gießen Sie Ihr eigenes kaltgerührtes Stück Quarkseife aus reinen Pflanzenölen, Hofkräutern und Naturtonerden.",
+    description_de: "Ein praktischer 1–2-stündiger Seifensiederkurs. Kreieren und gießen Sie Ihr eigenes kaltgerührtes Stück Kokosmilchseife aus reinen Pflanzenölen, frischer Kokosmilch, Hofkräutern und Naturtonerden.",
     included: [
       "1–2 hours guided hands-on soapmaking session",
       "Formulate your own custom cold-process coconut milk soap bar",
@@ -612,7 +612,7 @@ const FARM_VISITS = [
     ],
     included_de: [
       "1–2 Stunden praktischer, geführter Seifensiederkurs",
-      "Kreieren Sie Ihr eigenes handgerührtes Quarkseifenstück",
+      "Kreieren Sie Ihr eigenes handgerührtes Kokosmilch-Seifenstück",
       "Reine Pflanzenöle, wilde Hofkräuter und Gussformen inklusive",
       "Nehmen Sie Ihr handgemachtes Seifenstück mit Reifeanleitung nach Hause"
     ],
@@ -745,7 +745,7 @@ const ALL_BLOG_DISPATCHES = [
         </a>
       </div>
     `,
-    tags: ["PurreinsFrequency", "CurdIsDifferent", "FermentedGutHealth", "SelfCuringPowerhouse", "CurdSoap", "InnerAndOuterSelf"]
+    tags: ["PurreinsFrequency", "CurdIsDifferent", "FermentedGutHealth", "SelfCuringPowerhouse", "CoconutSoap", "InnerAndOuterSelf"]
   },
   {
     id: "blog-07-lactose-intolerant",
@@ -1241,7 +1241,7 @@ window.SITE_PHRASES_DE = {
   "Regional inquiries for Germany & Austria": "Regionale Anfragen für Deutschland & Österreich",
   "European Stockists & Retailers": "Europäische Händler & Verkaufsstellen",
   "Send Regional Inquiry →": "Regionale Anfrage senden →",
-  "Curd Soaps": "Kokosseifen",
+  "Coconut Soaps": "Kokosseifen",
   "Coconut Soaps": "Kokosseifen",
   "Coconut Milk Soaps": "Kokosmilchseifen",
   "Pasture Duck Eggs": "Weide-Enteneier",
