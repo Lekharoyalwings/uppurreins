@@ -99,6 +99,274 @@ function setupNavigation() {
   });
 }
 
+// Tactile WebGL Fabric-Flow Engine for Product Modal (Quilts, Throws & Offerings)
+window._modalFabricCleanup = null;
+
+function initModalFabricTouch(mode) {
+  if (typeof window._modalFabricCleanup === 'function') {
+    window._modalFabricCleanup();
+    window._modalFabricCleanup = null;
+  }
+
+  const stage = document.getElementById('modal-product-stage');
+  const img = document.getElementById('modal-product-img');
+  const canvas = document.getElementById('modal-product-canvas');
+  if (!stage || !img || !canvas) return;
+
+  const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: false });
+  if (!gl) return;
+
+  // Tuned specifically to the physical flow of a plush quilt vs lighter reversible throw
+  const isThrow = (mode === 'throw');
+  const isQuilt = (mode === 'quilt');
+  const radiusVal = isThrow ? 0.34 : (isQuilt ? 0.30 : 0.24);
+  const brushMul = isThrow ? 1.55 : (isQuilt ? 1.15 : 0.65);
+  const foldAmp = isThrow ? 0.022 : (isQuilt ? 0.017 : 0.008);
+  const sheenAmp = isThrow ? 0.045 : (isQuilt ? 0.038 : 0.018);
+  const followLerp = isThrow ? 0.14 : 0.11; // Weightier, slower plush settle for quilts
+
+  const vsSrc = `
+    attribute vec2 a_pos;
+    varying vec2 v_uv;
+    void main() {
+      v_uv = a_pos * 0.5 + 0.5;
+      v_uv.y = 1.0 - v_uv.y;
+      gl_Position = vec4(a_pos, 0.0, 1.0);
+    }
+  `;
+
+  const fsSrc = `
+    precision highp float;
+    varying vec2 v_uv;
+    uniform sampler2D u_tex;
+    uniform vec2 u_res;
+    uniform vec2 u_imgRes;
+    uniform vec2 u_ptr;
+    uniform vec2 u_vel;
+    uniform float u_strength;
+    uniform float u_rad;
+    uniform float u_brushMul;
+    uniform float u_foldAmp;
+    uniform float u_sheenAmp;
+
+    float hash(vec2 p) {
+      return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+    }
+
+    float noise(vec2 p) {
+      vec2 i = floor(p);
+      vec2 f = fract(p);
+      f = f * f * (3.0 - 2.0 * f);
+      return mix(
+        mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+        mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x),
+        f.y
+      );
+    }
+
+    float fbm(vec2 p) {
+      float v = 0.0;
+      float a = 0.5;
+      for (int i = 0; i < 3; i++) {
+        v += a * noise(p);
+        p *= 1.9;
+        a *= 0.5;
+      }
+      return v;
+    }
+
+    vec2 coverUV(vec2 uv) {
+      float boxA = u_res.x / u_res.y;
+      float imgA = u_imgRes.x / u_imgRes.y;
+      vec2 scale = vec2(1.0);
+      if (imgA > boxA) {
+        scale.x = boxA / imgA;
+      } else {
+        scale.y = imgA / boxA;
+      }
+      return (uv - 0.5) * scale + 0.5;
+    }
+
+    void main() {
+      float aspect = u_res.x / u_res.y;
+      vec2 disp = vec2(0.0);
+      float sheen = 0.0;
+
+      if (u_strength > 0.001) {
+        vec2 d = v_uv - u_ptr;
+        vec2 dA = vec2(d.x * aspect, d.y);
+
+        // Broad, gentle organic drape contour (cloth fold, never a hard circle)
+        float drapeNoise = fbm(v_uv * 4.5 + vec2(2.3, 5.1));
+        float dist = length(dA) + (drapeNoise - 0.5) * 0.10;
+
+        if (dist < u_rad) {
+          float w = smoothstep(u_rad, 0.0, dist);
+          float wSoft = w * w;
+
+          // Flowing cloth wave along swipe direction + soft natural fabric crease
+          float foldAngle = fbm(v_uv * 5.2 + vec2(1.4, 7.2)) * 6.283185;
+          vec2 clothFold = vec2(cos(foldAngle), sin(foldAngle)) * (0.45 + drapeNoise * 0.55);
+
+          vec2 glide = -u_vel * (u_brushMul * (0.75 + drapeNoise * 0.5));
+          disp = (glide + clothFold * u_foldAmp) * wSoft * u_strength;
+
+          // Subtle fabric light/shadow depth as the quilt or throw yields under touch
+          float lightDot = dot(normalize(dA + vec2(0.0001)), normalize(vec2(-0.6, -0.8)));
+          sheen = lightDot * wSoft * u_sheenAmp * u_strength;
+        }
+      }
+
+      vec2 uv = clamp(coverUV(v_uv + disp), 0.002, 0.998);
+      vec4 col = texture2D(u_tex, uv);
+      col.rgb += vec3(sheen);
+      gl_FragColor = col;
+    }
+  `;
+
+  function compile(type, src) {
+    const sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    return sh;
+  }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+  const locPos = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(locPos);
+  gl.vertexAttribPointer(locPos, 2, gl.FLOAT, false, 0, 0);
+
+  const uRes = gl.getUniformLocation(prog, 'u_res');
+  const uImgRes = gl.getUniformLocation(prog, 'u_imgRes');
+  const uPtr = gl.getUniformLocation(prog, 'u_ptr');
+  const uVel = gl.getUniformLocation(prog, 'u_vel');
+  const uStrength = gl.getUniformLocation(prog, 'u_strength');
+  gl.uniform1f(gl.getUniformLocation(prog, 'u_rad'), radiusVal);
+  gl.uniform1f(gl.getUniformLocation(prog, 'u_brushMul'), brushMul);
+  gl.uniform1f(gl.getUniformLocation(prog, 'u_foldAmp'), foldAmp);
+  gl.uniform1f(gl.getUniformLocation(prog, 'u_sheenAmp'), sheenAmp);
+
+  const tex = gl.createTexture();
+  let ready = false;
+  let rafId = null;
+  let destroyed = false;
+
+  let targetU = 0.5, targetV = 0.5;
+  let curU = 0.5, curV = 0.5;
+  let velU = 0, velV = 0;
+  let strength = 0, targetStrength = 0;
+
+  function resize() {
+    if (destroyed) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = stage.clientWidth || 500;
+    const h = stage.clientHeight || 500;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.uniform2f(uRes, w, h);
+    if (ready) render();
+  }
+
+  function uploadTexture() {
+    if (destroyed || !img.naturalWidth) return;
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.uniform2f(uImgRes, img.naturalWidth, img.naturalHeight);
+    ready = true;
+    img.style.opacity = '0';
+    resize();
+  }
+
+  function render() {
+    if (!ready || destroyed) return;
+    gl.uniform2f(uPtr, curU, curV);
+    gl.uniform2f(uVel, velU, velV);
+    gl.uniform1f(uStrength, strength);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+  }
+
+  function tick() {
+    if (destroyed) return;
+    const prevU = curU, prevV = curV;
+    curU += (targetU - curU) * followLerp;
+    curV += (targetV - curV) * followLerp;
+    velU = Math.max(-0.09, Math.min(0.09, (curU - prevU) * 1.9));
+    velV = Math.max(-0.09, Math.min(0.09, (curV - prevV) * 1.9));
+    strength += (targetStrength - strength) * 0.09;
+
+    render();
+
+    const moving = Math.abs(targetU - curU) > 0.0005 || Math.abs(targetV - curV) > 0.0005 || Math.abs(targetStrength - strength) > 0.002 || strength > 0.002;
+    if (moving) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      strength = 0;
+      render();
+      rafId = null;
+    }
+  }
+
+  function wake() {
+    if (!rafId && ready && !destroyed) rafId = requestAnimationFrame(tick);
+  }
+
+  const onMove = (e) => {
+    const w = stage.clientWidth || 1;
+    const h = stage.clientHeight || 1;
+    targetU = Math.max(0, Math.min(1, e.offsetX / w));
+    targetV = Math.max(0, Math.min(1, e.offsetY / h));
+    targetStrength = 1.0;
+    wake();
+  };
+  const onEnter = (e) => {
+    const w = stage.clientWidth || 1;
+    const h = stage.clientHeight || 1;
+    curU = targetU = Math.max(0, Math.min(1, e.offsetX / w));
+    curV = targetV = Math.max(0, Math.min(1, e.offsetY / h));
+    targetStrength = 1.0;
+    wake();
+  };
+  const onLeave = () => {
+    targetStrength = 0.0;
+    wake();
+  };
+
+  stage.addEventListener('pointermove', onMove);
+  stage.addEventListener('pointerenter', onEnter);
+  stage.addEventListener('pointerleave', onLeave);
+  window.addEventListener('resize', resize);
+  img.addEventListener('load', uploadTexture);
+
+  if (img.complete && img.naturalWidth) {
+    uploadTexture();
+  }
+
+  window._modalFabricReload = uploadTexture;
+  window._modalFabricCleanup = () => {
+    destroyed = true;
+    if (rafId) cancelAnimationFrame(rafId);
+    stage.removeEventListener('pointermove', onMove);
+    stage.removeEventListener('pointerenter', onEnter);
+    stage.removeEventListener('pointerleave', onLeave);
+    window.removeEventListener('resize', resize);
+    img.removeEventListener('load', uploadTexture);
+    window._modalFabricReload = null;
+  };
+}
+
 // Quick View Product Modal
 function openProductModal(productId) {
   window.currentOpenProductId = productId;
@@ -108,9 +376,9 @@ function openProductModal(productId) {
   let modal = document.getElementById('product-detail-modal');
   if (!modal) {
     const modalHTML = `
-      <div id="product-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity">
-        <div class="bg-[#0e0e0e] border border-white/15 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative p-6 md:p-8 transform scale-95 transition-transform" id="product-modal-card">
-          <button onclick="closeProductModal()" class="absolute top-4 left-4 sm:top-5 sm:left-5 z-30 p-2.5 rounded-full bg-black/80 hover:bg-black text-[#e2c9a5] border border-white/20 transition shadow-xl backdrop-blur-md flex items-center justify-center group" title="Close" aria-label="Close modal">
+      <div id="product-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md hidden opacity-0 transition-opacity">
+        <div class="bg-[#0e0e0e] border border-brand-gold/25 rounded-2xl max-w-6xl w-full max-h-[94vh] overflow-y-auto shadow-2xl relative p-5 sm:p-8 lg:p-10 transform scale-95 transition-transform" id="product-modal-card">
+          <button onclick="closeProductModal()" class="absolute top-4 left-4 sm:top-5 sm:left-5 z-30 p-2.5 rounded-full bg-black/85 hover:bg-black text-[#e2c9a5] border border-white/25 transition shadow-xl backdrop-blur-md flex items-center justify-center group" title="Close" aria-label="Close modal">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
           <div id="product-modal-body"></div>
@@ -119,10 +387,18 @@ function openProductModal(productId) {
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
     modal = document.getElementById('product-detail-modal');
+  } else {
+    const cardEl = document.getElementById('product-modal-card');
+    if (cardEl) {
+      cardEl.classList.remove('max-w-2xl');
+      cardEl.classList.add('max-w-6xl');
+    }
   }
 
   const isDe = (window.currentLang === 'de');
   const isThrow = product.id.includes('throw');
+  const isQuilt = product.id.includes('quilt') && !isThrow;
+  const fabricMode = isThrow ? 'throw' : (isQuilt ? 'quilt' : 'gentle');
   const initialColorway = product.colorways ? (product.colorways.find(c => c.id === product.activeColorwayId) || product.colorways[0]) : null;
 
   const name = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'name') : product.name;
@@ -135,7 +411,10 @@ function openProductModal(productId) {
   const chooseShadeHeader = isDe ? 'Pastellton & Naturmuster wählen:' : 'Choose Pastel Shade & Motif:';
   const cwDisplayName = initialColorway ? (isDe && initialColorway.name_de ? initialColorway.name_de : initialColorway.name) : (isDe ? 'Farbton wählen' : 'Select a Shade');
   const cwMotifName = initialColorway ? (isDe && initialColorway.motif_de ? initialColorway.motif_de : initialColorway.motif) : '';
-  
+  const touchHint = (isQuilt || isThrow)
+    ? (isDe ? '✦ Zum Fühlen über den Stoff streichen' : '✦ Glide over fabric to feel the drape')
+    : '';
+
   let specNote = '';
   if (product.colorways) {
     if (isThrow) {
@@ -156,11 +435,17 @@ function openProductModal(productId) {
 
   const body = document.getElementById('product-modal-body');
   body.innerHTML = `
-    <div class="grid md:grid-cols-2 gap-6 items-start">
-      <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg bg-black/60">
-        <img id="modal-product-img" src="${product.image}" alt="${name}" class="w-full h-72 sm:h-84 object-cover transition-opacity duration-300" />
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <div id="modal-product-stage" class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-brand-gold/25 shadow-2xl bg-black h-[380px] sm:h-[480px] lg:h-[600px] cursor-grab active:cursor-grabbing">
+        <img id="modal-product-img" src="${product.image}" alt="${name}" class="w-full h-full object-cover object-center pointer-events-none select-none transition-opacity duration-200" />
+        <canvas id="modal-product-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+        ${touchHint ? `
+          <span class="absolute bottom-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-black/75 border border-brand-gold/35 text-[11px] font-mono text-brand-gold backdrop-blur-md pointer-events-none shadow-lg">
+            ${touchHint}
+          </span>
+        ` : ''}
       </div>
-      <div>
+      <div class="lg:col-span-5">
         <div class="flex flex-wrap items-center gap-2 mb-2">
           <span id="modal-product-badge" class="text-xs px-2.5 py-0.5 rounded-full font-medium ${product.badgeType === 'organic' ? 'bg-brand-forest/40 text-brand-mossLight border border-brand-mossLight/30' : 'bg-brand-gold/20 text-brand-gold border border-brand-gold/30'}">
             ${badge}
@@ -169,32 +454,32 @@ function openProductModal(productId) {
             <i data-lucide="map-pin" class="w-3 h-3 text-brand-gold"></i>
             <span>${isDe ? 'Wurzeln aus Südindien' : 'Roots from Southern India'}</span>
           </span>
-          <span class="text-xs text-[#cbb89d]/70">• ${unit}</span>
+          <span class="text-xs text-[#cbb89d]/75 font-mono">• ${unit}</span>
         </div>
-        <h3 class="text-2xl font-serif font-bold text-[#e2c9a5] mb-2">${name}</h3>
-        <p class="text-2xl font-bold text-brand-gold mb-3">${priceFormatted}</p>
+        <h3 class="text-2xl sm:text-3xl font-serif font-bold text-[#e2c9a5] mb-2 leading-tight">${name}</h3>
+        <p class="text-2xl sm:text-3xl font-bold text-brand-gold mb-4">${priceFormatted}</p>
         
         ${product.colorways ? `
           <!-- Pastel Colorway & Signature Motif Selector inside Modal -->
-          <div class="mb-4 p-3 rounded-lg bg-black/35 border border-white/10">
+          <div class="mb-4 p-3.5 rounded-xl bg-black/40 border border-white/10">
             <div class="flex items-center justify-between mb-2">
               <span class="text-[11px] font-bold uppercase tracking-wider text-brand-gold">${chooseShadeHeader}</span>
               <span id="modal-selected-cw-label" class="text-xs text-brand-cream font-medium">${cwDisplayName}${cwMotifName ? ' (' + cwMotifName + ')' : ''}</span>
             </div>
-            <div class="grid grid-cols-3 gap-1.5" id="modal-colorway-buttons">
+            <div class="grid grid-cols-3 gap-2" id="modal-colorway-buttons">
               ${product.colorways.map(cw => {
                 const buttonCwName = isDe && cw.name_de ? cw.name_de.replace('Pastell-', '') : cw.name.replace('Pastel ', '');
                 return `
                 <button type="button" 
                   onclick="selectModalColorway('${product.id}', '${cw.id}')" 
-                  class="modal-cw-btn px-2 py-1.5 rounded text-left text-xs bg-white/5 hover:bg-white/15 border border-white/10 flex items-center gap-1.5 transition">
-                  <span class="w-3 h-3 rounded-full flex-shrink-0 border border-black/40" style="background-color: ${cw.hex};"></span>
+                  class="modal-cw-btn px-2.5 py-2 rounded-lg text-left text-xs bg-white/5 hover:bg-white/15 border border-white/10 flex items-center gap-2 transition">
+                  <span class="w-3.5 h-3.5 rounded-full flex-shrink-0 border border-black/40" style="background-color: ${cw.hex};"></span>
                   <span class="text-[11px] text-[#e2c9a5] truncate">${buttonCwName}</span>
                 </button>
               `;
               }).join('')}
             </div>
-            <p id="modal-cw-spec-note" class="text-[11px] text-[#cbb89d]/80 mt-2 leading-relaxed">
+            <p id="modal-cw-spec-note" class="text-[11px] text-[#cbb89d]/80 mt-2.5 leading-relaxed">
               ${specNote}
             </p>
           </div>
@@ -230,7 +515,8 @@ function openProductModal(productId) {
     modal.classList.remove('opacity-0');
     document.getElementById('product-modal-card').classList.remove('scale-95');
     document.getElementById('product-modal-card').classList.add('scale-100');
-  }, 10);
+    initModalFabricTouch(fabricMode);
+  }, 20);
 
   if (window.lucide) lucide.createIcons();
 }
@@ -259,11 +545,10 @@ function selectModalColorway(productId, colorwayId) {
   const noteEl = document.getElementById('modal-cw-spec-note');
 
   if (imgEl) {
-    imgEl.style.opacity = '0.5';
-    setTimeout(() => {
-      imgEl.src = product.image;
-      imgEl.style.opacity = '1';
-    }, 100);
+    imgEl.src = product.image;
+    if (imgEl.complete && imgEl.naturalWidth && typeof window._modalFabricReload === 'function') {
+      window._modalFabricReload();
+    }
   }
   if (badgeEl) {
     badgeEl.textContent = (isDe && product.badge_de) ? product.badge_de : product.badge;
@@ -285,6 +570,10 @@ function selectModalColorway(productId, colorwayId) {
 
 function closeProductModal() {
   window.currentOpenProductId = null;
+  if (typeof window._modalFabricCleanup === 'function') {
+    window._modalFabricCleanup();
+    window._modalFabricCleanup = null;
+  }
   const modal = document.getElementById('product-detail-modal');
   if (modal) {
     modal.classList.add('opacity-0');
