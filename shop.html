@@ -1521,9 +1521,9 @@
               float ny = fbm(v_uv * 16.0 + vec2(9.2, 6.7)) - 0.5;
               vec2 tuftJitter = vec2(nx, ny);
 
-              // Gentle directional brush following cursor + irregular wispy fiber shift (+30% intensity)
-              vec2 brush = -u_vel * (0.55 + nShape * 0.45);
-              vec2 organicSettle = tuftJitter * 0.021;
+              // Gentle directional brush following cursor + irregular wispy fiber shift (+20% more)
+              vec2 brush = -u_vel * (0.66 + nShape * 0.54);
+              vec2 organicSettle = tuftJitter * 0.025;
               disp = (brush + organicSettle) * wSoft * u_strength;
             }
           }
