@@ -1521,9 +1521,9 @@
               float tuftAmp = 0.55 + fbm(v_uv * 17.0 + vec2(6.4, 2.9));
               vec2 multiDir = vec2(cos(angle), sin(angle)) * tuftAmp;
 
-              // Evident, natural irregular fiber parting + directional brush (same touch size, +30% more evident movement)
-              vec2 brush = -u_vel * (0.95 + nShape * 0.75);
-              vec2 organicSettle = multiDir * 0.026;
+              // Evident, natural irregular fiber parting + directional brush (+20% amplified)
+              vec2 brush = -u_vel * (1.14 + nShape * 0.90);
+              vec2 organicSettle = multiDir * 0.031;
               disp = (brush + organicSettle) * wSoft * u_strength;
             }
           }
@@ -1604,8 +1604,8 @@
         const prevU = curU, prevV = curV;
         curU += (targetU - curU) * 0.16;
         curV += (targetV - curV) * 0.16;
-        velU = Math.max(-0.07, Math.min(0.07, (curU - prevU) * 1.4));
-        velV = Math.max(-0.07, Math.min(0.07, (curV - prevV) * 1.4));
+        velU = Math.max(-0.085, Math.min(0.085, (curU - prevU) * 1.68));
+        velV = Math.max(-0.085, Math.min(0.085, (curV - prevV) * 1.68));
         strength += (targetStrength - strength) * 0.10;
 
         render();
