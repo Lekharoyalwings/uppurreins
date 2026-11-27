@@ -743,7 +743,7 @@
               </div>
             </div>
             <div id="cotton-tactile-card" class="group relative rounded-xl overflow-hidden border border-brand-gold/25 bg-black h-56 sm:h-64 shadow-xl cursor-grab active:cursor-grabbing">
-              <img id="cotton-tactile-img" src="assets/images/atelier-ilavam-panju.jpg?v=20261127_macro_zoom" alt="Raw wild-harvested Tamizhnad Ilavam Panju silk cotton filling" class="w-full h-full object-cover object-center">
+              <img id="cotton-tactile-img" src="assets/images/atelier-ilavam-panju.jpg?v=20261127_macro_zoom" alt="Raw wild-harvested Tamizhnad Ilavam Panju silk cotton filling" class="w-full h-full object-cover object-center pointer-events-none select-none">
               <canvas id="cotton-tactile-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="-webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%);"></canvas>
               <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent p-3.5 pointer-events-none z-10">
                 <span class="text-[10px] font-mono uppercase tracking-widest text-brand-gold block">02 • Pure Filling</span>
@@ -1431,206 +1431,209 @@
       vertBar.addEventListener('mouseleave', () => scheduleClose(150));
     })();
   </script>
-  <!-- Realistic Tactile Silk Cotton Hover Physics (Card 02) -->
+  <!-- Seamless WebGL Tactile Silk Cotton Hover Physics (Card 02 — zero grid lines, exact cursor tracking) -->
   <script>
     (function() {
       const card = document.getElementById('cotton-tactile-card');
       const img = document.getElementById('cotton-tactile-img');
       const canvas = document.getElementById('cotton-tactile-canvas');
       if (!card || !img || !canvas) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
+      const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: false });
+      if (!gl) return;
 
-      const COLS = 16;
-      const ROWS = 12;
-      const points = [];
-      let width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
-      let ready = false;
-      let isHovering = false;
-      let ptrX = -999, ptrY = -999, prevX = -999, prevY = -999;
-      let velX = 0, velY = 0;
-      let rafId = null;
-      let energy = 0;
-
-      function initMesh() {
-        const rect = card.getBoundingClientRect();
-        if (!rect.width || !rect.height) return;
-        width = rect.width;
-        height = rect.height;
-        canvas.width = Math.round(width * dpr);
-        canvas.height = Math.round(height * dpr);
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-        // Compute object-fit: cover source crop rect
-        const iw = img.naturalWidth || 960;
-        const ih = img.naturalHeight || 704;
-        const imgAspect = iw / ih;
-        const boxAspect = width / height;
-        let sx = 0, sy = 0, sw = iw, sh = ih;
-        if (imgAspect > boxAspect) {
-          sw = ih * boxAspect;
-          sx = (iw - sw) * 0.5;
-        } else {
-          sh = iw / boxAspect;
-          sy = (ih - sh) * 0.5;
+      const vsSrc = `
+        attribute vec2 a_pos;
+        varying vec2 v_uv;
+        void main() {
+          v_uv = a_pos * 0.5 + 0.5;
+          v_uv.y = 1.0 - v_uv.y;
+          gl_Position = vec4(a_pos, 0.0, 1.0);
         }
+      `;
 
-        // Bleed mesh 6% beyond card edges so the entire visible image (top, middle, bottom, sides) moves freely
-        const bleed = 0.06;
-        points.length = 0;
-        for (let r = 0; r <= ROWS; r++) {
-          for (let c = 0; c <= COLS; c++) {
-            const u = c / COLS;
-            const v = r / ROWS;
-            const bx = -bleed * width + u * width * (1 + 2 * bleed);
-            const by = -bleed * height + v * height * (1 + 2 * bleed);
-            points.push({
-              ox: bx,
-              oy: by,
-              x: bx,
-              y: by,
-              vx: 0,
-              vy: 0,
-              su: sx + u * sw,
-              sv: sy + v * sh,
-              pinned: (r === 0 || r === ROWS || c === 0 || c === COLS)
-            });
+      const fsSrc = `
+        precision highp float;
+        varying vec2 v_uv;
+        uniform sampler2D u_tex;
+        uniform vec2 u_res;
+        uniform vec2 u_imgRes;
+        uniform vec2 u_trail[12];
+        uniform vec2 u_vel[12];
+        uniform float u_strength[12];
+
+        vec2 coverUV(vec2 uv) {
+          float boxA = u_res.x / u_res.y;
+          float imgA = u_imgRes.x / u_imgRes.y;
+          vec2 scale = vec2(1.0);
+          if (imgA > boxA) {
+            scale.x = boxA / imgA;
+          } else {
+            scale.y = imgA / boxA;
           }
+          return (uv - 0.5) * scale + 0.5;
         }
-        ready = true;
-        img.style.opacity = '0';
-        draw();
-      }
 
-      function drawTri(p0, p1, p2) {
-        const x0 = p0.x, y0 = p0.y, u0 = p0.su, v0 = p0.sv;
-        const x1 = p1.x, y1 = p1.y, u1 = p1.su, v1 = p1.sv;
-        const x2 = p2.x, y2 = p2.y, u2 = p2.su, v2 = p2.sv;
+        void main() {
+          float aspect = u_res.x / u_res.y;
+          vec2 disp = vec2(0.0);
+          float glow = 0.0;
 
-        const denom = (u1 - u0) * (v2 - v0) - (u2 - u0) * (v1 - v0);
-        if (Math.abs(denom) < 0.001) return;
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(x0, y0);
-        ctx.lineTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.closePath();
-        ctx.clip();
-
-        const m11 = ((x1 - x0) * (v2 - v0) - (x2 - x0) * (v1 - v0)) / denom;
-        const m12 = ((u1 - u0) * (x2 - x0) - (u2 - u0) * (x1 - x0)) / denom;
-        const m21 = ((y1 - y0) * (v2 - v0) - (y2 - y0) * (v1 - v0)) / denom;
-        const m22 = ((u1 - u0) * (y2 - y0) - (u2 - u0) * (y1 - y0)) / denom;
-        const dx = x0 - m11 * u0 - m12 * v0;
-        const dy = y0 - m21 * u0 - m22 * v0;
-
-        ctx.transform(m11, m21, m12, m22, dx, dy);
-        ctx.drawImage(img, 0, 0);
-        ctx.restore();
-      }
-
-      function draw() {
-        if (!ready) return;
-        ctx.clearRect(0, 0, width, height);
-        const stride = COLS + 1;
-        for (let r = 0; r < ROWS; r++) {
-          for (let c = 0; c < COLS; c++) {
-            const p00 = points[r * stride + c];
-            const p10 = points[r * stride + c + 1];
-            const p01 = points[(r + 1) * stride + c];
-            const p11 = points[(r + 1) * stride + c + 1];
-            drawTri(p00, p10, p11);
-            drawTri(p00, p11, p01);
-          }
-        }
-      }
-
-      function step() {
-        let totalMotion = 0;
-        const radius = Math.max(width, height) * 0.48;
-        const r2 = radius * radius;
-        const springK = 0.04;   // Soft, pillowy silk-cotton rebound across entire surface
-        const damping = 0.87;   // Smooth plush settle
-
-        for (let i = 0; i < points.length; i++) {
-          const p = points[i];
-          if (p.pinned) continue;
-
-          // Spring pull back to resting position
-          p.vx += (p.ox - p.x) * springK;
-          p.vy += (p.oy - p.y) * springK;
-
-          // Tactile brush & soft parting under cursor across entire image
-          if (isHovering) {
-            const dx = p.x - ptrX;
-            const dy = p.y - ptrY;
-            const d2 = dx * dx + dy * dy;
-            if (d2 < r2 && d2 > 0.01) {
-              const dist = Math.sqrt(d2);
-              const falloff = Math.pow(1 - dist / radius, 1.8);
-              p.vx += (dx / dist) * falloff * 1.65 + velX * falloff * 0.36;
-              p.vy += (dy / dist) * falloff * 1.65 + velY * falloff * 0.36;
+          for (int i = 0; i < 12; i++) {
+            float s = u_strength[i];
+            if (s > 0.001) {
+              vec2 d = v_uv - u_trail[i];
+              vec2 dA = vec2(d.x * aspect, d.y);
+              float dist = length(dA);
+              float rad = 0.28;
+              if (dist < rad) {
+                float w = smoothstep(rad, 0.0, dist);
+                float w2 = w * w;
+                vec2 dir = dist > 0.0001 ? normalize(d) : vec2(0.0);
+                // Soft silk-cotton parting & brushing directly under cursor
+                disp -= dir * (w2 * 0.018 * s) + u_vel[i] * (w2 * 0.35 * s);
+                glow += w2 * 0.03 * s;
+              }
             }
           }
 
-          p.vx *= damping;
-          p.vy *= damping;
-          p.x += p.vx;
-          p.y += p.vy;
-
-          totalMotion += Math.abs(p.vx) + Math.abs(p.vy) + Math.abs(p.ox - p.x) * 0.1 + Math.abs(p.oy - p.y) * 0.1;
+          vec2 uv = clamp(coverUV(v_uv + disp), 0.002, 0.998);
+          vec4 col = texture2D(u_tex, uv);
+          col.rgb += vec3(glow);
+          gl_FragColor = col;
         }
+      `;
 
-        velX *= 0.76;
-        velY *= 0.76;
-        draw();
+      function compile(type, src) {
+        const sh = gl.createShader(type);
+        gl.shaderSource(sh, src);
+        gl.compileShader(sh);
+        return sh;
+      }
 
-        if (isHovering || totalMotion > 0.12) {
-          rafId = requestAnimationFrame(step);
+      const prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsSrc));
+      gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsSrc));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+      const locPos = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(locPos);
+      gl.vertexAttribPointer(locPos, 2, gl.FLOAT, false, 0, 0);
+
+      const uRes = gl.getUniformLocation(prog, 'u_res');
+      const uImgRes = gl.getUniformLocation(prog, 'u_imgRes');
+      const uTrail = gl.getUniformLocation(prog, 'u_trail');
+      const uVel = gl.getUniformLocation(prog, 'u_vel');
+      const uStrength = gl.getUniformLocation(prog, 'u_strength');
+
+      const tex = gl.createTexture();
+      let ready = false;
+      let rafId = null;
+
+      const N = 12;
+      const trail = new Float32Array(N * 2);
+      const vel = new Float32Array(N * 2);
+      const strength = new Float32Array(N);
+      let head = 0;
+      let prevU = -1, prevV = -1;
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = card.clientWidth || 320;
+        const h = card.clientHeight || 256;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.uniform2f(uRes, w, h);
+        if (ready) render();
+      }
+
+      function uploadTexture() {
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+        gl.uniform2f(uImgRes, img.naturalWidth || 960, img.naturalHeight || 704);
+        ready = true;
+        img.style.opacity = '0';
+        resize();
+      }
+
+      function render() {
+        if (!ready) return;
+        gl.uniform2fv(uTrail, trail);
+        gl.uniform2fv(uVel, vel);
+        gl.uniform1fv(uStrength, strength);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+      }
+
+      function tick() {
+        let active = false;
+        for (let i = 0; i < N; i++) {
+          if (strength[i] > 0.002) {
+            strength[i] *= 0.91;
+            vel[i * 2] *= 0.88;
+            vel[i * 2 + 1] *= 0.88;
+            active = true;
+          } else {
+            strength[i] = 0;
+          }
+        }
+        render();
+        if (active) {
+          rafId = requestAnimationFrame(tick);
         } else {
           rafId = null;
         }
       }
 
-      function wake() {
-        if (!rafId && ready) rafId = requestAnimationFrame(step);
-      }
-
-      function updatePointer(clientX, clientY) {
-        const rect = card.getBoundingClientRect();
-        const nx = clientX - rect.left;
-        const ny = clientY - rect.top;
-        if (prevX !== -999) {
-          velX = Math.max(-22, Math.min(22, nx - prevX));
-          velY = Math.max(-22, Math.min(22, ny - prevY));
+      function pushTouch(u, v) {
+        if (u < 0 || u > 1 || v < 0 || v > 1) return;
+        let vx = 0, vy = 0;
+        if (prevU >= 0) {
+          vx = Math.max(-0.08, Math.min(0.08, u - prevU));
+          vy = Math.max(-0.08, Math.min(0.08, v - prevV));
         }
-        prevX = ptrX = nx;
-        prevY = ptrY = ny;
-        isHovering = true;
-        wake();
+        prevU = u;
+        prevV = v;
+
+        trail[head * 2] = u;
+        trail[head * 2 + 1] = v;
+        vel[head * 2] = vx;
+        vel[head * 2 + 1] = vy;
+        strength[head] = 1.0;
+        head = (head + 1) % N;
+
+        if (!rafId && ready) rafId = requestAnimationFrame(tick);
       }
 
-      card.addEventListener('pointermove', (e) => updatePointer(e.clientX, e.clientY));
+      // Use offsetX / offsetY relative to card.clientWidth / card.clientHeight — 100% immune to Safari CSS zoom: 0.9 offset!
+      card.addEventListener('pointermove', (e) => {
+        const w = card.clientWidth || 1;
+        const h = card.clientHeight || 1;
+        pushTouch(e.offsetX / w, e.offsetY / h);
+      });
       card.addEventListener('pointerenter', (e) => {
-        prevX = -999; prevY = -999;
-        updatePointer(e.clientX, e.clientY);
+        prevU = -1; prevV = -1;
+        const w = card.clientWidth || 1;
+        const h = card.clientHeight || 1;
+        pushTouch(e.offsetX / w, e.offsetY / h);
       });
       card.addEventListener('pointerleave', () => {
-        isHovering = false;
-        prevX = -999; prevY = -999;
-        velX = 0; velY = 0;
-        wake();
+        prevU = -1; prevV = -1;
       });
 
       if (img.complete && img.naturalWidth) {
-        initMesh();
+        uploadTexture();
       } else {
-        img.addEventListener('load', initMesh);
+        img.addEventListener('load', uploadTexture);
       }
-      window.addEventListener('resize', () => {
-        if (img.naturalWidth) initMesh();
-      });
+      window.addEventListener('resize', resize);
     })();
   </script>
   <!-- Horseshoe Frequency Logo Motion Engine -->
