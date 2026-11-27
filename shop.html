@@ -742,9 +742,10 @@
                 <p class="text-xs font-serif font-semibold text-brand-cream">Fine Atelier Seamwork on Brushed Cotton</p>
               </div>
             </div>
-            <div class="group relative rounded-xl overflow-hidden border border-brand-gold/25 bg-black/70 h-56 sm:h-64 shadow-xl">
-              <img src="assets/images/atelier-ilavam-panju.jpg?v=20261127_macro_zoom" alt="Raw wild-harvested Tamizhnad Ilavam Panju silk cotton filling" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
-              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent p-3.5">
+            <div id="cotton-tactile-card" class="group relative rounded-xl overflow-hidden border border-brand-gold/25 bg-black h-56 sm:h-64 shadow-xl cursor-grab active:cursor-grabbing">
+              <img id="cotton-tactile-img" src="assets/images/atelier-ilavam-panju.jpg?v=20261127_macro_zoom" alt="Raw wild-harvested Tamizhnad Ilavam Panju silk cotton filling" class="w-full h-full object-cover object-center">
+              <canvas id="cotton-tactile-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="-webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000000 80%, rgba(0, 0, 0, 0.92) 88%, rgba(0, 0, 0, 0.4) 96%, transparent 100%);"></canvas>
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent p-3.5 pointer-events-none z-10">
                 <span class="text-[10px] font-mono uppercase tracking-widest text-brand-gold block">02 • Pure Filling</span>
                 <p class="text-xs font-serif font-semibold text-brand-cream">Wild Tamizhnad Ilavam Panju</p>
               </div>
@@ -1428,6 +1429,204 @@
         clearTimeout(leaveTimer);
       });
       vertBar.addEventListener('mouseleave', () => scheduleClose(150));
+    })();
+  </script>
+  <!-- Realistic Tactile Silk Cotton Hover Physics (Card 02) -->
+  <script>
+    (function() {
+      const card = document.getElementById('cotton-tactile-card');
+      const img = document.getElementById('cotton-tactile-img');
+      const canvas = document.getElementById('cotton-tactile-canvas');
+      if (!card || !img || !canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const COLS = 16;
+      const ROWS = 12;
+      const points = [];
+      let width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let ready = false;
+      let isHovering = false;
+      let ptrX = -999, ptrY = -999, prevX = -999, prevY = -999;
+      let velX = 0, velY = 0;
+      let rafId = null;
+      let energy = 0;
+
+      function initMesh() {
+        const rect = card.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        width = rect.width;
+        height = rect.height;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        // Compute object-fit: cover source crop rect
+        const iw = img.naturalWidth || 960;
+        const ih = img.naturalHeight || 704;
+        const imgAspect = iw / ih;
+        const boxAspect = width / height;
+        let sx = 0, sy = 0, sw = iw, sh = ih;
+        if (imgAspect > boxAspect) {
+          sw = ih * boxAspect;
+          sx = (iw - sw) * 0.5;
+        } else {
+          sh = iw / boxAspect;
+          sy = (ih - sh) * 0.5;
+        }
+
+        points.length = 0;
+        for (let r = 0; r <= ROWS; r++) {
+          for (let c = 0; c <= COLS; c++) {
+            const u = c / COLS;
+            const v = r / ROWS;
+            points.push({
+              ox: u * width,
+              oy: v * height,
+              x: u * width,
+              y: v * height,
+              vx: 0,
+              vy: 0,
+              su: sx + u * sw,
+              sv: sy + v * sh,
+              pinned: (r === 0 || r === ROWS || c === 0 || c === COLS)
+            });
+          }
+        }
+        ready = true;
+        draw();
+      }
+
+      function drawTri(p0, p1, p2) {
+        const x0 = p0.x, y0 = p0.y, u0 = p0.su, v0 = p0.sv;
+        const x1 = p1.x, y1 = p1.y, u1 = p1.su, v1 = p1.sv;
+        const x2 = p2.x, y2 = p2.y, u2 = p2.su, v2 = p2.sv;
+
+        const denom = (u1 - u0) * (v2 - v0) - (u2 - u0) * (v1 - v0);
+        if (Math.abs(denom) < 0.001) return;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.closePath();
+        ctx.clip();
+
+        const m11 = ((x1 - x0) * (v2 - v0) - (x2 - x0) * (v1 - v0)) / denom;
+        const m12 = ((u1 - u0) * (x2 - x0) - (u2 - u0) * (x1 - x0)) / denom;
+        const m21 = ((y1 - y0) * (v2 - v0) - (y2 - y0) * (v1 - v0)) / denom;
+        const m22 = ((u1 - u0) * (y2 - y0) - (u2 - u0) * (y1 - y0)) / denom;
+        const dx = x0 - m11 * u0 - m12 * v0;
+        const dy = y0 - m21 * u0 - m22 * v0;
+
+        ctx.transform(m11, m21, m12, m22, dx, dy);
+        ctx.drawImage(img, 0, 0);
+        ctx.restore();
+      }
+
+      function draw() {
+        if (!ready) return;
+        ctx.clearRect(0, 0, width, height);
+        const stride = COLS + 1;
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            const p00 = points[r * stride + c];
+            const p10 = points[r * stride + c + 1];
+            const p01 = points[(r + 1) * stride + c];
+            const p11 = points[(r + 1) * stride + c + 1];
+            drawTri(p00, p10, p11);
+            drawTri(p00, p11, p01);
+          }
+        }
+      }
+
+      function step() {
+        let totalMotion = 0;
+        const radius = Math.min(width, height) * 0.42;
+        const r2 = radius * radius;
+        const springK = 0.045;  // Soft, pillowy silk-cotton rebound
+        const damping = 0.86;   // Smooth plush settle
+
+        for (let i = 0; i < points.length; i++) {
+          const p = points[i];
+          if (p.pinned) continue;
+
+          // Spring pull back to resting position
+          p.vx += (p.ox - p.x) * springK;
+          p.vy += (p.oy - p.y) * springK;
+
+          // Tactile brush & soft parting under cursor
+          if (isHovering) {
+            const dx = p.x - ptrX;
+            const dy = p.y - ptrY;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < r2 && d2 > 0.01) {
+              const dist = Math.sqrt(d2);
+              const falloff = Math.pow(1 - dist / radius, 2);
+              // Gentle outward pillowy parting + follow pointer brush direction
+              p.vx += (dx / dist) * falloff * 1.15 + velX * falloff * 0.24;
+              p.vy += (dy / dist) * falloff * 1.15 + velY * falloff * 0.24;
+            }
+          }
+
+          p.vx *= damping;
+          p.vy *= damping;
+          p.x += p.vx;
+          p.y += p.vy;
+
+          totalMotion += Math.abs(p.vx) + Math.abs(p.vy) + Math.abs(p.ox - p.x) * 0.1 + Math.abs(p.oy - p.y) * 0.1;
+        }
+
+        velX *= 0.72;
+        velY *= 0.72;
+        draw();
+
+        if (isHovering || totalMotion > 0.15) {
+          rafId = requestAnimationFrame(step);
+        } else {
+          rafId = null;
+        }
+      }
+
+      function wake() {
+        if (!rafId && ready) rafId = requestAnimationFrame(step);
+      }
+
+      function updatePointer(clientX, clientY) {
+        const rect = card.getBoundingClientRect();
+        const nx = clientX - rect.left;
+        const ny = clientY - rect.top;
+        if (prevX !== -999) {
+          velX = Math.max(-22, Math.min(22, nx - prevX));
+          velY = Math.max(-22, Math.min(22, ny - prevY));
+        }
+        prevX = ptrX = nx;
+        prevY = ptrY = ny;
+        isHovering = true;
+        wake();
+      }
+
+      card.addEventListener('pointermove', (e) => updatePointer(e.clientX, e.clientY));
+      card.addEventListener('pointerenter', (e) => {
+        prevX = -999; prevY = -999;
+        updatePointer(e.clientX, e.clientY);
+      });
+      card.addEventListener('pointerleave', () => {
+        isHovering = false;
+        prevX = -999; prevY = -999;
+        velX = 0; velY = 0;
+        wake();
+      });
+
+      if (img.complete && img.naturalWidth) {
+        initMesh();
+      } else {
+        img.addEventListener('load', initMesh);
+      }
+      window.addEventListener('resize', () => {
+        if (img.naturalWidth) initMesh();
+      });
     })();
   </script>
   <!-- Horseshoe Frequency Logo Motion Engine -->
