@@ -426,8 +426,8 @@ function openProductModal(productId) {
         : 'Reversible: crafted with a refined twill weave using naturally dyed organic cotton yarns. Brushed solid pastel on one side, crisp unbleached white with signature motif print on the other.';
     } else {
       specNote = isDe
-        ? 'Köpergewebe (Twill Weave) aus natürlich gefärbten Bio-Baumwollgarnen, 100% einfarbig angeraut auf beiden Seiten, mit 3 prallen Kammern gefüllt mit Tamizhnad Ilavam Panju (Seidenbaumwolle).'
-        : 'Crafted with a refined twill weave using naturally dyed organic cotton yarns, 100% solid pastel brushed cotton on both sides, 3 plump channels filled with Tamizhnad Ilavam Panju.';
+        ? 'Köpergewebe (Twill Weave) aus natürlich gefärbten Bio-Baumwollgarnen, 100% einfarbig angeraut auf beiden Seiten, glatt und wolkenweich gefüllt mit Tamizhnad Ilavam Panju (Seidenbaumwolle).'
+        : 'Crafted with a refined twill weave using naturally dyed organic cotton yarns, 100% solid pastel brushed cotton on both sides, smooth plump cloud fill of Tamizhnad Ilavam Panju.';
     }
   }
 
@@ -438,17 +438,21 @@ function openProductModal(productId) {
 
   const isAdultQuilt = (product.id === 'quilt-heirloom-individual');
   const isInitialPurpleAdult = isAdultQuilt && initialColorway && initialColorway.id === 'lavender';
-  const initialModalImg = isInitialPurpleAdult ? 'assets/images/adult-quilt-lavender-rolled.jpg?v=1' : product.image;
+  const initialModalImg = isInitialPurpleAdult ? 'assets/images/adult-quilt-solid-lavender.jpg?v=1' : product.image;
 
   // Purple slow-mo video & solid lavender photos ONLY appear when Pastel Lavender is selected on the Adult Quilt (no clouds!)
   const adultGalleryHTML = isAdultQuilt ? `
-    <div class="grid grid-cols-3 gap-2.5 mt-3 ${isInitialPurpleAdult ? '' : 'hidden'}" id="modal-media-strip">
+    <div class="grid grid-cols-4 gap-2.5 mt-3 ${isInitialPurpleAdult ? '' : 'hidden'}" id="modal-media-strip">
       <button type="button" onclick="setModalMedia('video', 'assets/videos/adult-quilt-lavender-slomo.mp4?v=1', this, 'assets/images/adult-quilt-lavender-poster.jpg')" class="modal-media-thumb relative rounded-xl overflow-hidden border-2 border-brand-gold h-16 sm:h-20 bg-black transition">
         <img src="assets/images/adult-quilt-lavender-poster.jpg" alt="Pastel lavender adult quilt slow-mo video" class="w-full h-full object-cover">
         <span class="absolute inset-0 flex items-center justify-center bg-black/35">
           <span class="w-6 h-6 rounded-full bg-brand-gold/90 text-black flex items-center justify-center text-[10px] font-bold shadow">▶</span>
         </span>
         <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-gold text-center py-0.5 uppercase">Slow-Mo</span>
+      </button>
+      <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-solid-lavender.jpg?v=1', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
+        <img src="assets/images/adult-quilt-solid-lavender.jpg?v=1" alt="Solid pastel lavender adult quilt folded" class="w-full h-full object-cover">
+        <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-cream text-center py-0.5 uppercase">Folded</span>
       </button>
       <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-lavender-rolled.jpg?v=1', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
         <img src="assets/images/adult-quilt-lavender-rolled.jpg?v=1" alt="Solid pastel lavender adult quilt rolled" class="w-full h-full object-cover">
@@ -609,7 +613,7 @@ function selectModalColorway(productId, colorwayId) {
   const cwName = (isDe && cw.name_de) ? cw.name_de : cw.name;
   const cwMotif = (isDe && cw.motif_de) ? cw.motif_de : cw.motif;
 
-  product.image = isPurpleAdult ? 'assets/images/adult-quilt-lavender-rolled.jpg?v=1' : `${cw.image}?v=1`;
+  product.image = `${cw.image}?v=1`;
   product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
   if (isDe) {
     product.badge_de = isThrow ? `${cwName} • ${cwMotif}-Druck` : `${cwName} • Steppdecke`;

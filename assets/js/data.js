@@ -50,6 +50,15 @@ const PASTEL_COLORWAYS = [
   { id: "yellow",   name: "Pastel Butter Yellow", name_de: "Pastell-Buttergelb", motif: "Five-Pointed Stars", motif_de: "Fünfzackige Sterne", hex: "#F4E098", image: "assets/images/lookbook-yellow-stars.jpg" }
 ];
 
+const ADULT_QUILT_COLORWAYS = [
+  { id: "lavender", name: "Pastel Lavender", name_de: "Pastell-Lavendel", motif: "Solid Pastel", motif_de: "Einfarbig Pastell", hex: "#D8CCE4", image: "assets/images/adult-quilt-solid-lavender.jpg" },
+  { id: "bluegrey", name: "Pastel Misty Blue-Grey", name_de: "Pastell-Nebelblau-Grau", motif: "Solid Pastel", motif_de: "Einfarbig Pastell", hex: "#C6D2DC", image: "assets/images/adult-quilt-solid-bluegrey.jpg" },
+  { id: "pink",     name: "Pastel Blush Pink", name_de: "Pastell-Zartrosa", motif: "Solid Pastel", motif_de: "Einfarbig Pastell", hex: "#F0C4CE", image: "assets/images/adult-quilt-solid-blush.jpg" },
+  { id: "mint",     name: "Pastel Mint Green", name_de: "Pastell-Minzgrün", motif: "Solid Pastel", motif_de: "Einfarbig Pastell", hex: "#C5E0C2", image: "assets/images/adult-quilt-solid-mint.jpg" },
+  { id: "peach",    name: "Pastel Peach", name_de: "Pastell-Pfirsich", motif: "Solid Pastel", motif_de: "Einfarbig Pastell", hex: "#F4C6A8", image: "assets/images/adult-quilt-solid-peach.jpg" },
+  { id: "yellow",   name: "Pastel Butter Yellow", name_de: "Pastell-Buttergelb", motif: "Solid Pastel", motif_de: "Einfarbig Pastell", hex: "#F4E098", image: "assets/images/adult-quilt-solid-yellow.jpg" }
+];
+
 const PRODUCTS = [
   // COCONUT MILK SOAPS (Sculptural 3D Bubble Cubes • 3x3 rounded spheres all around, wrapped in plain unbranded organic paper stating ONLY the botanical name with NO word 'Soap', tied with seed-flecked cotton thread)
   {
@@ -342,8 +351,8 @@ const PRODUCTS = [
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 21,
-    image: "assets/images/lookbook-bluegrey-moons.jpg?v=1",
-    colorways: PASTEL_COLORWAYS,
+    image: "assets/images/adult-quilt-solid-mint.jpg?v=1",
+    colorways: ADULT_QUILT_COLORWAYS,
     description: "Master solid pastel adult cloud quilt (140 × 222 cm) filled with 1.4kg of 100% natural Ilavam Panju (silk cotton harvested from Tamizhnad) and encased in an ultra-soft, brushed twill weave with organic cotton yarns, naturally dyed in calming solid pastel (available in all 6 pastel shades: Pastel Misty Blue-Grey, Pastel Lavender, Pastel Blush Pink, Pastel Mint Green, Pastel Peach, and Pastel Butter Yellow — our quilts are 100% solid pastel, completely unprinted). While the handcrafted quilt itself is not separately certified, the organic cotton fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with 100% eco-friendly plastic-free labels and a handcrafted tote carry bag.",
     ingredients: "Natural Ilavam Panju (1.4kg Silk Cotton harvested from Tamizhnad) Filling + Handcrafted with Twill Weave using Naturally Dyed Organic Cotton Yarns, GOTS & OEKO-TEX Certified Organic Cotton Fabric.",
     benefits: ["Twill weave with organic cotton yarns, naturally dyed", "100% solid pastel brushed cotton with 1.4kg pure Tamizhnad Ilavam Panju filling for cloud-like comfort", "Crafted from GOTS & OEKO-TEX Standard 100 certified fabric with 100% eco-friendly plastic-free labels", "Available in all 6 soothing pastel shades • Adult size (140 × 222 cm)"],
