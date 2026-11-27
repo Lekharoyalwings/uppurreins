@@ -1516,14 +1516,14 @@
               float w = smoothstep(rad, 0.0, dist);
               float wSoft = w * w;
 
-              // Fine irregular fiber-tuft variation so wisps shift unevenly like real silk cotton
-              float nx = fbm(v_uv * 16.0 + vec2(4.1, 1.3)) - 0.5;
-              float ny = fbm(v_uv * 16.0 + vec2(9.2, 6.7)) - 0.5;
-              vec2 tuftJitter = vec2(nx, ny);
+              // Multi-directional irregular cotton fiber angles (vertical, horizontal, and diagonal wisps)
+              float angle = fbm(v_uv * 11.0 + vec2(3.7, 8.1)) * 6.283185;
+              float tuftAmp = 0.55 + fbm(v_uv * 17.0 + vec2(6.4, 2.9));
+              vec2 multiDir = vec2(cos(angle), sin(angle)) * tuftAmp;
 
-              // Gentle directional brush following cursor + irregular wispy fiber shift (+20% more)
-              vec2 brush = -u_vel * (0.66 + nShape * 0.54);
-              vec2 organicSettle = tuftJitter * 0.025;
+              // Evident, natural irregular fiber parting + directional brush (same touch size, +30% more evident movement)
+              vec2 brush = -u_vel * (0.95 + nShape * 0.75);
+              vec2 organicSettle = multiDir * 0.026;
               disp = (brush + organicSettle) * wSoft * u_strength;
             }
           }
@@ -1604,8 +1604,8 @@
         const prevU = curU, prevV = curV;
         curU += (targetU - curU) * 0.16;
         curV += (targetV - curV) * 0.16;
-        velU = Math.max(-0.04, Math.min(0.04, curU - prevU));
-        velV = Math.max(-0.04, Math.min(0.04, curV - prevV));
+        velU = Math.max(-0.07, Math.min(0.07, (curU - prevU) * 1.4));
+        velV = Math.max(-0.07, Math.min(0.07, (curV - prevV) * 1.4));
         strength += (targetStrength - strength) * 0.10;
 
         render();
