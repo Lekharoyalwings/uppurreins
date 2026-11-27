@@ -438,7 +438,7 @@ function openProductModal(productId) {
 
   const isAdultQuilt = (product.id === 'quilt-heirloom-individual');
   const isInitialPurpleAdult = isAdultQuilt && initialColorway && initialColorway.id === 'lavender';
-  const initialModalImg = isInitialPurpleAdult ? 'assets/images/adult-quilt-solid-lavender.jpg?v=1' : product.image;
+  const initialModalImg = isInitialPurpleAdult ? 'assets/images/adult-quilt-solid-lavender.jpg?v=2' : product.image;
 
   // Purple slow-mo video & solid lavender photos ONLY appear when Pastel Lavender is selected on the Adult Quilt (no clouds!)
   const adultGalleryHTML = isAdultQuilt ? `
@@ -450,8 +450,8 @@ function openProductModal(productId) {
         </span>
         <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-gold text-center py-0.5 uppercase">Slow-Mo</span>
       </button>
-      <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-solid-lavender.jpg?v=1', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
-        <img src="assets/images/adult-quilt-solid-lavender.jpg?v=1" alt="Solid pastel lavender adult quilt folded" class="w-full h-full object-cover">
+      <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-solid-lavender.jpg?v=2', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
+        <img src="assets/images/adult-quilt-solid-lavender.jpg?v=2" alt="Solid pastel lavender adult quilt folded" class="w-full h-full object-cover">
         <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-cream text-center py-0.5 uppercase">Folded</span>
       </button>
       <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-lavender-rolled.jpg?v=1', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
@@ -613,7 +613,7 @@ function selectModalColorway(productId, colorwayId) {
   const cwName = (isDe && cw.name_de) ? cw.name_de : cw.name;
   const cwMotif = (isDe && cw.motif_de) ? cw.motif_de : cw.motif;
 
-  product.image = `${cw.image}?v=1`;
+  product.image = `${cw.image}?v=2`;
   product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
   if (isDe) {
     product.badge_de = isThrow ? `${cwName} • ${cwMotif}-Druck` : `${cwName} • Steppdecke`;

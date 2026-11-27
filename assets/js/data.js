@@ -351,7 +351,7 @@ const PRODUCTS = [
     badgeType: "featured",
     rating: 5.0,
     reviewsCount: 21,
-    image: "assets/images/adult-quilt-solid-mint.jpg?v=1",
+    image: "assets/images/adult-quilt-solid-mint.jpg?v=2",
     colorways: ADULT_QUILT_COLORWAYS,
     description: "Master solid pastel adult cloud quilt (140 × 222 cm) filled with 1.4kg of 100% natural Ilavam Panju (silk cotton harvested from Tamizhnad) and encased in an ultra-soft, brushed twill weave with organic cotton yarns, naturally dyed in calming solid pastel (available in all 6 pastel shades: Pastel Misty Blue-Grey, Pastel Lavender, Pastel Blush Pink, Pastel Mint Green, Pastel Peach, and Pastel Butter Yellow — our quilts are 100% solid pastel, completely unprinted). While the handcrafted quilt itself is not separately certified, the organic cotton fabric it is made from is GOTS and OEKO-TEX Standard 100 certified. Finished with 100% eco-friendly plastic-free labels and a handcrafted tote carry bag.",
     ingredients: "Natural Ilavam Panju (1.4kg Silk Cotton harvested from Tamizhnad) Filling + Handcrafted with Twill Weave using Naturally Dyed Organic Cotton Yarns, GOTS & OEKO-TEX Certified Organic Cotton Fabric.",
