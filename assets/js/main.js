@@ -433,17 +433,46 @@ function openProductModal(productId) {
   const preOrderBtnText = isDe ? 'Vorbestellen (Versand nächsten Monat)' : 'Pre-Order (Ships Next Month)';
   const askBtnTitle = isDe ? 'Frage per WhatsApp stellen' : 'Ask a question via WhatsApp';
 
+  const isAdultQuilt = (product.id === 'quilt-heirloom-individual');
+  const adultGalleryHTML = isAdultQuilt ? `
+    <div class="grid grid-cols-4 gap-2.5 mt-3" id="modal-media-strip">
+      <button type="button" onclick="setModalMedia('photo', '${product.image}', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border-2 border-brand-gold h-16 sm:h-20 bg-black transition">
+        <img src="${product.image}" alt="Fabric view" class="w-full h-full object-cover">
+        <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-gold text-center py-0.5 uppercase">Drape</span>
+      </button>
+      <button type="button" onclick="setModalMedia('video', 'assets/videos/adult-quilt-lavender-slomo.mp4?v=1', this, 'assets/images/adult-quilt-lavender-poster.jpg')" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
+        <img src="assets/images/adult-quilt-lavender-poster.jpg" alt="Pastel lavender slow-mo video" class="w-full h-full object-cover">
+        <span class="absolute inset-0 flex items-center justify-center bg-black/35">
+          <span class="w-6 h-6 rounded-full bg-brand-gold/90 text-black flex items-center justify-center text-[10px] font-bold shadow">▶</span>
+        </span>
+        <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-cream text-center py-0.5 uppercase">Slow-Mo</span>
+      </button>
+      <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-lavender-rolled.jpg?v=1', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
+        <img src="assets/images/adult-quilt-lavender-rolled.jpg?v=1" alt="Rolled lavender adult quilt" class="w-full h-full object-cover">
+        <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-cream text-center py-0.5 uppercase">Rolled</span>
+      </button>
+      <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-lavender-label.jpg?v=1', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
+        <img src="assets/images/adult-quilt-lavender-label.jpg?v=1" alt="UP Purreins woven label detail" class="w-full h-full object-cover">
+        <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-cream text-center py-0.5 uppercase">Detail</span>
+      </button>
+    </div>
+  ` : '';
+
   const body = document.getElementById('product-modal-body');
   body.innerHTML = `
     <div class="grid lg:grid-cols-12 gap-8 items-start">
-      <div id="modal-product-stage" class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-brand-gold/25 shadow-2xl bg-black h-[380px] sm:h-[480px] lg:h-[600px] cursor-grab active:cursor-grabbing">
-        <img id="modal-product-img" src="${product.image}" alt="${name}" class="w-full h-full object-cover object-center pointer-events-none select-none transition-opacity duration-200" />
-        <canvas id="modal-product-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
-        ${touchHint ? `
-          <span class="absolute bottom-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-black/75 border border-brand-gold/35 text-[11px] font-mono text-brand-gold backdrop-blur-md pointer-events-none shadow-lg">
-            ${touchHint}
-          </span>
-        ` : ''}
+      <div class="lg:col-span-7">
+        <div id="modal-product-stage" class="relative rounded-2xl overflow-hidden border border-brand-gold/25 shadow-2xl bg-black h-[380px] sm:h-[480px] lg:h-[600px] cursor-grab active:cursor-grabbing">
+          <img id="modal-product-img" src="${product.image}" alt="${name}" class="w-full h-full object-cover object-center pointer-events-none select-none transition-opacity duration-200" />
+          <canvas id="modal-product-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+          <video id="modal-product-video" autoplay muted loop playsinline class="hidden absolute inset-0 w-full h-full object-cover object-center"></video>
+          ${touchHint ? `
+            <span id="modal-touch-hint" class="absolute bottom-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-black/75 border border-brand-gold/35 text-[11px] font-mono text-brand-gold backdrop-blur-md pointer-events-none shadow-lg">
+              ${touchHint}
+            </span>
+          ` : ''}
+        </div>
+        ${adultGalleryHTML}
       </div>
       <div class="lg:col-span-5">
         <div class="flex flex-wrap items-center gap-2 mb-2">
@@ -521,6 +550,44 @@ function openProductModal(productId) {
   if (window.lucide) lucide.createIcons();
 }
 
+function setModalMedia(type, src, btnEl, posterSrc) {
+  const imgEl = document.getElementById('modal-product-img');
+  const canvasEl = document.getElementById('modal-product-canvas');
+  const videoEl = document.getElementById('modal-product-video');
+  const hintEl = document.getElementById('modal-touch-hint');
+
+  document.querySelectorAll('.modal-media-thumb').forEach(b => {
+    b.classList.remove('border-2', 'border-brand-gold');
+    b.classList.add('border', 'border-white/15');
+  });
+  if (btnEl) {
+    btnEl.classList.remove('border', 'border-white/15');
+    btnEl.classList.add('border-2', 'border-brand-gold');
+  }
+
+  if (type === 'video' && videoEl) {
+    if (posterSrc) videoEl.poster = posterSrc;
+    if (videoEl.src !== src) videoEl.src = src;
+    videoEl.classList.remove('hidden');
+    if (canvasEl) canvasEl.classList.add('hidden');
+    if (hintEl) hintEl.classList.add('hidden');
+    videoEl.play().catch(() => {});
+  } else {
+    if (videoEl) {
+      videoEl.pause();
+      videoEl.classList.add('hidden');
+    }
+    if (canvasEl) canvasEl.classList.remove('hidden');
+    if (hintEl) hintEl.classList.remove('hidden');
+    if (imgEl) {
+      imgEl.src = src;
+      if (imgEl.complete && imgEl.naturalWidth && typeof window._modalFabricReload === 'function') {
+        window._modalFabricReload();
+      }
+    }
+  }
+}
+
 function selectModalColorway(productId, colorwayId) {
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product || !product.colorways) return;
@@ -545,6 +612,12 @@ function selectModalColorway(productId, colorwayId) {
   const noteEl = document.getElementById('modal-cw-spec-note');
 
   if (imgEl) {
+    const videoEl = document.getElementById('modal-product-video');
+    const canvasEl = document.getElementById('modal-product-canvas');
+    const hintEl = document.getElementById('modal-touch-hint');
+    if (videoEl) { videoEl.pause(); videoEl.classList.add('hidden'); }
+    if (canvasEl) canvasEl.classList.remove('hidden');
+    if (hintEl) hintEl.classList.remove('hidden');
     imgEl.src = product.image;
     if (imgEl.complete && imgEl.naturalWidth && typeof window._modalFabricReload === 'function') {
       window._modalFabricReload();
