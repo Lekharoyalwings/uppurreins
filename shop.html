@@ -1457,9 +1457,9 @@
         uniform sampler2D u_tex;
         uniform vec2 u_res;
         uniform vec2 u_imgRes;
-        uniform vec2 u_trail[12];
-        uniform vec2 u_vel[12];
-        uniform float u_strength[12];
+        uniform vec2 u_ptr;
+        uniform vec2 u_vel;
+        uniform float u_strength;
 
         vec2 coverUV(vec2 uv) {
           float boxA = u_res.x / u_res.y;
@@ -1476,30 +1476,23 @@
         void main() {
           float aspect = u_res.x / u_res.y;
           vec2 disp = vec2(0.0);
-          float glow = 0.0;
 
-          for (int i = 0; i < 12; i++) {
-            float s = u_strength[i];
-            if (s > 0.001) {
-              vec2 d = v_uv - u_trail[i];
-              vec2 dA = vec2(d.x * aspect, d.y);
-              float dist = length(dA);
-              float rad = 0.22;
-              if (dist < rad) {
-                float w = smoothstep(rad, 0.0, dist);
-                float w2 = w * w;
-                vec2 dir = dist > 0.0001 ? normalize(d) : vec2(0.0);
-                // Very subtle, delicate silk-cotton touch directly under cursor
-                disp -= dir * (w2 * 0.009 * s) + u_vel[i] * (w2 * 0.16 * s);
-                glow += w2 * 0.012 * s;
-              }
+          if (u_strength > 0.001) {
+            vec2 d = v_uv - u_ptr;
+            vec2 dA = vec2(d.x * aspect, d.y);
+            float dist = length(dA);
+            float rad = 0.24;
+            if (dist < rad) {
+              float w = smoothstep(rad, 0.0, dist);
+              float w2 = w * w * w;
+              vec2 dir = dist > 0.0001 ? normalize(d) : vec2(0.0);
+              // Whisper-soft, barely-there plush silk-cotton shift (~1-2px max, zero ripples)
+              disp = -(dir * (w2 * 0.0045 * u_strength) + u_vel * (w2 * 0.14 * u_strength));
             }
           }
 
           vec2 uv = clamp(coverUV(v_uv + disp), 0.002, 0.998);
-          vec4 col = texture2D(u_tex, uv);
-          col.rgb += vec3(glow);
-          gl_FragColor = col;
+          gl_FragColor = texture2D(u_tex, uv);
         }
       `;
 
@@ -1525,7 +1518,7 @@
 
       const uRes = gl.getUniformLocation(prog, 'u_res');
       const uImgRes = gl.getUniformLocation(prog, 'u_imgRes');
-      const uTrail = gl.getUniformLocation(prog, 'u_trail');
+      const uPtr = gl.getUniformLocation(prog, 'u_ptr');
       const uVel = gl.getUniformLocation(prog, 'u_vel');
       const uStrength = gl.getUniformLocation(prog, 'u_strength');
 
@@ -1533,12 +1526,10 @@
       let ready = false;
       let rafId = null;
 
-      const N = 12;
-      const trail = new Float32Array(N * 2);
-      const vel = new Float32Array(N * 2);
-      const strength = new Float32Array(N);
-      let head = 0;
-      let prevU = -1, prevV = -1;
+      let targetU = 0.5, targetV = 0.5;
+      let curU = 0.5, curV = 0.5;
+      let velU = 0, velV = 0;
+      let strength = 0, targetStrength = 0;
 
       function resize() {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1566,66 +1557,55 @@
 
       function render() {
         if (!ready) return;
-        gl.uniform2fv(uTrail, trail);
-        gl.uniform2fv(uVel, vel);
-        gl.uniform1fv(uStrength, strength);
+        gl.uniform2f(uPtr, curU, curV);
+        gl.uniform2f(uVel, velU, velV);
+        gl.uniform1f(uStrength, strength);
         gl.drawArrays(gl.TRIANGLES, 0, 6);
       }
 
       function tick() {
-        let active = false;
-        for (let i = 0; i < N; i++) {
-          if (strength[i] > 0.002) {
-            strength[i] *= 0.91;
-            vel[i * 2] *= 0.88;
-            vel[i * 2 + 1] *= 0.88;
-            active = true;
-          } else {
-            strength[i] = 0;
-          }
-        }
+        const prevU = curU, prevV = curV;
+        curU += (targetU - curU) * 0.16;
+        curV += (targetV - curV) * 0.16;
+        velU = Math.max(-0.04, Math.min(0.04, curU - prevU));
+        velV = Math.max(-0.04, Math.min(0.04, curV - prevV));
+        strength += (targetStrength - strength) * 0.10;
+
         render();
-        if (active) {
+
+        const moving = Math.abs(targetU - curU) > 0.0005 || Math.abs(targetV - curV) > 0.0005 || Math.abs(targetStrength - strength) > 0.002 || strength > 0.002;
+        if (moving) {
           rafId = requestAnimationFrame(tick);
         } else {
+          strength = 0;
+          render();
           rafId = null;
         }
       }
 
-      function pushTouch(u, v) {
-        if (u < 0 || u > 1 || v < 0 || v > 1) return;
-        let vx = 0, vy = 0;
-        if (prevU >= 0) {
-          vx = Math.max(-0.08, Math.min(0.08, u - prevU));
-          vy = Math.max(-0.08, Math.min(0.08, v - prevV));
-        }
-        prevU = u;
-        prevV = v;
-
-        trail[head * 2] = u;
-        trail[head * 2 + 1] = v;
-        vel[head * 2] = vx;
-        vel[head * 2 + 1] = vy;
-        strength[head] = 1.0;
-        head = (head + 1) % N;
-
+      function wake() {
         if (!rafId && ready) rafId = requestAnimationFrame(tick);
       }
 
-      // Use offsetX / offsetY relative to card.clientWidth / card.clientHeight — 100% immune to Safari CSS zoom: 0.9 offset!
       card.addEventListener('pointermove', (e) => {
         const w = card.clientWidth || 1;
         const h = card.clientHeight || 1;
-        pushTouch(e.offsetX / w, e.offsetY / h);
+        targetU = Math.max(0, Math.min(1, e.offsetX / w));
+        targetV = Math.max(0, Math.min(1, e.offsetY / h));
+        targetStrength = 1.0;
+        wake();
       });
       card.addEventListener('pointerenter', (e) => {
-        prevU = -1; prevV = -1;
         const w = card.clientWidth || 1;
         const h = card.clientHeight || 1;
-        pushTouch(e.offsetX / w, e.offsetY / h);
+        curU = targetU = Math.max(0, Math.min(1, e.offsetX / w));
+        curV = targetV = Math.max(0, Math.min(1, e.offsetY / h));
+        targetStrength = 1.0;
+        wake();
       });
       card.addEventListener('pointerleave', () => {
-        prevU = -1; prevV = -1;
+        targetStrength = 0.0;
+        wake();
       });
 
       if (img.complete && img.naturalWidth) {
