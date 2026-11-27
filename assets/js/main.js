@@ -192,38 +192,27 @@ function initModalFabricTouch(mode) {
 
     void main() {
       float aspect = u_res.x / u_res.y;
-      vec2 baseUV = clamp(coverUV(v_uv), 0.002, 0.998);
-      vec4 baseCol = texture2D(u_tex, baseUV);
-
-      // Isolate ONLY the bright pastel quilt & white throw fabric — keep dark wood table & background 100% solid & still
-      float luma = dot(baseCol.rgb, vec3(0.299, 0.587, 0.114));
-      float fabricMask = smoothstep(0.36, 0.54, luma);
-      // Also exclude the very top window glare strip if present (y < 0.14)
-      fabricMask *= smoothstep(0.08, 0.22, v_uv.y);
-
       vec2 disp = vec2(0.0);
       float sheen = 0.0;
 
-      if (u_strength > 0.001 && fabricMask > 0.01) {
+      if (u_strength > 0.001) {
         vec2 d = v_uv - u_ptr;
         vec2 dA = vec2(d.x * aspect, d.y);
 
-        // Broad, gentle organic drape contour (cloth fold, never a hard circle)
+        // Smooth, seamless organic drape gliding across the whole picture
         float drapeNoise = fbm(v_uv * 4.5 + vec2(2.3, 5.1));
         float dist = length(dA) + (drapeNoise - 0.5) * 0.10;
 
         if (dist < u_rad) {
           float w = smoothstep(u_rad, 0.0, dist);
-          float wSoft = w * w * fabricMask;
+          float wSoft = w * w;
 
-          // Flowing cloth wave along swipe direction + soft natural fabric crease
           float foldAngle = fbm(v_uv * 5.2 + vec2(1.4, 7.2)) * 6.283185;
           vec2 clothFold = vec2(cos(foldAngle), sin(foldAngle)) * (0.45 + drapeNoise * 0.55);
 
           vec2 glide = -u_vel * (u_brushMul * (0.75 + drapeNoise * 0.5));
           disp = (glide + clothFold * u_foldAmp) * wSoft * u_strength;
 
-          // Subtle fabric light/shadow depth as the quilt or throw yields under touch
           float lightDot = dot(normalize(dA + vec2(0.0001)), normalize(vec2(-0.6, -0.8)));
           sheen = lightDot * wSoft * u_sheenAmp * u_strength;
         }
@@ -231,12 +220,8 @@ function initModalFabricTouch(mode) {
 
       vec2 uv = clamp(coverUV(v_uv + disp), 0.002, 0.998);
       vec4 col = texture2D(u_tex, uv);
-      // Guard against pulling dark table pixels into the fabric edge
-      float sampledLuma = dot(col.rgb, vec3(0.299, 0.587, 0.114));
-      float validPull = smoothstep(0.30, 0.45, sampledLuma);
-      vec4 finalCol = mix(baseCol, col, validPull * fabricMask);
-      finalCol.rgb += vec3(sheen * validPull);
-      gl_FragColor = finalCol;
+      col.rgb += vec3(sheen);
+      gl_FragColor = col;
     }
   `;
 
