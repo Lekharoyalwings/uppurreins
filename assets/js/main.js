@@ -108,6 +108,9 @@ function initModalFabricTouch(mode) {
     window._modalFabricCleanup = null;
   }
 
+  // Only apply tactile fabric movement to quilts and throws
+  if (mode !== 'quilt' && mode !== 'throw') return;
+
   const stage = document.getElementById('modal-product-stage');
   const img = document.getElementById('modal-product-img');
   const canvas = document.getElementById('modal-product-canvas');
@@ -189,10 +192,19 @@ function initModalFabricTouch(mode) {
 
     void main() {
       float aspect = u_res.x / u_res.y;
+      vec2 baseUV = clamp(coverUV(v_uv), 0.002, 0.998);
+      vec4 baseCol = texture2D(u_tex, baseUV);
+
+      // Isolate ONLY the bright pastel quilt & white throw fabric — keep dark wood table & background 100% solid & still
+      float luma = dot(baseCol.rgb, vec3(0.299, 0.587, 0.114));
+      float fabricMask = smoothstep(0.36, 0.54, luma);
+      // Also exclude the very top window glare strip if present (y < 0.14)
+      fabricMask *= smoothstep(0.08, 0.22, v_uv.y);
+
       vec2 disp = vec2(0.0);
       float sheen = 0.0;
 
-      if (u_strength > 0.001) {
+      if (u_strength > 0.001 && fabricMask > 0.01) {
         vec2 d = v_uv - u_ptr;
         vec2 dA = vec2(d.x * aspect, d.y);
 
@@ -202,7 +214,7 @@ function initModalFabricTouch(mode) {
 
         if (dist < u_rad) {
           float w = smoothstep(u_rad, 0.0, dist);
-          float wSoft = w * w;
+          float wSoft = w * w * fabricMask;
 
           // Flowing cloth wave along swipe direction + soft natural fabric crease
           float foldAngle = fbm(v_uv * 5.2 + vec2(1.4, 7.2)) * 6.283185;
@@ -219,8 +231,12 @@ function initModalFabricTouch(mode) {
 
       vec2 uv = clamp(coverUV(v_uv + disp), 0.002, 0.998);
       vec4 col = texture2D(u_tex, uv);
-      col.rgb += vec3(sheen);
-      gl_FragColor = col;
+      // Guard against pulling dark table pixels into the fabric edge
+      float sampledLuma = dot(col.rgb, vec3(0.299, 0.587, 0.114));
+      float validPull = smoothstep(0.30, 0.45, sampledLuma);
+      vec4 finalCol = mix(baseCol, col, validPull * fabricMask);
+      finalCol.rgb += vec3(sheen * validPull);
+      gl_FragColor = finalCol;
     }
   `;
 
