@@ -1484,14 +1484,14 @@
               vec2 d = v_uv - u_trail[i];
               vec2 dA = vec2(d.x * aspect, d.y);
               float dist = length(dA);
-              float rad = 0.28;
+              float rad = 0.22;
               if (dist < rad) {
                 float w = smoothstep(rad, 0.0, dist);
                 float w2 = w * w;
                 vec2 dir = dist > 0.0001 ? normalize(d) : vec2(0.0);
-                // Soft silk-cotton parting & brushing directly under cursor
-                disp -= dir * (w2 * 0.018 * s) + u_vel[i] * (w2 * 0.35 * s);
-                glow += w2 * 0.03 * s;
+                // Very subtle, delicate silk-cotton touch directly under cursor
+                disp -= dir * (w2 * 0.009 * s) + u_vel[i] * (w2 * 0.16 * s);
+                glow += w2 * 0.012 * s;
               }
             }
           }
