@@ -424,9 +424,11 @@ function openProductModal(productId) {
   const ingredients = (typeof window.getLocalized === 'function') ? window.getLocalized(product, 'ingredients') : product.ingredients;
   const priceFormatted = (typeof window.formatPrice === 'function') ? window.formatPrice(product.price, product) : `INR ${product.price.toLocaleString('en-IN')}`;
 
-  const chooseShadeHeader = isDe ? 'Pastellton & Naturmuster wählen:' : 'Choose Pastel Shade & Motif:';
+  const chooseShadeHeader = isThrow
+    ? (isDe ? 'Pastellton & Naturmuster wählen:' : 'Choose Pastel Shade & Motif:')
+    : (isDe ? 'Pastellton wählen:' : 'Choose Pastel Shade:');
   const cwDisplayName = initialColorway ? (isDe && initialColorway.name_de ? initialColorway.name_de : initialColorway.name) : (isDe ? 'Farbton wählen' : 'Select a Shade');
-  const cwMotifName = initialColorway ? (isDe && initialColorway.motif_de ? initialColorway.motif_de : initialColorway.motif) : '';
+  const cwMotifName = (isThrow && initialColorway) ? (isDe && initialColorway.motif_de ? initialColorway.motif_de : initialColorway.motif) : '';
   const touchHint = (isQuilt || isThrow)
     ? (isDe ? '✦ Zum Fühlen über den Stoff streichen' : '✦ Glide over fabric to feel the drape')
     : '';
@@ -450,25 +452,25 @@ function openProductModal(productId) {
   const askBtnTitle = isDe ? 'Frage per WhatsApp stellen' : 'Ask a question via WhatsApp';
 
   const isAdultQuilt = (product.id === 'quilt-heirloom-individual');
+  const isInitialPurpleAdult = isAdultQuilt && initialColorway && initialColorway.id === 'lavender';
+  const initialModalImg = isInitialPurpleAdult ? 'assets/images/adult-quilt-lavender-rolled.jpg?v=1' : product.image;
+
+  // Purple slow-mo video & solid lavender photos ONLY appear when Pastel Lavender is selected on the Adult Quilt (no clouds!)
   const adultGalleryHTML = isAdultQuilt ? `
-    <div class="grid grid-cols-4 gap-2.5 mt-3" id="modal-media-strip">
-      <button type="button" onclick="setModalMedia('photo', '${product.image}', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border-2 border-brand-gold h-16 sm:h-20 bg-black transition">
-        <img src="${product.image}" alt="Fabric view" class="w-full h-full object-cover">
-        <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-gold text-center py-0.5 uppercase">Drape</span>
-      </button>
-      <button type="button" onclick="setModalMedia('video', 'assets/videos/adult-quilt-lavender-slomo.mp4?v=1', this, 'assets/images/adult-quilt-lavender-poster.jpg')" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
-        <img src="assets/images/adult-quilt-lavender-poster.jpg" alt="Pastel lavender slow-mo video" class="w-full h-full object-cover">
+    <div class="grid grid-cols-3 gap-2.5 mt-3 ${isInitialPurpleAdult ? '' : 'hidden'}" id="modal-media-strip">
+      <button type="button" onclick="setModalMedia('video', 'assets/videos/adult-quilt-lavender-slomo.mp4?v=1', this, 'assets/images/adult-quilt-lavender-poster.jpg')" class="modal-media-thumb relative rounded-xl overflow-hidden border-2 border-brand-gold h-16 sm:h-20 bg-black transition">
+        <img src="assets/images/adult-quilt-lavender-poster.jpg" alt="Pastel lavender adult quilt slow-mo video" class="w-full h-full object-cover">
         <span class="absolute inset-0 flex items-center justify-center bg-black/35">
           <span class="w-6 h-6 rounded-full bg-brand-gold/90 text-black flex items-center justify-center text-[10px] font-bold shadow">▶</span>
         </span>
-        <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-cream text-center py-0.5 uppercase">Slow-Mo</span>
+        <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-gold text-center py-0.5 uppercase">Slow-Mo</span>
       </button>
       <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-lavender-rolled.jpg?v=1', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
-        <img src="assets/images/adult-quilt-lavender-rolled.jpg?v=1" alt="Rolled lavender adult quilt" class="w-full h-full object-cover">
+        <img src="assets/images/adult-quilt-lavender-rolled.jpg?v=1" alt="Solid pastel lavender adult quilt rolled" class="w-full h-full object-cover">
         <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-cream text-center py-0.5 uppercase">Rolled</span>
       </button>
       <button type="button" onclick="setModalMedia('photo', 'assets/images/adult-quilt-lavender-label.jpg?v=1', this)" class="modal-media-thumb relative rounded-xl overflow-hidden border border-white/15 hover:border-brand-gold/60 h-16 sm:h-20 bg-black transition">
-        <img src="assets/images/adult-quilt-lavender-label.jpg?v=1" alt="UP Purreins woven label detail" class="w-full h-full object-cover">
+        <img src="assets/images/adult-quilt-lavender-label.jpg?v=1" alt="Solid pastel lavender adult quilt woven label" class="w-full h-full object-cover">
         <span class="absolute inset-x-0 bottom-0 bg-black/75 text-[9px] font-mono text-brand-cream text-center py-0.5 uppercase">Detail</span>
       </button>
     </div>
@@ -479,7 +481,7 @@ function openProductModal(productId) {
     <div class="grid lg:grid-cols-12 gap-8 items-start">
       <div class="lg:col-span-7">
         <div id="modal-product-stage" class="relative rounded-2xl overflow-hidden border border-brand-gold/25 shadow-2xl bg-black h-[380px] sm:h-[480px] lg:h-[600px] cursor-grab active:cursor-grabbing">
-          <img id="modal-product-img" src="${product.image}" alt="${name}" class="w-full h-full object-cover object-center pointer-events-none select-none transition-opacity duration-200" />
+          <img id="modal-product-img" src="${initialModalImg}" alt="${name}" class="w-full h-full object-cover object-center pointer-events-none select-none transition-opacity duration-200" />
           <canvas id="modal-product-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
           <video id="modal-product-video" autoplay muted loop playsinline class="hidden absolute inset-0 w-full h-full object-cover object-center"></video>
           ${touchHint ? `
@@ -561,6 +563,11 @@ function openProductModal(productId) {
     document.getElementById('product-modal-card').classList.remove('scale-95');
     document.getElementById('product-modal-card').classList.add('scale-100');
     initModalFabricTouch(fabricMode);
+    // If Adult Quilt opens directly on Pastel Lavender, play its pastel slow-mo video right away
+    if (isInitialPurpleAdult) {
+      const firstThumb = document.querySelector('#modal-media-strip .modal-media-thumb');
+      setModalMedia('video', 'assets/videos/adult-quilt-lavender-slomo.mp4?v=1', firstThumb, 'assets/images/adult-quilt-lavender-poster.jpg');
+    }
   }, 20);
 
   if (window.lucide) lucide.createIcons();
@@ -612,10 +619,12 @@ function selectModalColorway(productId, colorwayId) {
 
   const isDe = (window.currentLang === 'de');
   const isThrow = product.id.includes('throw');
+  const isAdultQuilt = (product.id === 'quilt-heirloom-individual');
+  const isPurpleAdult = (isAdultQuilt && cw.id === 'lavender');
   const cwName = (isDe && cw.name_de) ? cw.name_de : cw.name;
   const cwMotif = (isDe && cw.motif_de) ? cw.motif_de : cw.motif;
 
-  product.image = `${cw.image}?v=1`;
+  product.image = isPurpleAdult ? 'assets/images/adult-quilt-lavender-rolled.jpg?v=1' : `${cw.image}?v=1`;
   product.badge = isThrow ? `${cw.name} • ${cw.motif} Print` : `${cw.name} • Solid Quilt`;
   if (isDe) {
     product.badge_de = isThrow ? `${cwName} • ${cwMotif}-Druck` : `${cwName} • Steppdecke`;
@@ -626,14 +635,29 @@ function selectModalColorway(productId, colorwayId) {
   const badgeEl = document.getElementById('modal-product-badge');
   const labelEl = document.getElementById('modal-selected-cw-label');
   const noteEl = document.getElementById('modal-cw-spec-note');
+  const mediaStrip = document.getElementById('modal-media-strip');
 
-  if (imgEl) {
-    const videoEl = document.getElementById('modal-product-video');
-    const canvasEl = document.getElementById('modal-product-canvas');
-    const hintEl = document.getElementById('modal-touch-hint');
-    if (videoEl) { videoEl.pause(); videoEl.classList.add('hidden'); }
-    if (canvasEl) canvasEl.classList.remove('hidden');
-    if (hintEl) hintEl.classList.remove('hidden');
+  if (mediaStrip) {
+    if (isPurpleAdult) {
+      mediaStrip.classList.remove('hidden');
+      const firstThumb = mediaStrip.querySelector('.modal-media-thumb');
+      setModalMedia('video', 'assets/videos/adult-quilt-lavender-slomo.mp4?v=1', firstThumb, 'assets/images/adult-quilt-lavender-poster.jpg');
+    } else {
+      mediaStrip.classList.add('hidden');
+      if (imgEl) {
+        const videoEl = document.getElementById('modal-product-video');
+        const canvasEl = document.getElementById('modal-product-canvas');
+        const hintEl = document.getElementById('modal-touch-hint');
+        if (videoEl) { videoEl.pause(); videoEl.classList.add('hidden'); }
+        if (canvasEl) canvasEl.classList.remove('hidden');
+        if (hintEl) hintEl.classList.remove('hidden');
+        imgEl.src = product.image;
+        if (imgEl.complete && imgEl.naturalWidth && typeof window._modalFabricReload === 'function') {
+          window._modalFabricReload();
+        }
+      }
+    }
+  } else if (imgEl) {
     imgEl.src = product.image;
     if (imgEl.complete && imgEl.naturalWidth && typeof window._modalFabricReload === 'function') {
       window._modalFabricReload();
@@ -643,7 +667,7 @@ function selectModalColorway(productId, colorwayId) {
     badgeEl.textContent = (isDe && product.badge_de) ? product.badge_de : product.badge;
   }
   if (labelEl) {
-    labelEl.textContent = `${cwName} (${cwMotif})`;
+    labelEl.textContent = isThrow ? `${cwName} (${cwMotif})` : cwName;
   }
   if (noteEl) {
     noteEl.textContent = isThrow
